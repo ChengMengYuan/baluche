@@ -1,13 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:text="这是首页Fragment"/>
+    <!-- 首页标题栏开始 -->
+    <com.baluche.view.toolbar.HomeToolbar
+        android:id="@+id/home_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="#2cb154"
+        android:fitsSystemWindows="true"
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--天气图标-->
+            <ImageView
+                android:id="@+id/img_weather"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="6dp"
+                android:src="@mipmap/ic_launcher" />
+            <!--气温-->
+            <TextView
+                android:id="@+id/tv_weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/img_weather"
+                android:layout_below="@+id/img_weather"
+                android:layout_toStartOf="@+id/tv_location"
+                android:gravity="center"
+                android:text="12°"
+                android:textColor="#ffffff"
+                android:textSize="10sp" />
+
+            <!--地理位置-->
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="16dp"
+                android:layout_toRightOf="@+id/img_weather"
+                android:gravity="center"
+                android:text="南昌"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+
+            <!--地理位置下拉栏-->
+            <ImageView
+                android:id="@+id/img_choice_city"
+                android:layout_width="9dp"
+                android:layout_height="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/tv_location"
+                android:src="@color/colorAccent" />
+
+            <!--搜索框-->
+            <android.support.v7.widget.SearchView
+                android:id="@+id/home_search"
+                android:layout_width="223dp"
+                android:layout_height="28dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="9dp"
+                android:layout_toRightOf="@+id/img_choice_city"
+                android:queryHint="输入关键字或词">
+
+            </android.support.v7.widget.SearchView>
+
+            <!--消息-->
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@+id/home_search"
+                android:src="@color/colorAccent" />
+
+        </RelativeLayout>
+    </com.baluche.view.toolbar.HomeToolbar>
+    <!-- 首页标题栏结束 -->
+
+    <!-- 轮动广告栏开始 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp">
+
+        <com.youth.banner.Banner xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/home_banner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/dv_banner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                fresco:placeholderImage="@drawable/my_drawable" />
+        </com.youth.banner.Banner>
+
+
+    </RelativeLayout>
+    <!-- 轮动广告栏结束 -->
+
+    <!--4大栏目-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <!--热门活动-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
 
 </LinearLayout>

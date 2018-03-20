@@ -20,6 +20,7 @@ import com.baluche.view.adapter.MainFragmentPageAdapter;
 import com.baluche.view.fragment.HomePageFragment;
 import com.baluche.view.fragment.MineFragment;
 import com.baluche.view.fragment.NearbyFragment;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.ArrayList;
 
@@ -44,6 +45,8 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //初始化Fresco
+        Fresco.initialize(MainActivity.this);
         MApplication.getInstance().addActivity(this);
         setContentView(R.layout.activity_main);
         initview();
@@ -71,7 +74,7 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
 
         mviewpager.setOffscreenPageLimit(2);//设置viewpager缓存页数.
 
-        mviewpager.setAdapter(new MainFragmentPageAdapter(getSupportFragmentManager(),fragments));
+        mviewpager.setAdapter(new MainFragmentPageAdapter(getSupportFragmentManager(), fragments));
 
     }
 

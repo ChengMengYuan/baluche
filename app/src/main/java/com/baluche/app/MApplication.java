@@ -3,6 +3,8 @@ package com.baluche.app;
 import android.app.Activity;
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,13 @@ import java.util.List;
 public class MApplication extends Application {
     public static List<Object> activities = new ArrayList<>();
     private static MApplication instance;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        //图片加载框架的初始化
+        Fresco.initialize(this);
+    }
 
     public MApplication() {
 
@@ -30,10 +39,6 @@ public class MApplication extends Application {
         return instance;
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-    }
 
     /**
      * 添加activity到容器中
