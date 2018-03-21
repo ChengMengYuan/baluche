@@ -7,4 +7,6 @@
     <color name="colorGreen">#2cb154</color>
     <!-- 未选中时字体颜色-->
     <color name="colorGray">#666666</color>
+    <color name="colorContent">#efefef</color>
+    <color name="colorCase">#ffff</color>
 </resources>

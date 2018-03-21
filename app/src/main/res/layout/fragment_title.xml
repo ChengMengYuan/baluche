@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="89dp"
+        android:background="@color/colorGreen"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/my_image_view"
+                android:layout_width="43dp"
+                android:layout_height="43dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="18dp"
+                fresco:placeholderImage="@drawable/head_tx"
+                fresco:roundAsCircle="true"/>
+
+            <TextView
+                android:id="@+id/register_logon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="32dp"
+                android:layout_toRightOf="@+id/my_image_view"
+                android:text="登录/注册"
+                android:textColor="@color/colorCase"
+                android:textSize="14sp"/>
+
+            <ImageView
+                android:id="@+id/imageButton"
+                android:layout_width="19dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="32dp"
+                android:layout_marginRight="17dp"
+                android:src="@drawable/xiaoxi"
+                android:scaleType="fitXY"/>
+
+            <ImageView
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/dian"
+                android:scaleType="fitXY"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+</LinearLayout>
