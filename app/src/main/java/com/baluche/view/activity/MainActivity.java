@@ -1,18 +1,15 @@
 package com.baluche.view.activity;
 
-import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.widget.Button;
-import android.widget.CompoundButton;
+import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.baluche.R;
 import com.baluche.app.MApplication;
@@ -37,10 +34,17 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
     //fragment的集合，对应每个子页面
     private ArrayList<Fragment> fragments;
     //选项卡中的按钮
-    private RadioButton btn_home;
-    private RadioButton btn_nearby;
-    private RadioButton btn_mine;
-
+    private RelativeLayout rll_home;
+    private RelativeLayout rll_nearby;
+    private RelativeLayout rll_mine;
+    //底部导航栏的图片
+    private ImageView img_rll_home;
+    private ImageView img_rll_nearby;
+    private ImageView img_rll_mine;
+    //底部导航栏的文字
+    private TextView tv_rll_home;
+    private TextView tv_rll_nearby;
+    private TextView tv_rll_mine;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,16 +59,87 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
     private void initview() {
         mviewpager = this.findViewById(R.id.mviewpage);
 
-        btn_home = this.findViewById(R.id.btn_home);
-        btn_nearby = this.findViewById(R.id.btn_nearby);
-        btn_mine = this.findViewById(R.id.btn_mine);
+        rll_home = this.findViewById(R.id.rll_home);
+        rll_nearby = this.findViewById(R.id.rll_nearby);
+        rll_mine = this.findViewById(R.id.rll_mine);
 
+        img_rll_home = this.findViewById(R.id.img_rll_home);
+        img_rll_nearby = this.findViewById(R.id.img_rll_nearby);
+        img_rll_mine = this.findViewById(R.id.img_rll_mine);
+
+        tv_rll_home = this.findViewById(R.id.tv_rll_home);
+        tv_rll_nearby = this.findViewById(R.id.tv_rll_nearby);
+        tv_rll_mine = this.findViewById(R.id.tv_rll_mine);
+
+        /**
+         * 设置为选中色
+         */
+        img_rll_home.setImageDrawable(getResources().getDrawable(R.drawable.green_sye));
+        tv_rll_home.setTextColor(getResources().getColor(R.color.colorGreen));
 
         mviewpager.setOnPageChangeListener(this);
 
-        btn_home.setOnCheckedChangeListener(new InnerOnCheckedChangeListener());
-        btn_nearby.setOnCheckedChangeListener(new InnerOnCheckedChangeListener());
-        btn_mine.setOnCheckedChangeListener(new InnerOnCheckedChangeListener());
+        //        rll_home.setOnCheckedChangeListener(new InnerOnCheckedChangeListener());
+        //        rll_nearby.setOnCheckedChangeListener(new InnerOnCheckedChangeListener());
+        //        rll_mine.setOnCheckedChangeListener(new InnerOnCheckedChangeListener());
+
+        rll_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mviewpager.setCurrentItem(0);
+                /**
+                 * 设置为选中色
+                 */
+                img_rll_home.setImageDrawable(getResources().getDrawable(R.drawable.green_sye));
+                tv_rll_home.setTextColor(getResources().getColor(R.color.colorGreen));
+                /**
+                 * 设置为未选中色
+                 */
+                img_rll_nearby.setImageDrawable(getResources().getDrawable(R.drawable.fujin));
+                tv_rll_nearby.setTextColor(getResources().getColor(R.color.colorGray));
+
+                img_rll_mine.setImageDrawable(getResources().getDrawable(R.drawable.wod));
+                tv_rll_mine.setTextColor(getResources().getColor(R.color.colorGray));
+            }
+        });
+        rll_nearby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mviewpager.setCurrentItem(1);
+                /**
+                 * 设置为选中色
+                 */
+                img_rll_nearby.setImageDrawable(getResources().getDrawable(R.drawable.green_fujin));
+                tv_rll_nearby.setTextColor(getResources().getColor(R.color.colorGreen));
+                /**
+                 * 设置为未选中色
+                 */
+                img_rll_home.setImageDrawable(getResources().getDrawable(R.drawable.sye));
+                tv_rll_home.setTextColor(getResources().getColor(R.color.colorGray));
+
+                img_rll_mine.setImageDrawable(getResources().getDrawable(R.drawable.wod));
+                tv_rll_mine.setTextColor(getResources().getColor(R.color.colorGray));
+            }
+        });
+        rll_mine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mviewpager.setCurrentItem(2);
+                /**
+                 * 设置为选中色
+                 */
+                img_rll_mine.setImageDrawable(getResources().getDrawable(R.drawable.green_wod));
+                tv_rll_mine.setTextColor(getResources().getColor(R.color.colorGreen));
+                /**
+                 * 设置为未选中色
+                 */
+                img_rll_home.setImageDrawable(getResources().getDrawable(R.drawable.sye));
+                tv_rll_home.setTextColor(getResources().getColor(R.color.colorGray));
+
+                img_rll_nearby.setImageDrawable(getResources().getDrawable(R.drawable.fujin));
+                tv_rll_nearby.setTextColor(getResources().getColor(R.color.colorGray));
+            }
+        });
 
         fragments = new ArrayList<>();
 
@@ -94,42 +169,11 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
 
     }
 
-    private class InnerOnCheckedChangeListener implements CompoundButton.OnCheckedChangeListener {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            switch (buttonView.getId()) {
-                case R.id.btn_home:
-                    //单选按钮通过参数isChecked去得到当前到底是选中还是未选中
-                    if (isChecked) {
-                        mviewpager.setCurrentItem(0);
-                    }
-
-                    break;
-                case R.id.btn_nearby:
-                    //单选按钮通过参数isChecked去得到当前到底是选中还是未选中
-                    if (isChecked) {
-                        mviewpager.setCurrentItem(1);
-                    }
-
-                    break;
-                case R.id.btn_mine:
-                    //单选按钮通过参数isChecked去得到当前到底是选中还是未选中
-                    if (isChecked) {
-                        mviewpager.setCurrentItem(2);
-                    }
-
-                    break;
-
-                default:
-                    break;
-            }
-
-        }
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         MApplication.getInstance().destory();
     }
+
+
 }

@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <!-- 选中时字体颜色-->
+    <color name="colorGreen">#2cb154</color>
+    <!-- 未选中时字体颜色-->
+    <color name="colorGray">#666666</color>
 </resources>
