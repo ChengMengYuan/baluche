@@ -17,18 +17,12 @@ import com.baluche.R;
 public class MineFragment extends Fragment {
 
     private TextView tv;
+    private View v;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_title, container, false);
-//        initView(v);
+        View v = inflater.inflate(R.layout.fragment_mine, container, false);
         return v;
     }
-
-//    private void initView(View v) {
-//        tv = v.findViewById(R.id.tv1);
-//    }
-
-
 }

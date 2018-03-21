@@ -4,17 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <fragment
-        android:id="@+id/fragment_title"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:name="com.baluche.view.fragment.MineFragment"/>
+    <!--<include layout="@layout/fragment_title"></include>-->
+
+    <!--<fragment-->
+    <!--android:id="@+id/fragment_title"-->
+    <!--android:name="com.baluche.view.fragment.MineFragment"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="100dp"></fragment>-->
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorContent"
         android:layout_gravity="center"
+        android:background="@color/colorContent"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -26,52 +29,52 @@
                 android:id="@+id/my_ico_wallet"
                 android:layout_width="17dp"
                 android:layout_height="16dp"
-                android:layout_marginTop="13dp"
                 android:layout_marginLeft="15dp"
-                android:src="@drawable/ico_wallet"/>
+                android:layout_marginTop="13dp"
+                android:src="@drawable/ico_wallet" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/my_ico_wallet"
-                android:layout_marginTop="12dp"
                 android:layout_marginLeft="10dp"
-                android:textSize="14sp"
+                android:layout_marginTop="12dp"
+                android:layout_toRightOf="@+id/my_ico_wallet"
+                android:text="@string/my_wallet"
                 android:textColor="#000000"
-                android:text="@string/my_wallet"/>
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/my_right_wallet"
                 android:layout_width="8dp"
                 android:layout_height="13dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="14dp"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/right"/>
+                android:layout_marginTop="14dp"
+                android:src="@drawable/right" />
 
             <TextView
                 android:id="@+id/my_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxWidth="150dp"
-                android:layout_toLeftOf="@+id/my_right_wallet"
-                android:layout_marginTop="12dp"
                 android:layout_marginRight="9dp"
-                android:textColor="#f43636"
-                android:textSize="14sp"
-                android:singleLine="true"
+                android:layout_marginTop="12dp"
+                android:layout_toLeftOf="@+id/my_right_wallet"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="50.00"/>
+                android:maxWidth="150dp"
+                android:singleLine="true"
+                android:text="50.00"
+                android:textColor="#f43636"
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/my_account"
                 android:layout_marginTop="12dp"
+                android:layout_toLeftOf="@+id/my_account"
+                android:text="余额： ￥"
                 android:textColor="#f43636"
-                android:textSize="14sp"
-                android:text="余额： ￥"/>
+                android:textSize="14sp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -110,97 +113,100 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/colorCase"
-            android:layout_marginTop="1dp">
+            android:layout_marginTop="1dp"
+            android:background="@color/colorCase">
+
             <ImageView
                 android:id="@+id/my_ico_vehicle"
                 android:layout_width="17dp"
                 android:layout_height="16dp"
-                android:layout_marginTop="13dp"
                 android:layout_marginLeft="15dp"
-                android:src="@drawable/ico_vehicle"/>
+                android:layout_marginTop="13dp"
+                android:src="@drawable/ico_vehicle" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/my_ico_vehicle"
-                android:layout_marginTop="12dp"
                 android:layout_marginLeft="10dp"
-                android:textSize="14sp"
+                android:layout_marginTop="12dp"
+                android:layout_toRightOf="@+id/my_ico_vehicle"
+                android:text="@string/my_vehicle"
                 android:textColor="#000000"
-                android:text="@string/my_vehicle"/>
+                android:textSize="14sp" />
 
             <ImageView
                 android:layout_width="8dp"
                 android:layout_height="13dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="14dp"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/right"/>
+                android:layout_marginTop="14dp"
+                android:src="@drawable/right" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/colorCase"
-            android:layout_marginTop="1dp">
+            android:layout_marginTop="1dp"
+            android:background="@color/colorCase">
+
             <ImageView
                 android:id="@+id/my_ico_problem"
                 android:layout_width="17dp"
                 android:layout_height="16dp"
-                android:layout_marginTop="13dp"
                 android:layout_marginLeft="15dp"
-                android:src="@drawable/ico_problem"/>
+                android:layout_marginTop="13dp"
+                android:src="@drawable/ico_problem" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/my_ico_problem"
-                android:layout_marginTop="12dp"
                 android:layout_marginLeft="10dp"
-                android:textSize="14sp"
+                android:layout_marginTop="12dp"
+                android:layout_toRightOf="@+id/my_ico_problem"
+                android:text="@string/my_problem"
                 android:textColor="#000000"
-                android:text="@string/my_problem"/>
+                android:textSize="14sp" />
 
             <ImageView
                 android:layout_width="8dp"
                 android:layout_height="13dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="14dp"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/right"/>
+                android:layout_marginTop="14dp"
+                android:src="@drawable/right" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/colorCase"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:background="@color/colorCase">
+
             <ImageView
                 android:id="@+id/my_ico_setup"
                 android:layout_width="17dp"
                 android:layout_height="16dp"
-                android:layout_marginTop="13dp"
                 android:layout_marginLeft="15dp"
-                android:src="@drawable/ico_setup"/>
+                android:layout_marginTop="13dp"
+                android:src="@drawable/ico_setup" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/my_ico_setup"
-                android:layout_marginTop="12dp"
                 android:layout_marginLeft="10dp"
-                android:textSize="14sp"
+                android:layout_marginTop="12dp"
+                android:layout_toRightOf="@+id/my_ico_setup"
+                android:text="@string/my_setup"
                 android:textColor="#000000"
-                android:text="@string/my_setup"/>
+                android:textSize="14sp" />
 
             <ImageView
                 android:layout_width="8dp"
                 android:layout_height="13dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="14dp"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/right"/>
+                android:layout_marginTop="14dp"
+                android:src="@drawable/right" />
         </RelativeLayout>
 
     </LinearLayout>
