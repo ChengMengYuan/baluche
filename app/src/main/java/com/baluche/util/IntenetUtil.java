@@ -7,7 +7,7 @@ import android.telephony.TelephonyManager;
 
 /**
  * @author ：     cmy
- * @version :     2016/10/31.
+ * @version :     2018/3/21.
  * @e-mil ：      mengyuan.cheng.mier@gmail.com
  * @Description :获取网络连接的工具类
  */
