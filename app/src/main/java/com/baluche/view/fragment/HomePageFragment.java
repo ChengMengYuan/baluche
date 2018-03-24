@@ -88,6 +88,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         titles = new ArrayList();
         getData();
     }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -242,133 +243,175 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         switch (weather) {
             case "0":
                 //晴
-                img_weather.setImageResource(R.drawable.dabaoyu);
+                img_weather.setImageResource(R.drawable.qing);
                 break;
             case "1":
                 //多云
+                img_weather.setImageResource(R.drawable.duoyun);
                 break;
             case "2":
                 //阴天
+                img_weather.setImageResource(R.drawable.yintian);
                 break;
             case "3":
                 //阵雨
+                img_weather.setImageResource(R.drawable.zhenyu);
                 break;
             case "4":
                 //雷阵雨
+                img_weather.setImageResource(R.drawable.leizhenyu);
                 break;
             case "5":
                 //雷阵雨拌有冰雹
+                img_weather.setImageResource(R.drawable.leizhenyubanyoubingbao);
                 break;
             case "6":
                 //雨夹雪
+                img_weather.setImageResource(R.drawable.yujiaxue);
                 break;
             case "7":
                 //小雨
+                img_weather.setImageResource(R.drawable.xiaoyu);
                 break;
             case "8":
                 //中雨
+                img_weather.setImageResource(R.drawable.zhongyu);
                 break;
             case "9":
                 //大雨
+                img_weather.setImageResource(R.drawable.dayu);
                 break;
             case "10":
                 //暴雨
+                img_weather.setImageResource(R.drawable.baoyu);
                 break;
             case "11":
                 //大暴雨
+                img_weather.setImageResource(R.drawable.dabaoyu);
                 break;
             case "12":
                 //特大暴雨
+                img_weather.setImageResource(R.drawable.tedabaoyu);
                 break;
             case "13":
                 //阵雪
+                img_weather.setImageResource(R.drawable.zhenxue);
                 break;
             case "14":
                 //小雪
+                img_weather.setImageResource(R.drawable.xiaoxue);
                 break;
             case "15":
                 //中雪
+                img_weather.setImageResource(R.drawable.zhongxue);
                 break;
             case "16":
                 //大雪
+                img_weather.setImageResource(R.drawable.daxue);
                 break;
             case "17":
                 //暴雪
+                img_weather.setImageResource(R.drawable.baoxue);
                 break;
             case "18":
                 //雾
+                img_weather.setImageResource(R.drawable.wu);
                 break;
             case "19":
                 //冻雨
+                img_weather.setImageResource(R.drawable.dongyu);
                 break;
             case "20":
                 //沙尘暴
+                img_weather.setImageResource(R.drawable.shachenbao);
                 break;
             case "21":
                 //小雨-中雨
+                img_weather.setImageResource(R.drawable.xiaoyudaozhongyu);
                 break;
             case "22":
                 //中雨-大雨
+                img_weather.setImageResource(R.drawable.zhongyudaodayu);
                 break;
             case "23":
                 //大雨-暴雨
+                img_weather.setImageResource(R.drawable.dayudaobaoyu);
                 break;
             case "24":
                 //暴雨-大暴雨
+                img_weather.setImageResource(R.drawable.baoyudaodabaoyu);
                 break;
             case "25":
                 //大暴雨-特大暴雨
+                img_weather.setImageResource(R.drawable.dabaoyudaotedabaoyu);
                 break;
             case "26":
                 //小雪-中雪
+                img_weather.setImageResource(R.drawable.xiaoxuedaozhongxue);
                 break;
             case "27":
                 //中雪-大雪
+                img_weather.setImageResource(R.drawable.zhongxuedaodaxue);
                 break;
             case "28":
                 //大雪-暴雪
+                img_weather.setImageResource(R.drawable.daxuedaobaoxue);
                 break;
             case "29":
                 //浮尘
+                img_weather.setImageResource(R.drawable.fuchen);
                 break;
             case "30":
                 //扬沙
+                img_weather.setImageResource(R.drawable.yangsha);
                 break;
             case "31":
                 //沙尘暴
+                img_weather.setImageResource(R.drawable.qiangshachenbao);
                 break;
             case "32":
                 //浓雾
+                img_weather.setImageResource(R.drawable.nongwu);
                 break;
             case "49":
                 //浓雾
+                img_weather.setImageResource(R.drawable.qiangnongwu);
                 break;
             case "53":
                 //霾
+                img_weather.setImageResource(R.drawable.mai);
                 break;
             case "54":
                 //中毒霾
+                img_weather.setImageResource(R.drawable.zhongdumai);
                 break;
             case "55":
                 //重度霾
+                img_weather.setImageResource(R.drawable.zhondumai);
                 break;
             case "56":
                 //严重霾
+                img_weather.setImageResource(R.drawable.yanzhongmai);
                 break;
             case "57":
                 //大雾
+                img_weather.setImageResource(R.drawable.dawu);
                 break;
             case "58":
                 //特强浓雾
+                img_weather.setImageResource(R.drawable.teqiangnongwu);
                 break;
             case "99":
                 //无
+                img_weather.setImageResource(R.drawable.meiyou);
                 break;
             case "301":
                 //雨
+                img_weather.setImageResource(R.drawable.yu);
                 break;
             case "302":
                 //雪
+                img_weather.setImageResource(R.drawable.xue);
                 break;
             default:
 
