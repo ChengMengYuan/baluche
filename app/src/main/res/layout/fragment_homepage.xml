@@ -129,7 +129,7 @@
                         android:id="@+id/dv_banner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        fresco:placeholderImage="@drawable/my_drawable" />
+                        fresco:placeholderImage="@drawable/my_drawable"/>
                 </com.youth.banner.Banner>
 
 
@@ -490,6 +490,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+
         </LinearLayout>
 
     </ScrollView>

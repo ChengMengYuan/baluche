@@ -1,213 +1,308 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!--<include layout="@layout/fragment_title"></include>-->
+    <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="89dp"
+            android:background="@color/colorGreen"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp">
 
-    <!--<fragment-->
-    <!--android:id="@+id/fragment_title"-->
-    <!--android:name="com.baluche.view.fragment.MineFragment"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="100dp"></fragment>-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/account_head"
+                    android:layout_width="43dp"
+                    android:layout_height="43dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="18dp"
+                    fresco:roundAsCircle="true"
+                    fresco:placeholderImage="@drawable/head_tx"/>
+
+                <TextView
+                    android:id="@+id/register_logon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_toRightOf="@+id/account_head"
+                    android:text="登录/注册"
+                    android:textColor="@color/colorCase"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/image_xiaoxi"
+                    android:layout_width="19dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="17dp"
+                    android:layout_marginTop="32dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/xiaoxi" />
+
+                <ImageView
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="30dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/dian" />
+
+                <RelativeLayout
+                    android:id="@+id/sign"
+                    android:layout_width="69dp"
+                    android:layout_height="21dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="57dp"
+                    android:textAlignment="center">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/sign_in" />
+
+                    <ImageView
+                        android:layout_width="4dp"
+                        android:layout_height="8dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="7dp"
+                        android:layout_marginTop="6dp"
+                        android:src="@drawable/sign_right" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="19dp"
+                        android:layout_marginTop="4dp"
+                        android:text="签到有礼"
+                        android:textColor="#ffff"
+                        android:textSize="10sp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:background="@color/colorContent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@color/colorCase">
+            android:layout_height="wrap_content"
+            android:background="@color/colorContent"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/my_ico_wallet"
-                android:layout_width="17dp"
-                android:layout_height="16dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="13dp"
-                android:src="@drawable/ico_wallet" />
+            <RelativeLayout
+                android:id="@+id/my_wallet"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorCase">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_toRightOf="@+id/my_ico_wallet"
-                android:text="@string/my_wallet"
-                android:textColor="#000000"
-                android:textSize="14sp" />
+                <ImageView
+                    android:id="@+id/my_ico_wallet"
+                    android:layout_width="17dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="13dp"
+                    android:src="@drawable/ico_wallet" />
 
-            <ImageView
-                android:id="@+id/my_right_wallet"
-                android:layout_width="8dp"
-                android:layout_height="13dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="14dp"
-                android:src="@drawable/right" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@+id/my_ico_wallet"
+                    android:text="@string/my_wallet"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
 
-            <TextView
+                <ImageView
+                    android:id="@+id/my_right_wallet"
+                    android:layout_width="8dp"
+                    android:layout_height="13dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/right" />
+
+                <TextView
+                    android:id="@+id/my_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="9dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toLeftOf="@+id/my_right_wallet"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:maxWidth="150dp"
+                    android:singleLine="true"
+                    android:text="50.00"
+                    android:textColor="#f43636"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_toLeftOf="@+id/my_number"
+                    android:text="余额： ￥"
+                    android:textColor="#f43636"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/my_account"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="9dp"
-                android:layout_marginTop="12dp"
-                android:layout_toLeftOf="@+id/my_right_wallet"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:maxWidth="150dp"
-                android:singleLine="true"
-                android:text="50.00"
-                android:textColor="#f43636"
-                android:textSize="14sp" />
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorCase">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_toLeftOf="@+id/my_account"
-                android:text="余额： ￥"
-                android:textColor="#f43636"
-                android:textSize="14sp" />
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/my_ico_bill"
+                    android:layout_width="17dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="13dp"
+                    android:src="@drawable/ico_bill" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorCase">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@+id/my_ico_bill"
+                    android:text="@string/my_bill"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
 
-            <ImageView
-                android:id="@+id/my_ico_bill"
-                android:layout_width="17dp"
-                android:layout_height="16dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="13dp"
-                android:src="@drawable/ico_bill" />
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="13dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/right" />
+            </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_toRightOf="@+id/my_ico_bill"
-                android:text="@string/my_bill"
-                android:textColor="#000000"
-                android:textSize="14sp" />
+            <RelativeLayout
+                android:id="@+id/my_vehicle"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/colorCase">
 
-            <ImageView
-                android:layout_width="8dp"
-                android:layout_height="13dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="14dp"
-                android:src="@drawable/right" />
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/my_ico_vehicle"
+                    android:layout_width="17dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="13dp"
+                    android:src="@drawable/ico_vehicle" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="1dp"
-            android:background="@color/colorCase">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@+id/my_ico_vehicle"
+                    android:text="@string/my_vehicle"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
 
-            <ImageView
-                android:id="@+id/my_ico_vehicle"
-                android:layout_width="17dp"
-                android:layout_height="16dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="13dp"
-                android:src="@drawable/ico_vehicle" />
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="13dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/right" />
+            </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_toRightOf="@+id/my_ico_vehicle"
-                android:text="@string/my_vehicle"
-                android:textColor="#000000"
-                android:textSize="14sp" />
+            <RelativeLayout
+                android:id="@+id/my_problem"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/colorCase">
 
-            <ImageView
-                android:layout_width="8dp"
-                android:layout_height="13dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="14dp"
-                android:src="@drawable/right" />
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/my_ico_problem"
+                    android:layout_width="17dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="13dp"
+                    android:src="@drawable/ico_problem" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="1dp"
-            android:background="@color/colorCase">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@+id/my_ico_problem"
+                    android:text="@string/my_problem"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
 
-            <ImageView
-                android:id="@+id/my_ico_problem"
-                android:layout_width="17dp"
-                android:layout_height="16dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="13dp"
-                android:src="@drawable/ico_problem" />
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="13dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/right" />
+            </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_toRightOf="@+id/my_ico_problem"
-                android:text="@string/my_problem"
-                android:textColor="#000000"
-                android:textSize="14sp" />
+            <RelativeLayout
+                android:id="@+id/my_setting"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorCase">
 
-            <ImageView
-                android:layout_width="8dp"
-                android:layout_height="13dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="14dp"
-                android:src="@drawable/right" />
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/my_ico_setup"
+                    android:layout_width="17dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="13dp"
+                    android:src="@drawable/ico_setup" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorCase">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@+id/my_ico_setup"
+                    android:text="@string/my_setup"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
 
-            <ImageView
-                android:id="@+id/my_ico_setup"
-                android:layout_width="17dp"
-                android:layout_height="16dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="13dp"
-                android:src="@drawable/ico_setup" />
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="13dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/right" />
+            </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_toRightOf="@+id/my_ico_setup"
-                android:text="@string/my_setup"
-                android:textColor="#000000"
-                android:textSize="14sp" />
+        </LinearLayout>
 
-            <ImageView
-                android:layout_width="8dp"
-                android:layout_height="13dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="14dp"
-                android:src="@drawable/right" />
-        </RelativeLayout>
+    </ScrollView>
 
-    </LinearLayout>
+
 </LinearLayout>
