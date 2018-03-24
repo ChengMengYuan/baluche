@@ -35,6 +35,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     /* 首页Title控件 */
     private ImageView img_weather;//天气图标
     private TextView tv_weather;//气温
+    private TextView tv_location;//地理位置
     private ImageView img_xiaoxi;//消息图标
     /* 轮播图控件 */
     /**
@@ -71,6 +72,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
         img_weather = v.findViewById(R.id.img_weather);
         tv_weather = v.findViewById(R.id.tv_weather);
+        tv_location = v.findViewById(R.id.tv_location);
         img_xiaoxi = v.findViewById(R.id.img_xiaoxi);
         img_xiaoxi.setOnClickListener(this);
 
@@ -173,6 +175,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             public void onNext(Weather weather) {
                 String w = weather.getData().getWeather();
                 tv_weather.setText(weather.getData().getTemp());
+                tv_location.setText(weather.getData().getCity());
                 changeWeatherImg(w);
             }
 
