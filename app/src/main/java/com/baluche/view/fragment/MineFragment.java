@@ -1,30 +1,22 @@
 package com.baluche.view.fragment;
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baluche.R;
-import com.baluche.view.activity.MainActivity;
-import com.facebook.drawee.backends.pipeline.Fresco;
+import com.baluche.view.activity.PersonalmsgFragment;
 import com.facebook.drawee.view.SimpleDraweeView;
-
-import java.util.ArrayList;
-
-import static android.os.Build.VERSION_CODES.O;
 
 /**
  * Created by cmy on 2018/3/20.
@@ -94,7 +86,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.account_head:
-                Toast.makeText(context, "account_head", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(),PersonalmsgFragment.class);
+                startActivity(intent);
                 break;
             case R.id.register_logon:
                 Toast.makeText(context, "register_logon", Toast.LENGTH_LONG).show();

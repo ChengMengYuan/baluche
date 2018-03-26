@@ -1,6 +1,5 @@
 package com.baluche.view.activity;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,7 +18,6 @@ import com.baluche.view.fragment.HomePageFragment;
 import com.baluche.view.fragment.MineFragment;
 import com.baluche.view.fragment.NearbyFragment;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 
@@ -56,7 +54,6 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
         MApplication.getInstance().addActivity(this);
         setContentView(R.layout.activity_main);
         initview();
-
     }
 
     private void initview() {

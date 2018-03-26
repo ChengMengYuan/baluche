@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -15,19 +16,21 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
                 android:layout_width="10dp"
                 android:layout_height="17dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="14dp"
-                android:layout_marginLeft="16dp"/>
+                android:src="@drawable/left"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:autoSizeMaxTextSize="18sp"
-                android:textColor="#000000"
-                android:text="个人信息"/>
+                android:text="个人信息"
+                android:textColor="#000000" />
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
@@ -47,50 +50,48 @@
                 android:layout_height="187dp"
                 android:background="#ffff">
 
-            </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/personal_head"
+                    android:layout_width="120dp"
+                    android:layout_height="150dp"
+                    android:layout_centerInParent="true">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="57dp"
-                android:background="#ffff">
+                    <ImageView
+                        android:id="@+id/personal_headcase"
+                        android:layout_width="82dp"
+                        android:layout_height="82dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/bg_ring1" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="15dp"
-                    android:text="昵称"/>
+                    <ImageView
+                        android:layout_width="78dp"
+                        android:layout_height="78dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/bg_ring2" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="18dp"
-                    android:text="未设置"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/personal_headcase"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="15dp"
+                        android:text="编辑头像"
+                        android:textSize="13sp" />
 
-            </RelativeLayout>
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="27dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/green_wod"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="57dp"
-                android:background="#ffff"
-                android:layout_marginTop="1dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="15dp"
-                    android:text="性别"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="18dp"
-                    android:text="无"/>
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:layout_width="76dp"
+                        android:layout_height="76dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        fresco:roundAsCircle="true"
+                        fresco:placeholderImage="@drawable/head"/>
+                </RelativeLayout>
 
             </RelativeLayout>
 
@@ -102,17 +103,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="15dp"
-                    android:text="生日"/>
+                    android:layout_marginTop="20dp"
+                    android:text="昵称" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="20dp"
                     android:layout_marginRight="18dp"
-                    android:text="1992.10.10"/>
+                    android:layout_marginTop="20dp"
+                    android:text="未设置" />
 
             </RelativeLayout>
 
@@ -125,17 +126,62 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="15dp"
-                    android:text="手机号"/>
+                    android:layout_marginTop="20dp"
+                    android:text="性别" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="20dp"
                     android:layout_marginRight="18dp"
-                    android:text="13660992126"/>
+                    android:layout_marginTop="20dp"
+                    android:text="无" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:background="#ffff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="生日" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="18dp"
+                    android:layout_marginTop="20dp"
+                    android:text="1992.10.10" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_marginTop="1dp"
+                android:background="#ffff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="手机号" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="18dp"
+                    android:layout_marginTop="20dp"
+                    android:text="13660992126" />
 
             </RelativeLayout>
 
@@ -148,17 +194,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="15dp"
-                    android:text="注册时间"/>
+                    android:layout_marginTop="20dp"
+                    android:text="注册时间" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="20dp"
                     android:layout_marginRight="18dp"
-                    android:text="2017.10.10"/>
+                    android:layout_marginTop="20dp"
+                    android:text="2017.10.10" />
 
             </RelativeLayout>
 
@@ -169,10 +215,10 @@
                 <Button
                     android:layout_width="283dp"
                     android:layout_height="47dp"
+                    android:layout_centerInParent="true"
                     android:background="@drawable/shape"
                     android:text="确定"
-                    android:textColor="#ffffff"
-                    android:layout_centerInParent="true"/>
+                    android:textColor="#ffffff" />
             </RelativeLayout>
         </LinearLayout>
 
