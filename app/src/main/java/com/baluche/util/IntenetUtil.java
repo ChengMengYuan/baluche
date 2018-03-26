@@ -12,7 +12,10 @@ import android.telephony.TelephonyManager;
  * @Description :获取网络连接的工具类
  */
 
-public class IntenetUtil {
+public final class IntenetUtil {
+    private IntenetUtil() {
+        throw new UnsupportedOperationException("u can't instantiate me...");
+    }
 
     /**
      * 没有网络连接
@@ -32,6 +35,7 @@ public class IntenetUtil {
 
     /**
      * 获取当前网络连接类型
+     *
      * @param context
      * @return
      */

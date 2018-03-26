@@ -1,9 +1,14 @@
 package com.baluche.http.http_methods;
 
+import android.util.Log;
+
 import com.baluche.http.service.ApiService;
 import com.baluche.model.entity.Banner;
 import com.baluche.model.entity.Weather;
+import com.google.gson.Gson;
 
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observer;
@@ -13,6 +18,8 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.baluche.util.EncryptUtil.Getsign;
 
 /**
  * Created by Administrator on 2018/3/23 0023.
@@ -57,18 +64,42 @@ public class HttpMethods {
     //                .observeOn(AndroidSchedulers.mainThread())
     //                .subscribe(observer);
     //    }
+    Gson gson = new Gson();
+    String a = "a";
 
     public void getWeather(Observer<Weather> observer) {
-        apiService.getWeather("a")
+        // FIXME: 2018/3/24 0024
+
+        HashMap hashmap = new HashMap();//需要传送的数据
+
+        HashMap map = new HashMap();
+        //        map.put("aa", "aa");
+        //        map.put("cc", "bb");
+        //        map.put("bb", "cc");
+        String ss = Calendar.getInstance().getTimeInMillis() + "";
+        map.put("time", ss);
+
+        hashmap.put("sign", Getsign(map));//加一个sign的md5验证
+
+        //        hashmap.put("aa", "aa");
+        //        hashmap.put("cc", "bb");
+        //        hashmap.put("bb", "cc");
+        hashmap.put("time", ss);
+
+
+        String s = gson.toJson(hashmap);
+        Log.d("gson", s + "");
+
+        apiService.getWeather(gson.toJson(hashmap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
-
     }
 
     public void getBanner(Observer<Banner> observer) {
-        apiService.getBanner("a")
+
+        apiService.getBanner(gson.toJson(a))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

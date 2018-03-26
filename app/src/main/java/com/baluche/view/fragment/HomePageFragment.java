@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.baluche.R;
 import com.baluche.http.http_methods.HttpMethods;
 import com.baluche.model.entity.Weather;
+import com.baluche.util.SortUtils;
 import com.baluche.view.adapter.FrescoImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -37,6 +38,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private TextView tv_weather;//气温
     private TextView tv_location;//地理位置
     private ImageView img_xiaoxi;//消息图标
+    private ImageView img_choice_city;//地理下拉框
     /* 轮播图控件 */
     /**
      * https://github.com/youth5201314/banner
@@ -73,6 +75,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         img_weather = v.findViewById(R.id.img_weather);
         tv_weather = v.findViewById(R.id.tv_weather);
         tv_location = v.findViewById(R.id.tv_location);
+        img_choice_city = v.findViewById(R.id.img_choice_city);
+        img_choice_city.setVisibility(View.INVISIBLE);
         img_xiaoxi = v.findViewById(R.id.img_xiaoxi);
         img_xiaoxi.setOnClickListener(this);
 
@@ -140,8 +144,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             case R.id.nav_query://车位查询
                 Toast.makeText(context, "车位查询", Toast.LENGTH_LONG).show();
                 Log.d("onClick", "车位查询");
-
-                //                getData();
+                String[] strs = {"avcd", "bdce", "avcdf", "cced", "bdcef"};
+                SortUtils.sortASCII(strs);
                 break;
 
             case R.id.nav_pay://停车缴费
@@ -173,10 +177,19 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onNext(Weather weather) {
-                String w = weather.getData().getWeather();
-                tv_weather.setText(weather.getData().getTemp());
-                tv_location.setText(weather.getData().getCity());
-                changeWeatherImg(w);
+                Log.e("getCode", "onNext: " + weather.getCode());
+                if (weather.getCode() == 200) {
+                    String w = weather.getData().getWeather();
+                    tv_weather.setText(weather.getData().getTemp());
+                    tv_location.setText(weather.getData().getCity());
+                    Log.e("tv_location", weather.getData().getCity() + "");
+                    changeWeatherImg(w);
+                } else {//如果接口签名校验不通过
+                    changeWeatherImg("99");
+                    tv_weather.setText("--");
+                    tv_location.setText("--");
+                }
+
             }
 
             @Override
