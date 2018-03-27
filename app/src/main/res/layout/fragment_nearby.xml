@@ -10,20 +10,18 @@
         android:layout_height="?actionBarSize"
         android:fitsSystemWindows="true" />
 
-    <WebView
-        android:id="@+id/near_ditu"
+    <com.amap.api.maps.MapView
+        android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
-
-    </WebView>
+        android:layout_height="200dp" />
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/refreshLayout"
+        android:id="@+id/near_refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/near_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#fff"

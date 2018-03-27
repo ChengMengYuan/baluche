@@ -16,6 +16,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            //jni库的调用会到资源文件夹下libs里面找so文件
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    allprojects {
+        repositories {
+            jcenter()
+        }
+    }
 }
 
 dependencies {
@@ -27,6 +38,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'com.android.support:recyclerview-v7:22.2.1'
+    compile 'com.android.support:cardview-v7:24.2.0'
     compile 'com.youth.banner:banner:1.4.10'  //轮播图框架
     compile 'com.facebook.fresco:fresco:0.12.0'//facebook图片加载框架
     /* RxJava2+Retrofit 网络请求框架 */
@@ -41,4 +53,11 @@ dependencies {
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-2'
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-2'//没有使用特殊Header，可以不加这行
     compile 'com.android.support:appcompat-v7:25.3.1'//版本 23以上（必须）
+//    /* 高德地图 */
+    compile 'com.amap.api:3dmap:latest.integration'//3D地图
+//    compile 'com.amap.api:map2d:latest.integration'//2D地图
+//    compile 'com.amap.api:navi-3dmap:latest.integration'//导航
+//    compile 'com.amap.api:search:latest.integration'//搜索
+    compile 'com.amap.api:location:latest.integration'//定位
+
 }

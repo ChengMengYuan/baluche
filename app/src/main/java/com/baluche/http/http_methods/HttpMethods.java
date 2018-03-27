@@ -76,15 +76,15 @@ public class HttpMethods {
         //        map.put("aa", "aa");
         //        map.put("cc", "bb");
         //        map.put("bb", "cc");
-        String ss = Calendar.getInstance().getTimeInMillis() + "";
-        map.put("time", ss);
+        String time = Calendar.getInstance().getTimeInMillis() + "";
+        map.put("time", time);
 
         hashmap.put("sign", Getsign(map));//加一个sign的md5验证
 
         //        hashmap.put("aa", "aa");
         //        hashmap.put("cc", "bb");
         //        hashmap.put("bb", "cc");
-        hashmap.put("time", ss);
+        hashmap.put("time", time);
 
 
         String s = gson.toJson(hashmap);

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/near_rv_item_cv"
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/item_Location_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/item_shengyu_tv"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="13dp"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                tools:text="凯旋中心——地下停车场" />
+
+            <TextView
+                android:id="@+id/item_shengyu_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/item_Location_name_tv"
+                android:layout_marginBottom="10dp"
+                android:text="(剩余)"
+                android:textColor="#6a8231" />
+
+            <TextView
+                android:id="@+id/item_surplus_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/item_shengyu_tv"
+                android:layout_alignBottom="@+id/item_shengyu_tv"
+                android:layout_marginStart="7dp"
+                android:layout_toEndOf="@+id/item_shengyu_tv"
+                android:text="320" />
+
+            <TextView
+                android:id="@+id/item_keyuyue_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/item_surplus_tv"
+                android:layout_alignBottom="@+id/item_surplus_tv"
+                android:layout_marginStart="11dp"
+                android:layout_toEndOf="@+id/item_surplus_tv"
+                android:text="(可预约)"
+                android:textColor="#ea0707" />
+
+            <TextView
+                android:id="@+id/item_appointment_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/item_keyuyue_tv"
+                android:layout_alignBottom="@+id/item_keyuyue_tv"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/item_keyuyue_tv"
+                android:text="76"
+                android:textColor="#ea0707" />
+
+            <TextView
+                android:visibility="invisible"
+                android:id="@+id/tv_tuijian"
+                android:layout_width="44dp"
+                android:layout_height="18dp"
+                android:layout_alignBottom="@+id/item_Location_name_tv"
+                android:layout_alignTop="@+id/item_Location_name_tv"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="33dp"
+                android:layout_toEndOf="@+id/item_appointment_tv"
+                android:background="@color/colorGreen"
+                android:gravity="center"
+                android:text="推荐"
+                android:textColor="#ffffff" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="11dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/gotolocation" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageView"
+                    android:layout_centerHorizontal="true"
+                    android:text="158m" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

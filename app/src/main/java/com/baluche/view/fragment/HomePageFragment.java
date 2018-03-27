@@ -1,6 +1,8 @@
 package com.baluche.view.fragment;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,14 +20,16 @@ import android.widget.Toast;
 import com.baluche.R;
 import com.baluche.http.http_methods.HttpMethods;
 import com.baluche.model.entity.Weather;
-import com.baluche.util.SortUtils;
 import com.baluche.view.adapter.FrescoImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -109,28 +113,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         kj_banner.stopAutoPlay();
     }
 
-    /**
-     * 更改位置信息
-     *
-     * @param s
-     */
-    private void changeLocation(String s) {
-        // TODO: 2018/3/20 更新位置信息
-    }
-
-    /**
-     * 放置广告图片链接
-     */
-    //    private void putImgInBanner(List<String> photos) {
-    //        images = photos;
-    //        //        // FIXME: 2018/3/22 0022 从后台获取图片
-    //        //        images.add("http://d.hiphotos.baidu.com/image/pic/item/d833c895d143ad4b3ae286d88e025aafa50f06de.jpg");
-    //        //        images.add("http://c.hiphotos.baidu.com/image/pic/item/962bd40735fae6cd09ccfb7903b30f2442a70fa9.jpg");
-    //        //        images.add("http://d.hiphotos.baidu.com/image/pic/item/f9198618367adab45913c15e87d4b31c8601e4e8.jpg");
-    //        //        //        titles.add("+++++++");
-    //        //        //        titles.add("-------");
-    //        //        //        titles.add("=======");
-    //    }
     @Override
     public void onClick(View view) {
         // TODO: 2018/3/22 0022 完成点击事件 
@@ -144,8 +126,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             case R.id.nav_query://车位查询
                 Toast.makeText(context, "车位查询", Toast.LENGTH_LONG).show();
                 Log.d("onClick", "车位查询");
-                String[] strs = {"avcd", "bdce", "avcdf", "cced", "bdcef"};
-                SortUtils.sortASCII(strs);
+                String sHA1 = sHA1(getContext());
+                Log.d("sHA1", ""+sHA1);
                 break;
 
             case R.id.nav_pay://停车缴费
@@ -433,5 +415,30 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
                 break;
         }
+    }
+
+    public static String sHA1(Context context) {
+        try {
+            PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
+            byte[] cert = info.signatures[0].toByteArray();
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            byte[] publicKey = md.digest(cert);
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < publicKey.length; i++) {
+                String appendString = Integer.toHexString(0xFF & publicKey[i])
+                        .toUpperCase(Locale.US);
+                if (appendString.length() == 1)
+                    hexString.append("0");
+                hexString.append(appendString);
+                hexString.append(":");
+            }
+            String result = hexString.toString();
+            return result.substring(0, result.length()-1);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
