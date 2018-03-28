@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.baluche.R;
 import com.baluche.app.MApplication;
+import com.baluche.view.CustomViewPager;
 import com.baluche.view.adapter.MainFragmentPageAdapter;
 import com.baluche.view.fragment.HomePageFragment;
 import com.baluche.view.fragment.MineFragment;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends FragmentActivity implements OnPageChangeListener {
 
-    private ViewPager mviewpager;
+    private CustomViewPager  mviewpager;
     //fragment的集合，对应每个子页面
     private ArrayList<Fragment> fragments;
     //选项卡中的按钮
@@ -57,7 +58,9 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
     }
 
     private void initview() {
+
         mviewpager = this.findViewById(R.id.mviewpage);
+        mviewpager.setScanScroll(false);//设置viewPage禁止滑动，避免和地图起冲突
 
         rll_home = this.findViewById(R.id.rll_home);
         rll_nearby = this.findViewById(R.id.rll_nearby);
@@ -86,58 +89,19 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
         rll_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mviewpager.setCurrentItem(0);
-                /**
-                 * 设置为选中色
-                 */
-                img_rll_home.setImageDrawable(getResources().getDrawable(R.drawable.green_sye));
-                tv_rll_home.setTextColor(getResources().getColor(R.color.colorGreen));
-                /**
-                 * 设置为未选中色
-                 */
-                img_rll_nearby.setImageDrawable(getResources().getDrawable(R.drawable.fujin));
-                tv_rll_nearby.setTextColor(getResources().getColor(R.color.colorGray));
-
-                img_rll_mine.setImageDrawable(getResources().getDrawable(R.drawable.wod));
-                tv_rll_mine.setTextColor(getResources().getColor(R.color.colorGray));
+                setHomeClick();
             }
         });
         rll_nearby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mviewpager.setCurrentItem(1);
-                /**
-                 * 设置为选中色
-                 */
-                img_rll_nearby.setImageDrawable(getResources().getDrawable(R.drawable.green_fujin));
-                tv_rll_nearby.setTextColor(getResources().getColor(R.color.colorGreen));
-                /**
-                 * 设置为未选中色
-                 */
-                img_rll_home.setImageDrawable(getResources().getDrawable(R.drawable.sye));
-                tv_rll_home.setTextColor(getResources().getColor(R.color.colorGray));
-
-                img_rll_mine.setImageDrawable(getResources().getDrawable(R.drawable.wod));
-                tv_rll_mine.setTextColor(getResources().getColor(R.color.colorGray));
+                setNearbyClick();
             }
         });
         rll_mine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mviewpager.setCurrentItem(2);
-                /**
-                 * 设置为选中色
-                 */
-                img_rll_mine.setImageDrawable(getResources().getDrawable(R.drawable.green_wod));
-                tv_rll_mine.setTextColor(getResources().getColor(R.color.colorGreen));
-                /**
-                 * 设置为未选中色
-                 */
-                img_rll_home.setImageDrawable(getResources().getDrawable(R.drawable.sye));
-                tv_rll_home.setTextColor(getResources().getColor(R.color.colorGray));
-
-                img_rll_nearby.setImageDrawable(getResources().getDrawable(R.drawable.fujin));
-                tv_rll_nearby.setTextColor(getResources().getColor(R.color.colorGray));
+                setMineClikc();
             }
         });
 
@@ -153,6 +117,57 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
 
     }
 
+    private void setMineClikc() {
+        mviewpager.setCurrentItem(2);
+        /**
+         * 设置为选中色
+         */
+        img_rll_mine.setImageDrawable(getResources().getDrawable(R.drawable.green_wod));
+        tv_rll_mine.setTextColor(getResources().getColor(R.color.colorGreen));
+        /**
+         * 设置为未选中色
+         */
+        img_rll_home.setImageDrawable(getResources().getDrawable(R.drawable.sye));
+        tv_rll_home.setTextColor(getResources().getColor(R.color.colorGray));
+
+        img_rll_nearby.setImageDrawable(getResources().getDrawable(R.drawable.fujin));
+        tv_rll_nearby.setTextColor(getResources().getColor(R.color.colorGray));
+    }
+
+    private void setNearbyClick() {
+        mviewpager.setCurrentItem(1);
+        /**
+         * 设置为选中色
+         */
+        img_rll_nearby.setImageDrawable(getResources().getDrawable(R.drawable.green_fujin));
+        tv_rll_nearby.setTextColor(getResources().getColor(R.color.colorGreen));
+        /**
+         * 设置为未选中色
+         */
+        img_rll_home.setImageDrawable(getResources().getDrawable(R.drawable.sye));
+        tv_rll_home.setTextColor(getResources().getColor(R.color.colorGray));
+
+        img_rll_mine.setImageDrawable(getResources().getDrawable(R.drawable.wod));
+        tv_rll_mine.setTextColor(getResources().getColor(R.color.colorGray));
+    }
+
+    private void setHomeClick() {
+        mviewpager.setCurrentItem(0);
+        /**
+         * 设置为选中色
+         */
+        img_rll_home.setImageDrawable(getResources().getDrawable(R.drawable.green_sye));
+        tv_rll_home.setTextColor(getResources().getColor(R.color.colorGreen));
+        /**
+         * 设置为未选中色
+         */
+        img_rll_nearby.setImageDrawable(getResources().getDrawable(R.drawable.fujin));
+        tv_rll_nearby.setTextColor(getResources().getColor(R.color.colorGray));
+
+        img_rll_mine.setImageDrawable(getResources().getDrawable(R.drawable.wod));
+        tv_rll_mine.setTextColor(getResources().getColor(R.color.colorGray));
+    }
+
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -161,7 +176,15 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
 
     @Override
     public void onPageSelected(int position) {
-
+        if (position == 0) {
+            Log.d("onPageSelected", "onPageSelected: 0");
+            setHomeClick();
+        } else if (position == 1) {
+            Log.d("onPageSelected", "onPageSelected: 1");
+            setNearbyClick();
+        } else if (position == 2) {
+            setMineClikc();
+        }
     }
 
     @Override
