@@ -5,6 +5,15 @@
     android:background="#ffffff"
     android:layout_height="match_parent">
     <TextView
+        android:id="@+id/takePhoto"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="0dp"
+        android:gravity="center"
+        android:text="拍照"
+        android:textColor="#000000"
+        android:textSize="18sp"/>
+    <TextView
         android:id="@+id/choosePhoto"
         android:layout_width="match_parent"
         android:layout_height="45dp"
