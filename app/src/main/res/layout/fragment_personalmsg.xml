@@ -18,6 +18,7 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/return_left"
                 android:layout_width="10dp"
                 android:layout_height="17dp"
                 android:layout_marginLeft="16dp"
@@ -85,12 +86,12 @@
                         android:src="@drawable/green_wod"/>
 
                     <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/personal_head_img"
                         android:layout_width="76dp"
                         android:layout_height="76dp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
-                        fresco:roundAsCircle="true"
-                        fresco:placeholderImage="@drawable/head"/>
+                        fresco:roundAsCircle="true"/>
                 </RelativeLayout>
 
             </RelativeLayout>
@@ -106,8 +107,8 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="20dp"
                     android:text="昵称" />
-
                 <TextView
+                    android:id="@+id/personal_name_msg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
