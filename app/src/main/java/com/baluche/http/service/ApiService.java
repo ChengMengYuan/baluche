@@ -2,6 +2,7 @@ package com.baluche.http.service;
 
 import com.baluche.model.entity.Banner;
 import com.baluche.model.entity.MyJoke;
+import com.baluche.model.entity.Park;
 import com.baluche.model.entity.Weather;
 
 import java.util.List;
@@ -36,7 +37,24 @@ public interface ApiService {
     @POST("api/weather/ip")
     Observable<Weather> getWeather(@Body String json);
 
+    /**
+     * 轮播图接口
+     *
+     * @param json
+     * @return Banner
+     */
+    @Headers({"Client-Type:" + "Android", "App-Version:" + "test"})
     @POST("ad/banner")
     Observable<Banner> getBanner(@Body String json);
+
+    /**
+     * 位置信息接口
+     *
+     * @param json
+     * @return Park
+     */
+    @Headers({"Client-Type:" + "Android", "App-Version:" + "test"})
+    @POST("park/list")
+    Observable<Park> getPark(@Body String json);
 
 }

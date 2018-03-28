@@ -115,28 +115,26 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        // TODO: 2018/3/22 0022 完成点击事件 
         switch (view.getId()) {
             case R.id.img_xiaoxi://消息提示
                 Toast.makeText(context, "消息提示", Toast.LENGTH_LONG).show();
                 Log.d("onClick", "消息提示");
-
                 break;
 
             case R.id.nav_query://车位查询
                 Toast.makeText(context, "车位查询", Toast.LENGTH_LONG).show();
                 Log.d("onClick", "车位查询");
                 String sHA1 = sHA1(getContext());
-                Log.d("sHA1", ""+sHA1);
+                Log.d("sHA1", "" + sHA1);
                 break;
 
             case R.id.nav_pay://停车缴费
                 break;
 
-            case R.id.nav_coupon://车位预约
+            case R.id.nav_help://使用帮助
 
                 break;
-            case R.id.nav_help://使用帮助
+            case R.id.nav_sign://签到有礼
 
                 break;
 
@@ -168,8 +166,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                     changeWeatherImg(w);
                 } else {//如果接口签名校验不通过
                     changeWeatherImg("99");
-                    tv_weather.setText("--");
-                    tv_location.setText("--");
+                    tv_weather.setText("??");
+                    tv_location.setText("??");
                 }
 
             }
@@ -237,7 +235,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
      * @param weather
      */
     private void changeWeatherImg(String weather) {
-        // TODO: 2018/3/20 更新天气图标以及气温
         switch (weather) {
             case "0":
                 //晴
@@ -433,7 +430,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 hexString.append(":");
             }
             String result = hexString.toString();
-            return result.substring(0, result.length()-1);
+            return result.substring(0, result.length() - 1);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {

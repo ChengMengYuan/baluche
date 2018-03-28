@@ -59,5 +59,9 @@ dependencies {
 //    compile 'com.amap.api:navi-3dmap:latest.integration'//导航
 //    compile 'com.amap.api:search:latest.integration'//搜索
     compile 'com.amap.api:location:latest.integration'//定位
-
+    /*运行时权限*/
+    compile 'com.github.hotchemi:permissionsdispatcher:3.1.0'
+    /*MD风格的Dialog*/
+    compile 'com.afollestad.material-dialogs:core:0.9.1.0'
+    compile 'com.afollestad.material-dialogs:commons:0.9.1.0'
 }

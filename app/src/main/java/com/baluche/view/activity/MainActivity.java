@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends FragmentActivity implements OnPageChangeListener {
 
-    private CustomViewPager  mviewpager;
+    private CustomViewPager mviewpager;
     //fragment的集合，对应每个子页面
     private ArrayList<Fragment> fragments;
     //选项卡中的按钮

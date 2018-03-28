@@ -28,9 +28,14 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.maps.model.TextOptions;
 import com.baluche.R;
+import com.baluche.http.http_methods.HttpMethods;
+import com.baluche.model.entity.Park;
 import com.baluche.view.adapter.NearRecyclerViewAdapter;
 
 import java.util.ArrayList;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by cmy on 2018/3/20.
@@ -80,6 +85,32 @@ public class NearbyFragment extends Fragment {
      * @return
      */
     private ArrayList<String> getData() {
+
+        HttpMethods.getInstance().getPark(new Observer<Park>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(Park park) {
+                park.getMessage();
+                park.getCode();
+                Log.d("getPark", "" + park.getMessage());
+                Log.d("getPark", "" + park.getCode());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+
         ArrayList<String> data = new ArrayList<>();
         String temp = " item";
         for (int i = 0; i < 20; i++) {
@@ -94,7 +125,6 @@ public class NearbyFragment extends Fragment {
      * @param v
      */
     private void initView(Bundle savedInstanceState, View v) {
-
         // FIXME: 2018/3/27 0027 申请权限工具类 用户拒绝的时候给出提示和解决方法
         //Android6.0以上申请定位权限代码
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -197,4 +227,5 @@ public class NearbyFragment extends Fragment {
         //在activity执行onSaveInstanceState时执行mMapView.onSaveInstanceState (outState)，保存地图当前的状态
         mMapView.onSaveInstanceState(outState);
     }
+
 }

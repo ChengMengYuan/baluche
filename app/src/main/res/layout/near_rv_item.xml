@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
 
@@ -69,7 +69,6 @@
                 android:textColor="#ea0707" />
 
             <TextView
-                android:visibility="invisible"
                 android:id="@+id/tv_tuijian"
                 android:layout_width="44dp"
                 android:layout_height="18dp"
@@ -81,7 +80,8 @@
                 android:background="@color/colorGreen"
                 android:gravity="center"
                 android:text="推荐"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:visibility="invisible" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -104,7 +104,5 @@
                     android:text="158m" />
             </RelativeLayout>
         </RelativeLayout>
-
-
     </android.support.v7.widget.CardView>
 </LinearLayout>
