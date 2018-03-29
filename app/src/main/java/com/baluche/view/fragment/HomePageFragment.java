@@ -18,7 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baluche.R;
-import com.baluche.http.http_methods.HttpMethods;
+import com.baluche.http.http.HttpMethods;
 import com.baluche.model.entity.Weather;
 import com.baluche.view.adapter.FrescoImageLoader;
 import com.youth.banner.Banner;
@@ -98,6 +98,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         titles = new ArrayList();
         getData();
     }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

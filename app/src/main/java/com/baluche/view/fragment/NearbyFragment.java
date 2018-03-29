@@ -28,14 +28,19 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.maps.model.TextOptions;
 import com.baluche.R;
-import com.baluche.http.http_methods.HttpMethods;
+import com.baluche.http.http.HttpMethods;
 import com.baluche.model.entity.Park;
 import com.baluche.view.adapter.NearRecyclerViewAdapter;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+
+import static com.baluche.util.EncryptUtil.Getsign;
 
 /**
  * Created by cmy on 2018/3/20.
@@ -54,14 +59,14 @@ public class NearbyFragment extends Fragment {
     private Marker locationMarker;
 
 
-    public static NearbyFragment newInstance() {
-        NearbyFragment fragment = new NearbyFragment();
-        return fragment;
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Nullable
@@ -69,15 +74,40 @@ public class NearbyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View v = inflater.inflate(R.layout.fragment_nearby, container, false);
-        initData();
         initView(savedInstanceState, v);
+        initData();
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mMapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mMapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mMapView.onDestroy();
+    }
+
+    public static NearbyFragment newInstance() {
+        NearbyFragment fragment = new NearbyFragment();
+        return fragment;
     }
 
     private void initData() {
         mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         mAdapter = new NearRecyclerViewAdapter(getData());
     }
+
+    ArrayList<String> data = new ArrayList<>();
 
     /**
      * 获取数据
@@ -94,10 +124,11 @@ public class NearbyFragment extends Fragment {
 
             @Override
             public void onNext(Park park) {
-                park.getMessage();
-                park.getCode();
-                Log.d("getPark", "" + park.getMessage());
-                Log.d("getPark", "" + park.getCode());
+                if (park.getCode() == 200) {
+                    for (int i = 0; i < park.getData().size(); i++) {
+                        data.add(park.getData().get(i).getTitle());
+                    }
+                }
             }
 
             @Override
@@ -110,14 +141,12 @@ public class NearbyFragment extends Fragment {
 
             }
         });
-
-        ArrayList<String> data = new ArrayList<>();
-        String temp = " item";
-        for (int i = 0; i < 20; i++) {
-            data.add(i + temp);
-        }
         return data;
     }
+
+
+    private double Latitude = 0d;     //获取纬度
+    private double Longitude = 0d;   //获取经度
 
     /**
      * 初始化控件
@@ -125,6 +154,7 @@ public class NearbyFragment extends Fragment {
      * @param v
      */
     private void initView(Bundle savedInstanceState, View v) {
+        Log.d("latLng", "onLocationChanged: 1");
         // FIXME: 2018/3/27 0027 申请权限工具类 用户拒绝的时候给出提示和解决方法
         //Android6.0以上申请定位权限代码
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -163,13 +193,16 @@ public class NearbyFragment extends Fragment {
                 if (aMapLocation != null) {
                     if (aMapLocation.getErrorCode() == 0) {
                         //可在其中解析amapLocation获取相应内容。
-                        LatLng latLng = new LatLng(aMapLocation.getLatitude(),
-                                aMapLocation.getLongitude());//取出经纬度
+                        LatLng latLng = new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude());//取出经纬度
+                        Latitude = aMapLocation.getLatitude();       //获取纬度
+                        Longitude = aMapLocation.getLongitude();     //获取经度
+                        Log.d("latLng", "onLocationChanged: 2");
+
                         //添加Marker显示定位位置
                         if (locationMarker == null) {
                             //如果是空的添加一个新的,icon方法就是设置定位图标，可以自定义
                             locationMarker = aMap.addMarker(new MarkerOptions()
-                                    .position(latLng).snippet("最快1分钟到达").draggable(true).setFlat(true));
+                                    .position(latLng).snippet("").draggable(true).setFlat(true));
                             locationMarker.showInfoWindow();//主动显示indowindow
                             aMap.addText(new TextOptions().position(latLng).text(aMapLocation.getAddress()));
                             //固定标签在屏幕中央
@@ -201,24 +234,7 @@ public class NearbyFragment extends Fragment {
         }
         aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
         aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点
-    }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mMapView.onDestroy();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mMapView.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mMapView.onPause();
     }
 
     @Override
@@ -228,4 +244,26 @@ public class NearbyFragment extends Fragment {
         mMapView.onSaveInstanceState(outState);
     }
 
+    public String returnParkParame() {
+        HashMap kmap = new HashMap();//需要签名校验的sign
+        HashMap pMap = new HashMap();//最后传的参数
+        String time = Calendar.getInstance().getTimeInMillis() + "";
+        Gson gson = new Gson();
+
+        kmap.put("time", time);
+        kmap.put("lat", Latitude);// 高德经度
+        kmap.put("lng", Longitude);//高德伟度
+        kmap.put("raidus", "1");//半径距离
+
+        pMap.put("sign", Getsign(kmap));
+        pMap.put("time", time);
+        pMap.put("lat", Latitude);// 高德经度
+        pMap.put("lng", Longitude);//高德伟度
+        pMap.put("raidus", "1");//半径距离
+
+        String s = gson.toJson(pMap);
+        Log.d("latLng", "onLocationChanged: 3");
+
+        return s;
+    }
 }

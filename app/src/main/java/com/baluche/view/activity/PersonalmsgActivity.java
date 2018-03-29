@@ -2,9 +2,7 @@ package com.baluche.view.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -12,27 +10,17 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.text.Editable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baluche.R;
-import com.baluche.view.activity.MainActivity;
-import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.io.File;
@@ -40,14 +28,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import static com.baluche.view.activity.ActivityRequestCode.SELECT_PHOTO;
-import static com.baluche.view.activity.ActivityRequestCode.TAKE_PHTOT;
+import static com.baluche.app.Constant.SELECT_PHOTO;
+import static com.baluche.app.Constant.TAKE_PHTOT;
+
 
 /**
  * Created by Administrator on 2018/3/26 0026.
  */
 
-public class PersonalmsgFragment extends Activity implements View.OnClickListener {
+public class PersonalmsgActivity extends Activity implements View.OnClickListener {
     private String sdPath;//SD卡的路径
     private String picPath;//图片存储路径
 
@@ -94,10 +83,11 @@ public class PersonalmsgFragment extends Activity implements View.OnClickListene
                 show_headchange();
                 break;
             case R.id.return_left:
-                PersonalmsgFragment.this.finish();
+                PersonalmsgActivity.this.finish();
                 break;
             case R.id.personal_name_msg:
-//                personal_name_msg.setText( EditText().getText());
+                //                personal_name_msg.setText( EditText().getText());
+                break;
             case R.id.choosePhoto:
                 Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, SELECT_PHOTO);//运行Intent事件
@@ -108,7 +98,7 @@ public class PersonalmsgFragment extends Activity implements View.OnClickListene
                 mImageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "image.jpg"));
                 //为拍摄的图片指定一个存储的路径
                 intent2.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
-                startActivityForResult(intent2,TAKE_PHTOT );
+                startActivityForResult(intent2, TAKE_PHTOT);
                 dialog.dismiss();
                 break;
             default:
@@ -153,21 +143,21 @@ public class PersonalmsgFragment extends Activity implements View.OnClickListene
                 }
                 break;
 
-            case TAKE_PHTOT ://通过相机拍照生成头像
+            case TAKE_PHTOT://通过相机拍照生成头像
                 FileInputStream fis = null;
 
                 try {
-                    Log.e("sdPath2",picPath);
+                    Log.e("sdPath2", picPath);
                     //把图片转化为字节流
                     fis = new FileInputStream(picPath);
                     //把流转化图片
                     Bitmap bitmap = BitmapFactory.decodeStream(fis);
                     //将图片由Bitmap格式转换为URI
-                    Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null,null));
+                    Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null, null));
                     personal_head_img.setImageURI(uri);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
-                }finally{
+                } finally {
                     try {
                         fis.close();//关闭流
                     } catch (IOException e) {

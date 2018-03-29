@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 
 
-public class NearRecyclerViewAdapter extends RecyclerView.  Adapter<NearRecyclerViewAdapter.ViewHolder> {
+public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerViewAdapter.ViewHolder> {
     private ArrayList<String> mData;
 
 

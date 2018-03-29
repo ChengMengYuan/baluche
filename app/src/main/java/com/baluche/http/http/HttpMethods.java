@@ -1,15 +1,11 @@
-package com.baluche.http.http_methods;
-
-import android.util.Log;
+package com.baluche.http.http;
 
 import com.baluche.http.service.ApiService;
 import com.baluche.model.entity.Banner;
 import com.baluche.model.entity.Park;
 import com.baluche.model.entity.Weather;
-import com.google.gson.Gson;
+import com.baluche.view.fragment.NearbyFragment;
 
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observer;
@@ -19,8 +15,6 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import static com.baluche.util.EncryptUtil.Getsign;
 
 /**
  * Created by Administrator on 2018/3/23 0023.
@@ -58,40 +52,11 @@ public class HttpMethods {
         return sinalInstance.instance;
     }
 
-    //    public void getJoke(Observer<List<MyJoke>> observer) {
-    //        apiService.getData()
-    //                .subscribeOn(Schedulers.io())
-    //                .unsubscribeOn(Schedulers.io())
-    //                .observeOn(AndroidSchedulers.mainThread())
-    //                .subscribe(observer);
-    //    }
-    Gson gson = new Gson();
-    String a = "a";
+    Parameter parameter = new Parameter();
 
     public void getWeather(Observer<Weather> observer) {
-        // FIXME: 2018/3/24 0024
 
-        HashMap hashmap = new HashMap();//需要传送的数据
-
-        HashMap map = new HashMap();
-        //        map.put("aa", "aa");
-        //        map.put("cc", "bb");
-        //        map.put("bb", "cc");
-        String time = Calendar.getInstance().getTimeInMillis() + "";
-        map.put("time", time);
-
-        hashmap.put("sign", Getsign(map));//加一个sign的md5验证
-
-        //        hashmap.put("aa", "aa");
-        //        hashmap.put("cc", "bb");
-        //        hashmap.put("bb", "cc");
-        hashmap.put("time", time);
-
-
-        String s = gson.toJson(hashmap);
-        Log.d("gson", s + "");
-
-        apiService.getWeather(gson.toJson(hashmap))
+        apiService.getWeather(parameter.returndefaultParame())
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -99,27 +64,7 @@ public class HttpMethods {
     }
 
     public void getBanner(Observer<Banner> observer) {
-
-        HashMap hashmap = new HashMap();//需要传送的数据
-
-        HashMap map = new HashMap();
-        //        map.put("aa", "aa");
-        //        map.put("cc", "bb");
-        //        map.put("bb", "cc");
-        String time = Calendar.getInstance().getTimeInMillis() + "";
-        map.put("time", time);
-
-        hashmap.put("sign", Getsign(map));//加一个sign的md5验证
-
-        //        hashmap.put("aa", "aa");
-        //        hashmap.put("cc", "bb");
-        //        hashmap.put("bb", "cc");
-        hashmap.put("time", time);
-
-
-        String s = gson.toJson(hashmap);
-        Log.d("gson", s + "");
-        apiService.getBanner(gson.toJson(hashmap))
+        apiService.getBanner(parameter.returndefaultParame())
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -128,7 +73,7 @@ public class HttpMethods {
     }
 
     public void getPark(Observer<Park> observer) {
-        apiService.getPark("")
+        apiService.getPark(NearbyFragment.newInstance().returnParkParame())
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

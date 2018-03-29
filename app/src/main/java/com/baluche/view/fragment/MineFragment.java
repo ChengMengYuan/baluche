@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baluche.R;
-import com.baluche.view.activity.PersonalmsgFragment;
+import com.baluche.view.activity.PersonalmsgActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
@@ -86,7 +86,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.account_head:
-                Intent intent = new Intent(getActivity(),PersonalmsgFragment.class);
+                Intent intent = new Intent(getActivity(),PersonalmsgActivity.class);
                 startActivity(intent);
                 break;
             case R.id.register_logon:

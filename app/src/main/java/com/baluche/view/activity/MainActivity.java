@@ -134,6 +134,36 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
         tv_rll_nearby.setTextColor(getResources().getColor(R.color.colorGray));
     }
 
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        if (position == 0) {
+            Log.d("onPageSelected", "onPageSelected: 0");
+            setHomeClick();
+        } else if (position == 1) {
+            Log.d("onPageSelected", "onPageSelected: 1");
+            setNearbyClick();
+        } else if (position == 2) {
+            setMineClikc();
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MApplication.getInstance().destory();
+    }
+
     private void setNearbyClick() {
         mviewpager.setCurrentItem(1);
         /**
@@ -167,36 +197,4 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
         img_rll_mine.setImageDrawable(getResources().getDrawable(R.drawable.wod));
         tv_rll_mine.setTextColor(getResources().getColor(R.color.colorGray));
     }
-
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        if (position == 0) {
-            Log.d("onPageSelected", "onPageSelected: 0");
-            setHomeClick();
-        } else if (position == 1) {
-            Log.d("onPageSelected", "onPageSelected: 1");
-            setNearbyClick();
-        } else if (position == 2) {
-            setMineClikc();
-        }
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        MApplication.getInstance().destory();
-    }
-
-
 }
