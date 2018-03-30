@@ -2,7 +2,6 @@ package com.baluche.view.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -46,8 +45,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         context = getContext();
         initView(v);
 
-        Uri uri = Uri.parse("https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=868f9a98c295d143ce7bec711299e967/dbb44aed2e738bd47734c4aaab8b87d6277ff910.jpg");
-        account_head.setImageURI(uri);
         return v;
     }
 

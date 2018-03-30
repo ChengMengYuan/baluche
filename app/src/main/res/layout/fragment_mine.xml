@@ -36,7 +36,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="32dp"
                     android:layout_toRightOf="@+id/account_head"
-                    android:text="登录/注册"
+                    android:text="@string/register_logon"
                     android:textColor="@color/colorCase"
                     android:textSize="14sp" />
 
@@ -57,6 +57,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="30dp"
                     android:scaleType="fitXY"
+                    android:visibility="invisible"
                     android:src="@drawable/dian" />
 
                 <RelativeLayout
@@ -85,7 +86,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="19dp"
                         android:layout_marginTop="4dp"
-                        android:text="签到有礼"
+                        android:text="@string/sign_in_gift"
                         android:textColor="#ffff"
                         android:textSize="10sp" />
 
@@ -97,11 +98,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/colorContent"
             android:orientation="vertical">
 
@@ -149,7 +151,7 @@
                     android:maxLines="1"
                     android:maxWidth="150dp"
                     android:singleLine="true"
-                    android:text="50.00"
+                    android:text="0.00"
                     android:textColor="#f43636"
                     android:textSize="14sp" />
 
@@ -267,6 +269,40 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/my_use_help"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorCase">
+
+                <ImageView
+                    android:id="@+id/my_ico_use_help"
+                    android:layout_width="17dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="13dp"
+                    android:src="@drawable/ico_setup"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@+id/my_ico_use_help"
+                    android:text="@string/use_help"
+                    android:textColor="#000000"
+                    android:textSize="14sp"/>
+
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="13dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/right" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/my_setting"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -300,8 +336,20 @@
                     android:src="@drawable/right" />
             </RelativeLayout>
 
-        </LinearLayout>
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
 
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="30dp"
+                   android:layout_alignParentBottom="true"
+                   android:textAlignment="center"
+                   android:textColor="@color/colorWhitegray"
+                   android:text="@string/service_number"/>
+           </RelativeLayout>
+
+        </LinearLayout>
     </ScrollView>
 
 

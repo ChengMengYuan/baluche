@@ -23,14 +23,14 @@
                 android:layout_height="17dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="14dp"
-                android:src="@drawable/left"/>
+                android:src="@drawable/left_black"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:autoSizeMaxTextSize="18sp"
-                android:text="个人信息"
+                android:text="@string/personal_message"
                 android:textColor="#000000" />
         </RelativeLayout>
 
@@ -76,7 +76,7 @@
                         android:layout_below="@+id/personal_headcase"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="15dp"
-                        android:text="编辑头像"
+                        android:text="@string/editor_personal_headcase"
                         android:textSize="13sp" />
 
                     <ImageView
@@ -106,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="20dp"
-                    android:text="昵称" />
+                    android:text="@string/nickname" />
                 <TextView
                     android:id="@+id/personal_name_msg"
                     android:layout_width="wrap_content"
@@ -114,7 +114,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="18dp"
                     android:layout_marginTop="20dp"
-                    android:text="未设置" />
+                    android:text="@string/setting_false" />
 
             </RelativeLayout>
 
@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="20dp"
-                    android:text="性别" />
+                    android:text="@string/sex" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -137,13 +137,14 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="18dp"
                     android:layout_marginTop="20dp"
-                    android:text="无" />
+                    android:text="无"/>
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="57dp"
+                android:layout_marginTop="1dp"
                 android:background="#ffff">
 
                 <TextView
@@ -151,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="20dp"
-                    android:text="生日" />
+                    android:text="@string/birthday" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -174,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="20dp"
-                    android:text="手机号" />
+                    android:text="@string/photo_number" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -197,7 +198,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="20dp"
-                    android:text="注册时间" />
+                    android:text="@string/register_time"/>
 
                 <TextView
                     android:layout_width="wrap_content"

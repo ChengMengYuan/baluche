@@ -9,4 +9,5 @@
     <color name="colorGray">#666666</color>
     <color name="colorContent">#efefef</color>
     <color name="colorCase">#ffff</color>
+    <color name="colorWhitegray">#999999</color>
 </resources>
