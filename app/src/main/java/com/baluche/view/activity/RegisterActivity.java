@@ -116,7 +116,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener, 
                 break;
 
             case R.id.register_sendCode:
-                // TODO: 2018/3/31 0031 调用发送验证码的接口,添加一个计时器60s内不允许重复调用 
+                // TODO: 2018/3/31 0031 调用发送验证码的接口,添加一个计时器60s内不允许重复调用
                 break;
         }
 
