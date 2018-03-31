@@ -12,6 +12,7 @@
     <string name="service_number">客服热线：400-8080-240</string>
     <string name="register_logon">登录/注册</string>
     <string name="logon">登录</string>
+    <string name="register">注册</string>
     <string name="editor_personal_headcase">编辑头像</string>
     <string name="personal_message">个人信息</string>
     <string name="nickname">昵称</string>

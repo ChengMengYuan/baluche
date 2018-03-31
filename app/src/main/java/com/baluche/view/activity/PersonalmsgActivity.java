@@ -16,9 +16,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baluche.R;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -41,7 +43,7 @@ public class PersonalmsgActivity extends Activity implements View.OnClickListene
     private String picPath;//图片存储路径
 
     private View inflate;
-    private TextView personal_name_msg;
+    private EditText personal_name_msg;
     private TextView choosePhoto;
     private TextView takePhoto;
     private Dialog dialog;
@@ -74,7 +76,18 @@ public class PersonalmsgActivity extends Activity implements View.OnClickListene
 
         personal_head.setOnClickListener(this);
         return_left.setOnClickListener(this);
-        personal_name_msg.setOnClickListener(this);
+        personal_name_msg.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    personal_name_msg.clearFocus();//失去焦点
+                    // 此处为得到焦点时的处理内容
+                } else {
+                    personal_name_msg.clearFocus();
+                    // 此处为失去焦点时的处理内容
+                }
+            }
+        });
     }
 
     public void onClick(View view) {
@@ -86,7 +99,8 @@ public class PersonalmsgActivity extends Activity implements View.OnClickListene
                 PersonalmsgActivity.this.finish();
                 break;
             case R.id.personal_name_msg:
-                //                personal_name_msg.setText( EditText().getText());
+                Toast.makeText(getApplicationContext(), "自定义显示位置的Toast", Toast.LENGTH_SHORT).show();
+                personal_name_msg.setFocusable(true);
                 break;
             case R.id.choosePhoto:
                 Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -104,7 +118,6 @@ public class PersonalmsgActivity extends Activity implements View.OnClickListene
             default:
                 break;
         }
-
     }
 
     public void show_headchange() {
@@ -167,4 +180,6 @@ public class PersonalmsgActivity extends Activity implements View.OnClickListene
                 break;
         }
     }
+
+
 }

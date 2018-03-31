@@ -53,7 +53,7 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
         //初始化Fresco
         Fresco.initialize(MainActivity.this);
         MApplication.getInstance().addActivity(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.register);
         initview();
     }
 

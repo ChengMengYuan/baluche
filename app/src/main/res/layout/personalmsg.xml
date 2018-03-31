@@ -99,7 +99,9 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="57dp"
-                android:background="#ffff">
+                android:background="#ffff"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -107,14 +109,18 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/nickname" />
-                <TextView
+                <EditText
                     android:id="@+id/personal_name_msg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="18dp"
                     android:layout_marginTop="20dp"
-                    android:text="@string/setting_false" />
+                    android:textSize="14sp"
+                    android:gravity="right"
+                    android:background="@null"
+                    android:textColor="@color/colorWhitegray"
+                    android:hint="@string/setting_false" />
 
             </RelativeLayout>
 
@@ -137,6 +143,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="18dp"
                     android:layout_marginTop="20dp"
+                    android:textColor="@color/colorWhitegray"
                     android:text="无"/>
 
             </RelativeLayout>
@@ -160,6 +167,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="18dp"
                     android:layout_marginTop="20dp"
+                    android:textColor="@color/colorWhitegray"
                     android:text="1992.10.10" />
 
             </RelativeLayout>
@@ -183,6 +191,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="18dp"
                     android:layout_marginTop="20dp"
+                    android:textColor="@color/colorWhitegray"
                     android:text="13660992126" />
 
             </RelativeLayout>
