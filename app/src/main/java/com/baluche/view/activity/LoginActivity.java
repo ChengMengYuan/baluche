@@ -84,6 +84,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                             Log.d("http+login", "getMessage" + login.getMessage());
                         } else {//如果接口签名校验不通过
                             Log.d("http+login", "onNext: " + login.getMessage());
+                            Log.d("http+login", "onNext: " + login.getCode());
                         }
 
                     }

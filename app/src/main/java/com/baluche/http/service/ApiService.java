@@ -61,6 +61,7 @@ public interface ApiService {
      * @param json
      * @return
      */
+    @Headers({"Client-Type:" + "Android", "App-Version:" + "test"})
     @POST("user/signin/register")
     Observable<Register> getRegister(@Body String json);
 
@@ -70,6 +71,7 @@ public interface ApiService {
      * @param json
      * @return
      */
+    @Headers({"Client-Type:" + "Android", "App-Version:" + "test"})
     @POST("user/signin/login")
     Observable<Login> getLogin(@Body String json);
 }

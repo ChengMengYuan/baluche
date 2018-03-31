@@ -176,6 +176,7 @@
                                     android:background="#ededed" />
 
                                 <TextView
+                                    android:id="@+id/register_sendCode"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
@@ -216,19 +217,14 @@
                             android:layout_alignParentBottom="true"
                             android:gravity="center">
 
-                            <ImageView
-                                android:id="@+id/logon_protocol_agree"
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
+                            <CheckBox
+                                android:id="@+id/register_cb"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
                                 android:layout_centerVertical="true"
-                                android:src="@drawable/register_img_case" />
-
-                            <ImageView
-                                android:layout_width="11dp"
-                                android:layout_height="11dp"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="2dp"
-                                android:src="@drawable/register_img_true" />
+                                android:checked="false"
+                                android:scaleX="0.6"
+                                android:scaleY="0.6" />
 
                             <TextView
                                 android:layout_width="wrap_content"

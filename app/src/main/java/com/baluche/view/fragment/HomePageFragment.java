@@ -151,8 +151,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onNext(Weather weather) {
+                Log.d("http+weather", "" + weather.getMessage());
                 if (weather.getCode() == 200) {
-                    Log.d("http+weather", "" + weather.getMessage());
                     String w = weather.getData().getWeather();
                     tv_weather.setText(weather.getData().getTemp());
                     tv_location.setText(weather.getData().getCity());
