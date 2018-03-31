@@ -1,6 +1,7 @@
 package com.baluche.view.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,10 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
 
 
     public NearRecyclerViewAdapter(ArrayList<String> data) {
+        Log.d("NearRecyclerViewAdapter", "======");
+        for (int i = 0; i < data.size(); i++) {
+            Log.d("NearRecyclerViewAdapter", "" + data.get(i));
+        }
         this.mData = data;
     }
 
@@ -41,6 +46,7 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
     public void onBindViewHolder(NearRecyclerViewAdapter.ViewHolder holder, int position) {
         // 绑定数据
         holder.item_Location_name_tv.setText(mData.get(position));
+        Log.d("onBindViewHolder", "" + mData.get(position));
     }
 
     @Override

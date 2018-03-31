@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baluche.R;
 import com.baluche.http.http.HttpMethods;
@@ -118,15 +117,9 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_xiaoxi://消息提示
-                Toast.makeText(context, "消息提示", Toast.LENGTH_LONG).show();
-                Log.d("onClick", "消息提示");
                 break;
 
             case R.id.nav_query://车位查询
-                Toast.makeText(context, "车位查询", Toast.LENGTH_LONG).show();
-                Log.d("onClick", "车位查询");
-                String sHA1 = sHA1(getContext());
-                Log.d("sHA1", "" + sHA1);
                 break;
 
             case R.id.nav_pay://停车缴费
@@ -158,12 +151,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onNext(Weather weather) {
-                Log.e("getCode", "onNext: " + weather.getCode());
                 if (weather.getCode() == 200) {
+                    Log.d("http+weather", "" + weather.getMessage());
                     String w = weather.getData().getWeather();
                     tv_weather.setText(weather.getData().getTemp());
                     tv_location.setText(weather.getData().getCity());
-                    Log.e("tv_location", weather.getData().getCity() + "");
                     changeWeatherImg(w);
                 } else {//如果接口签名校验不通过
                     changeWeatherImg("99");
@@ -193,9 +185,9 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onNext(com.baluche.model.entity.Banner banner) {
+                Log.d("http+banner", "" + banner.getMessage());
                 for (int i = 0; i < banner.getData().size(); i++) {
                     images.add(banner.getData().get(i).getPhoto());
-                    Log.d("banner", banner.getData().get(i).getPhoto() + "");
                     banner.getData().get(i).getLink();
                 }
                 //设置banner样式

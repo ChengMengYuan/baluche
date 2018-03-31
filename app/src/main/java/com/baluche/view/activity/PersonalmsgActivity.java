@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -160,7 +159,6 @@ public class PersonalmsgActivity extends Activity implements View.OnClickListene
                 FileInputStream fis = null;
 
                 try {
-                    Log.e("sdPath2", picPath);
                     //把图片转化为字节流
                     fis = new FileInputStream(picPath);
                     //把流转化图片

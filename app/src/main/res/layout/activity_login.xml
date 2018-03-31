@@ -22,15 +22,15 @@
                 android:layout_height="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="14dp"
-                android:src="@drawable/left_white"/>
+                android:src="@drawable/left_white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/logon"
-                android:textSize="16sp"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
@@ -69,9 +69,9 @@
                         <LinearLayout
                             android:layout_width="345dp"
                             android:layout_height="145dp"
+                            android:layout_centerHorizontal="true"
                             android:layout_marginTop="18dp"
                             android:background="@drawable/logon_shape"
-                            android:layout_centerHorizontal="true"
                             android:orientation="vertical">
 
                             <RelativeLayout
@@ -85,23 +85,26 @@
                                     android:layout_height="20dp"
                                     android:layout_centerVertical="true"
                                     android:layout_marginLeft="22dp"
-                                    android:src="@drawable/logon_img_account"/>
+                                    android:src="@drawable/logon_img_account" />
 
                                 <EditText
+                                    android:id="@+id/login_phone"
                                     android:layout_width="250dp"
                                     android:layout_height="40dp"
                                     android:layout_centerVertical="true"
                                     android:layout_marginLeft="10dp"
                                     android:layout_toRightOf="@+id/logon_account_edit"
-                                    android:hint="请输入手机号"
                                     android:background="@null"
-                                    android:textColor="@color/colorWhitegray"/>
+                                    android:maxLength="11"
+                                    android:digits="1234567890"
+                                    android:hint="请输入手机号"
+                                    android:textColor="@color/colorWhitegray" />
                             </RelativeLayout>
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="#ececec"/>
+                                android:background="#ececec" />
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
@@ -115,17 +118,18 @@
                                     android:layout_height="20dp"
                                     android:layout_centerVertical="true"
                                     android:layout_marginLeft="22dp"
-                                    android:src="@drawable/logon_img_password"/>
+                                    android:src="@drawable/logon_img_password" />
 
                                 <EditText
+                                    android:id="@+id/login_password"
                                     android:layout_width="250dp"
                                     android:layout_height="40dp"
                                     android:layout_centerVertical="true"
                                     android:layout_marginLeft="10dp"
                                     android:layout_toRightOf="@+id/logon_password_edit"
-                                    android:hint="请输入密码"
                                     android:background="@null"
-                                    android:textColor="@color/colorWhitegray"/>
+                                    android:hint="请输入密码"
+                                    android:textColor="@color/colorWhitegray" />
 
                             </RelativeLayout>
 
@@ -138,10 +142,11 @@
                         android:layout_height="118dp">
 
                         <Button
+                            android:id="@+id/login_login"
                             android:layout_width="345dp"
                             android:layout_height="47dp"
-                            android:layout_marginTop="59dp"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginTop="59dp"
                             android:background="@drawable/shape"
                             android:text="@string/logon"
                             android:textColor="#ffffff" />
@@ -155,19 +160,20 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="0dp"
                             android:layout_marginLeft="18dp"
+                            android:layout_marginTop="0dp"
                             android:text="忘记密码?"
-                            android:textColor="@color/colorWhitegray"/>
+                            android:textColor="@color/colorWhitegray" />
 
                         <TextView
+                            android:id="@+id/login_register_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginRight="18dp"
                             android:layout_alignParentRight="true"
+                            android:layout_marginRight="18dp"
+                            android:layout_marginTop="0dp"
                             android:text="立即注册"
-                            android:textColor="@color/colorWhitegray"/>
+                            android:textColor="@color/colorWhitegray" />
                     </RelativeLayout>
                 </LinearLayout>
 

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baluche.R;
+import com.baluche.view.activity.LoginActivity;
 import com.baluche.view.activity.PersonalmsgActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -83,11 +84,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.account_head:
-                Intent intent = new Intent(getActivity(),PersonalmsgActivity.class);
+                Intent intent = new Intent(getActivity(), PersonalmsgActivity.class);
                 startActivity(intent);
                 break;
             case R.id.register_logon:
-                Toast.makeText(context, "register_logon", Toast.LENGTH_LONG).show();
+                Intent intent1 = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.image_xiaoxi:
                 Toast.makeText(context, "image_xiaoxi", Toast.LENGTH_LONG).show();

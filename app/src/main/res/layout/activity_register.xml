@@ -17,20 +17,20 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/logon_return_left"
+                android:id="@+id/register_return_left"
                 android:layout_width="8dp"
                 android:layout_height="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="14dp"
-                android:src="@drawable/left_white"/>
+                android:src="@drawable/left_white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/register"
-                android:textSize="16sp"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
@@ -69,9 +69,9 @@
                         <LinearLayout
                             android:layout_width="345dp"
                             android:layout_height="188dp"
+                            android:layout_centerHorizontal="true"
                             android:layout_marginTop="16dp"
                             android:background="@drawable/logon_shape"
-                            android:layout_centerHorizontal="true"
                             android:orientation="vertical">
 
                             <RelativeLayout
@@ -85,24 +85,27 @@
                                     android:layout_height="20dp"
                                     android:layout_centerVertical="true"
                                     android:layout_marginLeft="22dp"
-                                    android:src="@drawable/logon_img_account"/>
+                                    android:src="@drawable/logon_img_account" />
 
                                 <EditText
+                                    android:id="@+id/register_phone"
                                     android:layout_width="250dp"
                                     android:layout_height="40dp"
                                     android:layout_centerVertical="true"
                                     android:layout_marginLeft="10dp"
                                     android:layout_toRightOf="@+id/logon_account_edit"
-                                    android:hint="请输入手机号"
                                     android:background="@null"
-                                    android:textSize="15sp"
-                                    android:textColor="@color/colorWhitegray"/>
+                                    android:digits="1234567890"
+                                    android:hint="请输入手机号"
+                                    android:maxLength="11"
+                                    android:textColor="@color/colorWhitegray"
+                                    android:textSize="15sp" />
                             </RelativeLayout>
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="#ececec"/>
+                                android:background="#ececec" />
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
@@ -116,25 +119,26 @@
                                     android:layout_height="20dp"
                                     android:layout_centerVertical="true"
                                     android:layout_marginLeft="22dp"
-                                    android:src="@drawable/logon_img_password"/>
+                                    android:src="@drawable/logon_img_password" />
 
                                 <EditText
+                                    android:id="@+id/register_password"
                                     android:layout_width="250dp"
                                     android:layout_height="40dp"
                                     android:layout_centerVertical="true"
                                     android:layout_marginLeft="10dp"
                                     android:layout_toRightOf="@+id/logon_password_edit"
-                                    android:hint="请输入密码"
                                     android:background="@null"
-                                    android:textSize="15sp"
-                                    android:textColor="@color/colorWhitegray"/>
+                                    android:hint="请输入密码"
+                                    android:textColor="@color/colorWhitegray"
+                                    android:textSize="15sp" />
 
                             </RelativeLayout>
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="#ececec"/>
+                                android:background="#ececec" />
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
@@ -148,38 +152,38 @@
                                     android:layout_height="20dp"
                                     android:layout_centerVertical="true"
                                     android:layout_marginLeft="22dp"
-                                    android:src="@drawable/register_img_verify"/>
+                                    android:src="@drawable/register_img_verify" />
 
                                 <EditText
-                                    android:id="@+id/register_verification_code_edit"
+                                    android:id="@+id/logon_verification_code_edit"
                                     android:layout_width="150dp"
                                     android:layout_height="40dp"
                                     android:layout_centerVertical="true"
                                     android:layout_marginLeft="10dp"
                                     android:layout_toRightOf="@+id/logon_verification_code"
-                                    android:hint="请输入密码"
                                     android:background="@null"
-                                    android:textSize="15sp"
-                                    android:textColor="@color/colorWhitegray"/>
+                                    android:hint="请输入验证码"
+                                    android:textColor="@color/colorWhitegray"
+                                    android:textSize="15sp" />
 
                                 <RelativeLayout
                                     android:id="@+id/logon_break_part"
                                     android:layout_width="1dp"
                                     android:layout_height="30dp"
-                                    android:layout_marginLeft="15dp"
                                     android:layout_centerVertical="true"
-                                    android:layout_toRightOf="@+id/register_verification_code_edit"
-                                    android:background="#ededed"/>
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_toRightOf="@+id/logon_verification_code_edit"
+                                    android:background="#ededed" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
-                                    android:textSize="15sp"
-                                    android:textColor="@color/colorGreen"
                                     android:layout_marginLeft="15dp"
                                     android:layout_toRightOf="@+id/logon_break_part"
-                                    android:text="发送验证码"/>
+                                    android:text="发送验证码"
+                                    android:textColor="@color/colorGreen"
+                                    android:textSize="15sp" />
                             </RelativeLayout>
 
                         </LinearLayout>
@@ -191,12 +195,13 @@
                         android:layout_height="98dp">
 
                         <Button
+                            android:id="@+id/register_register_bt"
                             android:layout_width="345dp"
                             android:layout_height="53dp"
-                            android:layout_marginTop="42dp"
                             android:layout_centerHorizontal="true"
-                            android:background="@drawable/shape"
-                            android:text="@string/logon"
+                            android:layout_marginTop="42dp"
+                            android:background="#bcbcbc"
+                            android:text="@string/register"
                             android:textColor="#ffffff" />
 
                     </RelativeLayout>
@@ -210,33 +215,35 @@
                             android:layout_height="43dp"
                             android:layout_alignParentBottom="true"
                             android:gravity="center">
+
                             <ImageView
                                 android:id="@+id/logon_protocol_agree"
                                 android:layout_width="15dp"
                                 android:layout_height="15dp"
                                 android:layout_centerVertical="true"
-                                android:src="@drawable/register_img_case"/>
+                                android:src="@drawable/register_img_case" />
 
                             <ImageView
                                 android:layout_width="11dp"
                                 android:layout_height="11dp"
                                 android:layout_centerVertical="true"
                                 android:layout_marginLeft="2dp"
-                                android:src="@drawable/register_img_true"/>
+                                android:src="@drawable/register_img_true" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginLeft="20dp"
-                                android:text="我已阅读并接受"/>
+                                android:text="我已阅读并接受" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginLeft="110dp"
-                                android:textColor="@color/colorGreen"
-                                android:text="《八路车停车协议》"/>
+                                android:text="《八路车停车协议》"
+                                android:textColor="@color/colorGreen" />
                         </RelativeLayout>
                     </RelativeLayout>
                 </LinearLayout>
