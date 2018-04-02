@@ -122,6 +122,7 @@ public class HttpMethods {
                 .subscribe(observer);
         kmap.clear();
         pMap.clear();
+        
     }
 
 
