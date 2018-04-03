@@ -45,7 +45,7 @@ import static com.baluche.app.Constant.TAKE_PHTOT;
  * Created by Administrator on 2018/3/26 0026.
  */
 
-public class PersionMsgActivity extends BaseActivity {
+public class PersonMsgActivity extends BaseActivity {
     private String sdPath;//SD卡的路径
     private String picPath;//图片存储路径
 
@@ -87,18 +87,18 @@ public class PersionMsgActivity extends BaseActivity {
 
         personal_head.setOnClickListener(this);
         return_left.setOnClickListener(this);
-        personal_name_msg.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    personal_name_msg.clearFocus();//失去焦点
-                    // 此处为得到焦点时的处理内容
-                } else {
-                    personal_name_msg.clearFocus();
-                    // 此处为失去焦点时的处理内容
-                }
-            }
-        });
+        //        personal_name_msg.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        //            @Override
+        //            public void onFocusChange(View v, boolean hasFocus) {
+        //                if (hasFocus) {
+        //                    personal_name_msg.clearFocus();//失去焦点
+        //                    // 此处为得到焦点时的处理内容
+        //                } else {
+        //                    personal_name_msg.clearFocus();
+        //                    // 此处为失去焦点时的处理内容
+        //                }
+        //            }
+        //        });
     }
 
 
@@ -139,11 +139,12 @@ public class PersionMsgActivity extends BaseActivity {
                 show_headchange();
                 break;
             case R.id.return_left:
-                PersionMsgActivity.this.finish();
+                finish();
                 break;
             case R.id.personal_name_msg:
                 Toast.makeText(getApplicationContext(), "自定义显示位置的Toast", Toast.LENGTH_SHORT).show();
                 personal_name_msg.setFocusable(true);
+                showInputMethod();
                 break;
             case R.id.choosePhoto:
                 Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);

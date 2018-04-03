@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +28,7 @@ import io.reactivex.disposables.Disposable;
  * Created by Administrator on 2018/3/31 0031.
  */
 
-public class RegisterActivity extends BaseActivity implements View.OnFocusChangeListener {
+public class RegisterActivity extends BaseActivity {
     private EditText register_phone; //手机号输入框
     private EditText register_password;//密码输入框
     private EditText register_register_et;//验证码输入框
@@ -41,7 +43,7 @@ public class RegisterActivity extends BaseActivity implements View.OnFocusChange
     public static String re_password = "";
     public static String TSMScode = "";
 
-    boolean flag = false;
+    private boolean flag = false;//判断帐号密码是否合法
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,15 +60,62 @@ public class RegisterActivity extends BaseActivity implements View.OnFocusChange
     @Override
     public void initView() {
         register_phone = findViewById(R.id.register_phone);
-        register_phone.setOnFocusChangeListener(this);
+        register_phone.addTextChangedListener(new TextWatcher() {//监听输入框的变化
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                re_phone = register_phone.getText().toString();
+                checkString(re_phone, re_password);
+            }
+        });
         register_password = findViewById(R.id.register_password);
-        register_password.setOnFocusChangeListener(this);
+        register_password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                re_password = register_password.getText().toString();
+                checkString(re_phone, re_password);
+            }
+        });
         register_register_et = findViewById(R.id.logon_verification_code_edit);
-        register_register_et.setOnFocusChangeListener(this);
+        register_register_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                TSMScode = register_register_et.getText().toString();
+                checkString(re_phone, re_password);
+            }
+        });
 
         register_register_bt = findViewById(R.id.register_register_bt);
         register_register_bt.setOnClickListener(this);
-        register_register_bt.setEnabled(false);
 
         register_cb = findViewById(R.id.register_cb);
         register_cb.setOnClickListener(this);
@@ -92,21 +141,12 @@ public class RegisterActivity extends BaseActivity implements View.OnFocusChange
     @Override
     public void widgetClick(View v) {
         switch (v.getId()) {
-            // FIXME: 2018/3/31 0031 重新获取焦点
-            case R.id.register_return_left:
+            case R.id.register_return_left://返回按钮点击事件
+
                 RegisterActivity.this.finish();
-                break;
-            case R.id.register_phone:
 
                 break;
-            case R.id.register_password:
-
-                break;
-            case R.id.logon_verification_code_edit:
-
-                break;
-
-            case R.id.register_register_bt://验证码接口,调用成功返回登录token
+            case R.id.register_register_bt://发送验证码按钮点击事件
                 HttpMethods.getInstance().getRegister(new Observer<Register>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -114,16 +154,25 @@ public class RegisterActivity extends BaseActivity implements View.OnFocusChange
                     }
 
                     @Override
-                    public void onNext(Register register) {
-                        Log.d("http+register", "" + register.getCode());
-                        Log.d("http+register", "" + register.getMessage());
-                        MApplication.Token = register.getData().getToken();
-                        Log.d("http+register", "" + register.getData().getToken());
+                    public void onNext(Register register) {//判断返回code,处理不同的结果
+                        int code = register.getCode();
+                        switch (code) {
+                            case 10000://参数错误
+                                toast(register.getMessage());
+                                break;
+                            case 200://注册成功
+                                Log.d("http+register", "" + register.getCode());
+                                Log.d("http+register", "" + register.getMessage());
+                                MApplication.Token = register.getData().getToken();
+                                Log.d("http+register", "" + register.getData().getToken());
+                                break;
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        e.printStackTrace();
                     }
 
                     @Override
@@ -133,22 +182,8 @@ public class RegisterActivity extends BaseActivity implements View.OnFocusChange
                 });
                 break;
 
-            case R.id.register_cb:
-                register_register_et.clearFocus();
-                register_register_et.setFocusable(false);
-                register_phone.clearFocus();
-                register_phone.setFocusable(false);
-                register_password.clearFocus();
-                register_password.setFocusable(false);
-
-                if (register_cb.isChecked() && checkString(re_phone, re_password)) {
-                    register_register_bt.setBackgroundColor(Color.parseColor("#2cb154"));
-                    register_register_bt.setEnabled(true);
-                } else {
-                    register_register_bt.setBackgroundColor(Color.parseColor("#bcbcbc"));
-                    register_register_bt.setEnabled(false);
-                }
-
+            case R.id.register_cb://八路车协议单选框
+                checkString(re_phone, re_password);
                 break;
 
             case R.id.register_sendCode:
@@ -188,57 +223,75 @@ public class RegisterActivity extends BaseActivity implements View.OnFocusChange
      *
      * @return
      */
-    private boolean checkString(String phone, String password) {
+    private void checkString(String phone, String password) {
         if (phone.length() != 11) {
-            return false;
+            flag = false;
         } else {
             if (password.length() < 6 || password.length() > 16) {
-                return false;
+                flag = false;
             } else {
                 if (register_cb.isChecked()) {
-                    return true;
+                    flag = true;
+                } else {
+                    flag = false;
                 }
-                return false;
             }
         }
+
+        changeLoginBtn(flag);
     }
 
-
-    @Override
-    public void onFocusChange(View view, boolean b) {
-        switch (view.getId()) {
-            case R.id.register_phone:
-                if (b) {// 此处为得到焦点时的处理内容
-
-                } else {// 此处为失去焦点时的处理内容
-                    re_phone = register_phone.getText().toString();
-                }
-                break;
-            case R.id.register_password:
-                if (b) {
-
-                } else {
-                    re_password = register_password.getText().toString();
-                }
-                break;
-            case R.id.logon_verification_code_edit:
-                if (b) {
-
-                } else {
-                    TSMScode = register_register_et.getText().toString();
-                }
-                break;
-        }
-        if (re_phone.isEmpty() || re_password.isEmpty()) {
-
-        } else {
-            flag = checkString(re_phone, re_password);
-        }
-        if (flag) {
+    /**
+     * 修改注册按钮的属性
+     *
+     * @param flag
+     */
+    private void changeLoginBtn(boolean flag) {
+        if (flag) {//可以点击注册
             register_register_bt.setBackgroundColor(Color.parseColor("#2cb154"));
             register_register_bt.setEnabled(true);
-        } else {
+        } else {//不允许点击注册
+            register_register_bt.setBackgroundColor(Color.parseColor("#bcbcbc"));
             register_register_bt.setEnabled(false);
         }
     }
+
+
+    //    @Override
+    //    public void onFocusChange(View view, boolean b) {
+    //        switch (view.getId()) {
+    //            case R.id.register_phone:
+    //                if (b) {// 此处为得到焦点时的处理内容
+    //
+    //                } else {// 此处为失去焦点时的处理内容
+    //                    re_phone = register_phone.getText().toString();
+    //                }
+    //                break;
+    //            case R.id.register_password:
+    //                if (b) {
+    //
+    //                } else {
+    //                    re_password = register_password.getText().toString();
+    //                }
+    //                break;
+    //            case R.id.logon_verification_code_edit:
+    //                if (b) {
+    //
+    //                } else {
+    //                    TSMScode = register_register_et.getText().toString();
+    //                }
+    //                break;
+    //        }
+    //        if (re_phone.isEmpty() || re_password.isEmpty()) {
+    //
+    //        } else {
+    //            flag = checkString(re_phone, re_password);
+    //        }
+    //        if (flag) {
+    //            register_register_bt.setBackgroundColor(Color.parseColor("#2cb154"));
+    //            register_register_bt.setEnabled(true);
+    //        } else {
+    //            register_register_bt.setEnabled(false);
+    //        }
+    //    }
 }

@@ -53,7 +53,7 @@
             </intent-filter>
         </activity>
         //个人信息页面
-        <activity android:name=".view.activity.PersionMsgActivity" />
+        <activity android:name=".view.activity.PersonMsgActivity" />
         <activity android:name=".view.activity.LoginActivity"></activity>
         <activity android:name=".view.activity.RegisterActivity"></activity>
 

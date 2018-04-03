@@ -1,7 +1,6 @@
 package com.baluche.view.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -52,7 +51,6 @@ public class LoginActivity extends BaseActivity {
         login_phone.setOnClickListener(this);
         login_password = findViewById(R.id.login_password);
         login_password.setOnClickListener(this);
-
         login_register_tv = findViewById(R.id.login_register_tv);
         login_register_tv.setOnClickListener(this);
     }
@@ -115,8 +113,7 @@ public class LoginActivity extends BaseActivity {
                 });
                 break;
             case R.id.login_register_tv:
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
+                startActivity(RegisterActivity.class);
                 break;
         }
     }

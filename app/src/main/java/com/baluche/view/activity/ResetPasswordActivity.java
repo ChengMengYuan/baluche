@@ -38,4 +38,6 @@ public class ResetPasswordActivity extends BaseActivity {
     public void widgetClick(View v) {
 
     }
+
+
 }
