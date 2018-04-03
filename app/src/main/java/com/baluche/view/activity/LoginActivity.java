@@ -1,6 +1,6 @@
 package com.baluche.view.activity;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baluche.R;
-import com.baluche.app.MApplication;
 import com.baluche.http.http.HttpMethods;
 import com.baluche.model.entity.Login;
 
@@ -23,7 +22,7 @@ import io.reactivex.disposables.Disposable;
  * Created by Administrator on 2018/3/30 0030.
  */
 
-public class LoginActivity extends Activity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity {
 
     private EditText login_phone;
     private EditText login_password;
@@ -37,12 +36,16 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MApplication.getInstance().addActivity(this);
         setContentView(R.layout.activity_login);
-        initview();
     }
 
-    private void initview() {
+    @Override
+    public void setActivityPre() {
+
+    }
+
+    @Override
+    public void initView() {
         login_login = findViewById(R.id.login_login);
         login_login.setOnClickListener(this);
         login_phone = findViewById(R.id.login_phone);
@@ -55,7 +58,17 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View view) {
+    public void initData() {
+
+    }
+
+    @Override
+    public void doBusiness(Context mContext) {
+
+    }
+
+    @Override
+    public void widgetClick(View view) {
         switch (view.getId()) {
             case R.id.login_login:
                 login_name = login_phone.getText().toString();
@@ -108,6 +121,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         }
     }
 
+
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
@@ -142,11 +156,5 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             return true;
         }
 
-    }
-
-    @Override
-    protected void onDestroy() {
-        MApplication.getInstance().destory();
-        super.onDestroy();
     }
 }

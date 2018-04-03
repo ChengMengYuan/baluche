@@ -1,7 +1,6 @@
 package com.baluche.util;
 
 import android.util.Base64;
-import android.util.Log;
 
 import com.baluche.app.Constant;
 
@@ -1050,13 +1049,8 @@ public final class EncryptUtil {
             Object value = hashMap.get(key);
             BufferIsOk = BufferIsOk + "&" + key + "=" + value;
         }
-
         BufferIsOk = BufferIsOk.substring(1, BufferIsOk.length());//去掉第一个字符
-        Log.d("BufferIsOk", "" + BufferIsOk);
-
         BufferIsOk = EncryptUtil.encryptMD5ToString(BufferIsOk).toLowerCase();
-        Log.d("BufferIsOk", "" + BufferIsOk);
-
         return BufferIsOk;
     }
 

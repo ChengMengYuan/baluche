@@ -15,10 +15,12 @@ import java.util.List;
  * @Description : 将所有的activity添加到List中,方便退出时统一管理
  */
 public class MApplication extends Application {
+    public static final String APP_NAME = "畅行八路车";
     public static List<Object> activities = new ArrayList<>();
     private static MApplication instance;
 
     public static String Token = "";
+    public static boolean isDebug;//Debug开关
 
     @Override
     public void onCreate() {

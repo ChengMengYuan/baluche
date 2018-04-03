@@ -1,6 +1,6 @@
 package com.baluche.view.activity;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,7 +26,7 @@ import io.reactivex.disposables.Disposable;
  * Created by Administrator on 2018/3/31 0031.
  */
 
-public class RegisterActivity extends Activity implements View.OnClickListener, View.OnFocusChangeListener {
+public class RegisterActivity extends BaseActivity implements View.OnFocusChangeListener {
     private EditText register_phone; //手机号输入框
     private EditText register_password;//密码输入框
     private EditText register_register_et;//验证码输入框
@@ -47,10 +47,16 @@ public class RegisterActivity extends Activity implements View.OnClickListener, 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        initview();
     }
 
-    private void initview() {
+
+    @Override
+    public void setActivityPre() {
+
+    }
+
+    @Override
+    public void initView() {
         register_phone = findViewById(R.id.register_phone);
         register_phone.setOnFocusChangeListener(this);
         register_password = findViewById(R.id.register_password);
@@ -73,8 +79,19 @@ public class RegisterActivity extends Activity implements View.OnClickListener, 
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
+    public void initData() {
+
+    }
+
+    @Override
+    public void doBusiness(Context mContext) {
+
+    }
+
+
+    @Override
+    public void widgetClick(View v) {
+        switch (v.getId()) {
             // FIXME: 2018/3/31 0031 重新获取焦点
             case R.id.register_return_left:
                 RegisterActivity.this.finish();

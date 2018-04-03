@@ -2,6 +2,7 @@ package com.baluche.view.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -44,7 +45,7 @@ import static com.baluche.app.Constant.TAKE_PHTOT;
  * Created by Administrator on 2018/3/26 0026.
  */
 
-public class PersionMsgActivity extends Activity implements View.OnClickListener {
+public class PersionMsgActivity extends BaseActivity {
     private String sdPath;//SD卡的路径
     private String picPath;//图片存储路径
 
@@ -70,11 +71,15 @@ public class PersionMsgActivity extends Activity implements View.OnClickListener
         builder.detectFileUriExposure();
         sdPath = Environment.getExternalStorageDirectory().getPath();//设置拍照照片的保存路径
         picPath = sdPath + "/" + "image.jpg";
-
-        initView();
     }
 
-    private void initView() {
+    @Override
+    public void setActivityPre() {
+
+    }
+
+    @Override
+    public void initView() {
         personal_head = findViewById(R.id.personal_head);
         personal_head_img = findViewById(R.id.personal_head_img);
         return_left = findViewById(R.id.return_left);
@@ -96,10 +101,17 @@ public class PersionMsgActivity extends Activity implements View.OnClickListener
         });
     }
 
-    public void onClick(View view) {
-        switch (view.getId()) {
+
+    @Override
+    public void doBusiness(Context mContext) {
+
+    }
+
+    @Override
+    public void widgetClick(View v) {
+        switch (v.getId()) {
             case R.id.personal_head:
-                // FIXME: 2018/4/2 0002 测试代码  测试个人信息查询接口是否能用 
+                // FIXME: 2018/4/2 0002 测试代码  测试个人信息查询接口是否能用
                 HttpMethods.getInstance().queryPersonMsg(new Observer<PersonMsg>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -150,6 +162,12 @@ public class PersionMsgActivity extends Activity implements View.OnClickListener
                 break;
         }
     }
+
+    @Override
+    public void initData() {
+
+    }
+
 
     public void show_headchange() {
         dialog = new Dialog(this, R.style.ActionSheetDialogStyle);

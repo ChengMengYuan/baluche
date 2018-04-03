@@ -218,6 +218,11 @@ public class HttpMethods {
         pMap.clear();
     }
 
+    /**
+     * 查询个人信息接口
+     *
+     * @param observer
+     */
     public void queryPersonMsg(Observer<PersonMsg> observer) {
         kmap.put("time", time);
         kmap.put("token", MApplication.Token);// token
