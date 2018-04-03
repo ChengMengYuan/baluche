@@ -35,12 +35,14 @@
 
 
     <application
+        android:name=".app.MApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".view.activity.MainActivity"
             android:configChanges="orientation|screenSize">
@@ -51,18 +53,14 @@
             </intent-filter>
         </activity>
         //个人信息页面
-        <activity android:name=".view.activity.PersonalmsgActivity" />
+        <activity android:name=".view.activity.PersionMsgActivity" />
         <activity android:name=".view.activity.LoginActivity"></activity>
         <activity android:name=".view.activity.RegisterActivity"></activity>
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="c6752d474133dd6634eb6db5c7def745">
-
-        </meta-data>
-
+            android:value="c6752d474133dd6634eb6db5c7def745"></meta-data>
         <service android:name="com.amap.api.location.APSService"></service>
-
     </application>
 
 

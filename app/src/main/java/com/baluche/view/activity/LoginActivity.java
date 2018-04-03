@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baluche.R;
+import com.baluche.app.MApplication;
 import com.baluche.http.http.HttpMethods;
 import com.baluche.model.entity.Login;
 
@@ -28,14 +29,15 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private EditText login_password;
     private Button login_login;
 
-    public static String login_name;
-    public static String password;
+    public static String login_name = "";
+    public static String password = "";
 
     private TextView login_register_tv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MApplication.getInstance().addActivity(this);
         setContentView(R.layout.activity_login);
         initview();
     }
@@ -78,13 +80,12 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
                     @Override
                     public void onNext(Login login) {
-                        Log.d("http+login", "getMessage" + login.getMessage());
                         if (login.getCode() == 200) {
                             Log.d("http+login", "getCode" + login.getCode());
                             Log.d("http+login", "getMessage" + login.getMessage());
                         } else {//如果接口签名校验不通过
-                            Log.d("http+login", "onNext: " + login.getMessage());
-                            Log.d("http+login", "onNext: " + login.getCode());
+                            Log.d("http+login", "getMessage" + login.getMessage());
+                            Log.d("http+login", "getCode" + login.getCode());
                         }
 
                     }
@@ -143,4 +144,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        MApplication.getInstance().destory();
+        super.onDestroy();
+    }
 }

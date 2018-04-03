@@ -20,7 +20,6 @@
                 android:id="@+id/register_return_left"
                 android:layout_width="8dp"
                 android:layout_height="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="14dp"
                 android:src="@drawable/left_white" />
 

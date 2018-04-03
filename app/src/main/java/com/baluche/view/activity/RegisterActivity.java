@@ -4,15 +4,20 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baluche.R;
+import com.baluche.app.MApplication;
 import com.baluche.http.http.HttpMethods;
 import com.baluche.model.entity.Register;
+import com.baluche.model.entity.SMScode;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -30,8 +35,11 @@ public class RegisterActivity extends Activity implements View.OnClickListener, 
     private Button register_register_bt; //注册button
     private TextView register_sendCode; // 发送验证码
 
-    public static String phone = "";
-    public static String password = "";
+    private ImageView register_return_left;//返回按钮
+
+    public static String re_phone = "";
+    public static String re_password = "";
+    public static String TSMScode = "";
 
     boolean flag = false;
 
@@ -59,12 +67,18 @@ public class RegisterActivity extends Activity implements View.OnClickListener, 
 
         register_sendCode = findViewById(R.id.register_sendCode);
         register_sendCode.setOnClickListener(this);
+
+        register_return_left = findViewById(R.id.register_return_left);
+        register_return_left.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             // FIXME: 2018/3/31 0031 重新获取焦点
+            case R.id.register_return_left:
+                RegisterActivity.this.finish();
+                break;
             case R.id.register_phone:
 
                 break;
@@ -74,7 +88,8 @@ public class RegisterActivity extends Activity implements View.OnClickListener, 
             case R.id.logon_verification_code_edit:
 
                 break;
-            case R.id.register_register_bt:
+
+            case R.id.register_register_bt://验证码接口,调用成功返回登录token
                 HttpMethods.getInstance().getRegister(new Observer<Register>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -83,7 +98,10 @@ public class RegisterActivity extends Activity implements View.OnClickListener, 
 
                     @Override
                     public void onNext(Register register) {
-                        // TODO: 2018/3/31 0031 传送注册数据并获得返回
+                        Log.d("http+register", "" + register.getCode());
+                        Log.d("http+register", "" + register.getMessage());
+                        MApplication.Token = register.getData().getToken();
+                        Log.d("http+register", "" + register.getData().getToken());
                     }
 
                     @Override
@@ -105,7 +123,8 @@ public class RegisterActivity extends Activity implements View.OnClickListener, 
                 register_phone.setFocusable(false);
                 register_password.clearFocus();
                 register_password.setFocusable(false);
-                if (register_cb.isChecked() && checkString(phone, password)) {
+
+                if (register_cb.isChecked() && checkString(re_phone, re_password)) {
                     register_register_bt.setBackgroundColor(Color.parseColor("#2cb154"));
                     register_register_bt.setEnabled(true);
                 } else {
@@ -116,7 +135,32 @@ public class RegisterActivity extends Activity implements View.OnClickListener, 
                 break;
 
             case R.id.register_sendCode:
-                // TODO: 2018/3/31 0031 调用发送验证码的接口,添加一个计时器60s内不允许重复调用
+                if (re_phone.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "请输入手机号码", Toast.LENGTH_SHORT).show();
+                } else {
+                    HttpMethods.getInstance().getSMScode(new Observer<SMScode>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onNext(SMScode smScode) {
+                            smScode.getCode();
+                            Log.d("http+SMScode", "" + smScode.getMessage());
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+                }
                 break;
         }
 
@@ -150,24 +194,28 @@ public class RegisterActivity extends Activity implements View.OnClickListener, 
                 if (b) {// 此处为得到焦点时的处理内容
 
                 } else {// 此处为失去焦点时的处理内容
-                    phone = register_phone.getText().toString();
+                    re_phone = register_phone.getText().toString();
                 }
                 break;
             case R.id.register_password:
                 if (b) {
 
                 } else {
-                    password = register_password.getText().toString();
+                    re_password = register_password.getText().toString();
                 }
                 break;
             case R.id.logon_verification_code_edit:
+                if (b) {
 
+                } else {
+                    TSMScode = register_register_et.getText().toString();
+                }
                 break;
         }
-        if (phone.isEmpty() || password.isEmpty()) {
+        if (re_phone.isEmpty() || re_password.isEmpty()) {
 
         } else {
-            flag = checkString(phone, password);
+            flag = checkString(re_phone, re_password);
         }
         if (flag) {
             register_register_bt.setBackgroundColor(Color.parseColor("#2cb154"));

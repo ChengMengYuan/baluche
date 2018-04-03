@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +23,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baluche.R;
+import com.baluche.http.http.HttpMethods;
+import com.baluche.model.entity.PersonMsg;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 import static com.baluche.app.Constant.SELECT_PHOTO;
 import static com.baluche.app.Constant.TAKE_PHTOT;
@@ -37,7 +44,7 @@ import static com.baluche.app.Constant.TAKE_PHTOT;
  * Created by Administrator on 2018/3/26 0026.
  */
 
-public class PersonalmsgActivity extends Activity implements View.OnClickListener {
+public class PersionMsgActivity extends Activity implements View.OnClickListener {
     private String sdPath;//SD卡的路径
     private String picPath;//图片存储路径
 
@@ -56,7 +63,7 @@ public class PersonalmsgActivity extends Activity implements View.OnClickListene
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.personalmsg);
+        setContentView(R.layout.activity_persion_msg);
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
@@ -92,10 +99,35 @@ public class PersonalmsgActivity extends Activity implements View.OnClickListene
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.personal_head:
+                // FIXME: 2018/4/2 0002 测试代码  测试个人信息查询接口是否能用 
+                HttpMethods.getInstance().queryPersonMsg(new Observer<PersonMsg>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(PersonMsg personMsg) {
+                        Gson gson = new Gson();
+                        Log.d("http+personMsg", "" + personMsg.getCode());
+                        Log.d("http+personMsg", "" + personMsg.getMessage());
+                        Log.d("http+personMsg", "" + gson.toJson(personMsg.getData()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
                 show_headchange();
                 break;
             case R.id.return_left:
-                PersonalmsgActivity.this.finish();
+                PersionMsgActivity.this.finish();
                 break;
             case R.id.personal_name_msg:
                 Toast.makeText(getApplicationContext(), "自定义显示位置的Toast", Toast.LENGTH_SHORT).show();
@@ -125,8 +157,8 @@ public class PersonalmsgActivity extends Activity implements View.OnClickListene
         inflate = LayoutInflater.from(this).inflate
                 (R.layout.dialog_layout, null);
         //初始化控件
-        choosePhoto = (TextView) inflate.findViewById(R.id.choosePhoto);
-        takePhoto = (TextView) inflate.findViewById(R.id.takePhoto);
+        choosePhoto = inflate.findViewById(R.id.choosePhoto);
+        takePhoto = inflate.findViewById(R.id.takePhoto);
         choosePhoto.setOnClickListener(this);
         takePhoto.setOnClickListener(this);
         //将布局设置给Dialog

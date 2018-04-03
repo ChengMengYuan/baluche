@@ -2,11 +2,14 @@ package com.baluche.http.http;
 
 import android.util.Log;
 
+import com.baluche.app.MApplication;
 import com.baluche.http.service.ApiService;
 import com.baluche.model.entity.Banner;
 import com.baluche.model.entity.Login;
 import com.baluche.model.entity.Park;
+import com.baluche.model.entity.PersonMsg;
 import com.baluche.model.entity.Register;
+import com.baluche.model.entity.SMScode;
 import com.baluche.model.entity.Weather;
 import com.google.gson.Gson;
 
@@ -25,6 +28,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.baluche.util.EncryptUtil.Getsign;
 import static com.baluche.view.activity.LoginActivity.login_name;
 import static com.baluche.view.activity.LoginActivity.password;
+import static com.baluche.view.activity.RegisterActivity.TSMScode;
+import static com.baluche.view.activity.RegisterActivity.re_password;
+import static com.baluche.view.activity.RegisterActivity.re_phone;
 import static com.baluche.view.fragment.NearbyFragment.Latitude;
 import static com.baluche.view.fragment.NearbyFragment.Longitude;
 
@@ -69,6 +75,11 @@ public class HttpMethods {
     private String time = Calendar.getInstance().getTimeInMillis() + "";
     private Gson gson = new Gson();
 
+    /**
+     * 天气接口
+     *
+     * @param observer
+     */
     public void getWeather(Observer<Weather> observer) {
         kmap.put("time", time);
 
@@ -83,6 +94,11 @@ public class HttpMethods {
         pMap.clear();
     }
 
+    /**
+     * 广告轮播图接口
+     *
+     * @param observer
+     */
     public void getBanner(Observer<Banner> observer) {
         kmap.put("time", time);
 
@@ -98,22 +114,23 @@ public class HttpMethods {
         pMap.clear();
     }
 
+    /**
+     * 停车场接口
+     *
+     * @param observer
+     */
     public void getPark(Observer<Park> observer) {
-
         kmap.put("time", time);
         kmap.put("lat", Latitude);
         kmap.put("lng", Longitude);
-
 
         pMap.put("sign", Getsign(kmap));//加一个sign的md5验证
         pMap.put("time", time);
         pMap.put("lat", Latitude);
         pMap.put("lng", Longitude);
 
-
         String s = gson.toJson(pMap);
         Log.d("http+park", s + "");
-
 
         apiService.getPark(gson.toJson(pMap))
                 .subscribeOn(Schedulers.io())
@@ -122,27 +139,26 @@ public class HttpMethods {
                 .subscribe(observer);
         kmap.clear();
         pMap.clear();
-        
     }
 
 
     /**
+     * 注册接口
+     *
      * @param observer
      */
     public void getRegister(Observer<Register> observer) {
         kmap.put("time", time);
-        kmap.put("mobile", login_name);// 手机号
-        kmap.put("password", password);//密码
-        kmap.put("code", "");//验证码
-
+        kmap.put("mobile", re_phone);// 手机号
+        kmap.put("password", re_password);//密码
+        kmap.put("code", TSMScode);//验证码
 
         pMap.put("sign", Getsign(kmap));
         pMap.put("time", time);
-        pMap.put("mobile", login_name);// 手机号
-        pMap.put("password", password);//密码
-        pMap.put("code", "");//验证码
-
-
+        pMap.put("mobile", re_phone);// 手机号
+        pMap.put("password", re_password);//密码
+        pMap.put("code", TSMScode);//验证码
+        Log.d("http+register", "" + gson.toJson(pMap));
         apiService.getRegister(gson.toJson(pMap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -153,6 +169,11 @@ public class HttpMethods {
         pMap.clear();
     }
 
+    /**
+     * 登录接口
+     *
+     * @param observer
+     */
     public void getLogin(Observer<Login> observer) {
         kmap.put("time", time);
         kmap.put("mobile", login_name);// 手机号
@@ -174,4 +195,44 @@ public class HttpMethods {
     }
 
 
+    /**
+     * 验证码接口
+     *
+     * @param observer
+     */
+    public void getSMScode(Observer<SMScode> observer) {
+        kmap.put("time", time);
+        kmap.put("mobile", re_phone);// 手机号
+
+        pMap.put("sign", Getsign(kmap));
+        pMap.put("time", time);
+        pMap.put("mobile", re_phone);// 手机号
+
+        Log.d("http+SMScode", "" + gson.toJson(pMap));
+        apiService.getSMScode(gson.toJson(pMap))
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+        kmap.clear();
+        pMap.clear();
+    }
+
+    public void queryPersonMsg(Observer<PersonMsg> observer) {
+        kmap.put("time", time);
+        kmap.put("token", MApplication.Token);// token
+
+        pMap.put("sign", Getsign(kmap));
+        pMap.put("time", time);
+        pMap.put("token", MApplication.Token);// token
+
+        Log.d("http+SMScode", "" + gson.toJson(pMap));
+        apiService.queryPersonMsg(gson.toJson(pMap))
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+        kmap.clear();
+        pMap.clear();
+    }
 }

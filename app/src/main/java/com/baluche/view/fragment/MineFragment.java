@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.baluche.R;
 import com.baluche.view.activity.LoginActivity;
-import com.baluche.view.activity.PersonalmsgActivity;
+import com.baluche.view.activity.PersionMsgActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
@@ -41,11 +41,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-
         View v = inflater.inflate(R.layout.fragment_mine, container, false);
         context = getContext();
         initView(v);
-
         return v;
     }
 
@@ -84,7 +82,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.account_head:
-                Intent intent = new Intent(getActivity(), PersonalmsgActivity.class);
+                Intent intent = new Intent(getActivity(), PersionMsgActivity.class);
                 startActivity(intent);
                 break;
             case R.id.register_logon:

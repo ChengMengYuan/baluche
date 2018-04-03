@@ -58,7 +58,7 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
     }
 
     private void initview() {
-
+        Log.d("http+Token", MApplication.Token + "=");
         mviewpager = this.findViewById(R.id.mviewpage);
         mviewpager.setScanScroll(false);//设置viewPage禁止滑动，避免和地图起冲突
 

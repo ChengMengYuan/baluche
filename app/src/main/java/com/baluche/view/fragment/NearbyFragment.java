@@ -124,7 +124,6 @@ public class NearbyFragment extends Fragment {
                     } else {
                         data.add("暂无停车场信息");
                     }
-
                 }
                 mAdapter.notifyDataSetChanged();
             }
@@ -227,7 +226,6 @@ public class NearbyFragment extends Fragment {
         });
         //启动定位
         mLocationClient.startLocation();
-
 
         //初始化定位蓝点样式
         myLocationStyle = new MyLocationStyle();

@@ -18,6 +18,8 @@ public class MApplication extends Application {
     public static List<Object> activities = new ArrayList<>();
     private static MApplication instance;
 
+    public static String Token = "";
+
     @Override
     public void onCreate() {
         super.onCreate();

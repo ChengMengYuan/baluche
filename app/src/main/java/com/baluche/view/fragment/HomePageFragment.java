@@ -56,7 +56,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout nav_coupon;//车位预约
     private RelativeLayout nav_help;//使用帮助
 
-
     private TextView before_price;//原始价格
 
     private SearchView home_search;//搜索框

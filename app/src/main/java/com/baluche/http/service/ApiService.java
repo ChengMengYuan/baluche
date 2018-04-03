@@ -3,7 +3,9 @@ package com.baluche.http.service;
 import com.baluche.model.entity.Banner;
 import com.baluche.model.entity.Login;
 import com.baluche.model.entity.Park;
+import com.baluche.model.entity.PersonMsg;
 import com.baluche.model.entity.Register;
+import com.baluche.model.entity.SMScode;
 import com.baluche.model.entity.Weather;
 
 import io.reactivex.Observable;
@@ -26,13 +28,15 @@ public interface ApiService {
     //    @GET("xiaohua.json")
     //    Observable<List<MyJoke>> getData();
 
+    // FIXME: 2018/4/2 0002 天气接口限流暂停使用
+
     /**
      * 天气接口
      *
      * @return Weather
      */
     @Headers({"Client-Type:" + "Android", "App-Version:" + "test"})
-    @POST("api/weather/ip")
+    @POST("api/weather/ip/fixme")
     Observable<Weather> getWeather(@Body String json);
 
     /**
@@ -74,4 +78,25 @@ public interface ApiService {
     @Headers({"Client-Type:" + "Android", "App-Version:" + "test"})
     @POST("user/signin/login")
     Observable<Login> getLogin(@Body String json);
+
+    /**
+     * 验证码接口
+     *
+     * @param json
+     * @return
+     */
+    @Headers({"Client-Type:" + "Android", "App-Version:" + "test"})
+    @POST("user/signin/getverifycode")
+    Observable<SMScode> getSMScode(@Body String json);
+
+
+    /**
+     * 个人信息查询接口
+     *
+     * @param json
+     * @return
+     */
+    @Headers({"Client-Type:" + "Android", "App-Version:" + "test"})
+    @POST("user/user/signin/queryuserinfo")
+    Observable<PersonMsg> queryPersonMsg(@Body String json);
 }
