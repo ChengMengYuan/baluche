@@ -23,7 +23,7 @@
                 android:layout_height="17dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="14dp"
-                android:src="@drawable/left_black"/>
+                android:src="@drawable/left_black" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -83,7 +83,7 @@
                         android:layout_width="26dp"
                         android:layout_height="27dp"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/green_wod"/>
+                        android:src="@drawable/green_wod" />
 
                     <com.facebook.drawee.view.SimpleDraweeView
                         android:id="@+id/personal_head_img"
@@ -91,7 +91,7 @@
                         android:layout_height="76dp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
-                        fresco:roundAsCircle="true"/>
+                        fresco:roundAsCircle="true" />
                 </RelativeLayout>
 
             </RelativeLayout>
@@ -109,6 +109,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/nickname" />
+
                 <EditText
                     android:id="@+id/personal_name_msg"
                     android:layout_width="wrap_content"
@@ -116,11 +117,11 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="18dp"
                     android:layout_marginTop="20dp"
-                    android:textSize="14sp"
-                    android:gravity="right"
                     android:background="@null"
+                    android:gravity="right"
+                    android:hint="@string/setting_false"
                     android:textColor="@color/colorWhitegray"
-                    android:hint="@string/setting_false" />
+                    android:textSize="14sp" />
 
             </RelativeLayout>
 
@@ -143,8 +144,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="18dp"
                     android:layout_marginTop="20dp"
-                    android:textColor="@color/colorWhitegray"
-                    android:text="无"/>
+                    android:text="无"
+                    android:textColor="@color/colorWhitegray" />
 
             </RelativeLayout>
 
@@ -162,13 +163,14 @@
                     android:text="@string/birthday" />
 
                 <TextView
+                    android:id="@+id/timepicker_msg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="18dp"
                     android:layout_marginTop="20dp"
-                    android:textColor="@color/colorWhitegray"
-                    android:text="1992.10.10" />
+                    android:text="1992.10.10"
+                    android:textColor="@color/colorWhitegray" />
 
             </RelativeLayout>
 
@@ -191,8 +193,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="18dp"
                     android:layout_marginTop="20dp"
-                    android:textColor="@color/colorWhitegray"
-                    android:text="13660992126" />
+                    android:text="13660992126"
+                    android:textColor="@color/colorWhitegray" />
 
             </RelativeLayout>
 
@@ -207,7 +209,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="20dp"
-                    android:text="@string/register_time"/>
+                    android:text="@string/register_time" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -224,6 +226,7 @@
                 android:layout_height="119dp">
 
                 <Button
+                    android:id="@+id/updata_permsg"
                     android:layout_width="283dp"
                     android:layout_height="47dp"
                     android:layout_centerInParent="true"

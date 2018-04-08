@@ -20,7 +20,7 @@ public class MApplication extends Application {
     private static MApplication instance;
 
     public static String Token = "";
-    public static boolean isDebug;//Debug开关
+    public static boolean isDebug = true;//Debug开关
 
     @Override
     public void onCreate() {

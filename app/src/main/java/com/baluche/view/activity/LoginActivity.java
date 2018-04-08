@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,8 @@ public class LoginActivity extends BaseActivity {
     private EditText login_phone;
     private EditText login_password;
     private Button login_login;
+
+    private ImageView logon_return_left;
 
     public static String login_name = "";
     public static String password = "";
@@ -53,6 +56,9 @@ public class LoginActivity extends BaseActivity {
         login_password.setOnClickListener(this);
         login_register_tv = findViewById(R.id.login_register_tv);
         login_register_tv.setOnClickListener(this);
+        logon_return_left = findViewById(R.id.logon_return_left);
+        logon_return_left.setOnClickListener(this);
+
     }
 
     @Override
@@ -114,6 +120,10 @@ public class LoginActivity extends BaseActivity {
                 break;
             case R.id.login_register_tv:
                 startActivity(RegisterActivity.class);
+                break;
+            case R.id.logon_return_left:
+                // FIXME: 2018/4/8 0008
+                startActivity(MainActivity.class);
                 break;
         }
     }

@@ -77,6 +77,19 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        $Log(TAG + "--->onResume()");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MApplication.getInstance().destory();
+        $Log(TAG + "--->onDestroy()");
+    }
+
+    @Override
     public void setContentView(View view) {
         super.setContentView(view);
         initView();
@@ -193,19 +206,6 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
      */
     public void toast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        $Log(TAG + "--->onResume()");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        MApplication.getInstance().destory();
-        $Log(TAG + "--->onDestroy()");
     }
 
     /**

@@ -8,6 +8,7 @@ import com.baluche.model.entity.Banner;
 import com.baluche.model.entity.Login;
 import com.baluche.model.entity.Park;
 import com.baluche.model.entity.PersonMsg;
+import com.baluche.model.entity.Portrait;
 import com.baluche.model.entity.Register;
 import com.baluche.model.entity.SMScode;
 import com.baluche.model.entity.Weather;
@@ -76,7 +77,7 @@ public class HttpMethods {
     private Gson gson = new Gson();
 
     /**
-     * 天气接口
+     * 获取天气信息方法
      *
      * @param observer
      */
@@ -95,7 +96,7 @@ public class HttpMethods {
     }
 
     /**
-     * 广告轮播图接口
+     * 获取广告轮播图方法
      *
      * @param observer
      */
@@ -115,7 +116,7 @@ public class HttpMethods {
     }
 
     /**
-     * 停车场接口
+     * 获取停车场列表信息方法
      *
      * @param observer
      */
@@ -143,7 +144,7 @@ public class HttpMethods {
 
 
     /**
-     * 注册接口
+     * 注册方法
      *
      * @param observer
      */
@@ -170,7 +171,7 @@ public class HttpMethods {
     }
 
     /**
-     * 登录接口
+     * 登录方法
      *
      * @param observer
      */
@@ -196,7 +197,7 @@ public class HttpMethods {
 
 
     /**
-     * 验证码接口
+     * 发送验证码方法
      *
      * @param observer
      */
@@ -219,7 +220,7 @@ public class HttpMethods {
     }
 
     /**
-     * 查询个人信息接口
+     * 查询个人信息方法
      *
      * @param observer
      */
@@ -240,4 +241,48 @@ public class HttpMethods {
         kmap.clear();
         pMap.clear();
     }
+
+    /**
+     * 修改个人信息方法
+     *
+     * @param observer
+     */
+    public void updatePersonMsg(Observer<PersonMsg> observer) {
+        kmap.put("time", time);
+        kmap.put("token", MApplication.Token);// token
+
+        pMap.put("sign", Getsign(kmap));
+        pMap.put("time", time);
+        pMap.put("token", MApplication.Token);// token
+        apiService.updatePersonMsg("")
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+        kmap.clear();
+        pMap.clear();
+    }
+
+    /**
+     * 上传头像方法
+     *
+     * @param observer
+     */
+    public void updatePortrait(Observer<Portrait> observer) {
+        kmap.put("time", time);
+        kmap.put("token", MApplication.Token);// token
+
+        pMap.put("sign", Getsign(kmap));
+        pMap.put("time", time);
+        pMap.put("token", MApplication.Token);// token
+        apiService.updatePortrait("")
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+        kmap.clear();
+        pMap.clear();
+    }
+
+
 }

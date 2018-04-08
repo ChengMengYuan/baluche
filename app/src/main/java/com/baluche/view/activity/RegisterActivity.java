@@ -142,9 +142,7 @@ public class RegisterActivity extends BaseActivity {
     public void widgetClick(View v) {
         switch (v.getId()) {
             case R.id.register_return_left://返回按钮点击事件
-
-                RegisterActivity.this.finish();
-
+                finish();
                 break;
             case R.id.register_register_bt://发送验证码按钮点击事件
                 HttpMethods.getInstance().getRegister(new Observer<Register>() {
