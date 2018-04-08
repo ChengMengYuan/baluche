@@ -1,6 +1,7 @@
 package com.baluche.view.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Paint;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import com.baluche.R;
 import com.baluche.http.http.HttpMethods;
 import com.baluche.model.entity.Weather;
+import com.baluche.view.activity.MessageActivity;
 import com.baluche.view.adapter.FrescoImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -41,6 +43,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private TextView tv_weather;//气温
     private TextView tv_location;//地理位置
     private ImageView img_xiaoxi;//消息图标
+    private ImageView xiaohongdian;
     private ImageView img_choice_city;//地理下拉框
     /* 轮播图控件 */
     /**
@@ -82,6 +85,9 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         img_xiaoxi = v.findViewById(R.id.img_xiaoxi);
         img_xiaoxi.setOnClickListener(this);
 
+        xiaohongdian = v.findViewById(R.id.xiaohongdian);
+        xiaohongdian.setVisibility(View.INVISIBLE);//设置红点为不可见
+
         home_search = v.findViewById(R.id.home_search);
 
         nav_query = v.findViewById(R.id.nav_query);
@@ -116,6 +122,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_xiaoxi://消息提示
+                Intent intent = new Intent(getActivity(), MessageActivity.class);
                 break;
 
             case R.id.nav_query://车位查询

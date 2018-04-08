@@ -68,8 +68,8 @@ public class NearbyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View v = inflater.inflate(R.layout.fragment_nearby, container, false);
-        initView(savedInstanceState, v);
         initData();
+        initView(savedInstanceState, v);
         return v;
     }
 

@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.baluche.R;
 import com.baluche.app.MApplication;
-import com.baluche.view.CustomViewPager;
+import com.baluche.util.CustomViewPager;
 import com.baluche.view.adapter.MainFragmentPageAdapter;
 import com.baluche.view.fragment.HomePageFragment;
 import com.baluche.view.fragment.MineFragment;
