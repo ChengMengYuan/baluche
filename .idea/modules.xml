@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\UserData\My Documents\GitHub\baluche\app\app.iml" filepath="E:\UserData\My Documents\GitHub\baluche\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/baluche.iml" filepath="$PROJECT_DIR$/baluche.iml" />
+      <module fileurl="file://E:\UserData\My Documents\GitHub\baluche\baluche.iml" filepath="E:\UserData\My Documents\GitHub\baluche\baluche.iml" />
     </modules>
   </component>
 </project>

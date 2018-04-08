@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/near_rv_item_cv"
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/inform_entrance_inform"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="#000000"
+                android:textSize="10sp"
+                android:text="入场提示"/>
+
+            <TextView
+                android:id="@+id/inform_plate_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/inform_entrance_inform"
+                android:layout_alignTop="@+id/inform_entrance_inform"
+                android:layout_marginTop="27dp"
+                android:textColor="#000000"
+                android:textSize="10sp"
+                android:text="赣A78164"/>
+
+            <TextView
+                android:id="@+id/inform_park_space"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/inform_entrance_inform"
+                android:layout_alignTop="@+id/inform_plate_number"
+                android:layout_marginTop="26dp"
+                android:textColor="#666666"
+                android:textSize="10sp"
+                android:text="蓝海停车场"/>
+
+            <TextView
+                android:id="@+id/inform_time_long"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/inform_plate_number"
+                android:layout_alignTop="@+id/inform_plate_number"
+                android:layout_marginLeft="14dp"
+                android:textColor="#000000"
+                android:textSize="10sp"
+                android:text="时长："/>
+
+            <TextView
+                android:id="@+id/inform_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/inform_time_long"
+                android:layout_alignTop="@+id/inform_plate_number"
+                android:textColor="#000000"
+                android:textSize="10sp"
+                android:text="1分40秒"/>
+
+            <TextView
+                android:id="@+id/inform_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/inform_park_space"
+                android:layout_alignTop="@+id/inform_park_space"
+                android:layout_marginLeft="11dp"
+                android:textColor="#666666"
+                android:textSize="10sp"
+                android:text="18-03-21"/>
+
+            <Button
+                android:layout_width="86dp"
+                android:layout_height="43dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="23dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/shape"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:text="停车缴费"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

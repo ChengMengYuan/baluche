@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.baluche.R;
 import com.baluche.view.activity.LoginActivity;
+import com.baluche.view.activity.MessageActivity;
 import com.baluche.view.activity.PersonMsgActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -90,7 +91,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent1);
                 break;
             case R.id.image_xiaoxi:
-                Toast.makeText(context, "image_xiaoxi", Toast.LENGTH_LONG).show();
+                Intent intent2 = new Intent(getActivity(), MessageActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.sign:
                 Toast.makeText(context, "sign", Toast.LENGTH_LONG).show();

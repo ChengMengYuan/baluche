@@ -1,6 +1,9 @@
 package com.baluche.view.activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,6 +23,8 @@ import com.baluche.app.MApplication;
 import com.baluche.http.http.HttpMethods;
 import com.baluche.model.entity.Register;
 import com.baluche.model.entity.SMScode;
+import com.baluche.other.CodeTimer;
+import com.baluche.other.CodeTimerService;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -29,6 +34,9 @@ import io.reactivex.disposables.Disposable;
  */
 
 public class RegisterActivity extends BaseActivity {
+    public static final String CODE = "code";
+    private Intent mCodeTimerServiceIntent;
+
     private EditText register_phone; //手机号输入框
     private EditText register_password;//密码输入框
     private EditText register_register_et;//验证码输入框
@@ -44,6 +52,20 @@ public class RegisterActivity extends BaseActivity {
     public static String TSMScode = "";
 
     private boolean flag = false;//判断帐号密码是否合法
+
+    private BroadcastReceiver mCodeTimerReceiver = new BroadcastReceiver(){
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (CODE.equals(action)) {
+                //接收信息，改变button的点击状态和text
+                boolean isEnable = intent.getBooleanExtra(CodeTimer.IS_ENABLE, false);
+                String message = intent.getStringExtra(CodeTimer.MESSAGE);
+                register_sendCode.setEnabled(isEnable);
+                register_sendCode.setText(message);
+            }
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -125,6 +147,13 @@ public class RegisterActivity extends BaseActivity {
 
         register_return_left = findViewById(R.id.register_return_left);
         register_return_left.setOnClickListener(this);
+
+        //验证码计时器服务
+        mCodeTimerServiceIntent = new Intent(this, CodeTimerService.class);
+        mCodeTimerServiceIntent.setAction(CODE);
+        //注册接收验证码计时器信息的广播
+        IntentFilter filter = new IntentFilter(CODE);
+        registerReceiver(mCodeTimerReceiver, filter);
     }
 
     @Override
@@ -197,7 +226,8 @@ public class RegisterActivity extends BaseActivity {
                         @Override
                         public void onNext(SMScode smScode) {
                             smScode.getCode();
-                            Log.d("http+SMScode", "" + smScode.getMessage());
+                            register_sendCode.setEnabled(false);
+                            startService(mCodeTimerServiceIntent);//启动服务
                         }
 
                         @Override

@@ -56,11 +56,13 @@
         <activity android:name=".view.activity.PersonMsgActivity" />
         <activity android:name=".view.activity.LoginActivity"></activity>
         <activity android:name=".view.activity.RegisterActivity"></activity>
+        <activity android:name=".view.activity.MessageActivity"></activity>
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="c6752d474133dd6634eb6db5c7def745"></meta-data>
         <service android:name="com.amap.api.location.APSService"></service>
+        <service android:name=".other.CodeTimerService"></service>
     </application>
 
 
