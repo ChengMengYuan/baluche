@@ -46,7 +46,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         Log.d("BaseActivity", "onCreate: ");
-        MApplication.getInstance().addActivity(this);
+//        MApplication.getInstance().addActivity(this);
         super.onCreate(savedInstanceState);
         isDebug = MApplication.isDebug;
         APP_NAME = MApplication.APP_NAME;
@@ -85,7 +85,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MApplication.getInstance().destory();
+//        MApplication.getInstance().destory();
         $Log(TAG + "--->onDestroy()");
     }
 
