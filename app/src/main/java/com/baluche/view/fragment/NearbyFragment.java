@@ -2,7 +2,11 @@ package com.baluche.view.fragment;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
@@ -74,19 +80,25 @@ public class NearbyFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mMapView.onResume();
+        if (mMapView != null) {
+            mMapView.onResume();
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        mMapView.onPause();
+        if (mMapView != null) {
+            mMapView.onPause();
+        }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mMapView.onDestroy();
+        if (mMapView != null) {
+            mMapView.onDestroy();
+        }
     }
 
 
@@ -162,11 +174,41 @@ public class NearbyFragment extends Fragment {
         rxPermissions
                 .request(Manifest.permission.ACCESS_COARSE_LOCATION)
                 .subscribe(granted -> {
+                    final MaterialDialog materialDialog;//提示的dialog
                     if (granted) {//同意权限
                         Log.d("rxPermissions", "tongyi");
                         initMap(savedInstanceState, v);
                     } else {//拒绝权限
                         Log.d("rxPermissions", "jujue");
+                        materialDialog = new MaterialDialog.Builder(getContext())
+                                .title("权限提示")
+                                .content("该权限是软件必须获取的权限，如果拒绝可能导致核心功能不可使用，请在设置中赋予该权限。")
+                                .positiveText("去设置")
+                                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                    @Override
+                                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                        Log.d("materialDialog", "去设置");
+                                        Intent localIntent = new Intent();
+                                        localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        if (Build.VERSION.SDK_INT >= 9) {
+                                            localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+                                            localIntent.setData(Uri.fromParts("package", getContext().getPackageName(), null));
+                                        } else if (Build.VERSION.SDK_INT <= 8) {
+                                            localIntent.setAction(Intent.ACTION_VIEW);
+                                            localIntent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
+                                            localIntent.putExtra("com.android.settings.ApplicationPkgName", getContext().getPackageName());
+                                        }
+                                        getContext().startActivity(localIntent);
+                                    }
+                                })
+                                .negativeText("取消")
+                                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                                    @Override
+                                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                        Log.d("materialDialog", "取消");
+                                    }
+                                })
+                                .show();
                     }
                 });
 
@@ -211,7 +253,7 @@ public class NearbyFragment extends Fragment {
                             //如果是空的添加一个新的,icon方法就是设置定位图标，可以自定义
                             locationMarker = aMap.addMarker(new MarkerOptions()
                                     .position(latLng)
-//                                    .snippet("")
+                                    //                                    .snippet("")
                                     .draggable(true)
                                     .setFlat(true));
                             locationMarker.showInfoWindow();//主动显示indowindow

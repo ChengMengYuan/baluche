@@ -10,7 +10,6 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.baluche.R;
-import com.baluche.view.fragment.InformFragment;
 import com.baluche.view.fragment.PayingbillFragment;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import java.util.List;
  * Created by Administrator on 2018/4/9 0009.
  */
 
-public class ParkpayingActivity extends BaseActivity{
+public class ParkpayingActivity extends BaseActivity {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private List<Fragment> fragments = new ArrayList<>();
@@ -59,8 +58,8 @@ public class ParkpayingActivity extends BaseActivity{
 
         //关联ViewPager和TabLayout
         tabLayout.setupWithViewPager(viewPager);
-        tabs.add("通知");
-        tabs.add("活动");
+        tabs.add("缴费车辆");
+        tabs.add("缴费记录");
         fragments.add(new PayingbillFragment());
         fragments.add(new PayingbillFragment());
 
