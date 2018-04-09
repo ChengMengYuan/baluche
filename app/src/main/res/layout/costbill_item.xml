@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="144dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/payingbill_plate_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:text="赣A78164"/>
+
+            <TextView
+                android:id="@+id/payingbill_parktime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/payingbill_plate_number"
+                android:layout_alignTop="@+id/payingbill_plate_number"
+                android:layout_marginTop="27dp"
+                android:textColor="#000000"
+                android:textSize="13sp"
+                android:text="停车时长："/>
+
+
+            <TextView
+                android:id="@+id/payingbill_parktime_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/payingbill_parktime"
+                android:layout_toEndOf="@+id/payingbill_parktime"
+                android:text="1分40秒"
+                android:textColor="#000000"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/payingbill_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/payingbill_parktime"
+                android:layout_alignTop="@+id/payingbill_parktime"
+                android:layout_marginTop="27dp"
+                android:textColor="#666666"
+                android:textSize="13sp"
+                android:text="停车计费："/>
+
+            <TextView
+                android:id="@+id/payingbill_bid_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/payingbill_cost"
+                android:layout_toEndOf="@+id/payingbill_cost"
+                android:textColor="#000000"
+                android:textSize="13sp"
+                android:text="18.00"/>
+
+            <TextView
+                android:id="@+id/payingbill_break"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/payingbill_bid_price"
+                android:layout_toEndOf="@+id/payingbill_bid_price"
+                android:textColor="#000000"
+                android:textSize="13sp"
+                android:text="/"/>
+
+            <TextView
+                android:id="@+id/payingbill_selling_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/payingbill_break"
+                android:layout_toEndOf="@+id/payingbill_break"
+                android:textColor="@color/colorGreen"
+                android:textSize="13sp"
+                android:text="13.00"/>
+
+            <TextView
+                android:id="@+id/payingbill_entertime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/payingbill_cost"
+                android:layout_alignTop="@+id/payingbill_cost"
+                android:layout_marginTop="26dp"
+                android:textColor="#666666"
+                android:textSize="13sp"
+                android:text="入场时间："/>
+
+            <TextView
+                android:id="@+id/payingbill_entertime_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/payingbill_entertime"
+                android:layout_toEndOf="@+id/payingbill_entertime"
+                android:textColor="#666666"
+                android:textSize="13sp"
+                android:text="2018-02-27 13:20:10"/>
+
+            <TextView
+                android:id="@+id/payingbill_park"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/payingbill_entertime"
+                android:layout_alignTop="@+id/payingbill_entertime"
+                android:layout_marginTop="27dp"
+                android:textColor="#666666"
+                android:textSize="13sp"
+                android:text="停车场："/>
+
+            <TextView
+                android:id="@+id/payingbill_park_space"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/payingbill_park"
+                android:layout_toEndOf="@+id/payingbill_park"
+                android:textColor="#666666"
+                android:textSize="13sp"
+                android:text="红谷凯旋南区地下停车场"/>
+
+            <Button
+                android:layout_width="86dp"
+                android:layout_height="43dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="51dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/shape"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:text="停车缴费"
+                android:id="@+id/button" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

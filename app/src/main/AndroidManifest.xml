@@ -58,6 +58,7 @@
         <activity android:name=".view.activity.PersonMsgActivity"></activity>
         <activity android:name=".view.activity.RegisterActivity"></activity>
         <activity android:name=".view.activity.ResetPasswordActivity"></activity>
+        <activity android:name=".view.activity.ParkpayingActivity"></activity>
 
         <meta-data
             android:name="com.amap.api.v2.apikey"

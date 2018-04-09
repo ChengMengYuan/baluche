@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.baluche.R;
 import com.baluche.view.activity.LoginActivity;
 import com.baluche.view.activity.MessageActivity;
+import com.baluche.view.activity.ParkpayingActivity;
 import com.baluche.view.activity.PersonMsgActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -101,7 +102,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(context, "my_wallet", Toast.LENGTH_LONG).show();
                 break;
             case R.id.my_account:
-                Toast.makeText(context, "my_account", Toast.LENGTH_LONG).show();
+                Intent intent3 = new Intent(getActivity(), ParkpayingActivity.class);
+                startActivity(intent3);
                 break;
             case R.id.my_vehicle:
                 Toast.makeText(context, "my_vehicle", Toast.LENGTH_LONG).show();
