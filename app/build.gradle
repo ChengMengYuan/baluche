@@ -27,6 +27,10 @@ android {
             jcenter()
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 
@@ -68,4 +72,6 @@ dependencies {
     compile 'com.afollestad.material-dialogs:commons:0.9.1.0'
     /*这是一款仿iOS的PickerView控件，有时间选择器和选项选择器-https://github.com/Bigkoo/Android-PickerView*/
     compile 'com.contrarywind:Android-PickerView:4.1.2'
+    //RxPermissions
+    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
 }

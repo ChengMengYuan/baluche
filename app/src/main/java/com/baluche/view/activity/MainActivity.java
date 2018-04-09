@@ -204,4 +204,10 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
         img_rll_nearby.setImageDrawable(getResources().getDrawable(R.drawable.fujin));
         tv_rll_nearby.setTextColor(getResources().getColor(R.color.colorGray));
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MApplication.getInstance().destory();
+    }
 }

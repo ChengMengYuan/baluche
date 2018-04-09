@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * Created by Administrator on 2018/4/3 0003.
  */
 
-public class InformFragment extends Fragment{
+public class InformFragment extends Fragment {
 
     private RecyclerView.Adapter mAdapter;
     private RecyclerView inform_listView;
@@ -47,8 +47,8 @@ public class InformFragment extends Fragment{
     }
 
     private void initData() {
-        for (int i = 0; i <10 ; i++) {
-            data.add("海南停車場"+i);
+        for (int i = 0; i < 10; i++) {
+            data.add("海南停車場" + i);
         }
     }
 

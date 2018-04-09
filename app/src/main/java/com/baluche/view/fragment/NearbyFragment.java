@@ -2,12 +2,9 @@ package com.baluche.view.fragment;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,6 +28,7 @@ import com.baluche.R;
 import com.baluche.http.http.HttpMethods;
 import com.baluche.model.entity.Park;
 import com.baluche.view.adapter.NearRecyclerViewAdapter;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;
 
@@ -153,14 +151,25 @@ public class NearbyFragment extends Fragment {
     private void initView(Bundle savedInstanceState, View v) {
         // FIXME: 2018/3/27 0027 申请权限工具类 用户拒绝的时候给出提示和解决方法
         //Android6.0以上申请定位权限代码
-        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            //申请WRITE_EXTERNAL_STORAGE权限
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                    500);//自定义的code
-        }
+        //        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
+        //                != PackageManager.PERMISSION_GRANTED) {
+        //            //申请WRITE_EXTERNAL_STORAGE权限
+        //            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+        //                    500);//自定义的code
+        //        }
 
-        initMap(savedInstanceState, v);
+        RxPermissions rxPermissions = new RxPermissions(getActivity());
+        rxPermissions
+                .request(Manifest.permission.ACCESS_COARSE_LOCATION)
+                .subscribe(granted -> {
+                    if (granted) {//同意权限
+                        Log.d("rxPermissions", "tongyi");
+                        initMap(savedInstanceState, v);
+                    } else {//拒绝权限
+                        Log.d("rxPermissions", "jujue");
+                    }
+                });
+
     }
 
     private void initMap(Bundle savedInstanceState, View v) {
@@ -201,7 +210,10 @@ public class NearbyFragment extends Fragment {
                         if (locationMarker == null) {
                             //如果是空的添加一个新的,icon方法就是设置定位图标，可以自定义
                             locationMarker = aMap.addMarker(new MarkerOptions()
-                                    .position(latLng).snippet("").draggable(true).setFlat(true));
+                                    .position(latLng)
+//                                    .snippet("")
+                                    .draggable(true)
+                                    .setFlat(true));
                             locationMarker.showInfoWindow();//主动显示indowindow
                             aMap.addText(new TextOptions().position(latLng).text(aMapLocation.getAddress()));
                             //固定标签在屏幕中央
