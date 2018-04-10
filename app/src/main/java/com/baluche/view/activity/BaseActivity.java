@@ -69,8 +69,6 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
             } else {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
-
-            doBusiness(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,6 +92,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         super.setContentView(view);
         initView();
         initData();
+        doBusiness(this);
     }
 
     @Override
@@ -101,6 +100,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         super.setContentView(layoutResID);
         initView();
         initData();
+        doBusiness(this);
     }
 
     /**

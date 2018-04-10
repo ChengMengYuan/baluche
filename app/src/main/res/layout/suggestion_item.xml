@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/loction_sugg" />
+
+            <TextView
+                android:id="@+id/park_name_sugg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/imageView2"
+                android:layout_marginStart="13dp"
+                android:layout_toEndOf="@+id/imageView2"
+                android:text="红谷凯旋南区地下停车场"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/park_location_sugg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/park_name_sugg"
+                android:layout_below="@id/park_name_sugg"
+                android:text="南昌市-东湖区-江报路499号" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="11dp"
+                android:layout_marginRight="15dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/gotolocation" />
+
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="12dp"
+                    android:layout_below="@+id/imageView"
+                    android:layout_centerHorizontal="true"
+                    android:text="158m"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

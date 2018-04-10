@@ -5,7 +5,6 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +18,7 @@ import com.baluche.http.http.HttpMethods;
 import com.baluche.model.entity.Weather;
 import com.baluche.view.activity.MessageActivity;
 import com.baluche.view.activity.ParkpayingActivity;
+import com.baluche.view.activity.SearchActivity;
 import com.baluche.view.adapter.FrescoImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -55,7 +55,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
     private TextView before_price;//原始价格
 
-    private SearchView home_search;//搜索框
+    private ImageView home_search;//搜索框
 
     @Nullable
     @Override
@@ -82,6 +82,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         xiaohongdian.setVisibility(View.INVISIBLE);//设置红点为不可见
 
         home_search = v.findViewById(R.id.home_search);
+        home_search.setOnClickListener(this);
 
         nav_query = v.findViewById(R.id.nav_query);
         nav_query.setOnClickListener(this);
@@ -138,6 +139,9 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
                 break;
 
+            case R.id.home_search://搜索框
+                Intent intent2 = new Intent(getActivity(), SearchActivity.class);
+                startActivity(intent2);
             default:
 
                 break;
