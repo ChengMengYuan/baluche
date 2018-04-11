@@ -20,6 +20,7 @@ import com.baluche.view.activity.MainActivity;
 import com.baluche.view.activity.MessageActivity;
 import com.baluche.view.activity.ParkpayingActivity;
 import com.baluche.view.activity.SearchActivity;
+import com.baluche.view.activity.UsehelpActivity;
 import com.baluche.view.adapter.FrescoImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -87,8 +88,12 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
         nav_query = v.findViewById(R.id.nav_query);
         nav_query.setOnClickListener(this);
+
         nav_pay = v.findViewById(R.id.nav_pay);
         nav_pay.setOnClickListener(this);
+
+        nav_help = v.findViewById(R.id.nav_help);
+        nav_help.setOnClickListener(this);
     }
 
     @Override
@@ -135,7 +140,9 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.nav_help://使用帮助
-
+                Log.d("使用帮助", "onClick: ");
+                Intent intent3 = new Intent(getActivity(), UsehelpActivity.class);
+                startActivity(intent3);
                 break;
             case R.id.nav_sign://签到有礼
 

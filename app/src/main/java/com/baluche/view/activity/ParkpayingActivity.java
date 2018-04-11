@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.baluche.R;
 import com.baluche.view.fragment.PayingbillFragment;
+import com.baluche.view.fragment.PayrecordFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +62,7 @@ public class ParkpayingActivity extends BaseActivity {
         tabs.add("缴费车辆");
         tabs.add("缴费记录");
         fragments.add(new PayingbillFragment());
-        fragments.add(new PayingbillFragment());
+        fragments.add(new PayrecordFragment());
 
         viewPager.setAdapter(new TabAdapter(getSupportFragmentManager()));
     }

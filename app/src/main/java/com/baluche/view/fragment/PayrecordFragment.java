@@ -1,6 +1,7 @@
 package com.baluche.view.fragment;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,17 +13,15 @@ import android.view.ViewGroup;
 
 import com.baluche.R;
 import com.baluche.view.adapter.InfromViewAdapter;
+import com.baluche.view.adapter.PayrecordViewAdapter;
 
 import java.util.ArrayList;
 
-/**
- * Created by Administrator on 2018/4/3 0003.
- */
 
-public class InformFragment extends Fragment {
+public class PayrecordFragment extends Fragment {
 
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView inform_listView;
+    private RecyclerView payrecord_listView;
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList<String> data = new ArrayList<>();
 
@@ -40,7 +39,7 @@ public class InformFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View v = inflater.inflate(R.layout.fragment_inform, container, false);
+        View v = inflater.inflate(R.layout.fragment_payrecord, container, false);
         initData();
         initView(savedInstanceState, v);
         return v;
@@ -54,11 +53,11 @@ public class InformFragment extends Fragment {
 
     private void initView(Bundle savedInstanceState, View v) {
         mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        mAdapter = new InfromViewAdapter(data);
-        inform_listView = v.findViewById(R.id.inform_listView);
+        mAdapter = new PayrecordViewAdapter(data);
+        payrecord_listView = v.findViewById(R.id.payrecord_listView);
         // 设置布局管理器
-        inform_listView.setLayoutManager(mLayoutManager);
+        payrecord_listView.setLayoutManager(mLayoutManager);
         // 设置adapter
-        inform_listView.setAdapter(mAdapter);
+        payrecord_listView.setAdapter(mAdapter);
     }
 }
