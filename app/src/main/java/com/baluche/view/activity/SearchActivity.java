@@ -97,4 +97,5 @@ public class SearchActivity extends BaseActivity {
                 break;
         }
     }
+
 }

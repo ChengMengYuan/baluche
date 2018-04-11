@@ -25,7 +25,7 @@ public class MessageActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.message);
+        setContentView(R.layout.acitvity_message);
     }
 
     @Override

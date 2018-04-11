@@ -134,6 +134,16 @@ public interface ApiService {
     @POST("user/signin/uppass")
     Observable<MyJoke> updatePassword(@Body String json);
 
+    /**
+     * 找回密码接口
+     *
+     * @param json
+     * @return
+     */
+    @Headers({"Client-Type:" + "Android", "App-Version:" + Constant.APP_VERSION})
+    @POST("user/signin/uppass")
+    Observable<MyJoke> getPasswordBack(@Body String json);
+
 
     /**
      * 检测用户是否是微信用户，支付宝用户，并且支持设置密码
@@ -144,4 +154,14 @@ public interface ApiService {
     @Headers({"Client-Type:" + "Android", "App-Version:" + Constant.APP_VERSION})
     @POST("user/signin/thirdparty")
     Observable<MyJoke> cheakUsertype(@Body String json);
+
+    /**
+     * 用户绑定车辆
+     *
+     * @param json
+     * @return
+     */
+    @Headers({"Client-Type:" + "Android", "App-Version:" + Constant.APP_VERSION})
+    @POST("user/usercar/bindcar")
+    Observable<MyJoke> bindCar(@Body String json);
 }

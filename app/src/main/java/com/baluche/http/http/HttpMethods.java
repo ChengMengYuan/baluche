@@ -6,6 +6,7 @@ import com.baluche.app.MApplication;
 import com.baluche.http.service.ApiService;
 import com.baluche.model.entity.Banner;
 import com.baluche.model.entity.Login;
+import com.baluche.model.entity.MyJoke;
 import com.baluche.model.entity.Park;
 import com.baluche.model.entity.PersonMsg;
 import com.baluche.model.entity.Portrait;
@@ -283,5 +284,93 @@ public class HttpMethods {
         kmap.clear();
         pMap.clear();
     }
+
+    /**
+     * 修改密码方法
+     *
+     * @param observer
+     */
+    public void updatePassword(Observer<MyJoke> observer) {
+        kmap.put("time", time);
+        kmap.put("token", MApplication.Token);// token
+
+        pMap.put("sign", Getsign(kmap));
+        pMap.put("time", time);
+        pMap.put("token", MApplication.Token);// token
+        apiService.updatePassword("")
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+        kmap.clear();
+        pMap.clear();
+    }
+
+
+    /**
+     * 找回密码方法
+     *
+     * @param observer
+     */
+    public void getPasswordBack(Observer<MyJoke> observer) {
+        kmap.put("time", time);
+        kmap.put("token", MApplication.Token);// token
+
+        pMap.put("sign", Getsign(kmap));
+        pMap.put("time", time);
+        pMap.put("token", MApplication.Token);// token
+        apiService.getPasswordBack("")
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+        kmap.clear();
+        pMap.clear();
+    }
+
+    /**
+     * 检测用户是否是微信用户，支付宝用户，并且支持设置密码
+     *
+     * @param observer
+     */
+    public void cheakUsertype(Observer<MyJoke> observer) {
+        kmap.put("time", time);
+        kmap.put("mobile", login_name);// 手机号
+
+        pMap.put("sign", Getsign(kmap));
+        pMap.put("mobile", login_name);// 手机号
+        pMap.put("time", time);
+        Log.d("cheakUsertype", "" + gson.toJson(pMap));
+        apiService.cheakUsertype("" + gson.toJson(pMap))
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+        kmap.clear();
+        pMap.clear();
+    }
+
+
+    /**
+     * 用户绑定车辆方法
+     *
+     * @param observer
+     */
+    public void bindCar(Observer<MyJoke> observer) {
+        kmap.put("time", time);
+        kmap.put("token", MApplication.Token);// token
+
+        pMap.put("sign", Getsign(kmap));
+        pMap.put("time", time);
+        pMap.put("token", MApplication.Token);// token
+        apiService.bindCar("")
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+        kmap.clear();
+        pMap.clear();
+    }
+
 
 }

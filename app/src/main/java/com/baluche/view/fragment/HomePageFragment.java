@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.baluche.R;
 import com.baluche.http.http.HttpMethods;
 import com.baluche.model.entity.Weather;
+import com.baluche.view.activity.MainActivity;
 import com.baluche.view.activity.MessageActivity;
 import com.baluche.view.activity.ParkpayingActivity;
 import com.baluche.view.activity.SearchActivity;
@@ -124,6 +125,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.nav_query://车位查询
+                ((MainActivity) getActivity()).setNearbyClick();
                 break;
 
             case R.id.nav_pay://停车缴费

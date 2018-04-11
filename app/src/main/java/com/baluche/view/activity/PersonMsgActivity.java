@@ -194,13 +194,23 @@ public class PersonMsgActivity extends BaseActivity {
 
                     @Override
                     public void onNext(PersonMsg personMsg) {
-                        // TODO: 2018/4/8 0008 判断上传成功或者失败做出不同的限制并且取消等待的dialog 
-                        personMsg.getCode();
+                        // TODO: 2018/4/8 0008 判断上传成功或者失败做出不同的限制并且取消等待的dialog
                         materialDialog.dismiss();
-                        SnackbarUtil.showLongSnackbar(updata_permsg,
-                                "上传成功",
-                                getResources().getColor(R.color.colorGreen),
-                                Color.BLACK);
+                        switch (personMsg.getCode()) {
+                            case 200:
+                                SnackbarUtil.showLongSnackbar(updata_permsg,
+                                        "上传成功",
+                                        getResources().getColor(R.color.colorGreen),
+                                        Color.WHITE);
+                                break;
+                            default:
+                                SnackbarUtil.showLongSnackbar(updata_permsg,
+                                        "上传成功",
+                                        getResources().getColor(R.color.colorGreen),
+                                        Color.WHITE);
+                                break;
+                        }
+
                     }
 
                     @Override

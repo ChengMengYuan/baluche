@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -174,40 +172,31 @@ public class NearbyFragment extends Fragment {
         rxPermissions
                 .request(Manifest.permission.ACCESS_COARSE_LOCATION)
                 .subscribe(granted -> {
-                    final MaterialDialog materialDialog;//提示的dialog
                     if (granted) {//同意权限
                         Log.d("rxPermissions", "tongyi");
                         initMap(savedInstanceState, v);
                     } else {//拒绝权限
                         Log.d("rxPermissions", "jujue");
-                        materialDialog = new MaterialDialog.Builder(getContext())
+                        MaterialDialog materialDialog = new MaterialDialog.Builder(getContext())
                                 .title("权限提示")
                                 .content("该权限是软件必须获取的权限，如果拒绝可能导致核心功能不可使用，请在设置中赋予该权限。")
                                 .positiveText("去设置")
-                                .onPositive(new MaterialDialog.SingleButtonCallback() {
-                                    @Override
-                                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                        Log.d("materialDialog", "去设置");
-                                        Intent localIntent = new Intent();
-                                        localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        if (Build.VERSION.SDK_INT >= 9) {
-                                            localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-                                            localIntent.setData(Uri.fromParts("package", getContext().getPackageName(), null));
-                                        } else if (Build.VERSION.SDK_INT <= 8) {
-                                            localIntent.setAction(Intent.ACTION_VIEW);
-                                            localIntent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
-                                            localIntent.putExtra("com.android.settings.ApplicationPkgName", getContext().getPackageName());
-                                        }
-                                        getContext().startActivity(localIntent);
+                                .onPositive((dialog, which) -> {
+                                    Log.d("materialDialog", "去设置");
+                                    Intent localIntent = new Intent();
+                                    localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    if (Build.VERSION.SDK_INT >= 9) {
+                                        localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+                                        localIntent.setData(Uri.fromParts("package", getContext().getPackageName(), null));
+                                    } else if (Build.VERSION.SDK_INT <= 8) {
+                                        localIntent.setAction(Intent.ACTION_VIEW);
+                                        localIntent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
+                                        localIntent.putExtra("com.android.settings.ApplicationPkgName", getContext().getPackageName());
                                     }
+                                    getContext().startActivity(localIntent);
                                 })
                                 .negativeText("取消")
-                                .onNegative(new MaterialDialog.SingleButtonCallback() {
-                                    @Override
-                                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                        Log.d("materialDialog", "取消");
-                                    }
-                                })
+                                .onNegative((dialog, which) -> Log.d("materialDialog", "取消"))
                                 .show();
                     }
                 });

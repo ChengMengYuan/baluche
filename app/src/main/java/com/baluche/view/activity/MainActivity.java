@@ -1,11 +1,13 @@
 package com.baluche.view.activity;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import com.baluche.R;
 import com.baluche.app.MApplication;
 import com.baluche.util.CustomViewPager;
+import com.baluche.util.SnackbarUtil;
 import com.baluche.view.adapter.MainFragmentPageAdapter;
 import com.baluche.view.fragment.HomePageFragment;
 import com.baluche.view.fragment.MineFragment;
@@ -154,7 +157,7 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
 
     }
 
-    private void setNearbyClick() {
+    public void setNearbyClick() {
         mviewpager.setCurrentItem(1);
         /**
          * 设置为选中色
@@ -209,5 +212,31 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
     protected void onDestroy() {
         super.onDestroy();
         MApplication.getInstance().destory();
+    }
+
+    //--------------使用onKeyDown()干掉他--------------
+
+    //记录用户首次点击返回键的时间
+    private long firstTime = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        /*双击退出APP*/
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (System.currentTimeMillis() - firstTime > 2000) {
+                //                Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                SnackbarUtil.showIndefiniteSnackbar(mviewpager,
+                        "再按一次退出程序",
+                        2000,
+                        getResources().getColor(R.color.colorGreen),
+                        Color.BLACK);
+                firstTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
