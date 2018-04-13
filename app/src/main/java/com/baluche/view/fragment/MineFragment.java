@@ -17,6 +17,7 @@ import com.baluche.view.activity.LoginActivity;
 import com.baluche.view.activity.MessageActivity;
 import com.baluche.view.activity.ParkpayingActivity;
 import com.baluche.view.activity.PersonMsgActivity;
+import com.baluche.view.activity.VehicleManageActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.jetbrains.annotations.Nullable;
@@ -107,7 +108,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent3);
                 break;
             case R.id.my_vehicle:
-                Toast.makeText(context, "my_vehicle", Toast.LENGTH_LONG).show();
+                Intent intent4 = new Intent(getActivity(), VehicleManageActivity.class);
+                startActivity(intent4);
                 break;
             case R.id.my_problem:
                 Toast.makeText(context, "my_problem", Toast.LENGTH_LONG).show();
