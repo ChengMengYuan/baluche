@@ -54,7 +54,7 @@
         <activity android:name=".view.activity.RegisterActivity" />
         <activity android:name=".view.activity.ResetPasswordActivity" />
         <activity android:name=".view.activity.ParkpayingActivity" />
-
+        /**高德地图测试key**/
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="c6752d474133dd6634eb6db5c7def745" />

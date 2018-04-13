@@ -1,6 +1,5 @@
 package com.baluche.http.service;
 
-import com.baluche.app.Constant;
 import com.baluche.model.entity.Banner;
 import com.baluche.model.entity.Login;
 import com.baluche.model.entity.MyJoke;
@@ -13,7 +12,6 @@ import com.baluche.model.entity.Weather;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 /**
@@ -38,8 +36,6 @@ public interface ApiService {
      *
      * @return Weather
      */
-    @Headers({"Client-Type:" + "Android", "App-Version:" + Constant.APP_VERSION})
-
     @POST("api/weather/ip/fixme")
     Observable<Weather> getWeather(@Body String json);
 
@@ -49,7 +45,6 @@ public interface ApiService {
      * @param json
      * @return Banner
      */
-    @Headers({"Client-Type:" + "Android", "App-Version:" + Constant.APP_VERSION})
     @POST("ad/banner")
     Observable<Banner> getBanner(@Body String json);
 
@@ -59,7 +54,6 @@ public interface ApiService {
      * @param json
      * @return Park
      */
-    @Headers({"Client-Type:" + "Android", "App-Version:" + Constant.APP_VERSION})
     @POST("park/list")
     Observable<Park> getPark(@Body String json);
 
@@ -69,7 +63,6 @@ public interface ApiService {
      * @param json
      * @return
      */
-    @Headers({"Client-Type:" + "Android", "App-Version:" + Constant.APP_VERSION})
     @POST("user/signin/register")
     Observable<Register> getRegister(@Body String json);
 
@@ -79,7 +72,6 @@ public interface ApiService {
      * @param json
      * @return
      */
-    @Headers({"Client-Type:" + "Android", "App-Version:" + Constant.APP_VERSION})
     @POST("user/signin/login")
     Observable<Login> getLogin(@Body String json);
 
@@ -89,7 +81,6 @@ public interface ApiService {
      * @param json
      * @return
      */
-    @Headers({"Client-Type:" + "Android", "App-Version:" + Constant.APP_VERSION})
     @POST("user/signin/getverifycode")
     Observable<SMScode> getSMScode(@Body String json);
 
@@ -100,14 +91,12 @@ public interface ApiService {
      * @param json
      * @return
      */
-    @Headers({"Client-Type:" + "Android", "App-Version:" + Constant.APP_VERSION})
     @POST("user/signin/queryuserinfo")
     Observable<PersonMsg> queryPersonMsg(@Body String json);
 
     /**
      * 个人信息修改接口
      */
-    @Headers({"Client-Type:" + "Android", "App-Version:" + Constant.APP_VERSION})
     @POST("user/signin/upuserinfo")
     Observable<PersonMsg> updatePersonMsg(@Body String json);
 
@@ -117,7 +106,6 @@ public interface ApiService {
      * @param json
      * @return
      */
-    @Headers({"Client-Type:" + "Android", "App-Version:" + Constant.APP_VERSION})
     @POST("user/signin/upuserinfo")
     Observable<Portrait> updatePortrait(@Body String json);
 
@@ -130,7 +118,6 @@ public interface ApiService {
      * @param json
      * @return
      */
-    @Headers({"Client-Type:" + "Android", "App-Version:" + Constant.APP_VERSION})
     @POST("user/signin/uppass")
     Observable<MyJoke> updatePassword(@Body String json);
 
@@ -140,7 +127,6 @@ public interface ApiService {
      * @param json
      * @return
      */
-    @Headers({"Client-Type:" + "Android", "App-Version:" + Constant.APP_VERSION})
     @POST("user/signin/uppass")
     Observable<MyJoke> getPasswordBack(@Body String json);
 
@@ -151,7 +137,6 @@ public interface ApiService {
      * @param json
      * @return
      */
-    @Headers({"Client-Type:" + "Android", "App-Version:" + Constant.APP_VERSION})
     @POST("user/signin/thirdparty")
     Observable<MyJoke> cheakUsertype(@Body String json);
 
@@ -161,7 +146,6 @@ public interface ApiService {
      * @param json
      * @return
      */
-    @Headers({"Client-Type:" + "Android", "App-Version:" + Constant.APP_VERSION})
     @POST("user/usercar/bindcar")
     Observable<MyJoke> bindCar(@Body String json);
 }

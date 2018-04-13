@@ -2,6 +2,7 @@ package com.baluche.http.http;
 
 import android.util.Log;
 
+import com.baluche.app.Constant;
 import com.baluche.app.MApplication;
 import com.baluche.http.service.ApiService;
 import com.baluche.model.entity.Banner;
@@ -23,6 +24,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -51,16 +53,29 @@ public class HttpMethods {
          * 构造函数私有化
          * 并在构造函数中进行retrofit的初始化
          */
-        OkHttpClient client = new OkHttpClient();
-        client.newBuilder().connectTimeout(TIME_OUT, TimeUnit.SECONDS);
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(chain -> {
+                    Request request = chain.request()
+                            .newBuilder()
+                            .addHeader("Client-Type", "Android")
+                            .addHeader("App-Version", Constant.APP_VERSION)
+                            .build();
+                    return chain.proceed(request);
+                })
+                .readTimeout(TIME_OUT, TimeUnit.SECONDS)
+                .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+                .build();
+
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .client(client)
+                .client(httpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
+
         apiService = retrofit.create(ApiService.class);
+
     }
 
 
@@ -107,6 +122,7 @@ public class HttpMethods {
         pMap.put("sign", Getsign(kmap));
         pMap.put("time", time);
 
+        Log.d("getBanner:", "" + gson.toJson(pMap));
         apiService.getBanner(gson.toJson(pMap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
