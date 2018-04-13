@@ -39,7 +39,7 @@
                     android:layout_marginLeft="8dp"
                     android:textSize="15sp"
                     android:textColor="#000000"
-                    tools:text="查找停车场" />
+                    android:text="查找停车场" />
 
                 <TextView
                     android:id="@+id/usehelp_one"

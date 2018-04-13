@@ -63,7 +63,8 @@
         <service android:name=".other.CodeTimerService" />
 
         <activity android:name=".view.activity.SearchActivity" />
-        <activity android:name=".view.activity.UsehelpActivity"></activity>
+        <activity android:name=".view.activity.UsehelpActivity" />
+        <activity android:name=".view.activity.VehicleManageActivity"></activity>
     </application>
 
 </manifest>

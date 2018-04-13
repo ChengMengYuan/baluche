@@ -1,6 +1,9 @@
 package com.baluche.view.activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,11 +14,15 @@ import com.baluche.R;
 import com.baluche.http.http.HttpMethods;
 import com.baluche.model.entity.MyJoke;
 import com.baluche.model.entity.SMScode;
+import com.baluche.other.CodeTimer;
+import com.baluche.other.CodeTimerService;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 public class ResetPasswordActivity extends BaseActivity {
+    public static final String CODE = "code";
+    private Intent mCodeTimerServiceIntent;
 
     private EditText reset_account_edit;             //手机号输入框
     private EditText reset_password_edit;            //密码输入框
@@ -24,6 +31,19 @@ public class ResetPasswordActivity extends BaseActivity {
     private TextView send_code_bt_reset;             //发送验证码
     private Button reset_password_btn;             //设置密码按钮
 
+    private BroadcastReceiver mCodeTimerReceiver = new BroadcastReceiver(){
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (CODE.equals(action)) {
+                //接收信息，改变button的点击状态和text
+                boolean isEnable = intent.getBooleanExtra(CodeTimer.IS_ENABLE, false);
+                String message = intent.getStringExtra(CodeTimer.MESSAGE);
+                send_code_bt_reset.setEnabled(isEnable);
+                send_code_bt_reset.setText(message);
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +65,13 @@ public class ResetPasswordActivity extends BaseActivity {
         reset_password_btn = findViewById(R.id.reset_password_btn);
         send_code_bt_reset.setOnClickListener(this);
         reset_password_btn.setOnClickListener(this);
+
+        //验证码计时器服务
+        mCodeTimerServiceIntent = new Intent(this, CodeTimerService.class);
+        mCodeTimerServiceIntent.setAction(CODE);
+        //注册接收验证码计时器信息的广播
+        IntentFilter filter = new IntentFilter(CODE);
+        registerReceiver(mCodeTimerReceiver, filter);
     }
 
     @Override
@@ -70,6 +97,8 @@ public class ResetPasswordActivity extends BaseActivity {
                     @Override
                     public void onNext(SMScode smScode) {
                         smScode.getCode();
+                        send_code_bt_reset.setEnabled(false);
+                        startService(mCodeTimerServiceIntent);//启动服务
                     }
 
                     @Override

@@ -24,7 +24,7 @@
                 android:layout_marginStart="13dp"
                 android:textSize="17sp"
                 android:textStyle="bold"
-                tools:text="凯旋中心——地下停车场" />
+                android:text="凯旋中心——地下停车场" />
 
             <TextView
                 android:id="@+id/item_shengyu_tv"

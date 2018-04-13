@@ -234,7 +234,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginLeft="20dp"
+                                android:layout_marginLeft="30dp"
                                 android:text="我已阅读并接受" />
 
                             <TextView
@@ -242,7 +242,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignBaseline="@+id/textView2"
                                 android:layout_alignBottom="@+id/textView2"
-                                android:layout_marginStart="11dp"
                                 android:layout_toEndOf="@+id/textView2"
                                 android:text="《八路车停车协议》"
                                 android:textColor="@color/colorGreen" />
