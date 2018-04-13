@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.baluche.R;
+import com.baluche.app.MApplication;
 import com.baluche.http.http.HttpMethods;
 import com.baluche.model.entity.Login;
 import com.baluche.model.entity.MyJoke;
@@ -183,7 +184,8 @@ public class LoginActivity extends BaseActivity {
                         switch (login.getCode()) {
                             // TODO: 2018/4/11 0011 开一个通知，告知登录状态 
                             case 200:
-                                login.getData().getToken();
+                                MApplication.Token = login.getData().getToken();
+                                Log.d("Token", "" + MApplication.Token);
                                 finish();
                                 break;
                             case 10005:

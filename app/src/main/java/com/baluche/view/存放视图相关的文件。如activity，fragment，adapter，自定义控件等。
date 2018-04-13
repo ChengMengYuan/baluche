@@ -1,0 +1,39 @@
+Android 6.0 运行时权限管理最佳实践
+
+
+
+代码如下：
+
+```
+RxPermissions rxPermissions = new RxPermissions(getActivity());
+        rxPermissions
+                .request(Manifest.permission.ACCESS_COARSE_LOCATION)
+                .subscribe(granted -> {
+                    if (granted) {//同意权限
+                        initMap(savedInstanceState, v);
+                    } else {//拒绝权限
+                        MaterialDialog materialDialog = new MaterialDialog.Builder(getContext())
+                                .title("权限提示")
+                                .content("该权限是软件必须获取的权限，如果拒绝可能导致核心功能不可使用，请在设置中赋予该权限。")
+                                .positiveText("去设置")
+                                .onPositive((dialog, which) -> {
+                                    Log.d("materialDialog", "去设置");
+                                    Intent localIntent = new Intent();
+                                    localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    if (Build.VERSION.SDK_INT >= 9) {
+                                        localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+                                        localIntent.setData(Uri.fromParts("package", getContext().getPackageName(), null));
+                                    } else if (Build.VERSION.SDK_INT <= 8) {
+                                        localIntent.setAction(Intent.ACTION_VIEW);
+                                        localIntent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
+                                        localIntent.putExtra("com.android.settings.ApplicationPkgName", getContext().getPackageName());
+                                    }
+                                    getContext().startActivity(localIntent);
+                                })
+                                .negativeText("取消")
+                                .onNegative((dialog, which) -> Log.d("materialDialog", "取消"))
+                                .show();
+                    }
+                });
+
+```

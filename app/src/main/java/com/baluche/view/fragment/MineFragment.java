@@ -3,7 +3,6 @@ package com.baluche.view.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +18,8 @@ import com.baluche.view.activity.MessageActivity;
 import com.baluche.view.activity.ParkpayingActivity;
 import com.baluche.view.activity.PersonMsgActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
+
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by cmy on 2018/3/20.

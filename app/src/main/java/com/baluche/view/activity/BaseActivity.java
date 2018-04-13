@@ -30,7 +30,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     /**
      * 是否允许全屏
      **/
-    private boolean mAllowFullScreen = true;
+    private boolean mAllowFullScreen = false;
     /**
      * 是否禁止旋转屏幕
      **/

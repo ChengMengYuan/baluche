@@ -2,6 +2,7 @@ package com.baluche.app;
 
 import android.app.Activity;
 import android.app.Application;
+import android.util.Log;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 
@@ -27,6 +28,7 @@ public class MApplication extends Application {
         super.onCreate();
         //图片加载框架的初始化
         Fresco.initialize(this);
+        Log.d("Token", "Token" + MApplication.Token);
     }
 
     public MApplication() {
