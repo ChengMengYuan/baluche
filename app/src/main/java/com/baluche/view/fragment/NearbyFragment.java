@@ -105,14 +105,14 @@ public class NearbyFragment extends Fragment {
         mAdapter = new NearRecyclerViewAdapter(data);
     }
 
-    ArrayList<String> data = new ArrayList<>();
+    ArrayList<Park> data = new ArrayList<>();
 
     /**
      * 获取数据
      *
      * @return
      */
-    private ArrayList<String> getData() {
+    private ArrayList<Park> getData() {
 
         HttpMethods.getInstance().getPark(new Observer<Park>() {
             @Override
@@ -125,12 +125,12 @@ public class NearbyFragment extends Fragment {
                 Log.d("http+park", "" + park.getMessage());
                 Log.d("http+park", "" + park.getCode());
                 if (park.getCode() == 200) {
-                    if (park.getData().size() > 1) {
+                    if (park.getData().size() > 0) {
                         for (int i = 0; i < park.getData().size(); i++) {
-                            data.add(park.getData().get(i).getTitle());
+                            data.add(park);
                         }
                     } else {
-                        data.add("暂无停车场信息");
+
                     }
                 }
                 mAdapter.notifyDataSetChanged();
@@ -257,7 +257,7 @@ public class NearbyFragment extends Fragment {
                         aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));//参数提示:1.经纬度 2.缩放级别
 
                         while (Latitude == 0d) {
-
+                            Log.d("while...", "onLocationChanged: ");
                         }
                         getData();
                     } else {

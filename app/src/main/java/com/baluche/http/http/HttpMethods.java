@@ -14,6 +14,7 @@ import com.baluche.model.entity.Portrait;
 import com.baluche.model.entity.Register;
 import com.baluche.model.entity.SMScode;
 import com.baluche.model.entity.Weather;
+import com.baluche.util.SystemUtil;
 import com.google.gson.Gson;
 
 import java.util.Calendar;
@@ -54,11 +55,14 @@ public class HttpMethods {
          * 并在构造函数中进行retrofit的初始化
          */
         OkHttpClient httpClient = new OkHttpClient.Builder()
-                .addInterceptor(chain -> {
+                .addInterceptor(chain -> {//添加统一的http请求头
                     Request request = chain.request()
                             .newBuilder()
-                            .addHeader("Client-Type", "Android")
-                            .addHeader("App-Version", Constant.APP_VERSION)
+                            .addHeader("Client-Type", "Android")//操作系统
+                            .addHeader("App-Version", Constant.APP_VERSION)//App版本
+                            /*用户设备的基本信息*/
+                            .removeHeader("User-Agent")
+                            .addHeader("User-Agent", getUserAgent())
                             .build();
                     return chain.proceed(request);
                 })
@@ -79,7 +83,36 @@ public class HttpMethods {
     }
 
 
-    private static class sinalInstance {
+    /**
+     * 用于获取用户设备的基本信息
+     *
+     * @return String
+     */
+    private static String getUserAgent() {
+        String userAgent = "";
+        //获取设备型号
+        String systemModel = SystemUtil.getSystemModel();
+        //系统版本号
+        String systemVersion = SystemUtil.getSystemVersion();
+        //设备厂商
+        String deviceBrand = SystemUtil.getDeviceBrand();
+        //系统语言
+        String Language = SystemUtil.getSystemLanguage();
+        userAgent = ""
+                + "/deviceBrand:/" + deviceBrand
+                + "/systemModel:/" + systemModel
+                + "/systemVersion/" + systemVersion
+                + "/Language/" + Language
+        ;
+        Log.d("userAgent", ":" + userAgent);
+        Log.d("手机型号", ":" + systemModel);
+        Log.d("系统版本", ":" + systemVersion);
+        Log.d("手机厂商", ":" + deviceBrand);
+        return userAgent;
+    }
+
+
+    private static class sinalInstance {//单例模式
         public static final HttpMethods instance = new HttpMethods();
     }
 
@@ -87,10 +120,14 @@ public class HttpMethods {
         return sinalInstance.instance;
     }
 
-    private HashMap kmap = new HashMap();//需要签名校验的sign
-    private HashMap pMap = new HashMap();//最后传的参数
+    /*需要签名校验的参数*/
+    private HashMap kmap = new HashMap();
+    /*最后传的参数*/
+    private HashMap pMap = new HashMap();
+    /*当前设备的时间*/
     private String time = Calendar.getInstance().getTimeInMillis() + "";
     private Gson gson = new Gson();
+
 
     /**
      * 获取天气信息方法
@@ -141,13 +178,18 @@ public class HttpMethods {
         kmap.put("time", time);
         kmap.put("lat", Latitude);
         kmap.put("lng", Longitude);
+//        kmap.put("lng", Latitude);
+//        kmap.put("lat", Longitude);
 
         pMap.put("sign", Getsign(kmap));//加一个sign的md5验证
         pMap.put("time", time);
         pMap.put("lat", Latitude);
         pMap.put("lng", Longitude);
-
-        String s = gson.toJson(pMap);
+//        pMap.put("lng", Latitude);
+//        pMap.put("lat", Longitude);
+        Log.d("lng", "" + Latitude);
+        Log.d("lat", "" + Longitude);
+        String s = gson.toJson(pMap); 
         Log.d("http+park", s + "");
 
         apiService.getPark(gson.toJson(pMap))

@@ -10,7 +10,16 @@ public class Park {
     /**
      * code : 200
      * message : success
-     * data : [{"title":"国贸广场停车场东入口","address":"江西省南昌市西湖区洪城路2-6号","net_park_id":"841","charge":"5.00","lat":"28.654519","lng":"115.908853","null_number":0,"distance":1},{"title":"南宾国际金融中心停车场","address":"南昌市西湖区八一大道2号","net_park_id":"779","charge":"5.00","lat":"28.6634534190","lng":"115.9082836575","null_number":0,"distance":997}]
+     * data : [{
+     * "title":"国贸广场停车场东入口",
+     * "address":"江西省南昌市西湖区洪城路2-6号",
+     * "net_park_id":"841",
+     * "charge":"5.00",
+     * "lat":"28.654519",
+     * "lng":"115.908853",
+     * "null_number":0,
+     * "distance":1},
+     * {"title":"南宾国际金融中心停车场","address":"南昌市西湖区八一大道2号","net_park_id":"779","charge":"5.00","lat":"28.6634534190","lng":"115.9082836575","null_number":0,"distance":997}]
      */
 
     private int code;

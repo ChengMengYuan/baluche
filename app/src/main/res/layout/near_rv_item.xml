@@ -47,6 +47,7 @@
                 android:text="320" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/item_keyuyue_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,6 +59,7 @@
                 android:textColor="#ea0707" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/item_appointment_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,6 +99,7 @@
                     android:src="@drawable/gotolocation" />
 
                 <TextView
+                    android:id="@+id/item_distance_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imageView"
