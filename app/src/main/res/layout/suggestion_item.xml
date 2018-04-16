@@ -49,7 +49,7 @@
                 android:layout_marginRight="15dp">
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/navigation_img"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:src="@drawable/gotolocation" />
@@ -57,7 +57,7 @@
                 <TextView
                     android:layout_width="25dp"
                     android:layout_height="12dp"
-                    android:layout_below="@+id/imageView"
+                    android:layout_below="@+id/navigation_img"
                     android:layout_centerHorizontal="true"
                     android:text="158m"
                     android:textSize="10sp" />

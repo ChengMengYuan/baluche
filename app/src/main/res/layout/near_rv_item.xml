@@ -93,7 +93,7 @@
                 android:layout_marginEnd="11dp">
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/navigation_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/gotolocation" />
@@ -102,7 +102,7 @@
                     android:id="@+id/item_distance_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/imageView"
+                    android:layout_below="@+id/navigation_img"
                     android:layout_centerHorizontal="true"
                     android:text="158m" />
             </RelativeLayout>

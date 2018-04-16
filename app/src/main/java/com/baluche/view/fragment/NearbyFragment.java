@@ -1,6 +1,7 @@
 package com.baluche.view.fragment;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -102,7 +103,7 @@ public class NearbyFragment extends Fragment {
 
     private void initData() {
         mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        mAdapter = new NearRecyclerViewAdapter(data);
+        mAdapter = new NearRecyclerViewAdapter(data, getContext());
     }
 
     ArrayList<Park> data = new ArrayList<>();
@@ -158,16 +159,8 @@ public class NearbyFragment extends Fragment {
      *
      * @param v
      */
+    @SuppressLint("CheckResult")
     private void initView(Bundle savedInstanceState, View v) {
-        // FIXME: 2018/3/27 0027 申请权限工具类 用户拒绝的时候给出提示和解决方法
-        //Android6.0以上申请定位权限代码
-        //        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
-        //                != PackageManager.PERMISSION_GRANTED) {
-        //            //申请WRITE_EXTERNAL_STORAGE权限
-        //            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-        //                    500);//自定义的code
-        //        }
-
         RxPermissions rxPermissions = new RxPermissions(getActivity());
         rxPermissions
                 .request(Manifest.permission.ACCESS_COARSE_LOCATION)

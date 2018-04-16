@@ -189,7 +189,7 @@ public class HttpMethods {
 //        pMap.put("lat", Longitude);
         Log.d("lng", "" + Latitude);
         Log.d("lat", "" + Longitude);
-        String s = gson.toJson(pMap); 
+        String s = gson.toJson(pMap);
         Log.d("http+park", s + "");
 
         apiService.getPark(gson.toJson(pMap))
