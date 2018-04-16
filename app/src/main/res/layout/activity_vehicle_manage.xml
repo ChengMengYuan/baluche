@@ -38,8 +38,23 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/vehicle_manage_listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#fff"
+        android:maxHeight="90dp"
         android:overScrollMode="never" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorContent">
+
+        <ImageView
+            android:id="@+id/vehicle_manage_add"
+            android:layout_width="160dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="42dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/add_vehicle" />
+    </RelativeLayout>
 
 </LinearLayout>

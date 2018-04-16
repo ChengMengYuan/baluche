@@ -1,6 +1,7 @@
 package com.baluche.view.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +22,7 @@ public class VehicleManageActivity extends BaseActivity {
     private RecyclerView vehicle_manage_listView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ImageView vehicle_manage_add;
     private ArrayList<String> data = new ArrayList<>();
 
     @Override
@@ -46,6 +48,8 @@ public class VehicleManageActivity extends BaseActivity {
         mAdapter = new VehicleManageViewAdapter(data);
         vehicle_manage_listView.setLayoutManager(mLayoutManager);
         vehicle_manage_listView.setAdapter(mAdapter);
+        vehicle_manage_add = findViewById(R.id.vehicle_manage_add);
+        vehicle_manage_add.setOnClickListener(this);
     }
 
     @Override
@@ -60,6 +64,11 @@ public class VehicleManageActivity extends BaseActivity {
 
     @Override
     public void widgetClick(View view) {
-
+        switch (view.getId()){
+            case R.id.vehicle_manage_add:
+                Intent intent5 = new Intent(getApplicationContext(), AddVehicleActivity.class);
+                startActivity(intent5);
+                break;
+        }
     }
 }

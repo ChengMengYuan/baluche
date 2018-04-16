@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baluche.R;
+import com.baluche.view.activity.AddVehicleActivity;
 import com.baluche.view.activity.LoginActivity;
 import com.baluche.view.activity.MessageActivity;
 import com.baluche.view.activity.ParkpayingActivity;
@@ -112,7 +113,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent4);
                 break;
             case R.id.my_problem:
-                Toast.makeText(context, "my_problem", Toast.LENGTH_LONG).show();
+                Intent intent5 = new Intent(getActivity(), AddVehicleActivity.class);
+                startActivity(intent5);
                 break;
             case R.id.my_setting:
                 Toast.makeText(context, "my_setting", Toast.LENGTH_LONG).show();
