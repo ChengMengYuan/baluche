@@ -65,7 +65,8 @@
         <activity android:name=".view.activity.SearchActivity" />
         <activity android:name=".view.activity.UsehelpActivity" />
         <activity android:name=".view.activity.VehicleManageActivity" />
-        <activity android:name=".view.activity.AddVehicleActivity"></activity>
+        <activity android:name=".view.activity.AddVehicleActivity" />
+        <activity android:name=".view.activity.SignActivity"></activity>
     </application>
 
 </manifest>

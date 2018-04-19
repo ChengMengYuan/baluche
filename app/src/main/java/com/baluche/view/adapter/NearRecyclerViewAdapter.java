@@ -1,6 +1,5 @@
 package com.baluche.view.adapter;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 import com.baluche.R;
 import com.baluche.model.entity.Park;
 
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,7 +102,7 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
         //获取所有已安装程序的包信息
         List<PackageInfo> packageInfos = packageManager.getInstalledPackages(0);
         //用于存储所有已安装程序的包名
-        List<String> packageNames = new ArrayList<String>();
+        List<String> packageNames = new ArrayList<>();
         //从pinfo中将包名字逐一取出，压入pName list中
         if (packageInfos != null) {
             for (int i = 0; i < packageInfos.size(); i++) {
@@ -118,7 +116,9 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
 
     /**
      * 高德地图,起点就是定位点
-     * 终点是 LatLng ll = new LatLng("你的纬度latitude","你的经度longitude");
+     *
+     * @param latitude  纬度latitude
+     * @param longitude 经度longitude
      */
     public void startNaviGao(String latitude, String longitude) {
         if (isAvilible(context, "com.autonavi.minimap")) {
@@ -127,9 +127,7 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
                 Intent intent = Intent.getIntent("androidamap://navi?sourceApplication=公司的名称（随意写）" +
                         "&poiname=我的目的地&lat=" + latitude + "&lon=" + longitude + "&dev=0");
                 context.startActivity(intent);
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            } catch (ActivityNotFoundException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {

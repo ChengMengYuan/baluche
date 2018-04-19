@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
@@ -40,6 +42,8 @@ import java.util.ArrayList;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
+import static com.amap.api.maps.AMap.MAP_TYPE_NORMAL;
+
 /**
  * Created by cmy on 2018/3/20.
  */
@@ -55,6 +59,8 @@ public class NearbyFragment extends Fragment {
     private AMapLocationClient mLocationClient;//高德地图定位
     private AMapLocationClientOption mLocationOption;
     private Marker locationMarker;
+
+    private ArrayList<Park> data = new ArrayList<>();//停车场信息集合
 
     @Override
     public void onAttach(Context context) {
@@ -106,7 +112,6 @@ public class NearbyFragment extends Fragment {
         mAdapter = new NearRecyclerViewAdapter(data, getContext());
     }
 
-    ArrayList<Park> data = new ArrayList<>();
 
     /**
      * 获取数据
@@ -197,6 +202,7 @@ public class NearbyFragment extends Fragment {
     }
 
     private void initMap(Bundle savedInstanceState, View v) {
+
         near_recyclerView = v.findViewById(R.id.near_recyclerView);
         // 设置布局管理器
         near_recyclerView.setLayoutManager(mLayoutManager);
@@ -229,10 +235,23 @@ public class NearbyFragment extends Fragment {
                         LatLng latLng = new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude());//取出经纬度
                         Latitude = aMapLocation.getLatitude();       //获取纬度
                         Longitude = aMapLocation.getLongitude();     //获取经度
-
+                        MyLocationStyle myLocationStyle = new MyLocationStyle();
+                        aMap.setMyLocationStyle(myLocationStyle);
+                        aMap.getUiSettings().setMyLocationButtonEnabled(true);
+                        aMap.setMapType(MAP_TYPE_NORMAL);
+                        for (int i = 0; i < data.size(); i++) {
+                            MarkerOptions markerOption = new MarkerOptions();
+                            markerOption.position(new LatLng(Double.parseDouble(data.get(i).getData().get(i).getLat()),
+                                    Double.parseDouble(data.get(i).getData().get(i).getLng())));
+                            markerOption.draggable(false);//设置Marker可拖动
+                            markerOption.title(String.valueOf(i));
+                            markerOption.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory
+                                    .decodeResource(getResources(), R.drawable.dadaobaoxue)));
+                            aMap.addMarker(markerOption);
+                        }
                         //添加Marker显示定位位置
                         if (locationMarker == null) {
-                            //如果是空的添加一个新的,icon方法就是设置定位图标，可以自定义
+                            //如果是空的添加新的,icon方法就是设置定位图标，可以自定义
                             locationMarker = aMap.addMarker(new MarkerOptions()
                                     .position(latLng)
                                     //                                    .snippet("")
@@ -248,11 +267,11 @@ public class NearbyFragment extends Fragment {
                         }
                         //然后可以移动到定位点,使用animateCamera就有动画效果
                         aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));//参数提示:1.经纬度 2.缩放级别
-
                         while (Latitude == 0d) {
                             Log.d("while...", "onLocationChanged: ");
                         }
                         getData();
+
                     } else {
                         //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
                         Log.e("AmapError", "location Error, ErrCode:" + aMapLocation.getErrorCode() + ", errInfo:" + aMapLocation.getErrorInfo());
@@ -281,6 +300,5 @@ public class NearbyFragment extends Fragment {
         //在activity执行onSaveInstanceState时执行mMapView.onSaveInstanceState (outState)，保存地图当前的状态
         mMapView.onSaveInstanceState(outState);
     }
-
 
 }
