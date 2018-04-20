@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="106dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorContent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#ffffff">
+
+                <ImageView
+                    android:id="@+id/discount_help_point"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/usehelp_point"/>
+
+                <TextView
+                    android:id="@+id/discount_help_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/discount_help_point"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginLeft="8dp"
+                    android:textSize="15sp"
+                    android:textColor="#000000"
+                    android:text="什么是优惠券?" />
+
+                <TextView
+                    android:id="@+id/discount_help_one"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_alignLeft="@+id/discount_help_point"
+                    android:layout_alignTop="@+id/discount_help_point"
+                    android:layout_marginTop="16dp"
+                    android:textColor="#666666"
+                    android:textSize="13sp"
+                    android:text="八路车智能停车优惠券是针对八路车场的停车优惠服务
+而推出的电子券活动。"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

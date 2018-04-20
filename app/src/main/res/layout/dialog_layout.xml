@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ffffff"
-    android:layout_height="match_parent">
+    android:background="#efefef">
     <TextView
         android:id="@+id/takePhoto"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_margin="0dp"
         android:gravity="center"
+        android:background="#ffffff"
         android:text="@string/take_photo"
         android:textColor="#000000"
         android:textSize="18sp"/>
@@ -17,9 +17,9 @@
         android:id="@+id/choosePhoto"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_margin="0dp"
         android:layout_marginTop="1dp"
         android:gravity="center"
+        android:background="#ffffff"
         android:text="@string/choose_from_album"
         android:textColor="#000000"
         android:textSize="18sp"/>

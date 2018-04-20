@@ -27,7 +27,6 @@ public class SearchActivity extends BaseActivity {
     private ArrayList<String> data = new ArrayList<>();
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);

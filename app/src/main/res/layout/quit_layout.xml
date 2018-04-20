@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#efefef">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:gravity="center"
+        android:background="#ffffff"
+        android:text="确定要退出登录吗？"
+        android:textColor="#c0c0c0"
+        android:textSize="9sp"/>
+    <TextView
+        android:id="@+id/quit_true"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:gravity="center"
+        android:background="#ffffff"
+        android:text="确认"
+        android:textColor="#f52a2a"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/quit_false"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:background="#ffffff"
+        android:text="取消"
+        android:textColor="#333333"
+        android:textSize="15sp"/>
+</LinearLayout>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:background="@color/colorContent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
+            android:background="@drawable/wallet_title_background"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                app:contentInsetEnd="0dp"
+                app:contentInsetStart="0dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/wallet_return_left"
+                        android:layout_width="8dp"
+                        android:layout_height="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="14dp"
+                        android:src="@drawable/left_white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="钱包"
+                        android:textColor="#ffffff"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/wallet_money_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:textSize="26sp"
+                    android:textColor="#ffffff"
+                    android:text="575.00"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/wallet_money_number"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:text="总资产(元)"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="253dp"
+            android:layout_height="68dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="17dp"
+            android:background="@drawable/whitecase_bg">
+
+            <TextView
+                android:id="@+id/wallet_recharge_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:textSize="17sp"
+                android:textColor="#2cb154"
+                android:text="点击充值"/>
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="19dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/wallet_recharge_btn"
+                android:layout_marginLeft="29dp"
+                android:background="#999999"/>
+
+            <TextView
+                android:id="@+id/wallet_discount_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="21dp"
+                android:layout_marginRight="61dp"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:text="8"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/wallet_discount_number"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="34dp"
+                android:textSize="13sp"
+                android:textColor="#666666"
+                android:text="优惠券(张)"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorContent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#ffffff">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:text="账户明细"/>
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/wallet_account_listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="#ffffff"
+            android:overScrollMode="never"/>
+
+    </LinearLayout>
+</LinearLayout>

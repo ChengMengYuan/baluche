@@ -66,7 +66,9 @@
         <activity android:name=".view.activity.UsehelpActivity" />
         <activity android:name=".view.activity.VehicleManageActivity" />
         <activity android:name=".view.activity.AddVehicleActivity" />
-        <activity android:name=".view.activity.SignActivity"></activity>
+        <activity android:name=".view.activity.DiscountHelpActivity" />
+        <activity android:name=".view.activity.WalletActivity" />
+        <activity android:name=".view.activity.SettingActivity"></activity>
     </application>
 
 </manifest>

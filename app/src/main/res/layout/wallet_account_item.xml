@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/wallet_account_item_cv"
+        android:layout_width="match_parent"
+        android:layout_height="75dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/wallet_account_inform"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:textColor="#333333"
+                android:textSize="15sp"
+                android:text="入场提示"/>
+
+            <TextView
+                android:id="@+id/wallet_account_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/wallet_account_inform"
+                android:layout_alignTop="@+id/wallet_account_inform"
+                android:layout_marginTop="27dp"
+                android:textColor="#999999"
+                android:textSize="14sp"
+                android:text="2018-02-22   16:00"/>
+
+
+            <TextView
+                android:id="@+id/wallet_account_money_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="35dp"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:text="-20"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:text="元"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

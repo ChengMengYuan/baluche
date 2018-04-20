@@ -6,10 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baluche.R;
 import com.baluche.view.adapter.SearchSuggestionAdapter;
@@ -41,8 +43,6 @@ public class VehicleManageActivity extends BaseActivity {
         data.add("红谷");
         data.add("红谷");
         data.add("红谷");
-        data.add("红谷");
-        data.add("红谷");
         vehicle_manage_listView = findViewById(R.id.vehicle_manage_listView);
         mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         mAdapter = new VehicleManageViewAdapter(data);
@@ -66,9 +66,15 @@ public class VehicleManageActivity extends BaseActivity {
     public void widgetClick(View view) {
         switch (view.getId()){
             case R.id.vehicle_manage_add:
-                Intent intent5 = new Intent(getApplicationContext(), AddVehicleActivity.class);
-                startActivity(intent5);
-                break;
+                if(data.size()>=3){
+                    Toast.makeText(this, "已达到最大绑定数量", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Intent intent5 = new Intent(getApplicationContext(), AddVehicleActivity.class);
+                    startActivity(intent5);
+                    break;
+                }
+
         }
     }
 }

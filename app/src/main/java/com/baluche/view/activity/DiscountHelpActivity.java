@@ -1,27 +1,30 @@
 package com.baluche.view.activity;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.baluche.R;
+import com.baluche.view.adapter.DiscountHelpAdapter;
 import com.baluche.view.adapter.UsehelpViewAdapter;
 
 import java.util.ArrayList;
 
-public class UsehelpActivity extends BaseActivity {
+public class DiscountHelpActivity extends BaseActivity {
+
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView usehelp_listView;
+    private RecyclerView discount_help_listView;
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList<String> data = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.use_help);
+        setContentView(R.layout.activity_discount_help);
     }
 
     @Override
@@ -35,12 +38,12 @@ public class UsehelpActivity extends BaseActivity {
             data.add("海南停車場" + i);
         }
         mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        mAdapter = new UsehelpViewAdapter(data);
-        usehelp_listView = findViewById(R.id.usehelp_listView);
+        mAdapter = new DiscountHelpAdapter(data);
+        discount_help_listView = findViewById(R.id.discount_help_listView);
         // 设置布局管理器
-        usehelp_listView.setLayoutManager(mLayoutManager);
+        discount_help_listView.setLayoutManager(mLayoutManager);
         // 设置adapter
-        usehelp_listView.setAdapter(mAdapter);
+        discount_help_listView.setAdapter(mAdapter);
     }
 
     @Override

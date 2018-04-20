@@ -14,11 +14,14 @@ import android.widget.Toast;
 
 import com.baluche.R;
 import com.baluche.view.activity.AddVehicleActivity;
+import com.baluche.view.activity.DiscountHelpActivity;
 import com.baluche.view.activity.LoginActivity;
 import com.baluche.view.activity.MessageActivity;
 import com.baluche.view.activity.ParkpayingActivity;
 import com.baluche.view.activity.PersonMsgActivity;
+import com.baluche.view.activity.SettingActivity;
 import com.baluche.view.activity.VehicleManageActivity;
+import com.baluche.view.activity.WalletActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.jetbrains.annotations.Nullable;
@@ -41,6 +44,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout my_account;//账单
     private RelativeLayout my_vehicle;//车辆管理
     private RelativeLayout my_problem;//问题反馈
+    private RelativeLayout my_usehelp;//使用帮助
     private RelativeLayout my_setting;//设置
 
     @Nullable
@@ -69,6 +73,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         my_account = v.findViewById(R.id.my_account);
         my_vehicle = v.findViewById(R.id.my_vehicle);
         my_problem = v.findViewById(R.id.my_problem);
+        my_usehelp = v.findViewById(R.id.my_use_help);
         my_setting = v.findViewById(R.id.my_setting);
 
         account_head.setOnClickListener(this);
@@ -80,6 +85,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         my_account.setOnClickListener(this);
         my_vehicle.setOnClickListener(this);
         my_problem.setOnClickListener(this);
+        my_usehelp.setOnClickListener(this);
         my_setting.setOnClickListener(this);
     }
 
@@ -102,7 +108,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(context, "sign", Toast.LENGTH_LONG).show();
                 break;
             case R.id.my_wallet:
-                Toast.makeText(context, "my_wallet", Toast.LENGTH_LONG).show();
+                Intent intent7 = new Intent(getActivity(), WalletActivity.class);
+                startActivity(intent7);
                 break;
             case R.id.my_account:
                 Intent intent3 = new Intent(getActivity(), ParkpayingActivity.class);
@@ -116,8 +123,14 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 Intent intent5 = new Intent(getActivity(), AddVehicleActivity.class);
                 startActivity(intent5);
                 break;
+            case R.id.my_use_help:
+                Intent intent6 = new Intent(getActivity(), DiscountHelpActivity.class);
+                startActivity(intent6);
+                break;
             case R.id.my_setting:
                 Toast.makeText(context, "my_setting", Toast.LENGTH_LONG).show();
+                Intent intent8 = new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent8);
                 break;
             default:
                 break;
