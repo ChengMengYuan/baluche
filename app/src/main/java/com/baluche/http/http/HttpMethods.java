@@ -1,21 +1,21 @@
 package com.baluche.http.http;
 
-import android.util.Log;
-
 import com.baluche.app.Constant;
 import com.baluche.app.MApplication;
+import com.baluche.http.entity.Banner;
+import com.baluche.http.entity.Login;
+import com.baluche.http.entity.MyJoke;
+import com.baluche.http.entity.Park;
+import com.baluche.http.entity.PersonMsg;
+import com.baluche.http.entity.Portrait;
+import com.baluche.http.entity.Register;
+import com.baluche.http.entity.SMScode;
+import com.baluche.http.entity.Weather;
 import com.baluche.http.service.ApiService;
-import com.baluche.model.entity.Banner;
-import com.baluche.model.entity.Login;
-import com.baluche.model.entity.MyJoke;
-import com.baluche.model.entity.Park;
-import com.baluche.model.entity.PersonMsg;
-import com.baluche.model.entity.Portrait;
-import com.baluche.model.entity.Register;
-import com.baluche.model.entity.SMScode;
-import com.baluche.model.entity.Weather;
 import com.baluche.util.SystemUtil;
 import com.google.gson.Gson;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -30,6 +30,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.baluche.app.HongZhaJi.HongZhaJi_phone;
 import static com.baluche.util.EncryptUtil.Getsign;
 import static com.baluche.view.activity.LoginActivity.login_name;
 import static com.baluche.view.activity.LoginActivity.password;
@@ -50,6 +51,7 @@ public class HttpMethods {
     private ApiService apiService;
 
     private HttpMethods() {
+        Logger.addLogAdapter(new AndroidLogAdapter());
         /**
          * 构造函数私有化
          * 并在构造函数中进行retrofit的初始化
@@ -104,10 +106,10 @@ public class HttpMethods {
                 + "/systemVersion/" + systemVersion
                 + "/Language/" + Language
         ;
-        Log.d("userAgent", ":" + userAgent);
-        Log.d("手机型号", ":" + systemModel);
-        Log.d("系统版本", ":" + systemVersion);
-        Log.d("手机厂商", ":" + deviceBrand);
+        Logger.d("userAgent", ":" + userAgent);
+        Logger.d("手机型号", ":" + systemModel);
+        Logger.d("系统版本", ":" + systemVersion);
+        Logger.d("手机厂商", ":" + deviceBrand);
         return userAgent;
     }
 
@@ -159,7 +161,7 @@ public class HttpMethods {
         pMap.put("sign", Getsign(kmap));
         pMap.put("time", time);
 
-        Log.d("getBanner:", "" + gson.toJson(pMap));
+        Logger.d("" + gson.toJson(pMap));
         apiService.getBanner(gson.toJson(pMap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -178,8 +180,6 @@ public class HttpMethods {
         kmap.put("time", time);
         kmap.put("lat", Latitude);
         kmap.put("lng", Longitude);
-//        kmap.put("lng", Latitude);
-//        kmap.put("lat", Longitude);
 
         pMap.put("sign", Getsign(kmap));//加一个sign的md5验证
         pMap.put("time", time);
@@ -187,10 +187,9 @@ public class HttpMethods {
         pMap.put("lng", Longitude);
 //        pMap.put("lng", Latitude);
 //        pMap.put("lat", Longitude);
-        Log.d("lng", "" + Latitude);
-        Log.d("lat", "" + Longitude);
-        String s = gson.toJson(pMap);
-        Log.d("http+park", s + "");
+        Logger.t("getPark").d(Latitude);
+        Logger.t("getPark").d(Longitude);
+        Logger.t("getPark").d(gson.toJson(pMap));
 
         apiService.getPark(gson.toJson(pMap))
                 .subscribeOn(Schedulers.io())
@@ -218,7 +217,7 @@ public class HttpMethods {
         pMap.put("mobile", re_phone);// 手机号
         pMap.put("password", re_password);//密码
         pMap.put("code", TSMScode);//验证码
-        Log.d("http+register", "" + gson.toJson(pMap));
+        Logger.d("http+register", "" + gson.toJson(pMap));
         apiService.getRegister(gson.toJson(pMap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -262,13 +261,17 @@ public class HttpMethods {
      */
     public void getSMScode(Observer<SMScode> observer) {
         kmap.put("time", time);
-        kmap.put("mobile", re_phone);// 手机号
+//        kmap.put("mobile", re_phone);// 手机号
+        kmap.put("mobile", HongZhaJi_phone);// 手机号
+
 
         pMap.put("sign", Getsign(kmap));
         pMap.put("time", time);
-        pMap.put("mobile", re_phone);// 手机号
+//        pMap.put("mobile", re_phone);// 手机号
+        pMap.put("mobile", HongZhaJi_phone);// 手机号
 
-        Log.d("http+SMScode", "" + gson.toJson(pMap));
+
+        Logger.d("http+SMScode", "" + gson.toJson(pMap));
         apiService.getSMScode(gson.toJson(pMap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -291,7 +294,7 @@ public class HttpMethods {
         pMap.put("time", time);
         pMap.put("token", MApplication.Token);// token
 
-        Log.d("http+SMScode", "" + gson.toJson(pMap));
+        Logger.d("http+SMScode", "" + gson.toJson(pMap));
         apiService.queryPersonMsg(gson.toJson(pMap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -398,7 +401,7 @@ public class HttpMethods {
         pMap.put("sign", Getsign(kmap));
         pMap.put("mobile", login_name);// 手机号
         pMap.put("time", time);
-        Log.d("cheakUsertype", "" + gson.toJson(pMap));
+        Logger.d("cheakUsertype", "" + gson.toJson(pMap));
         apiService.cheakUsertype("" + gson.toJson(pMap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())

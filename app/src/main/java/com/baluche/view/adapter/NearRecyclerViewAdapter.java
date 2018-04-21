@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baluche.R;
-import com.baluche.model.entity.Park;
+import com.baluche.http.entity.Park;
 
 import java.util.ArrayList;
 import java.util.List;

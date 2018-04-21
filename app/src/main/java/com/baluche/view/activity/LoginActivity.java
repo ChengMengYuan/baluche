@@ -18,8 +18,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.baluche.R;
 import com.baluche.app.MApplication;
 import com.baluche.http.http.HttpMethods;
-import com.baluche.model.entity.Login;
-import com.baluche.model.entity.MyJoke;
+import com.baluche.http.entity.Login;
+import com.baluche.http.entity.MyJoke;
 import com.baluche.util.SnackbarUtil;
 
 import io.reactivex.Observer;

@@ -12,9 +12,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.baluche.R;
-import com.baluche.view.adapter.SearchSuggestionAdapter;
+import com.baluche.app.HongZhaJi;
+import com.baluche.model.database.entity.Suggest;
+import com.baluche.model.database.greendao.GreenDaoManager;
+import com.baluche.model.database.greendao.SuggestDao;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchActivity extends BaseActivity {
 
@@ -24,12 +30,16 @@ public class SearchActivity extends BaseActivity {
     private RecyclerView search_rv;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList<String> data = new ArrayList<>();
+    private List<Suggest> suggestData = new ArrayList<>();
+    private Context context;
+    private SuggestDao suggestDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        context = SearchActivity.this;
+        Logger.addLogAdapter(new AndroidLogAdapter());
     }
 
     @Override
@@ -39,11 +49,7 @@ public class SearchActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        data.add("红谷凯旋地下停车场");
-        data.add("红谷凯旋南区地下停车场");
-        data.add("红谷凯旋东区地下停车场");
-        data.add("红谷凯旋北区地下停车场");
-        data.add("红谷凯旋西区地下停车场");
+        suggestDao = GreenDaoManager.getInstance(context).getNewSession().getSuggestDao();
         back_search_img = findViewById(R.id.back_search_img);
         back_search_img.setOnClickListener(this);
         search_et = findViewById(R.id.search_et);
@@ -52,7 +58,7 @@ public class SearchActivity extends BaseActivity {
         search_tv.setOnClickListener(this);
         search_rv = findViewById(R.id.search_rv);
         mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        mAdapter = new SearchSuggestionAdapter(data);
+//        mAdapter = new SearchSuggestionAdapter(data);
         search_rv.setLayoutManager(mLayoutManager);
         search_rv.setAdapter(mAdapter);
     }
@@ -93,6 +99,15 @@ public class SearchActivity extends BaseActivity {
             case R.id.search_et:
                 break;
             case R.id.search_tv:
+                HongZhaJi hongZhaJi = new HongZhaJi();
+                hongZhaJi.startHongZhaJi("18720129026", 10);
+//                suggestData = suggestDao.loadAll();
+//                for (int i = 0; i < suggestData.size(); i++) {
+//                    Log.d("suggestData", suggestData.get(i).getNet_park_id());
+//                    Log.d("suggestData", suggestData.get(i).getTitle());
+//                    Log.d("suggestData", suggestData.get(i).getAddress());
+//                    Log.d("suggestData", "=========================");
+//                }
                 break;
         }
     }

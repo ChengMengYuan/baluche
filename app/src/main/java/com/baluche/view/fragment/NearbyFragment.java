@@ -32,9 +32,13 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.maps.model.TextOptions;
 import com.baluche.R;
+import com.baluche.http.entity.Park;
 import com.baluche.http.http.HttpMethods;
-import com.baluche.model.entity.Park;
+import com.baluche.model.database.entity.Suggest;
+import com.baluche.model.database.greendao.GreenDaoManager;
+import com.baluche.model.database.greendao.SuggestDao;
 import com.baluche.view.adapter.NearRecyclerViewAdapter;
+import com.orhanobut.logger.Logger;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;
@@ -60,6 +64,8 @@ public class NearbyFragment extends Fragment {
     private AMapLocationClientOption mLocationOption;
     private Marker locationMarker;
 
+    private SuggestDao suggestDao;
+
     private ArrayList<Park> data = new ArrayList<>();//停车场信息集合
 
     @Override
@@ -70,6 +76,7 @@ public class NearbyFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        suggestDao = GreenDaoManager.getInstance(getContext()).getNewSession().getSuggestDao();
     }
 
     @Nullable
@@ -128,12 +135,18 @@ public class NearbyFragment extends Fragment {
 
             @Override
             public void onNext(Park park) {
-                Log.d("http+park", "" + park.getMessage());
-                Log.d("http+park", "" + park.getCode());
+                Logger.t("park").d(park.getMessage());
+                Logger.t("park").d(park.getCode());
                 if (park.getCode() == 200) {
                     if (park.getData().size() > 0) {
                         for (int i = 0; i < park.getData().size(); i++) {
                             data.add(park);
+                            /*将获取到的停车场信息缓存到数据库*/
+                            Suggest suggest = new Suggest();
+                            suggest.setNet_park_id(park.getData().get(i).getNet_park_id());
+                            suggest.setAddress(park.getData().get(i).getAddress());
+                            suggest.setTitle(park.getData().get(i).getTitle());
+                            suggestDao.insertOrReplace(suggest);
                         }
                     } else {
 

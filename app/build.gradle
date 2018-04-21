@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-
+//使用greendao
+apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -31,17 +32,16 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+
 }
 
-
-
-
-
-
-
-
-
-
+//greendao配置
+greendao {
+    //版本号，升级时可配置
+    schemaVersion 1
+    daoPackage 'com.baluche.model.database.greendao'
+    targetGenDir 'src/main/java'
+}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -91,4 +91,8 @@ dependencies {
     compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
     compile 'org.jetbrains:annotations:15.0'
     implementation 'com.android.support:support-annotations:28.0.0-alpha1'
+    /*greendao依赖*/
+    compile 'org.greenrobot:greendao:3.2.0'
+    /*logger依赖*/
+    implementation 'com.orhanobut:logger:2.2.0'
 }

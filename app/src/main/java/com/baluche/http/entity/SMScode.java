@@ -1,4 +1,4 @@
-package com.baluche.model.entity;
+package com.baluche.http.entity;
 
 import java.util.List;
 

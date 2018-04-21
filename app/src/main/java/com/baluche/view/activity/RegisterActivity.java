@@ -21,8 +21,8 @@ import android.widget.Toast;
 import com.baluche.R;
 import com.baluche.app.MApplication;
 import com.baluche.http.http.HttpMethods;
-import com.baluche.model.entity.Register;
-import com.baluche.model.entity.SMScode;
+import com.baluche.http.entity.Register;
+import com.baluche.http.entity.SMScode;
 import com.baluche.other.CodeTimer;
 import com.baluche.other.CodeTimerService;
 

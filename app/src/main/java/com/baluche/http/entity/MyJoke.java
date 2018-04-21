@@ -1,4 +1,4 @@
-package com.baluche.model.entity;
+package com.baluche.http.entity;
 
 /**
  * Created by Administrator on 2018/3/23 0023.

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".view.activity.SignActivity">
 
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/sign_toolbar"
         android:layout_width="match_parent"
@@ -43,7 +44,7 @@
         android:layout_height="200dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/sign_toolbar"
-        android:background="@color/colorGreen">
+        android:background="@drawable/qiandao">
 
         <TextView
             android:id="@+id/sign_num"
@@ -95,7 +96,7 @@
         android:layout_height="120dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/relative_layout_1"
-        android:background="@color/colorGreen">
+        android:background="@drawable/Sign_time">
 
         <TextView
             android:id="@+id/textView4"

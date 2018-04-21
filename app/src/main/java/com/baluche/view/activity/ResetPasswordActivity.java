@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import com.baluche.R;
 import com.baluche.http.http.HttpMethods;
-import com.baluche.model.entity.MyJoke;
-import com.baluche.model.entity.SMScode;
+import com.baluche.http.entity.MyJoke;
+import com.baluche.http.entity.SMScode;
 import com.baluche.other.CodeTimer;
 import com.baluche.other.CodeTimerService;
 

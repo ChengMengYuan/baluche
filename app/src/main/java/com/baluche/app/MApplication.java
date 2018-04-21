@@ -2,8 +2,10 @@ package com.baluche.app;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 
+import com.baluche.model.database.greendao.GreenDaoManager;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ public class MApplication extends Application {
     public static final String APP_NAME = "畅行八路车";
     public static List<Object> activities = new ArrayList<>();
     private static MApplication instance;
+    private static Context mContext;
+
 
     public static String Token = "";
     public static boolean isDebug = true;//Debug开关
@@ -28,7 +32,10 @@ public class MApplication extends Application {
         super.onCreate();
         //图片加载框架的初始化
         Fresco.initialize(this);
+        mContext = getApplicationContext();
+        GreenDaoManager.getInstance(mContext);
         Log.d("Token", "Token" + MApplication.Token);
+
     }
 
     public MApplication() {
@@ -68,4 +75,7 @@ public class MApplication extends Application {
         System.exit(0);
     }
 
+    public static Context getContext() {
+        return mContext;
+    }
 }

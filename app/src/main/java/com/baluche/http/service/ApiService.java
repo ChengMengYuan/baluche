@@ -1,14 +1,14 @@
 package com.baluche.http.service;
 
-import com.baluche.model.entity.Banner;
-import com.baluche.model.entity.Login;
-import com.baluche.model.entity.MyJoke;
-import com.baluche.model.entity.Park;
-import com.baluche.model.entity.PersonMsg;
-import com.baluche.model.entity.Portrait;
-import com.baluche.model.entity.Register;
-import com.baluche.model.entity.SMScode;
-import com.baluche.model.entity.Weather;
+import com.baluche.http.entity.Banner;
+import com.baluche.http.entity.Login;
+import com.baluche.http.entity.MyJoke;
+import com.baluche.http.entity.Park;
+import com.baluche.http.entity.PersonMsg;
+import com.baluche.http.entity.Portrait;
+import com.baluche.http.entity.Register;
+import com.baluche.http.entity.SMScode;
+import com.baluche.http.entity.Weather;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;

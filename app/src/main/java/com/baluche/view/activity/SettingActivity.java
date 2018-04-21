@@ -2,7 +2,6 @@ package com.baluche.view.activity;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,6 +14,8 @@ import android.widget.Toast;
 
 import com.baluche.R;
 
+import static com.baluche.app.Constant.APP_VERSION;
+
 public class SettingActivity extends BaseActivity {
 
     private View inflate;
@@ -22,6 +23,7 @@ public class SettingActivity extends BaseActivity {
     private Dialog dialog;
     private TextView quit_true;
     private TextView quit_false;
+    private TextView APP_VERSION_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class SettingActivity extends BaseActivity {
     public void initView() {
         setting_quit = findViewById(R.id.setting_quit);
         setting_quit.setOnClickListener(this);
+        APP_VERSION_tv = findViewById(R.id.APP_VERSION);
+        APP_VERSION_tv.setText(APP_VERSION);
     }
 
     @Override

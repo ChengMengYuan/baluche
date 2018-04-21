@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.baluche.R;
 import com.baluche.http.http.HttpMethods;
-import com.baluche.model.entity.Weather;
+import com.baluche.http.entity.Weather;
 import com.baluche.view.activity.MainActivity;
 import com.baluche.view.activity.MessageActivity;
 import com.baluche.view.activity.ParkpayingActivity;
@@ -196,14 +196,14 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         });
 
         /*获取轮播图信息*/
-        HttpMethods.getInstance().getBanner(new Observer<com.baluche.model.entity.Banner>() {
+        HttpMethods.getInstance().getBanner(new Observer<com.baluche.http.entity.Banner>() {
             @Override
             public void onSubscribe(Disposable d) {
 
             }
 
             @Override
-            public void onNext(com.baluche.model.entity.Banner banner) {
+            public void onNext(com.baluche.http.entity.Banner banner) {
                 Log.d("http+banner", "" + banner.getMessage());
                 Log.d("http+banner", "" + banner.getCode());
                 switch (banner.getCode()) {
