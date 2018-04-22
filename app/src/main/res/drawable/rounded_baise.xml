@@ -1,0 +1,12 @@
+<!-- 矩形圆角+左右两边为一个圆弧 --><!-- 圆形边框 + 填充 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval"
+    android:useLevel="true">
+
+    <size
+        android:width="80dp"
+        android:height="80dp" />
+
+    <solid android:color="#efefef" />
+
+</shape>

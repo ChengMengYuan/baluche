@@ -20,6 +20,7 @@ import com.baluche.view.activity.MainActivity;
 import com.baluche.view.activity.MessageActivity;
 import com.baluche.view.activity.ParkpayingActivity;
 import com.baluche.view.activity.SearchActivity;
+import com.baluche.view.activity.SignActivity;
 import com.baluche.view.activity.UsehelpActivity;
 import com.baluche.view.adapter.FrescoImageLoader;
 import com.youth.banner.Banner;
@@ -52,7 +53,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     /* 四大模块控件 */
     private RelativeLayout nav_query;//车位查询
     private RelativeLayout nav_pay;//停车缴费
-    private RelativeLayout nav_coupon;//车位预约
+    private RelativeLayout nav_sign;//签到有礼
     private RelativeLayout nav_help;//使用帮助
 
     private TextView before_price;//原始价格
@@ -94,6 +95,9 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
         nav_help = v.findViewById(R.id.nav_help);
         nav_help.setOnClickListener(this);
+
+        nav_sign = v.findViewById(R.id.nav_sign);
+        nav_sign.setOnClickListener(this);
     }
 
     @Override
@@ -145,7 +149,9 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent3);
                 break;
             case R.id.nav_sign://签到有礼
-
+                Log.d("签到有礼", "onClick: ");
+                Intent intent4 = new Intent(getActivity(), SignActivity.class);
+                startActivity(intent4);
                 break;
 
             case R.id.home_search://搜索框
