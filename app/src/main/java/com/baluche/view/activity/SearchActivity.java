@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.baluche.R;
-import com.baluche.app.HongZhaJi;
 import com.baluche.model.database.entity.Suggest;
 import com.baluche.model.database.greendao.GreenDaoManager;
 import com.baluche.model.database.greendao.SuggestDao;
@@ -99,8 +98,8 @@ public class SearchActivity extends BaseActivity {
             case R.id.search_et:
                 break;
             case R.id.search_tv:
-                HongZhaJi hongZhaJi = new HongZhaJi();
-                hongZhaJi.startHongZhaJi("18720129026", 10);
+//                HongZhaJi hongZhaJi = new HongZhaJi();
+//                hongZhaJi.startHongZhaJi("18720129026", 10);
 //                suggestData = suggestDao.loadAll();
 //                for (int i = 0; i < suggestData.size(); i++) {
 //                    Log.d("suggestData", suggestData.get(i).getNet_park_id());
@@ -108,7 +107,7 @@ public class SearchActivity extends BaseActivity {
 //                    Log.d("suggestData", suggestData.get(i).getAddress());
 //                    Log.d("suggestData", "=========================");
 //                }
-                break;
+//                break;
         }
     }
 

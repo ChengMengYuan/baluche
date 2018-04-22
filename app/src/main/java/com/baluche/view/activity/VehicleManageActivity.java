@@ -2,19 +2,14 @@ package com.baluche.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baluche.R;
-import com.baluche.view.adapter.SearchSuggestionAdapter;
 import com.baluche.view.adapter.VehicleManageViewAdapter;
 
 import java.util.ArrayList;
@@ -40,9 +35,6 @@ public class VehicleManageActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        data.add("红谷");
-        data.add("红谷");
-        data.add("红谷");
         vehicle_manage_listView = findViewById(R.id.vehicle_manage_listView);
         mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         mAdapter = new VehicleManageViewAdapter(data);

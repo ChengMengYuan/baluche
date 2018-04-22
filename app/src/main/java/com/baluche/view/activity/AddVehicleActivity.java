@@ -17,14 +17,14 @@ import android.widget.TextView;
 
 import com.baluche.R;
 
-public class AddVehicleActivity extends BaseActivity{
-
+public class AddVehicleActivity extends BaseActivity {
+    // FIXME: 2018/4/22 自定义键盘长按删除键报错
     public static final String INPUT_LICENSE_COMPLETE = "me.kevingo.licensekeyboard.input.comp";
     public static final String INPUT_LICENSE_KEY = "LICENSE";
 
     private EditText inputbox1, inputbox2,
             inputbox3, inputbox4,
-            inputbox5, inputbox6, inputbox7 ,inputbox8;
+            inputbox5, inputbox6, inputbox7, inputbox8;
     private LicenseKeyboardUtil keyboardUtil;
 
     private CheckBox add_vehicle_cb;//协议单选框
@@ -97,7 +97,6 @@ public class AddVehicleActivity extends BaseActivity{
         this.registerReceiver(receiver, finishFilter);
 
 
-
         et_car_license_inputbox8 = findViewById(R.id.et_car_license_inputbox8);
 
         add_vehicle_cb = findViewById(R.id.add_vehicle_cb);
@@ -105,9 +104,9 @@ public class AddVehicleActivity extends BaseActivity{
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 clear();
-                if (add_vehicle_cb.isChecked()){
+                if (add_vehicle_cb.isChecked()) {
                     new_vehicle();
-                }else {
+                } else {
                     vehicle();
                 }
             }
@@ -130,63 +129,63 @@ public class AddVehicleActivity extends BaseActivity{
             case R.id.et_car_license_inputbox1:
                 clear();
                 keyboardUtil = new LicenseKeyboardUtil(this, new EditText[]{inputbox1, inputbox2, inputbox3,
-                        inputbox4, inputbox5, inputbox6, inputbox7,inputbox8},false);
+                        inputbox4, inputbox5, inputbox6, inputbox7, inputbox8}, false);
                 keyboard_close.setVisibility(View.VISIBLE);
                 keyboardUtil.showKeyboard();
                 break;
             case R.id.et_car_license_inputbox2:
                 clear();
                 keyboardUtil = new LicenseKeyboardUtil(this, new EditText[]{inputbox1, inputbox2, inputbox3,
-                        inputbox4, inputbox5, inputbox6, inputbox7,inputbox8},false);
+                        inputbox4, inputbox5, inputbox6, inputbox7, inputbox8}, false);
                 keyboard_close.setVisibility(View.VISIBLE);
                 keyboardUtil.showKeyboard();
                 break;
             case R.id.et_car_license_inputbox3:
                 clear();
                 keyboardUtil = new LicenseKeyboardUtil(this, new EditText[]{inputbox1, inputbox2, inputbox3,
-                        inputbox4, inputbox5, inputbox6, inputbox7,inputbox8},false);
+                        inputbox4, inputbox5, inputbox6, inputbox7, inputbox8}, false);
                 keyboard_close.setVisibility(View.VISIBLE);
                 keyboardUtil.showKeyboard();
                 break;
             case R.id.et_car_license_inputbox4:
                 clear();
                 keyboardUtil = new LicenseKeyboardUtil(this, new EditText[]{inputbox1, inputbox2, inputbox3,
-                        inputbox4, inputbox5, inputbox6, inputbox7,inputbox8},false);
+                        inputbox4, inputbox5, inputbox6, inputbox7, inputbox8}, false);
                 keyboard_close.setVisibility(View.VISIBLE);
                 keyboardUtil.showKeyboard();
                 break;
             case R.id.et_car_license_inputbox5:
                 clear();
                 keyboardUtil = new LicenseKeyboardUtil(this, new EditText[]{inputbox1, inputbox2, inputbox3,
-                        inputbox4, inputbox5, inputbox6, inputbox7,inputbox8},false);
+                        inputbox4, inputbox5, inputbox6, inputbox7, inputbox8}, false);
                 keyboard_close.setVisibility(View.VISIBLE);
                 keyboardUtil.showKeyboard();
                 break;
             case R.id.et_car_license_inputbox6:
                 clear();
                 keyboardUtil = new LicenseKeyboardUtil(this, new EditText[]{inputbox1, inputbox2, inputbox3,
-                        inputbox4, inputbox5, inputbox6, inputbox7,inputbox8},false);
+                        inputbox4, inputbox5, inputbox6, inputbox7, inputbox8}, false);
                 keyboard_close.setVisibility(View.VISIBLE);
                 keyboardUtil.showKeyboard();
                 break;
             case R.id.et_car_license_inputbox7:
                 clear();
                 keyboardUtil = new LicenseKeyboardUtil(this, new EditText[]{inputbox1, inputbox2, inputbox3,
-                        inputbox4, inputbox5, inputbox6, inputbox7,inputbox8},false);
+                        inputbox4, inputbox5, inputbox6, inputbox7, inputbox8}, false);
                 keyboard_close.setVisibility(View.VISIBLE);
                 keyboardUtil.showKeyboard();
                 break;
             case R.id.et_car_license_inputbox8:
                 clear();
                 keyboardUtil = new LicenseKeyboardUtil(this, new EditText[]{inputbox1, inputbox2, inputbox3,
-                        inputbox4, inputbox5, inputbox6, inputbox7,inputbox8},false);
+                        inputbox4, inputbox5, inputbox6, inputbox7, inputbox8}, false);
                 keyboard_close.setVisibility(View.VISIBLE);
                 keyboardUtil.showKeyboard();
                 break;
         }
     }
 
-    private void clear(){
+    private void clear() {
         inputbox1.setText("");
         inputbox2.setText("");
         inputbox3.setText("");
@@ -197,17 +196,18 @@ public class AddVehicleActivity extends BaseActivity{
         inputbox8.setText("");
     }
 
-    private void vehicle(){
+    private void vehicle() {
         et_car_license_inputbox8.setVisibility(View.GONE);
         keyboardUtil = new LicenseKeyboardUtil(this, new EditText[]{inputbox1, inputbox2, inputbox3,
-                inputbox4, inputbox5, inputbox6, inputbox7,inputbox8},false);
+                inputbox4, inputbox5, inputbox6, inputbox7, inputbox8}, false);
         keyboard_close.setVisibility(View.VISIBLE);
         keyboardUtil.showKeyboard();
     }
-    private void new_vehicle(){
+
+    private void new_vehicle() {
         et_car_license_inputbox8.setVisibility(View.VISIBLE);
         keyboardUtil = new LicenseKeyboardUtil(this, new EditText[]{inputbox1, inputbox2, inputbox3,
-                inputbox4, inputbox5, inputbox6, inputbox7,inputbox8},true);
+                inputbox4, inputbox5, inputbox6, inputbox7, inputbox8}, true);
         keyboard_close.setVisibility(View.VISIBLE);
         keyboardUtil.showKeyboard();
     }
