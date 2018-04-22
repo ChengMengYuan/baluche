@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorContent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="345dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/whitecase_bg"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="102dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignStart="@+id/textView12"
+                    android:layout_marginTop="24dp"
+                    android:text="热门"
+                    android:textColor="#2cb154"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="56dp"
+                    android:textColor="#666666"
+                    android:textSize="20sp"
+                    android:text="问题"
+                    android:id="@+id/textView12" />
+                
+                <ImageView
+                    android:layout_width="58dp"
+                    android:layout_height="70dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="96dp"
+                    android:src="@drawable/hot_problem"/>
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/common_problem_listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:background="#ffffff"
+                android:overScrollMode="never"/>
+        </LinearLayout>
+        
+    </RelativeLayout>
+
+    <me.next.tagview.TagCloudView
+        android:id="@+id/common_problem_tag_cloud"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/tagcloudview_background"
+        app:tcvBackground="@drawable/background_tag_selector"
+        app:tcvBorder="8dp"
+        app:tcvCanTagClick="true"
+        app:tcvItemBorderHorizontal="8dp"
+        app:tcvItemBorderVertical="6dp"
+        app:tcvTextSize="6sp"
+        app:tcvTextColor="#333333"/>
+
+</LinearLayout>

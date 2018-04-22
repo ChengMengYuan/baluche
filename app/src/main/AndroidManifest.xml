@@ -70,6 +70,7 @@
         <activity android:name=".view.activity.DiscountHelpActivity" />
         <activity android:name=".view.activity.WalletActivity" />
         <activity android:name=".view.activity.SettingActivity"></activity>
+        <activity android:name=".view.activity.FeedbackActivity"></activity>
     </application>
 
 </manifest>

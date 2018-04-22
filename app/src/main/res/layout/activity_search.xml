@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f4f5f5"
     tools:context="com.baluche.view.activity.SearchActivity">
 
     <RelativeLayout
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="15dp"
-        android:background="@android:drawable/dialog_holo_light_frame">
+        android:background="@drawable/whitecase_bg">
 
 
         <ImageView
@@ -32,16 +33,18 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="请输入停车场名称"
+            android:textSize="14sp"
             android:textColorHint="#666666" />
 
         <ImageView
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
+            android:layout_width="1dp"
+            android:layout_height="18dp"
             android:layout_centerVertical="true"
             android:layout_marginBottom="13dp"
             android:layout_marginRight="15dp"
             android:layout_toLeftOf="@+id/search_tv"
-            android:background="#999999" />
+            android:background="#999999"
+            android:id="@+id/imageView8" />
 
         <TextView
             android:id="@+id/search_tv"
@@ -51,6 +54,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
             android:text="搜索"
+            android:textColor="#666666"
             android:textSize="14sp" />
 
     </RelativeLayout>
@@ -63,6 +67,6 @@
         android:layout_below="@+id/relativeLayout"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:background="#ffffff"></android.support.v7.widget.RecyclerView>
+        android:background="@drawable/whitecase_bg"></android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

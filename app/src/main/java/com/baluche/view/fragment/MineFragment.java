@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.baluche.R;
 import com.baluche.view.activity.AddVehicleActivity;
 import com.baluche.view.activity.DiscountHelpActivity;
+import com.baluche.view.activity.FeedbackActivity;
 import com.baluche.view.activity.LoginActivity;
 import com.baluche.view.activity.MessageActivity;
 import com.baluche.view.activity.ParkpayingActivity;
@@ -120,7 +121,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent4);
                 break;
             case R.id.my_problem:
-                Intent intent5 = new Intent(getActivity(), AddVehicleActivity.class);
+                Intent intent5 = new Intent(getActivity(),  FeedbackActivity.class);
                 startActivity(intent5);
                 break;
             case R.id.my_use_help:
