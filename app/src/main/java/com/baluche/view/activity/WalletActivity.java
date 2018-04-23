@@ -1,11 +1,14 @@
 package com.baluche.view.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
+
 import com.baluche.R;
 import com.baluche.view.adapter.DiscountHelpAdapter;
 import com.baluche.view.adapter.WalletAccountAdapter;
@@ -17,6 +20,8 @@ public class WalletActivity extends BaseActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView wallet_account_listView;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    private TextView wallet_recharge_btn;
     ArrayList<String> data = new ArrayList<>();
 
     @Override
@@ -43,6 +48,9 @@ public class WalletActivity extends BaseActivity {
         wallet_account_listView.setLayoutManager(mLayoutManager);
         // 设置adapter
         wallet_account_listView.setAdapter(mAdapter);
+
+        wallet_recharge_btn = findViewById(R.id.wallet_recharge_btn);
+        wallet_recharge_btn.setOnClickListener(this);
     }
 
     @Override
@@ -57,6 +65,11 @@ public class WalletActivity extends BaseActivity {
 
     @Override
     public void widgetClick(View view) {
-
+        switch (view.getId()) {
+            case R.id.wallet_recharge_btn:
+                Intent intent1 = new Intent(getApplicationContext(), RechargeActivity.class);
+                startActivity(intent1);
+                break;
+        }
     }
 }
