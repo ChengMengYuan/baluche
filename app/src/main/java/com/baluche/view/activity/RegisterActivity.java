@@ -23,8 +23,8 @@ import com.baluche.app.MApplication;
 import com.baluche.http.http.HttpMethods;
 import com.baluche.http.entity.Register;
 import com.baluche.http.entity.SMScode;
-import com.baluche.other.CodeTimer;
-import com.baluche.other.CodeTimerService;
+import com.baluche.other.timeservice.CodeTimer;
+import com.baluche.other.timeservice.CodeTimerService;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;

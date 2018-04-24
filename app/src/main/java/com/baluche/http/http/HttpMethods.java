@@ -30,7 +30,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.baluche.app.HongZhaJi.HongZhaJi_phone;
 import static com.baluche.util.EncryptUtil.Getsign;
 import static com.baluche.view.activity.LoginActivity.login_name;
 import static com.baluche.view.activity.LoginActivity.password;
@@ -261,14 +260,12 @@ public class HttpMethods {
      */
     public void getSMScode(Observer<SMScode> observer) {
         kmap.put("time", time);
-//        kmap.put("mobile", re_phone);// 手机号
-        kmap.put("mobile", HongZhaJi_phone);// 手机号
+        kmap.put("mobile", re_phone);// 手机号
 
 
         pMap.put("sign", Getsign(kmap));
         pMap.put("time", time);
-//        pMap.put("mobile", re_phone);// 手机号
-        pMap.put("mobile", HongZhaJi_phone);// 手机号
+        pMap.put("mobile", re_phone);// 手机号
 
 
         Logger.d("http+SMScode", "" + gson.toJson(pMap));
