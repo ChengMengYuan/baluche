@@ -18,6 +18,7 @@ import com.baluche.view.activity.DiscountHelpActivity;
 import com.baluche.view.activity.FeedbackActivity;
 import com.baluche.view.activity.LoginActivity;
 import com.baluche.view.activity.MessageActivity;
+import com.baluche.view.activity.OrderDetailActivity;
 import com.baluche.view.activity.ParkpayingActivity;
 import com.baluche.view.activity.PersonMsgActivity;
 import com.baluche.view.activity.SettingActivity;
@@ -106,7 +107,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent2);
                 break;
             case R.id.sign:
-                Toast.makeText(context, "sign", Toast.LENGTH_LONG).show();
+                Intent intent9 = new Intent(getActivity(), OrderDetailActivity.class);
+                startActivity(intent9);
                 break;
             case R.id.my_wallet:
                 Intent intent7 = new Intent(getActivity(), WalletActivity.class);
