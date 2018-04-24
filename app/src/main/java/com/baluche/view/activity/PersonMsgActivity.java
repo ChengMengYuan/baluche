@@ -48,7 +48,7 @@ import io.reactivex.disposables.Disposable;
 
 
 /**
- * Created by Administrator on 2018/3/26 0026.
+ * Created by Administrator on 2018/3/26 0026
  */
 
 public class PersonMsgActivity extends BaseActivity {
