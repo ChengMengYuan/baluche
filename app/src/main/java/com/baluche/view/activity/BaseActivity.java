@@ -26,7 +26,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     /**
      * 是否沉浸状态栏
      **/
-    private boolean isSetStatusBar = true;
+    private boolean isSetStatusBar = false;
     /**
      * 是否允许全屏
      **/
@@ -116,6 +116,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
             //                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
     }
+
 
 
     /**
