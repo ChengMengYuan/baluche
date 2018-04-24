@@ -57,7 +57,7 @@ public class XiaoMiMessageReceiver extends PushMessageReceiver {
     @Override
     public void onNotificationMessageClicked(Context context, MiPushMessage miPushMessage) {
         super.onNotificationMessageClicked(context, miPushMessage);
-        Log.d("miPushMessage", "用户点击了通知消息");
+        Log.d("miPushMessage", "用户点击了通知消息。");
         Log.d("miPushMessage", "通知消息是" + miPushMessage.toString());
         Log.d("miPushMessage", "点击后,会进入应用");
     }
