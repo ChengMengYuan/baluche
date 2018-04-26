@@ -72,7 +72,7 @@
         /**高德地图测试key**/
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="c6752d474133dd6634eb6db5c7def745" />
+            android:value="0ccd95957a98d5368747e51c1eb0d791" />
 
         <service android:name="com.amap.api.location.APSService" />
         <service android:name=".other.timeservice.CodeTimerService" />

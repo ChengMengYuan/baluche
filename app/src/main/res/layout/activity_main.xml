@@ -21,7 +21,7 @@
         <LinearLayout
             android:id="@+id/bottomlinear"
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="50dp"
             android:background="#ffffff"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@+id/mviewpage">
@@ -46,8 +46,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/img_rll_home"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginTop="2dp"
                     android:text="首页" />
             </RelativeLayout>
 
@@ -59,7 +61,6 @@
 
                 <ImageView
                     android:id="@+id/img_rll_nearby"
-
                     android:layout_width="26dp"
                     android:layout_height="23dp"
                     android:layout_alignParentTop="true"
@@ -72,8 +73,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/img_rll_nearby"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginTop="2dp"
                     android:text="附近" />
             </RelativeLayout>
 
@@ -97,12 +100,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/img_rll_mine"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginTop="2dp"
                     android:text="我的" />
             </RelativeLayout>
         </LinearLayout>
-
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

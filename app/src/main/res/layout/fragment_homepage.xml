@@ -104,12 +104,14 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/home_toolbar">
 
         <!-- 包裹进ScrollView的父控件-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
 
             <!-- 轮动广告栏开始 -->
@@ -140,6 +142,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="105dp"
                 android:layout_below="@+id/banner_rl"
+                android:baselineAligned="false"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -270,7 +273,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/fengexian_1"
                 android:layout_marginVertical="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                fresco:targetApi="o">
                 <!--热门活动标题栏目-->
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -325,6 +329,7 @@
                         android:layout_width="110dp"
                         android:layout_height="100dp"
                         android:layout_weight="1"
+                        android:contentDescription="TODO"
                         android:src="@drawable/shangpin" />
 
                     <ImageView
@@ -341,6 +346,7 @@
                         android:layout_marginLeft="4dp"
                         android:layout_toEndOf="@+id/img_nav_coupon"
                         android:layout_weight="1"
+                        android:contentDescription="TODO"
                         android:src="@drawable/shangpin" />
                 </LinearLayout>
 
@@ -348,17 +354,19 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="100dp"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+                    <!--潮玩汇 -->
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <!--潮玩汇 -->
                         <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="100dp">
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true">
 
                             <ImageView
                                 android:id="@+id/img_article_con_left"
@@ -382,10 +390,9 @@
                                 android:id="@+id/textView5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="14dp"
+                                android:layout_marginLeft="5dp"
                                 android:layout_toRightOf="@+id/tv_article"
-                                android:text="免费领取50元券"
-                                android:textSize="10sp" />
+                                android:text="免费领取50元券" />
 
                             <TextView
                                 android:id="@+id/textView"
@@ -413,13 +420,13 @@
                                 android:textSize="13sp" />
 
                             <TextView
-                                android:gravity="center"
-                                android:layout_marginLeft="3dp"
                                 android:id="@+id/before_price"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignBaseline="@+id/now_price"
+                                android:layout_marginLeft="3dp"
                                 android:layout_toRightOf="@+id/now_price"
+                                android:gravity="center"
                                 android:text="99元"
                                 android:textSize="9sp" />
 
@@ -431,14 +438,21 @@
                                 android:layout_alignTop="@+id/textView"
                                 android:layout_marginStart="18dp"
                                 android:src="@drawable/shangpin" />
-
                         </RelativeLayout>
 
-                        <!--附近优惠-->
+                    </RelativeLayout>
+
+                    <!--附近优惠-->
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
                         <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="100dp">
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true">
 
                             <ImageView
                                 android:id="@+id/img_article_con_right"
@@ -475,77 +489,74 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignStart="@+id/textView9"
                                 android:layout_below="@+id/textView9"
+                                android:layout_marginTop="3dp"
                                 android:text="6元代金券"
                                 android:textColor="#fa454a" />
 
                             <ImageButton
                                 android:id="@+id/imageButton2"
-                                android:layout_width="9dp"
-                                android:layout_height="9dp"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
                                 android:layout_alignEnd="@+id/img_article_con_right"
                                 android:layout_alignParentBottom="true"
                                 android:layout_alignStart="@+id/textView9"
-                                android:layout_alignTop="@+id/textView11"
-                                app:srcCompat="@drawable/article_con_right" />
+                                app:srcCompat="@drawable/juli" />
 
                             <TextView
                                 android:id="@+id/textView11"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentBottom="true"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginLeft="3dp"
                                 android:layout_toEndOf="@+id/imageButton2"
                                 android:text="163米"
-                                android:textSize="9sp" />
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:id="@+id/imageView4"
                                 android:layout_width="60dp"
                                 android:layout_height="65dp"
                                 android:layout_alignParentBottom="true"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="18dp"
+                                android:layout_marginStart="18dp"
+                                android:layout_toRightOf="@id/textView11"
                                 android:src="@drawable/shangpin" />
                         </RelativeLayout>
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="20dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center">
-
-
-                            <TextView
-                                android:id="@+id/see_all"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="查看全部"
-                                android:textColor="#2cb154"
-                                android:textSize="14sp" />
-
-                            <ImageView
-                                android:id="@+id/jiantou_right"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignBottom="@+id/see_all"
-                                android:layout_alignTop="@+id/see_all"
-                                android:layout_marginStart="15dp"
-                                android:layout_toEndOf="@+id/see_all"
-                                android:src="@drawable/jiantou_right" />
-                        </RelativeLayout>
-                    </LinearLayout>
+                    </RelativeLayout>
 
                 </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true">
+
+                        <TextView
+                            android:id="@+id/see_all"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="查看全部"
+                            android:textColor="#2cb154"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:id="@+id/jiantou_right"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/see_all"
+                            android:layout_alignTop="@+id/see_all"
+                            android:layout_marginStart="15dp"
+                            android:layout_toEndOf="@+id/see_all"
+                            android:src="@drawable/jiantou_right" />
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
 
             </LinearLayout>
 

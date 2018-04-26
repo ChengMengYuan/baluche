@@ -9,7 +9,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/near_rv_item_cv"
         android:layout_width="match_parent"
-        android:layout_height="72dp">
+        android:layout_height="70dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -22,9 +22,9 @@
                 android:layout_above="@+id/item_shengyu_tv"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="13dp"
-                android:textSize="17sp"
-                android:textStyle="bold"
-                android:text="凯旋中心——地下停车场" />
+                android:text="凯旋中心——地下停车场"
+                android:textColor="#000000"
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/item_shengyu_tv"
@@ -33,7 +33,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignStart="@+id/item_Location_name_tv"
                 android:layout_marginBottom="10dp"
-                android:text="(剩余)"
+                android:text="剩余车位："
                 android:textColor="#6a8231" />
 
             <TextView
@@ -44,10 +44,10 @@
                 android:layout_alignBottom="@+id/item_shengyu_tv"
                 android:layout_marginStart="7dp"
                 android:layout_toEndOf="@+id/item_shengyu_tv"
-                android:text="320" />
+                android:text="320"
+                android:textColor="#000000" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/item_keyuyue_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,10 +56,10 @@
                 android:layout_marginStart="11dp"
                 android:layout_toEndOf="@+id/item_surplus_tv"
                 android:text="(可预约)"
-                android:textColor="#ea0707" />
+                android:textColor="#ea0707"
+                android:visibility="gone" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/item_appointment_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -68,7 +68,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@+id/item_keyuyue_tv"
                 android:text="76"
-                android:textColor="#ea0707" />
+                android:textColor="#ea0707"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tv_tuijian"
@@ -87,24 +88,35 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="11dp">
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="20dp">
 
-                <ImageView
-                    android:id="@+id/navigation_img"
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/gotolocation" />
+                    android:layout_centerInParent="true">
 
-                <TextView
-                    android:id="@+id/item_distance_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/navigation_img"
-                    android:layout_centerHorizontal="true"
-                    android:text="158m" />
+                    <ImageView
+                        android:id="@+id/navigation_img"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/gotolocation" />
+
+                    <TextView
+                        android:id="@+id/item_distance_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/navigation_img"
+                        android:layout_marginTop="5dp"
+                        android:lines="1"
+                        android:text="158m"
+                        android:textSize="11sp" />
+
+                </RelativeLayout>
             </RelativeLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>

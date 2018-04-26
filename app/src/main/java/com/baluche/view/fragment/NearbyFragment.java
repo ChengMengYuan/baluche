@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -219,6 +220,7 @@ public class NearbyFragment extends Fragment {
         near_recyclerView = v.findViewById(R.id.near_recyclerView);
         // 设置布局管理器
         near_recyclerView.setLayoutManager(mLayoutManager);
+        near_recyclerView.addItemDecoration(new MyItemDecoration());
         // 设置adapter
         near_recyclerView.setAdapter(mAdapter);
 
@@ -315,5 +317,23 @@ public class NearbyFragment extends Fragment {
             mMapView.onSaveInstanceState(outState);
         }
     }
+
+    class MyItemDecoration extends RecyclerView.ItemDecoration {
+        /**
+         * @param outRect 边界
+         * @param view    recyclerView ItemView
+         * @param parent  recyclerView
+         * @param state   recycler 内部数据管理
+         */
+        @Override
+        public void getItemOffsets(Rect outRect,
+                                   View view,
+                                   RecyclerView parent,
+                                   RecyclerView.State state) {
+            //设定底部边距为2px
+            outRect.set(0, 0, 0, 1);
+        }
+    }
+
 
 }

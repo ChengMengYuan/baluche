@@ -8,7 +8,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/near_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="44dp"
         android:background="@color/colorGreen"
         android:fitsSystemWindows="true">
 
@@ -29,7 +29,7 @@
     <com.amap.api.maps.MapView
         android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="195dp" />
 
     <!--<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
     <!--android:id="@+id/near_refreshLayout"-->
@@ -40,7 +40,7 @@
         android:id="@+id/near_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fff"
+        android:background="#eaeaea"
         android:overScrollMode="never" />
     <!--</com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
 </LinearLayout>
