@@ -22,7 +22,7 @@
             android:id="@+id/bottomlinear"
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:background="#DCDCDC"
+            android:background="#ffffff"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@+id/mviewpage">
 

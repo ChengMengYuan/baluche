@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fresco="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="#ffffff">
 
     <!-- 首页标题栏开始 -->
     <android.support.v7.widget.Toolbar
@@ -13,7 +13,6 @@
         android:layout_height="50dp"
         android:background="#2cb154"
         android:fitsSystemWindows="true"
-        android:minHeight="?attr/actionBarSize"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp">
 
@@ -37,8 +36,9 @@
                 android:id="@+id/tv_weather"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/img_weather"
+                android:layout_alignLeft="@+id/img_weather"
                 android:layout_below="@+id/img_weather"
+                android:layout_toLeftOf="@+id/tv_location"
                 android:layout_toStartOf="@+id/tv_location"
                 android:gravity="center"
                 android:text="12°"
@@ -85,8 +85,7 @@
                 android:layout_width="19dp"
                 android:layout_height="16dp"
                 android:layout_alignParentEnd="true"
-                android:layout_alignTop="@+id/tv_location"
-                android:layout_marginEnd="16dp"
+                android:layout_centerVertical="true"
                 android:contentDescription="消息提示按钮"
                 android:src="@drawable/xiaoxi" />
 
@@ -104,17 +103,18 @@
     <!-- 首页标题栏结束 -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/home_toolbar">
 
         <!-- 包裹进ScrollView的父控件-->
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
 
             <!-- 轮动广告栏开始 -->
             <RelativeLayout
+                android:id="@+id/banner_rl"
                 android:layout_width="match_parent"
                 android:layout_height="140dp">
 
@@ -136,8 +136,10 @@
 
             <!--4大栏目-->
             <LinearLayout
+                android:id="@+id/four_ll"
                 android:layout_width="match_parent"
                 android:layout_height="105dp"
+                android:layout_below="@+id/banner_rl"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -253,15 +255,26 @@
 
             </LinearLayout>
 
+            <RelativeLayout
+                android:id="@+id/fengexian_1"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_below="@+id/four_ll"
+                android:background="#eaeaea">
+
+            </RelativeLayout>
 
             <LinearLayout
+                android:id="@+id/ll_remen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/fengexian_1"
+                android:layout_marginVertical="10dp"
                 android:orientation="vertical">
-
+                <!--热门活动标题栏目-->
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="37dp"
+                    android:layout_height="35dp"
                     android:gravity="center">
 
                     <ImageView
@@ -274,8 +287,8 @@
 
                     <ImageView
                         android:id="@+id/img_fire"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="12dp"
+                        android:layout_height="16dp"
                         android:layout_centerVertical="true"
                         android:layout_toLeftOf="@+id/tv_remen"
                         android:src="@drawable/article_top_title" />
@@ -288,7 +301,8 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
-                        android:text="热门活动" />
+                        android:text="热门活动"
+                        android:textSize="13sp" />
 
                     <ImageView
                         android:layout_width="40dp"
@@ -302,29 +316,29 @@
                 <!--热门活动-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="120dp"
                     android:orientation="horizontal"
                     android:paddingLeft="14dp"
                     android:paddingRight="14dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_width="110dp"
+                        android:layout_height="100dp"
                         android:layout_weight="1"
                         android:src="@drawable/shangpin" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_width="110dp"
+                        android:layout_height="100dp"
                         android:layout_marginLeft="4dp"
                         android:layout_weight="1"
                         android:src="@drawable/shangpin" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_width="110dp"
+                        android:layout_height="100dp"
                         android:layout_below="@+id/img_nav_coupon"
+                        android:layout_marginLeft="4dp"
                         android:layout_toEndOf="@+id/img_nav_coupon"
                         android:layout_weight="1"
                         android:src="@drawable/shangpin" />
@@ -340,7 +354,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
                         android:orientation="horizontal">
                         <!--潮玩汇 -->
                         <RelativeLayout
@@ -362,6 +375,7 @@
                                 android:layout_toRightOf="@+id/img_article_con_left"
                                 android:text="潮玩汇"
                                 android:textColor="#fd5f8a"
+                                android:textSize="13sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -370,7 +384,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="14dp"
                                 android:layout_toRightOf="@+id/tv_article"
-                                android:text="免费领取50元券" />
+                                android:text="免费领取50元券"
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/textView"
@@ -384,26 +399,27 @@
                                 android:maxLines="2"
                                 android:text="唯尚主题式KTV下午场9.9元秒杀活动现在进行中"
                                 android:textColor="#353535"
-                                android:textSize="10sp"
+                                android:textSize="13sp"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/now_price"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignStart="@+id/textView"
+                                android:layout_alignStart="@+id/img_article_con_left"
                                 android:layout_below="@+id/textView"
-                                android:layout_marginTop="11dp"
                                 android:text="25元"
                                 android:textColor="#fa454a"
-                                android:textSize="10sp" />
+                                android:textSize="13sp" />
 
                             <TextView
+                                android:gravity="center"
+                                android:layout_marginLeft="3dp"
                                 android:id="@+id/before_price"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignStart="@+id/tv_article"
-                                android:layout_alignTop="@+id/now_price"
+                                android:layout_alignBaseline="@+id/now_price"
+                                android:layout_toRightOf="@+id/now_price"
                                 android:text="99元"
                                 android:textSize="9sp" />
 
@@ -428,7 +444,9 @@
                                 android:id="@+id/img_article_con_right"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="25dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginStart="17dp"
                                 android:src="@drawable/article_con_right" />
 
                             <TextView
@@ -482,8 +500,8 @@
 
                             <ImageView
                                 android:id="@+id/imageView4"
-                                android:layout_width="65dp"
-                                android:layout_height="61dp"
+                                android:layout_width="60dp"
+                                android:layout_height="65dp"
                                 android:layout_alignParentBottom="true"
                                 android:layout_alignParentEnd="true"
                                 android:layout_marginLeft="5dp"
@@ -513,7 +531,7 @@
                                 android:layout_centerVertical="true"
                                 android:text="查看全部"
                                 android:textColor="#2cb154"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
 
                             <ImageView
                                 android:id="@+id/jiantou_right"
@@ -531,8 +549,17 @@
 
             </LinearLayout>
 
-        </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/fengexian_2"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_below="@+id/ll_remen"
+                android:background="#eaeaea">
+
+            </RelativeLayout>
+
+        </RelativeLayout>
 
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>

@@ -19,8 +19,8 @@ public class XiaoMiMessageReceiver extends PushMessageReceiver {
      * 透传消息到达客户端时调用
      * 作用：可通过参数message从而获得透传消息，具体请看官方SDK文档
      *
-     * @param context
-     * @param miPushMessage
+     * @param context       context
+     * @param miPushMessage miPushMessage
      */
     @Override
     public void onReceivePassThroughMessage(Context context, MiPushMessage miPushMessage) {
@@ -34,8 +34,8 @@ public class XiaoMiMessageReceiver extends PushMessageReceiver {
      * 注：应用在前台时不弹出通知的通知消息到达客户端时也会回调函数
      * 作用：通过参数message从而获得通知消息，具体请看官方SDK文档
      *
-     * @param context
-     * @param miPushMessage
+     * @param context       context
+     * @param miPushMessage miPushMessage
      */
     @Override
     public void onNotificationMessageArrived(Context context, MiPushMessage miPushMessage) {
@@ -51,8 +51,8 @@ public class XiaoMiMessageReceiver extends PushMessageReceiver {
      * 1. 通过参数message从而获得通知消息，具体请看官方SDK文档
      * 2. 设置用户点击消息后打开应用 or 网页 or 其他页面
      *
-     * @param context
-     * @param miPushMessage
+     * @param context       context
+     * @param miPushMessage miPushMessage
      */
     @Override
     public void onNotificationMessageClicked(Context context, MiPushMessage miPushMessage) {
@@ -65,8 +65,8 @@ public class XiaoMiMessageReceiver extends PushMessageReceiver {
     /**
      * 用来接收客户端向服务器发送命令后的响应结果。
      *
-     * @param context
-     * @param miPushCommandMessage
+     * @param context              context
+     * @param miPushCommandMessage miPushCommandMessage
      */
     @Override
     public void onCommandResult(Context context, MiPushCommandMessage miPushCommandMessage) {
@@ -88,8 +88,8 @@ public class XiaoMiMessageReceiver extends PushMessageReceiver {
     /**
      * 用于接收客户端向服务器发送注册命令后的响应结果。
      *
-     * @param context
-     * @param miPushCommandMessage
+     * @param context              context
+     * @param miPushCommandMessage miPushCommandMessage
      */
     @Override
     public void onReceiveRegisterResult(Context context, MiPushCommandMessage miPushCommandMessage) {
@@ -107,7 +107,7 @@ public class XiaoMiMessageReceiver extends PushMessageReceiver {
                 Log.d("miPushMessage", "注册失败");
             }
         } else {
-            Log.d("miPushMessage", "其他情况"+ miPushCommandMessage.getReason());
+            Log.d("miPushMessage", "其他情况" + miPushCommandMessage.getReason());
         }
     }
 

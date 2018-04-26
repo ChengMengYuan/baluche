@@ -309,9 +309,11 @@ public class NearbyFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        //在activity执行onSaveInstanceState时执行mMapView.onSaveInstanceState (outState)，保存地图当前的状态
-        mMapView.onSaveInstanceState(outState);
+        if (outState != null) {
+            super.onSaveInstanceState(outState);
+            //在activity执行onSaveInstanceState时执行mMapView.onSaveInstanceState (outState)，保存地图当前的状态
+            mMapView.onSaveInstanceState(outState);
+        }
     }
 
 }
