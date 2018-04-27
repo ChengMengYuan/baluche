@@ -500,7 +500,7 @@
                                 android:layout_alignEnd="@+id/img_article_con_right"
                                 android:layout_alignParentBottom="true"
                                 android:layout_alignStart="@+id/textView9"
-                                app:srcCompat="@drawable/juli" />
+                                app:srcCompat="@drawable/whitecase_bg" />
 
                             <TextView
                                 android:id="@+id/textView11"

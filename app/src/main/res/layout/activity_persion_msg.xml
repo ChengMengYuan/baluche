@@ -126,9 +126,13 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:layout_width="20dp"
+                android:layout_height="1dp"
+                android:background="#ffffff"/>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="57dp"
-                android:layout_marginTop="1dp"
                 android:background="#ffff">
 
                 <TextView
@@ -150,9 +154,13 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:layout_width="20dp"
+                android:layout_height="1dp"
+                android:background="#ffffff"/>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="57dp"
-                android:layout_marginTop="1dp"
                 android:background="#ffff">
 
                 <TextView
@@ -175,9 +183,13 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:layout_width="20dp"
+                android:layout_height="1dp"
+                android:background="#ffffff"/>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="57dp"
-                android:layout_marginTop="1dp"
                 android:background="#ffff">
 
                 <TextView
@@ -234,6 +246,7 @@
                     android:text="确定"
                     android:textColor="#ffffff" />
             </RelativeLayout>
+
         </LinearLayout>
 
     </ScrollView>

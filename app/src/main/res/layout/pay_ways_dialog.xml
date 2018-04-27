@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="469dp"
-    android:orientation="vertical"
-    android:background="#efefef">
+    android:background="#ffffff"
+    android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -36,8 +36,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:background="#ffffff"
-        android:layout_marginBottom="1dp">
+        android:background="#ffffff">
 
         <ImageView
             android:id="@+id/pay_ways_wechat_ic"
@@ -52,27 +51,30 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/pay_ways_wechat_ic"
-            android:layout_marginLeft="3dp"
+            android:layout_marginLeft="8dp"
             android:textColor="#333333"
             android:textSize="16sp"
             android:text="微信支付"/>
 
-        <CheckBox
-            android:layout_width="25dp"
-            android:layout_height="20dp"
+        <ImageView
+            android:layout_width="17dp"
+            android:layout_height="13dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
-            android:checked="false"
-            android:scaleX="0.6"
-            android:scaleY="0.6" />
+            android:src="@drawable/choose_true"/>
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:background="#efefef"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:layout_marginBottom="1dp"
         android:background="#ffffff">
 
         <ImageView
@@ -88,21 +90,25 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/pay_ways_alipay_ic"
-            android:layout_marginLeft="3dp"
+            android:layout_marginLeft="13dp"
             android:textColor="#333333"
             android:textSize="16sp"
             android:text="支付宝"/>
 
-        <CheckBox
-            android:layout_width="25dp"
-            android:layout_height="20dp"
+        <ImageView
+            android:layout_width="17dp"
+            android:layout_height="13dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
-            android:checked="false"
-            android:scaleX="0.6"
-            android:scaleY="0.6" />
+            android:src="@drawable/choose_true"/>
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:background="#efefef"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

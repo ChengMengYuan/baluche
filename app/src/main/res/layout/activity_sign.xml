@@ -363,5 +363,170 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#efefef">
 
+        <RelativeLayout
+            android:layout_width="345dp"
+            android:layout_height="197dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/whitecase_bg">
+
+            <TextView
+                android:id="@+id/sign_use_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="22dp"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:text="签到说明"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignTop="@+id/sign_use_information"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="26dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp">
+
+                    <TextView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/green_point"
+                        android:gravity="center"
+                        android:textSize="11sp"
+                        android:textColor="#ffffff"
+                        android:text="1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="50dp"
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:text="连续签到2天得随机立减券；"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp">
+
+                    <TextView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/green_point"
+                        android:gravity="center"
+                        android:textSize="11sp"
+                        android:textColor="#ffffff"
+                        android:text="2"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="50dp"
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:text="连续签到2天得随机立减券；"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp">
+
+                    <TextView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/green_point"
+                        android:gravity="center"
+                        android:textSize="11sp"
+                        android:textColor="#ffffff"
+                        android:text="3"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="50dp"
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:text="连续签到2天得随机立减券(最高抵3元）；"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp">
+
+                    <TextView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/green_point"
+                        android:gravity="center"
+                        android:textSize="11sp"
+                        android:textColor="#ffffff"
+                        android:text="4"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="50dp"
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:text="连续签到2天得随机立减券；"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp">
+
+                    <TextView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/green_point"
+                        android:gravity="center"
+                        android:textSize="11sp"
+                        android:textColor="#ffffff"
+                        android:text="5"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="50dp"
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:text="连续签到2天得随机立减券；"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+     </RelativeLayout>
 </LinearLayout>
