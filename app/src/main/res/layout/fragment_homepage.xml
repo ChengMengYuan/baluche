@@ -41,7 +41,7 @@
                 android:layout_toLeftOf="@+id/tv_location"
                 android:layout_toStartOf="@+id/tv_location"
                 android:gravity="center"
-                android:text="12°"
+                android:text="12sp"
                 android:textColor="#ffffff"
                 android:textSize="10sp" />
 

@@ -89,6 +89,7 @@ public class SettingActivity extends BaseActivity {
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         lp.y = 0;//设置Dialog距离底部的距离
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         //将属性设置给窗体
         dialogWindow.setAttributes(lp);
         dialog.show();//显示对话框

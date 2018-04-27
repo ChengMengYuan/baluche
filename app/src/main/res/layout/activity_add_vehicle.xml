@@ -245,7 +245,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="5dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textColor="#2cb154"
                     android:text="关闭"/>
             </RelativeLayout>
