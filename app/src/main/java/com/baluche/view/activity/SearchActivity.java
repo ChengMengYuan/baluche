@@ -42,10 +42,6 @@ public class SearchActivity extends BaseActivity {
         Logger.addLogAdapter(new AndroidLogAdapter());
     }
 
-    @Override
-    public void setActivityPre() {
-
-    }
 
     @Override
     public void initView() {
@@ -79,8 +75,8 @@ public class SearchActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 //输入框有变化的时候
-                $Log("onTextChanged");
-                $Log("" + charSequence);
+                LogD("onTextChanged");
+                LogD("" + charSequence);
             }
 
             @Override

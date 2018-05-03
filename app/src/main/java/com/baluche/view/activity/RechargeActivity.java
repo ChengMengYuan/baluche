@@ -36,11 +36,6 @@ public class RechargeActivity extends BaseActivity {
     }
 
     @Override
-    public void setActivityPre() {
-
-    }
-
-    @Override
     public void initView() {
 
         recharge_pay_btn = findViewById(R.id.recharge_pay_btn);
@@ -51,11 +46,6 @@ public class RechargeActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
-    }
-
-    @Override
-    public void doBusiness(Context mContext) {
 
     }
 

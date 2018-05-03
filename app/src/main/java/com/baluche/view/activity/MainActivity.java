@@ -105,13 +105,8 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
     }
 
     @Override
-    public void doBusiness(Context mContext) {
-
-    }
-
-    @Override
     public void widgetClick(View view) {
-        $Log("Main-widgetClick");
+        LogD("Main-widgetClick");
         switch (view.getId()) {
             case R.id.rll_home:
                 setHomeClick();
@@ -136,13 +131,13 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
     @Override
     public void onPageSelected(int position) {
         if (position == 0) {
-            $Log("onPageSelected: 0");
+            LogD("onPageSelected: 0");
             setHomeClick();
         } else if (position == 1) {
-            $Log("onPageSelected: 1");
+            LogD("onPageSelected: 1");
             setNearbyClick();
         } else if (position == 2) {
-            $Log("onPageSelected: 2");
+            LogD("onPageSelected: 2");
             setMineClikc();
         }
     }

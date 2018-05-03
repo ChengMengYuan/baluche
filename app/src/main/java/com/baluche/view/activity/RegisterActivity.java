@@ -158,12 +158,6 @@ public class RegisterActivity extends BaseActivity {
     }
 
     @Override
-    public void doBusiness(Context mContext) {
-
-    }
-
-
-    @Override
     public void widgetClick(View v) {
         switch (v.getId()) {
             case R.id.register_return_left://返回按钮点击事件

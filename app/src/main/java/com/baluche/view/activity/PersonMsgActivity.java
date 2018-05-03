@@ -85,11 +85,6 @@ public class PersonMsgActivity extends BaseActivity {
     }
 
     @Override
-    public void setActivityPre() {
-
-    }
-
-    @Override
     public void initView() {
         personal_head = findViewById(R.id.personal_head);
         personal_head_img = findViewById(R.id.personal_head_img);
@@ -105,17 +100,11 @@ public class PersonMsgActivity extends BaseActivity {
 
     }
 
-
-    @Override
-    public void doBusiness(Context mContext) {
-
-    }
-
     @Override
     public void widgetClick(View v) {
         switch (v.getId()) {
             case R.id.personal_head:
-                $Log("personal_head is on click");
+                LogD("personal_head is on click");
                 // FIXME: 2018/4/2 0002 测试代码  测试个人信息查询接口是否能用
                 HttpMethods.getInstance().queryPersonMsg(new Observer<PersonMsg>() {
                     @Override
@@ -165,15 +154,15 @@ public class PersonMsgActivity extends BaseActivity {
                 dialog.dismiss();
                 break;
             case R.id.timepicker_msg:
-                $Log(" timepicker_msg is on click");
+                LogD(" timepicker_msg is on click");
                 //时间选择器
                 TimePickerView pvTime = new TimePickerBuilder(PersonMsgActivity.this, new OnTimeSelectListener() {
                     @Override
                     public void onTimeSelect(Date date, View v) {
-                        $Log("" + date.getTime());
+                        LogD("" + date.getTime());
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");//这是转成后的时间的格式
                         String sd = sdf.format(new Date(Long.parseLong(String.valueOf(date.getTime()))));   // 时间戳转换成时间
-                        $Log("" + sd);
+                        LogD("" + sd);
                         timepicker_msg.setText(sd);
                     }
                 }).build();

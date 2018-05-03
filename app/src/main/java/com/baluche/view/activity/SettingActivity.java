@@ -32,10 +32,6 @@ public class SettingActivity extends BaseActivity {
         setContentView(R.layout.activity_setting);
     }
 
-    @Override
-    public void setActivityPre() {
-
-    }
 
     @Override
     public void initView() {
@@ -47,11 +43,6 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
-    }
-
-    @Override
-    public void doBusiness(Context mContext) {
 
     }
 

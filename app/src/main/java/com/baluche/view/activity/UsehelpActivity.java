@@ -26,11 +26,6 @@ public class UsehelpActivity extends BaseActivity {
     }
 
     @Override
-    public void setActivityPre() {
-
-    }
-
-    @Override
     public void initView() {
         for (int i = 0; i < 10; i++) {
             data.add("海南停車場" + i);
@@ -46,11 +41,6 @@ public class UsehelpActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
-    }
-
-    @Override
-    public void doBusiness(Context mContext) {
 
     }
 

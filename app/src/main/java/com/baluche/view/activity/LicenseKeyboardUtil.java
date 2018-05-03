@@ -170,11 +170,6 @@ public class LicenseKeyboardUtil extends BaseActivity {
     }
 
     @Override
-    public void doBusiness(Context mContext) {
-
-    }
-
-    @Override
     public void widgetClick(View view) {
 
     }

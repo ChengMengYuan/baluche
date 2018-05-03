@@ -29,10 +29,6 @@ public class VehicleManageActivity extends BaseActivity {
         setContentView(R.layout.activity_vehicle_manage);
     }
 
-    @Override
-    public void setActivityPre() {
-
-    }
 
     @Override
     public void initView() {
@@ -47,11 +43,6 @@ public class VehicleManageActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
-    }
-
-    @Override
-    public void doBusiness(Context mContext) {
 
     }
 

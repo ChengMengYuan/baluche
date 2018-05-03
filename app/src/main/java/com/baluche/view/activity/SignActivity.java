@@ -38,11 +38,6 @@ public class SignActivity extends BaseActivity {
     }
 
     @Override
-    public void setActivityPre() {
-
-    }
-
-    @Override
     public void initView() {
         sign_bt = findViewById(R.id.sign_bt);
         sign_bt.setOnClickListener(this::widgetClick);
@@ -65,11 +60,6 @@ public class SignActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
-    }
-
-    @Override
-    public void doBusiness(Context mContext) {
 
     }
 

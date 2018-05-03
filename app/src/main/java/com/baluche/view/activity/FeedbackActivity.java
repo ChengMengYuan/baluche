@@ -53,11 +53,6 @@ public class FeedbackActivity extends BaseActivity {
     }
 
     @Override
-    public void doBusiness(Context mContext) {
-
-    }
-
-    @Override
     public void widgetClick(View view) {
 
     }

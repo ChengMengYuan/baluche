@@ -16,22 +16,12 @@ public class OrderDetailActivity extends BaseActivity {
     }
 
     @Override
-    public void setActivityPre() {
-
-    }
-
-    @Override
     public void initView() {
 
     }
 
     @Override
     public void initData() {
-
-    }
-
-    @Override
-    public void doBusiness(Context mContext) {
 
     }
 

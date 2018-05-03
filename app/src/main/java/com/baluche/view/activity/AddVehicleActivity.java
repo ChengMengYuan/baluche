@@ -112,11 +112,6 @@ public class AddVehicleActivity extends BaseActivity {
     }
 
     @Override
-    public void doBusiness(Context mContext) {
-
-    }
-
-    @Override
     public void widgetClick(View view) {
         switch (view.getId()) {
             case R.id.add_next_step:

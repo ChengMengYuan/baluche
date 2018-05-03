@@ -29,10 +29,6 @@ public class WalletActivity extends BaseActivity {
         setContentView(R.layout.activity_wallet);
     }
 
-    @Override
-    public void setActivityPre() {
-
-    }
 
     @Override
     public void initView() {
@@ -54,11 +50,6 @@ public class WalletActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
-    }
-
-    @Override
-    public void doBusiness(Context mContext) {
 
     }
 

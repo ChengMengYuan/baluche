@@ -33,17 +33,7 @@ public class ParkpayingActivity extends BaseActivity {
         setContentView(R.layout.acitvity_parkpaying);
     }
 
-    @Override
-    public void setActivityPre() {
-
-    }
-
     public void initData() {
-
-    }
-
-    @Override
-    public void doBusiness(Context mContext) {
 
     }
 

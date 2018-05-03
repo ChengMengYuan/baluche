@@ -53,11 +53,6 @@ public class ResetPasswordActivity extends BaseActivity {
     }
 
     @Override
-    public void setActivityPre() {
-
-    }
-
-    @Override
     public void initView() {
         reset_account_edit = findViewById(R.id.reset_account_edit);
         reset_password_edit = findViewById(R.id.reset_password_edit);
@@ -77,11 +72,6 @@ public class ResetPasswordActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
-    }
-
-    @Override
-    public void doBusiness(Context mContext) {
 
     }
 
