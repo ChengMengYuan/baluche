@@ -17,6 +17,7 @@ import com.baluche.R;
 import com.baluche.app.MApplication;
 import com.baluche.util.CustomViewPager;
 import com.baluche.util.SnackbarUtil;
+import com.baluche.base.BaseActivity;
 import com.baluche.view.adapter.MainFragmentPageAdapter;
 import com.baluche.view.fragment.HomePageFragment;
 import com.baluche.view.fragment.MineFragment;
@@ -57,12 +58,6 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
         Fresco.initialize(MainActivity.this);
         setContentView(R.layout.activity_main);
     }
-
-    @Override
-    public void setActivityPre() {
-
-    }
-
 
     @Override
     public void initView() {
@@ -224,12 +219,11 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
         /*双击退出APP*/
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
             if (System.currentTimeMillis() - firstTime > 2000) {
-                //                Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
                 SnackbarUtil.showIndefiniteSnackbar(mviewpager,
                         "再按一次退出程序",
                         2000,
                         getResources().getColor(R.color.colorGreen),
-                        Color.BLACK);
+                        Color.WHITE);
                 firstTime = System.currentTimeMillis();
             } else {
                 finish();

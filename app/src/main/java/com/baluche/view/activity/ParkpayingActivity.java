@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.baluche.R;
+import com.baluche.base.BaseActivity;
 import com.baluche.view.fragment.PayingbillFragment;
 import com.baluche.view.fragment.PayrecordFragment;
 

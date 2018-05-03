@@ -11,11 +11,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.baluche.R;
-import com.baluche.http.http.HttpMethods;
-import com.baluche.http.entity.MyJoke;
-import com.baluche.http.entity.SMScode;
+import com.baluche.model.http.http.HttpMethods;
+import com.baluche.model.http.entity.MyJoke;
+import com.baluche.model.http.entity.SMScode;
 import com.baluche.other.timeservice.CodeTimer;
 import com.baluche.other.timeservice.CodeTimerService;
+import com.baluche.base.BaseActivity;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;

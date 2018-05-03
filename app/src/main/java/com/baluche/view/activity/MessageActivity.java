@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.baluche.R;
+import com.baluche.base.BaseActivity;
 import com.baluche.view.fragment.InformFragment;
 
 import java.util.ArrayList;
@@ -28,19 +29,10 @@ public class MessageActivity extends BaseActivity {
         setContentView(R.layout.acitvity_message);
     }
 
-    @Override
-    public void setActivityPre() {
-
-    }
-
     public void initData() {
 
     }
 
-    @Override
-    public void doBusiness(Context mContext) {
-
-    }
 
     @Override
     public void widgetClick(View view) {

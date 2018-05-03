@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.baluche.R;
+import com.baluche.base.BaseActivity;
 import com.baluche.view.adapter.VehicleManageViewAdapter;
 
 import java.util.ArrayList;

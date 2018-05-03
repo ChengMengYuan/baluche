@@ -1,17 +1,19 @@
-package com.baluche.http.http;
+package com.baluche.model.http.http;
+
+import android.util.Log;
 
 import com.baluche.app.Constant;
 import com.baluche.app.MApplication;
-import com.baluche.http.entity.Banner;
-import com.baluche.http.entity.Login;
-import com.baluche.http.entity.MyJoke;
-import com.baluche.http.entity.Park;
-import com.baluche.http.entity.PersonMsg;
-import com.baluche.http.entity.Portrait;
-import com.baluche.http.entity.Register;
-import com.baluche.http.entity.SMScode;
-import com.baluche.http.entity.Weather;
-import com.baluche.http.service.ApiService;
+import com.baluche.model.http.entity.Banner;
+import com.baluche.model.http.entity.Login;
+import com.baluche.model.http.entity.MyJoke;
+import com.baluche.model.http.entity.Park;
+import com.baluche.model.http.entity.PersonMsg;
+import com.baluche.model.http.entity.Portrait;
+import com.baluche.model.http.entity.Register;
+import com.baluche.model.http.entity.SMScode;
+import com.baluche.model.http.entity.Weather;
+import com.baluche.model.http.service.ApiService;
 import com.baluche.util.SystemUtil;
 import com.google.gson.Gson;
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -57,6 +59,7 @@ public class HttpMethods {
          */
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(chain -> {//添加统一的http请求头
+
                     Request request = chain.request()
                             .newBuilder()
                             .addHeader("Client-Type", "Android")//操作系统
@@ -105,10 +108,10 @@ public class HttpMethods {
                 + "/systemVersion/" + systemVersion
                 + "/Language/" + Language
         ;
-        Logger.d("userAgent", ":" + userAgent);
-        Logger.d("手机型号", ":" + systemModel);
-        Logger.d("系统版本", ":" + systemVersion);
-        Logger.d("手机厂商", ":" + deviceBrand);
+//        Logger.d("userAgent", ":" + userAgent);
+//        Logger.d("手机型号", ":" + systemModel);
+//        Logger.d("系统版本", ":" + systemVersion);
+//        Logger.d("手机厂商", ":" + deviceBrand);
         return userAgent;
     }
 
@@ -241,7 +244,7 @@ public class HttpMethods {
         pMap.put("time", time);
         pMap.put("mobile", login_name);// 手机号
         pMap.put("password", password);//密码
-
+        Log.d("http", "getLogin: " + pMap);
         apiService.getLogin(gson.toJson(pMap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())

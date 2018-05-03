@@ -15,6 +15,7 @@ import com.baluche.R;
 import com.baluche.model.database.entity.Suggest;
 import com.baluche.model.database.greendao.GreenDaoManager;
 import com.baluche.model.database.greendao.SuggestDao;
+import com.baluche.base.BaseActivity;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 

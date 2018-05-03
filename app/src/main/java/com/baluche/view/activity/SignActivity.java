@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.baluche.R;
+import com.baluche.base.BaseActivity;
 
 /**
  * 签到Activity

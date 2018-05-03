@@ -12,15 +12,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.baluche.R;
-import com.baluche.app.MApplication;
-import com.baluche.http.http.HttpMethods;
-import com.baluche.http.entity.Login;
-import com.baluche.http.entity.MyJoke;
+import com.baluche.base.BasePresenter;
+import com.baluche.model.http.http.HttpMethods;
+import com.baluche.model.http.entity.MyJoke;
+import com.baluche.presenter.LoginPre;
 import com.baluche.util.SnackbarUtil;
+import com.baluche.base.BaseActivity;
+import com.baluche.view.api.ILoginACT;
+
+import java.util.Objects;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -29,8 +32,8 @@ import io.reactivex.disposables.Disposable;
  * Created by Administrator on 2018/3/30 0030.
  */
 
-public class LoginActivity extends BaseActivity {
-
+public class LoginActivity extends BaseActivity implements ILoginACT {
+    private LoginPre loginPre;
     private EditText login_phone;
     private EditText login_password;
     private Button login_login;
@@ -47,11 +50,7 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-    }
-
-    @Override
-    public void setActivityPre() {
-
+        loginPre = new LoginPre(this);
     }
 
     @Override
@@ -97,7 +96,6 @@ public class LoginActivity extends BaseActivity {
                         @Override
                         public void onNext(MyJoke myJoke) {
                             Log.d(TAG, myJoke.getMessage() + "");
-                            final MaterialDialog materialDialog;//提示的dialog
                             switch (myJoke.getCode()) {
                                 case 10021://手机号输入有误
                                     SnackbarUtil.showLongSnackbar(login_phone,
@@ -108,20 +106,20 @@ public class LoginActivity extends BaseActivity {
                                 case 10019://不是老用户
                                     break;
                                 case 200://是老用户
-                                    materialDialog = new MaterialDialog.Builder(getApplicationContext())
-                                            .title("注册提示")
-                                            .content("欢迎您，您已经我们其他平台注册过！请直接设置密码进行APP登录操作!")
-                                            .positiveText("去设置")
-                                            .onPositive((dialog, which) -> {
-                                                Log.d("materialDialog", "去设置");
-                                                startActivity(ResetPasswordActivity.class);
-                                            })
-                                            .negativeText("取消登录")
-                                            .onNegative((dialog, which) -> {
-                                                Log.d("materialDialog", "取消登录");
-                                                finish();
-                                            })
-                                            .show();
+//                                    materialDialog = new MaterialDialog.Builder(getApplicationContext())
+//                                            .title("注册提示")
+//                                            .content("欢迎您，您已经我们其他平台注册过！请直接设置密码进行APP登录操作!")
+//                                            .positiveText("去设置")
+//                                            .onPositive((dialog, which) -> {
+//                                                Log.d("materialDialog", "去设置");
+//                                                startActivity(ResetPasswordActivity.class);
+//                                            })
+//                                            .negativeText("取消登录")
+//                                            .onNegative((dialog, which) -> {
+//                                                Log.d("materialDialog", "取消登录");
+//                                                finish();
+//                                            })
+//                                            .show();
                                     break;
                                 default:
 
@@ -155,60 +153,60 @@ public class LoginActivity extends BaseActivity {
             case R.id.login_login:
                 login_name = login_phone.getText().toString();
                 password = login_password.getText().toString();
-                final MaterialDialog materialDialog;//等待的dialog
-                materialDialog = new MaterialDialog.Builder(this)
-                        .title("请稍候")
-                        .content("正在登录,请稍后")
-                        .progress(true, 0)
-                        .show();
-                if (isPhoneNumber(login_name)) {
-                    if (IsPassword(password)) {
-
-                    } else {
-                        Toast.makeText(getApplicationContext(), "密码格式有误", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), "手机号有误", Toast.LENGTH_SHORT).show();
-                }
-
-                HttpMethods.getInstance().getLogin(new Observer<Login>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(Login login) {
-                        Log.d("http+login", "getMessage" + login.getMessage());
-                        Log.d("http+login", "getCode" + login.getCode());
-                        switch (login.getCode()) {
-                            // TODO: 2018/4/11 0011 开一个通知，告知登录状态 
-                            case 200:
-                                MApplication.Token = login.getData().getToken();
-                                Log.d("Token", "" + MApplication.Token);
-                                finish();
-                                break;
-                            case 10005:
-                                materialDialog.dismiss();
-                                Toast.makeText(getApplicationContext(), "手机号未注册，请前往注册帐号", Toast.LENGTH_SHORT).show();
-                                break;
-                            case 10004:
-                                materialDialog.dismiss();
-                                Toast.makeText(getApplicationContext(), "帐号密码错误", Toast.LENGTH_SHORT).show();
-                                break;
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+                loginPre.toLogin();
+////                final MaterialDialog materialDialog;//等待的dialog
+////                materialDialog = new MaterialDialog.Builder(this)
+////                        .title("请稍候")
+////                        .content("正在登录,请稍后")
+////                        .progress(true, 0)
+////                        .show();
+//                if (isPhoneNumber(login_name)) {
+//                    if (IsPassword(password)) {
+//
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), "密码格式有误", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "手机号有误", Toast.LENGTH_SHORT).show();
+//                }
+//
+//                HttpMethods.getInstance().getLogin(new Observer<Login>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(Login login) {
+//                        Log.d("http+login", "getMessage" + login.getMessage());
+//                        Log.d("http+login", "getCode" + login.getCode());
+//                        switch (login.getCode()) {
+//                            case 200:
+//                                MApplication.Token = login.getData().getToken();
+//                                Log.d("Token", "" + MApplication.Token);
+//                                finish();
+//                                break;
+//                            case 10005:
+////                                materialDialog.dismiss();
+//                                Toast.makeText(getApplicationContext(), "手机号未注册，请前往注册帐号", Toast.LENGTH_SHORT).show();
+//                                break;
+//                            case 10004:
+////                                materialDialog.dismiss();
+//                                Toast.makeText(getApplicationContext(), "帐号密码错误", Toast.LENGTH_SHORT).show();
+//                                break;
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//
+//                    }
+//                });
                 break;
             case R.id.login_register_tv:
                 startActivity(RegisterActivity.class);
@@ -257,5 +255,106 @@ public class LoginActivity extends BaseActivity {
             return true;
         }
 
+    }
+
+
+    /**
+     * 登录成功
+     */
+    @Override
+    public void loginSucceed() {
+        finish();
+    }
+
+    MaterialDialog errDialog;//提示的dialog
+
+    /**
+     * 登录失败
+     */
+    @Override
+    public void loginErr(String msg) {
+        assert msg != null;
+        assert !Objects.equals(msg, "");
+        errDialog = new MaterialDialog.Builder(getApplicationContext())
+                .title("登录失败")
+                .content(msg)
+                .negativeText("确定")
+                .show();
+    }
+
+    /**
+     * 获取登录的用户名
+     */
+    @Override
+    public void getLoginName() {
+
+    }
+
+    /**
+     * 获取用户密码
+     */
+    @Override
+    public void getcheckPassWord() {
+
+    }
+
+    /**
+     * 提示是老用户的提示
+     */
+    @Override
+    public void showIsOldUser() {
+
+    }
+
+    /**
+     * 提示还没注册
+     */
+    @Override
+    public void showIsNewUser() {
+        final MaterialDialog newUserDialog;//提示的dialog
+        newUserDialog = new MaterialDialog.Builder(getApplicationContext())
+                .title("注册提示")
+                .content("欢迎您，您已经我们其他平台注册过！请直接设置密码进行APP登录操作!")
+                .positiveText("去设置")
+                .onPositive((dialog, which) -> {
+                    Log.d("materialDialog", "去设置");
+                    startActivity(ResetPasswordActivity.class);
+                })
+                .negativeText("取消登录")
+                .onNegative((dialog, which) -> {
+                    Log.d("materialDialog", "取消登录");
+                    finish();
+                })
+                .show();
+    }
+
+    MaterialDialog waitDialog;//等待的dialog
+
+    /**
+     * 提示等待登录
+     */
+    @Override
+    public void showWaitDioLog() {
+        waitDialog = new MaterialDialog.Builder(this)
+                .title("请稍候")
+                .content("正在登录,请稍后")
+                .progress(true, 0)
+                .show();
+    }
+
+    /**
+     * 取消等待登录的提示
+     */
+    @Override
+    public void dismissWaitDioLog() {
+        waitDialog.dismiss();
+    }
+
+    /**
+     * 提示登录失败
+     */
+    @Override
+    public void showErrDiaLog() {
+        toast("登陆失败");
     }
 }

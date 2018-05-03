@@ -2,32 +2,20 @@ package com.baluche.view.activity;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.baluche.R;
-import com.baluche.view.adapter.DiscountHelpAdapter;
+import com.baluche.base.BaseActivity;
 
 import java.util.ArrayList;
-
-import static com.baluche.app.MApplication.TAG;
-import static com.baluche.app.MApplication.getContext;
 
 public class RechargeActivity extends BaseActivity {
 

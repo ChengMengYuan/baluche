@@ -2,15 +2,14 @@ package com.baluche.view.activity;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.baluche.R;
+import com.baluche.base.BaseActivity;
 import com.baluche.view.adapter.DiscountHelpAdapter;
-import com.baluche.view.adapter.UsehelpViewAdapter;
 
 import java.util.ArrayList;
 
@@ -27,10 +26,7 @@ public class DiscountHelpActivity extends BaseActivity {
         setContentView(R.layout.activity_discount_help);
     }
 
-    @Override
-    public void setActivityPre() {
 
-    }
 
     @Override
     public void initView() {

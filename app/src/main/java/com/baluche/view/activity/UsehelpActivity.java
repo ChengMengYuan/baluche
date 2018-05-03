@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.baluche.R;
+import com.baluche.base.BaseActivity;
 import com.baluche.view.adapter.UsehelpViewAdapter;
 
 import java.util.ArrayList;

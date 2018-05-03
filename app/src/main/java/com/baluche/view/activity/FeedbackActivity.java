@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.baluche.R;
+import com.baluche.base.BaseActivity;
 import com.baluche.view.fragment.CommonProblemFragment;
 import com.baluche.view.fragment.OnlineFeedbackFragment;
 
@@ -27,11 +28,6 @@ public class FeedbackActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
-    }
-
-    @Override
-    public void setActivityPre() {
-
     }
 
     @Override

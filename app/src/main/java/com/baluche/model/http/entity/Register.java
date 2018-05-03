@@ -1,15 +1,14 @@
-package com.baluche.http.entity;
+package com.baluche.model.http.entity;
 
 /**
- * Created by Administrator on 2018/4/8 0008.
+ * Created by Administrator on 2018/3/31 0031.
  */
 
-public class Portrait {
-
+public class Register {
     /**
      * code : 200
      * message : success
-     * data : {"url":"http://a.baluche.cn/avatar/96843/1523167223"}
+     * data : {"token":"3474379f786f66c0a9833c245cf51de3"}
      */
 
     private int code;
@@ -42,17 +41,17 @@ public class Portrait {
 
     public static class DataBean {
         /**
-         * url : http://a.baluche.cn/avatar/96843/1523167223
+         * token : 3474379f786f66c0a9833c245cf51de3
          */
 
-        private String url;
+        private String token;
 
-        public String getUrl() {
-            return url;
+        public String getToken() {
+            return token;
         }
 
-        public void setUrl(String url) {
-            this.url = url;
+        public void setToken(String token) {
+            this.token = token;
         }
     }
 }

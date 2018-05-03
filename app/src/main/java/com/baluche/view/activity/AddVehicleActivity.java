@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.baluche.R;
+import com.baluche.base.BaseActivity;
 
 public class AddVehicleActivity extends BaseActivity {
     // FIXME: 2018/4/22 自定义键盘长按删除键报错
@@ -39,10 +40,7 @@ public class AddVehicleActivity extends BaseActivity {
         setContentView(R.layout.activity_add_vehicle);
     }
 
-    @Override
-    public void setActivityPre() {
 
-    }
 
     @Override
     public void initView() {

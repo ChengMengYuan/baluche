@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baluche.R;
+import com.baluche.base.BaseActivity;
 
 import static com.baluche.app.Constant.APP_VERSION;
 

@@ -20,11 +20,12 @@ import android.widget.Toast;
 
 import com.baluche.R;
 import com.baluche.app.MApplication;
-import com.baluche.http.http.HttpMethods;
-import com.baluche.http.entity.Register;
-import com.baluche.http.entity.SMScode;
+import com.baluche.model.http.http.HttpMethods;
+import com.baluche.model.http.entity.Register;
+import com.baluche.model.http.entity.SMScode;
 import com.baluche.other.timeservice.CodeTimer;
 import com.baluche.other.timeservice.CodeTimerService;
+import com.baluche.base.BaseActivity;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -73,11 +74,6 @@ public class RegisterActivity extends BaseActivity {
         setContentView(R.layout.activity_register);
     }
 
-
-    @Override
-    public void setActivityPre() {
-
-    }
 
     @Override
     public void initView() {

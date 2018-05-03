@@ -12,12 +12,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.baluche.R;
-import com.baluche.view.activity.AddVehicleActivity;
+import com.baluche.base.BaseActivity;
 
 /**
  * Created by kevingo 2015/9/22.
  */
-public class LicenseKeyboardUtil extends BaseActivity{
+public class LicenseKeyboardUtil extends BaseActivity {
     private Context ctx;
     private LinearLayout keyboard;
     private KeyboardView keyboardView;
@@ -47,10 +47,10 @@ public class LicenseKeyboardUtil extends BaseActivity{
         keyboardView.setPreviewEnabled(true);
         //设置键盘按键监听器
         keyboardView.setOnKeyboardActionListener(listener);
-        provinceShort = new String[]{"京", "沪", "粤", "津", "冀", "晋", "蒙", "辽", "吉","黑",
-                 "苏", "浙", "皖", "闽", "赣","鲁", "豫", "鄂", "湘"
-                ,"桂", "琼", "渝", "川", "贵", "云", "藏",
-                "陕", "甘", "青","宁","新"};
+        provinceShort = new String[]{"京", "沪", "粤", "津", "冀", "晋", "蒙", "辽", "吉", "黑",
+                "苏", "浙", "皖", "闽", "赣", "鲁", "豫", "鄂", "湘"
+                , "桂", "琼", "渝", "川", "贵", "云", "藏",
+                "陕", "甘", "青", "宁", "新"};
 
         letterAndDigit = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
                 , "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"
@@ -85,15 +85,15 @@ public class LicenseKeyboardUtil extends BaseActivity{
 
         @Override
         public void onPress(int primaryCode) {
+            // TODO: 2018/4/28 拦截长按事件,不做出删除的处理
         }
 
         @Override
         public void onKey(int primaryCode, int[] keyCodes) {
             if (primaryCode == 112) { //xml中定义的删除键值为112
-                if (currentEditText <=0) {
+                if (currentEditText <= 0) {
                     currentEditText = 0;
-                }
-                else {
+                } else {
                     edits[currentEditText].setText("");//将当前EditText置为""并currentEditText-1
                     currentEditText--;
                     if (currentEditText < 1) {
@@ -157,10 +157,7 @@ public class LicenseKeyboardUtil extends BaseActivity{
         }
     }
 
-    @Override
-    public void setActivityPre() {
 
-    }
 
     @Override
     public void initView() {

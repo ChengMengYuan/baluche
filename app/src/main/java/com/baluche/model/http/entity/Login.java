@@ -1,14 +1,14 @@
-package com.baluche.http.entity;
+package com.baluche.model.http.entity;
 
 /**
- * Created by Administrator on 2018/3/31 0031.
+ * Created by Administrator on 2018/3/30 0030.
  */
 
-public class Register {
+public class Login {
     /**
      * code : 200
      * message : success
-     * data : {"token":"3474379f786f66c0a9833c245cf51de3"}
+     * data : {"token":"aca89be30815ba95162362fbd762b51a"}
      */
 
     private int code;
@@ -41,7 +41,7 @@ public class Register {
 
     public static class DataBean {
         /**
-         * token : 3474379f786f66c0a9833c245cf51de3
+         * token : aca89be30815ba95162362fbd762b51a
          */
 
         private String token;

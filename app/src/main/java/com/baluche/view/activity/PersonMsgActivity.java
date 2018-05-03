@@ -27,9 +27,10 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.baluche.R;
-import com.baluche.http.http.HttpMethods;
-import com.baluche.http.entity.PersonMsg;
+import com.baluche.model.http.http.HttpMethods;
+import com.baluche.model.http.entity.PersonMsg;
 import com.baluche.util.SnackbarUtil;
+import com.baluche.base.BaseActivity;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
