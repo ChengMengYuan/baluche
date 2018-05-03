@@ -64,27 +64,27 @@ public class SearchActivity extends BaseActivity {
 
     }
 
-    @Override
-    public void doBusiness(Context mContext) {
-        search_et.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                //输入框有变化的时候
-                LogD("onTextChanged");
-                LogD("" + charSequence);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-    }
+//    @Override
+//    public void doBusiness(Context mContext) {
+//        search_et.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//                //输入框有变化的时候
+//                LogD("onTextChanged");
+//                LogD("" + charSequence);
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//
+//            }
+//        });
+//    }
 
     @Override
     public void widgetClick(View view) {

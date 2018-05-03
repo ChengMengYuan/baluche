@@ -23,24 +23,9 @@ public interface ILoginACT extends IBaseView {
     void loginErr(String msg);
 
     /**
-     * 获取登录的用户名
-     */
-    void getLoginName();
-
-    /**
-     * 获取用户密码
-     */
-    void getcheckPassWord();
-
-    /**
      * 提示是老用户
      */
     void showIsOldUser();
-
-    /**
-     * 提示还没注册
-     */
-    void showIsNewUser();
 
     /**
      * 提示等待登录中
@@ -51,10 +36,5 @@ public interface ILoginACT extends IBaseView {
      * 取消等待登录的提示
      */
     void dismissWaitDioLog();
-
-    /**
-     * 提示登录失败
-     */
-    void showErrDiaLog();
 
 }
