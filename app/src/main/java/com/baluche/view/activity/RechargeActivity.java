@@ -35,6 +35,7 @@ public class RechargeActivity extends BaseActivity {
         setContentView(R.layout.activity_recharge);
     }
 
+
     @Override
     public void initView() {
 
@@ -48,6 +49,7 @@ public class RechargeActivity extends BaseActivity {
     public void initData() {
 
     }
+
 
     @Override
     public void widgetClick(View view) {

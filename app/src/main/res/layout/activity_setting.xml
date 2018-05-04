@@ -48,7 +48,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:background="#ffffff">
 
                 <TextView
@@ -110,7 +110,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="44dp"
+                android:layout_marginTop="30dp"
                 android:background="#ffffff">
 
                 <TextView
@@ -135,25 +135,27 @@
 
             </RelativeLayout>
 
+
+            <RelativeLayout
+                android:id="@+id/setting_quit"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:background="#ffffff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="17sp"
+                    android:textColor="#2cb154"
+                    android:text="退出登录"/>
+
+            </RelativeLayout>
+
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/setting_quit"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="73dp"
-            android:background="#ffffff">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:textSize="17sp"
-                android:textColor="#2cb154"
-                android:text="退出登录"/>
-            
-        </RelativeLayout>
 
     </RelativeLayout>
 

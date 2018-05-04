@@ -29,8 +29,12 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.baluche.R;
 import com.baluche.model.http.http.HttpMethods;
 import com.baluche.model.http.entity.PersonMsg;
+import com.baluche.presenter.LoginPre;
+import com.baluche.presenter.PersonMsgPre;
 import com.baluche.util.SnackbarUtil;
 import com.baluche.base.BaseActivity;
+import com.baluche.view.api.ILoginACT;
+import com.baluche.view.api.IPersonMsgACT;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
@@ -52,12 +56,13 @@ import io.reactivex.disposables.Disposable;
  * Created by Administrator on 2018/3/26 0026
  */
 
-public class PersonMsgActivity extends BaseActivity {
+public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
     public static final int SELECT_PHOTO = 1; //显示Android自带图库，用于选择用户自己的图片
     public static final int TAKE_PHTOT = 2;//选择照片
     private String sdPath;//SD卡的路径
     private String picPath;//图片存储路径
 
+    private PersonMsgPre personmsgPre;
     private View inflate;
     private EditText personal_name_msg;
     private TextView choosePhoto;
@@ -76,7 +81,7 @@ public class PersonMsgActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_persion_msg);
-
+        personmsgPre = new PersonMsgPre(this);
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         builder.detectFileUriExposure();
@@ -212,6 +217,7 @@ public class PersonMsgActivity extends BaseActivity {
 
                     }
                 });
+                personmsgPre.sendmessage();
                 break;
             default:
                 break;
@@ -282,5 +288,27 @@ public class PersonMsgActivity extends BaseActivity {
                 }
                 break;
         }
+    }
+
+    MaterialDialog successDialog;//提示的dialog
+
+    @Override
+    public void messageChangeSuccess() {
+        successDialog = new MaterialDialog.Builder(this)
+                .title("信息上传成功")
+                .content("信息上传成功")
+                .progress(true, 0)
+                .show();
+    }
+
+    MaterialDialog failDialog;//提示的dialog
+
+    @Override
+    public void messageChangeFail() {
+        failDialog = new MaterialDialog.Builder(this)
+                .title("请稍候")
+                .content("正在登录,请稍后")
+                .progress(true, 0)
+                .show();
     }
 }

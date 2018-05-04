@@ -84,6 +84,7 @@
                 </RelativeLayout>
 
                 <EditText
+                    android:id="@+id/recharge_money_edit"
                     android:layout_width="315dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
@@ -92,7 +93,8 @@
                     android:inputType="number|numberDecimal"
                     android:textSize="25sp"
                     android:textColor="#000000"
-                    android:orientation="vertical"/>
+                    android:orientation="vertical"
+                    android:numeric="decimal"/>
                 
             </RelativeLayout>
             
