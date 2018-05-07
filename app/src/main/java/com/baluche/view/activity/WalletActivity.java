@@ -57,8 +57,7 @@ public class WalletActivity extends BaseActivity {
     public void widgetClick(View view) {
         switch (view.getId()) {
             case R.id.wallet_recharge_btn:
-                Intent intent1 = new Intent(getApplicationContext(), RechargeActivity.class);
-                startActivity(intent1);
+                startActivity(RechargeActivity.class);
                 break;
         }
     }

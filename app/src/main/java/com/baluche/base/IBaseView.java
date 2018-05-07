@@ -7,7 +7,7 @@ import android.os.Bundle;
  * 创 建 人: cmy<p>
  * 创建日期: 2018/5/3 10:24<p>
  * 邮   箱: mengyuan.cheng.mier@gmail.com<p>
- * 文件说明:<p>
+ * 文件说明:V层的接口,所有V层都应该实现这个接口<p>
  */
 public interface IBaseView {
     String TAG = null;

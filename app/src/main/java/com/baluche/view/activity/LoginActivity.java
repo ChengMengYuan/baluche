@@ -152,26 +152,20 @@ public class LoginActivity extends BaseActivity implements ILoginACT {
                 .show();
     }
 
-    MaterialDialog waitDialog;//等待的dialog
-
     /**
-     * 提示等待登录
+     * 提示手机号非法
      */
     @Override
-    public void showWaitDioLog() {
-        waitDialog = new MaterialDialog.Builder(this)
-                .title("请稍候")
-                .content("正在登录,请稍后")
-                .progress(true, 0)
-                .show();
+    public void showIsNotPhoneNumber() {
+
     }
 
     /**
-     * 取消等待登录的提示
+     * 提示密码非法
      */
     @Override
-    public void dismissWaitDioLog() {
-        waitDialog.dismiss();
+    public void showIsNotPassWord() {
+
     }
 
 }

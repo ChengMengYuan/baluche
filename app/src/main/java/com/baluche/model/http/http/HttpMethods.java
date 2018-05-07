@@ -5,8 +5,8 @@ import android.util.Log;
 import com.baluche.app.Constant;
 import com.baluche.app.MApplication;
 import com.baluche.model.http.entity.Banner;
+import com.baluche.model.http.entity.BaseResultEntity;
 import com.baluche.model.http.entity.Login;
-import com.baluche.model.http.entity.MyJoke;
 import com.baluche.model.http.entity.Park;
 import com.baluche.model.http.entity.PersonMsg;
 import com.baluche.model.http.entity.Portrait;
@@ -351,7 +351,7 @@ public class HttpMethods {
      *
      * @param observer
      */
-    public void updatePassword(Observer<MyJoke> observer) {
+    public void updatePassword(Observer<BaseResultEntity> observer) {
         kmap.put("time", time);
         kmap.put("token", MApplication.Token);// token
 
@@ -373,7 +373,7 @@ public class HttpMethods {
      *
      * @param observer
      */
-    public void getPasswordBack(Observer<MyJoke> observer) {
+    public void getPasswordBack(Observer<BaseResultEntity> observer) {
         kmap.put("time", time);
         kmap.put("token", MApplication.Token);// token
 
@@ -394,7 +394,7 @@ public class HttpMethods {
      *
      * @param observer
      */
-    public void cheakUsertype(Observer<MyJoke> observer) {
+    public void cheakUsertype(Observer<BaseResultEntity> observer) {
         kmap.put("time", time);
         kmap.put("mobile", login_name);// 手机号
 
@@ -417,7 +417,7 @@ public class HttpMethods {
      *
      * @param observer
      */
-    public void bindCar(Observer<MyJoke> observer) {
+    public void bindCar(Observer<BaseResultEntity> observer) {
         kmap.put("time", time);
         kmap.put("token", MApplication.Token);// token
 

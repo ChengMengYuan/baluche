@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -18,14 +17,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.baluche.R;
-import com.baluche.app.MApplication;
 import com.baluche.model.http.http.HttpMethods;
-import com.baluche.model.http.entity.Register;
 import com.baluche.model.http.entity.SMScode;
 import com.baluche.other.timeservice.CodeTimer;
 import com.baluche.other.timeservice.CodeTimerService;
 import com.baluche.base.BaseActivity;
+import com.baluche.presenter.RegisterPre;
+import com.baluche.view.api.IRegisterACT;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -34,7 +34,8 @@ import io.reactivex.disposables.Disposable;
  * Created by Administrator on 2018/3/31 0031.
  */
 
-public class RegisterActivity extends BaseActivity {
+public class RegisterActivity extends BaseActivity implements IRegisterACT {
+    private RegisterPre registerPre;
     public static final String CODE = "code";
     private Intent mCodeTimerServiceIntent;
 
@@ -46,15 +47,11 @@ public class RegisterActivity extends BaseActivity {
     private Button register_register_bt; //注册button
     private TextView register_sendCode; // 发送验证码
 
-    private ImageView register_return_left;//返回按钮
-
     public static String re_phone = "";
     public static String re_password = "";
     public static String TSMScode = "";
 
-    private boolean flag = false;//判断帐号密码是否合法
-
-    private BroadcastReceiver mCodeTimerReceiver = new BroadcastReceiver(){
+    private BroadcastReceiver mCodeTimerReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -72,13 +69,15 @@ public class RegisterActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        registerPre = new RegisterPre(this);
     }
 
 
     @Override
     public void initView() {
         register_phone = findViewById(R.id.register_phone);
-        register_phone.addTextChangedListener(new TextWatcher() {//监听输入框的变化
+        /*监听手机号的变化*/
+        register_phone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -96,6 +95,7 @@ public class RegisterActivity extends BaseActivity {
             }
         });
         register_password = findViewById(R.id.register_password);
+        /*监听密码的变化*/
         register_password.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -114,6 +114,7 @@ public class RegisterActivity extends BaseActivity {
             }
         });
         register_register_et = findViewById(R.id.logon_verification_code_edit);
+        /*监听验证码的变化*/
         register_register_et.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -141,7 +142,7 @@ public class RegisterActivity extends BaseActivity {
         register_sendCode = findViewById(R.id.register_sendCode);
         register_sendCode.setOnClickListener(this);
 
-        register_return_left = findViewById(R.id.register_return_left);
+        ImageView register_return_left = findViewById(R.id.register_return_left);
         register_return_left.setOnClickListener(this);
 
         //验证码计时器服务
@@ -163,47 +164,16 @@ public class RegisterActivity extends BaseActivity {
             case R.id.register_return_left://返回按钮点击事件
                 finish();
                 break;
-            case R.id.register_register_bt://发送验证码按钮点击事件
-                HttpMethods.getInstance().getRegister(new Observer<Register>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(Register register) {//判断返回code,处理不同的结果
-                        int code = register.getCode();
-                        switch (code) {
-                            case 10000://参数错误
-                                toast(register.getMessage());
-                                break;
-                            case 200://注册成功
-                                Log.d("http+register", "" + register.getCode());
-                                Log.d("http+register", "" + register.getMessage());
-                                MApplication.Token = register.getData().getToken();
-                                Log.d("http+register", "" + register.getData().getToken());
-                                break;
-                        }
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+            case R.id.register_register_bt://注册按钮点击事件
+                registerPre.toResister(re_phone, re_password);
                 break;
 
             case R.id.register_cb://八路车协议单选框
                 checkString(re_phone, re_password);
                 break;
 
-            case R.id.register_sendCode:
+            case R.id.register_sendCode://发送验证码按钮点击事件
+                // FIXME: 2018/5/7 MVP
                 if (re_phone.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "请输入手机号码", Toast.LENGTH_SHORT).show();
                 } else {
@@ -215,7 +185,6 @@ public class RegisterActivity extends BaseActivity {
 
                         @Override
                         public void onNext(SMScode smScode) {
-                            smScode.getCode();
                             register_sendCode.setEnabled(false);
                             startService(mCodeTimerServiceIntent);//启动服务
                         }
@@ -237,32 +206,28 @@ public class RegisterActivity extends BaseActivity {
     }
 
     /**
-     * 初步检测注册的手机号以及密码是否合法
+     * 检测是否需要修改注册按钮为可点击
      *
-     * @return
+     * @return flag
      */
     private void checkString(String phone, String password) {
-        if (phone.length() != 11) {
-            flag = false;
-        } else {
-            if (password.length() < 6 || password.length() > 16) {
-                flag = false;
-            } else {
-                if (register_cb.isChecked()) {
-                    flag = true;
-                } else {
-                    flag = false;
-                }
-            }
-        }
-
+        boolean flag;
+//        if (phone.length() != 11) {
+//            flag = false;
+//        } else {
+//            flag = password.length() >= 6 && password.length() <= 16 && register_cb.isChecked();
+//        }
+        flag = phone.length()
+                == 11 && password.length()
+                >= 6 && password.length()
+                <= 16 && register_cb.isChecked();
         changeLoginBtn(flag);
     }
 
     /**
      * 修改注册按钮的属性
      *
-     * @param flag
+     * @param flag flag
      */
     private void changeLoginBtn(boolean flag) {
         if (flag) {//可以点击注册
@@ -275,41 +240,54 @@ public class RegisterActivity extends BaseActivity {
     }
 
 
-    //    @Override
-    //    public void onFocusChange(View view, boolean b) {
-    //        switch (view.getId()) {
-    //            case R.id.register_phone:
-    //                if (b) {// 此处为得到焦点时的处理内容
-    //
-    //                } else {// 此处为失去焦点时的处理内容
-    //                    re_phone = register_phone.getText().toString();
-    //                }
-    //                break;
-    //            case R.id.register_password:
-    //                if (b) {
-    //
-    //                } else {
-    //                    re_password = register_password.getText().toString();
-    //                }
-    //                break;
-    //            case R.id.logon_verification_code_edit:
-    //                if (b) {
-    //
-    //                } else {
-    //                    TSMScode = register_register_et.getText().toString();
-    //                }
-    //                break;
-    //        }
-    //        if (re_phone.isEmpty() || re_password.isEmpty()) {
-    //
-    //        } else {
-    //            flag = checkString(re_phone, re_password);
-    //        }
-    //        if (flag) {
-    //            register_register_bt.setBackgroundColor(Color.parseColor("#2cb154"));
-    //            register_register_bt.setEnabled(true);
-    //        } else {
-    //            register_register_bt.setEnabled(false);
-    //        }
-    //    }
+    /**
+     * 注册成功
+     */
+    @Override
+    public void registerSucceed() {
+        new MaterialDialog.Builder(this)
+                .title("提示")
+                .content("恭喜你注册成功")
+                .negativeText("确定")
+                .show();
+    }
+
+    /**
+     * 登录失败
+     *
+     * @param msg 登录失败后的返回信息
+     */
+    @Override
+    public void registerErr(String msg) {
+        new MaterialDialog.Builder(this)
+                .title("提示")
+                .content(msg)
+                .negativeText("确定")
+                .show();
+    }
+
+    /**
+     * 提示密码非法
+     */
+    @Override
+    public void showIsNotPassWord() {
+        new MaterialDialog.Builder(this)
+                .title("提示")
+                .content("密码不合法,请重新输入")
+                .negativeText("确定")
+                .show();
+    }
+
+
+    /**
+     * 提示手机号非法
+     */
+    @Override
+    public void showIsNotPhoneNumber() {
+        new MaterialDialog.Builder(this)
+                .title("提示")
+                .content("请输入正确的手机号")
+                .negativeText("确定")
+                .show();
+    }
 }

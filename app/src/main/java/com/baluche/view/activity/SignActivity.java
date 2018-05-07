@@ -1,6 +1,5 @@
 package com.baluche.view.activity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,12 +7,15 @@ import android.widget.ImageView;
 
 import com.baluche.R;
 import com.baluche.base.BaseActivity;
+import com.baluche.presenter.SignPre;
+import com.baluche.view.api.ISignACT;
 
 /**
  * 签到Activity
  */
-public class SignActivity extends BaseActivity {
-    private Button sign_bt;
+public class SignActivity extends BaseActivity implements ISignACT {
+    private SignPre signPre;
+
     private ImageView round_1;
     private ImageView line_1;
     private ImageView round_2;
@@ -29,17 +31,16 @@ public class SignActivity extends BaseActivity {
     private ImageView round_7;
     private ImageView line_7;
 
-    int num = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
+        signPre = new SignPre(this);
     }
 
     @Override
     public void initView() {
-        sign_bt = findViewById(R.id.sign_bt);
+        Button sign_bt = findViewById(R.id.sign_bt);
         sign_bt.setOnClickListener(this::widgetClick);
 
         round_1 = findViewById(R.id.round_1);
@@ -67,38 +68,11 @@ public class SignActivity extends BaseActivity {
     public void widgetClick(View view) {
         switch (view.getId()) {
             case R.id.sign_bt://点击签到后
-                // TODO: 2018/4/22 访问后台接口传送签到信息
-                changeSignInfo(num);
-                num++;
+                signPre.toSign();
                 break;
         }
     }
 
-    private void changeSignInfo(int num) {
-        switch (num) {
-            case 1:
-                changeOne();
-                break;
-            case 2:
-                changeTwo();
-                break;
-            case 3:
-                changeThree();
-                break;
-            case 4:
-                changefour();
-                break;
-            case 5:
-                changefive();
-                break;
-            case 6:
-                changeSix();
-                break;
-            case 7:
-                changeSeven();
-                break;
-        }
-    }
 
     private void changeOne() {
         round_1.setImageResource(R.drawable.rounded_baise);
@@ -117,20 +91,20 @@ public class SignActivity extends BaseActivity {
         line_3.setImageResource(R.drawable.line_baise);
     }
 
-    private void changefour() {
+    private void changeFour() {
         changeThree();
         round_4.setImageResource(R.drawable.rounded_baise);
         line_4.setImageResource(R.drawable.line_baise);
     }
 
-    private void changefive() {
-        changefour();
+    private void changeFive() {
+        changeFour();
         round_5.setImageResource(R.drawable.rounded_baise);
         line_5.setImageResource(R.drawable.line_baise);
     }
 
     private void changeSix() {
-        changefive();
+        changeFive();
         round_6.setImageResource(R.drawable.rounded_baise);
         line_6.setImageResource(R.drawable.line_baise);
     }
@@ -141,4 +115,43 @@ public class SignActivity extends BaseActivity {
         line_7.setImageResource(R.drawable.line_baise);
     }
 
+    /**
+     * 根据连续签到的次数更改UI
+     *
+     * @param num 连续签到的天数
+     */
+    @Override
+    public void changeSignInfo(int num) {
+        switch (num) {
+            case 1:
+                changeOne();
+                break;
+            case 2:
+                changeTwo();
+                break;
+            case 3:
+                changeThree();
+                break;
+            case 4:
+                changeFour();
+                break;
+            case 5:
+                changeFive();
+                break;
+            case 6:
+                changeSix();
+                break;
+            case 7:
+                changeSeven();
+                break;
+        }
+    }
+
+    /**
+     * 达到签到条件之后弹出礼物提示
+     */
+    @Override
+    public void showGiftPic() {
+
+    }
 }

@@ -1,8 +1,8 @@
 package com.baluche.model.http.service;
 
 import com.baluche.model.http.entity.Banner;
+import com.baluche.model.http.entity.BaseResultEntity;
 import com.baluche.model.http.entity.Login;
-import com.baluche.model.http.entity.MyJoke;
 import com.baluche.model.http.entity.Park;
 import com.baluche.model.http.entity.PersonMsg;
 import com.baluche.model.http.entity.Portrait;
@@ -119,7 +119,7 @@ public interface ApiService {
      * @return
      */
     @POST("user/signin/uppass")
-    Observable<MyJoke> updatePassword(@Body String json);
+    Observable<BaseResultEntity> updatePassword(@Body String json);
 
     /**
      * 找回密码接口
@@ -128,7 +128,7 @@ public interface ApiService {
      * @return
      */
     @POST("user/signin/uppass")
-    Observable<MyJoke> getPasswordBack(@Body String json);
+    Observable<BaseResultEntity> getPasswordBack(@Body String json);
 
 
     /**
@@ -138,7 +138,7 @@ public interface ApiService {
      * @return
      */
     @POST("user/signin/thirdparty")
-    Observable<MyJoke> cheakUsertype(@Body String json);
+    Observable<BaseResultEntity> cheakUsertype(@Body String json);
 
     /**
      * 用户绑定车辆
@@ -147,5 +147,5 @@ public interface ApiService {
      * @return
      */
     @POST("user/usercar/bindcar")
-    Observable<MyJoke> bindCar(@Body String json);
+    Observable<BaseResultEntity> bindCar(@Body String json);
 }

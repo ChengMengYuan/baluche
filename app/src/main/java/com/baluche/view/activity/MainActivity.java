@@ -1,6 +1,5 @@
 package com.baluche.view.activity;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -36,12 +35,6 @@ import java.util.ArrayList;
 public class MainActivity extends BaseActivity implements OnPageChangeListener {
 
     private CustomViewPager mviewpager;
-    //fragment的集合，对应每个子页面
-    private ArrayList<Fragment> fragments;
-    //选项卡中的按钮
-    private RelativeLayout rll_home;
-    private RelativeLayout rll_nearby;
-    private RelativeLayout rll_mine;
     //底部导航栏的图片
     private ImageView img_rll_home;
     private ImageView img_rll_nearby;
@@ -65,11 +58,11 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
         mviewpager = this.findViewById(R.id.mviewpage);
         mviewpager.setScanScroll(false);//设置viewPage禁止滑动，避免和地图起冲突
 
-        rll_home = this.findViewById(R.id.rll_home);
+        RelativeLayout rll_home = this.findViewById(R.id.rll_home);
         rll_home.setOnClickListener(this);
-        rll_nearby = this.findViewById(R.id.rll_nearby);
+        RelativeLayout rll_nearby = this.findViewById(R.id.rll_nearby);
         rll_nearby.setOnClickListener(this);
-        rll_mine = this.findViewById(R.id.rll_mine);
+        RelativeLayout rll_mine = this.findViewById(R.id.rll_mine);
         rll_mine.setOnClickListener(this);
 
         img_rll_home = this.findViewById(R.id.img_rll_home);
@@ -80,17 +73,17 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
         tv_rll_nearby = this.findViewById(R.id.tv_rll_nearby);
         tv_rll_mine = this.findViewById(R.id.tv_rll_mine);
 
-        /**
+        /*
          * 设置为选中色
          */
         img_rll_home.setImageDrawable(getResources().getDrawable(R.drawable.green_sye));
         tv_rll_home.setTextColor(getResources().getColor(R.color.colorGreen));
-        mviewpager.setOnPageChangeListener(this);
+//        mviewpager.setOnPageChangeListener(this);
         //        rll_home.setOnCheckedChangeListener(new InnerOnCheckedChangeListener());
         //        rll_nearby.setOnCheckedChangeListener(new InnerOnCheckedChangeListener());
         //        rll_mine.setOnCheckedChangeListener(new InnerOnCheckedChangeListener());
 
-        fragments = new ArrayList<>();
+        ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new HomePageFragment());
         fragments.add(new NearbyFragment());
         fragments.add(new MineFragment());
@@ -149,12 +142,12 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
 
     public void setNearbyClick() {
         mviewpager.setCurrentItem(1);
-        /**
+        /*
          * 设置为选中色
          */
         img_rll_nearby.setImageDrawable(getResources().getDrawable(R.drawable.green_fujin));
         tv_rll_nearby.setTextColor(getResources().getColor(R.color.colorGreen));
-        /**
+        /*
          * 设置为未选中色
          */
         img_rll_home.setImageDrawable(getResources().getDrawable(R.drawable.sye));
@@ -166,12 +159,12 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
 
     private void setHomeClick() {
         mviewpager.setCurrentItem(0);
-        /**
+        /*
          * 设置为选中色
          */
         img_rll_home.setImageDrawable(getResources().getDrawable(R.drawable.green_sye));
         tv_rll_home.setTextColor(getResources().getColor(R.color.colorGreen));
-        /**
+        /*
          * 设置为未选中色
          */
         img_rll_nearby.setImageDrawable(getResources().getDrawable(R.drawable.fujin));
@@ -183,12 +176,12 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
 
     private void setMineClikc() {
         mviewpager.setCurrentItem(2);
-        /**
+        /*
          * 设置为选中色
          */
         img_rll_mine.setImageDrawable(getResources().getDrawable(R.drawable.green_wod));
         tv_rll_mine.setTextColor(getResources().getColor(R.color.colorGreen));
-        /**
+        /*
          * 设置为未选中色
          */
         img_rll_home.setImageDrawable(getResources().getDrawable(R.drawable.sye));

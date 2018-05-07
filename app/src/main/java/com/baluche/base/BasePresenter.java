@@ -8,6 +8,5 @@ package com.baluche.base;
  * 邮   箱: mengyuan.cheng.mier@gmail.com<p>
  * 文件说明:<p>
  */
-public abstract class BasePresenter {
-
+public class BasePresenter {
 }

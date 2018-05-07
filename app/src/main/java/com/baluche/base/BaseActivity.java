@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.baluche.app.MApplication;
 
 /**
@@ -24,6 +25,7 @@ public abstract class BaseActivity
         implements
         IBaseView,
         View.OnClickListener {
+    private BasePresenter basePresenter;
     /**
      * 判断最后一次点击的时间
      */
@@ -32,7 +34,7 @@ public abstract class BaseActivity
      * 是否输出日志信息
      **/
     private boolean isDebug;
-    private String APP_NAME;
+    private String CLASS_NAME;
     final String TAG = this.getClass().getSimpleName();
 
 
@@ -41,7 +43,7 @@ public abstract class BaseActivity
         super.onCreate(savedInstanceState);
         MApplication.getInstance().addActivity(this);
         isDebug = MApplication.isDebug;
-        APP_NAME = MApplication.APP_NAME;
+        CLASS_NAME = getClass().getName();
         LogD(TAG + "-->onCreate()");
     }
 
@@ -139,7 +141,7 @@ public abstract class BaseActivity
      */
     protected void LogD(String msg) {
         if (isDebug) {
-            Log.d(APP_NAME, msg);
+            Log.d(CLASS_NAME, msg);
         }
     }
 
@@ -149,7 +151,7 @@ public abstract class BaseActivity
      * @return 是否是快速点击
      */
     private boolean isFastClick() {
-        if (System.currentTimeMillis() - lastClick <= 1000) {
+        if (System.currentTimeMillis() - lastClick <= 500) {
             return false;
         }
         lastClick = System.currentTimeMillis();
@@ -161,7 +163,7 @@ public abstract class BaseActivity
 //     */
 //    public void hideSoftInput() {
 //        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-//        if (getCurrentFocus() != null) {
+//        if (ge  tCurrentFocus() != null) {
 //            assert imm != null;
 //            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
 //        }
@@ -213,5 +215,25 @@ public abstract class BaseActivity
             assert imm != null;
             imm.showSoftInputFromInputMethod(getCurrentFocus().getWindowToken(), 0);
         }
+    }
+
+    MaterialDialog waitDialog;//等待的dialog
+
+    /**
+     * 提示正在注册
+     */
+    public void showWaitDioLog() {
+        waitDialog = new MaterialDialog.Builder(this)
+                .title("请稍候")
+                .content("正在处理,请稍后")
+                .progress(true, 0)
+                .show();
+    }
+
+    /**
+     * 取消等待登录的提示
+     */
+    public void dismissWaitDioLog() {
+        waitDialog.dismiss();
     }
 }

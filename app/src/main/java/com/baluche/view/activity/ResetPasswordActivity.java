@@ -5,34 +5,42 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.baluche.R;
 import com.baluche.model.http.http.HttpMethods;
-import com.baluche.model.http.entity.MyJoke;
 import com.baluche.model.http.entity.SMScode;
 import com.baluche.other.timeservice.CodeTimer;
 import com.baluche.other.timeservice.CodeTimerService;
 import com.baluche.base.BaseActivity;
+import com.baluche.presenter.ResetPasswordPre;
+import com.baluche.view.api.IResetPasswordACT;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-public class ResetPasswordActivity extends BaseActivity {
+public class ResetPasswordActivity extends BaseActivity implements IResetPasswordACT {
+
+    private ResetPasswordPre resetPasswordPre;
+
     public static final String CODE = "code";
     private Intent mCodeTimerServiceIntent;
 
     private EditText reset_account_edit;             //手机号输入框
     private EditText reset_password_edit;            //密码输入框
+    private String newPassword;//密码
     private EditText reset_verification_code_edit;   //验证码输入框
 
     private TextView send_code_bt_reset;             //发送验证码
     private Button reset_password_btn;             //设置密码按钮
 
-    private BroadcastReceiver mCodeTimerReceiver = new BroadcastReceiver(){
+    private BroadcastReceiver mCodeTimerReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -50,6 +58,7 @@ public class ResetPasswordActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acitvity_reset_password);
+        resetPasswordPre = new ResetPasswordPre(this);
     }
 
     @Override
@@ -68,6 +77,25 @@ public class ResetPasswordActivity extends BaseActivity {
         //注册接收验证码计时器信息的广播
         IntentFilter filter = new IntentFilter(CODE);
         registerReceiver(mCodeTimerReceiver, filter);
+        /*
+         * 监听密码输入框的变化
+         */
+        reset_password_edit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                newPassword = reset_password_edit.getText().toString();
+            }
+        });
     }
 
     @Override
@@ -87,7 +115,6 @@ public class ResetPasswordActivity extends BaseActivity {
 
                     @Override
                     public void onNext(SMScode smScode) {
-                        smScode.getCode();
                         send_code_bt_reset.setEnabled(false);
                         startService(mCodeTimerServiceIntent);//启动服务
                     }
@@ -104,29 +131,60 @@ public class ResetPasswordActivity extends BaseActivity {
                 });
                 break;
             case R.id.reset_password_btn://重置密码
-                HttpMethods.getInstance().getPasswordBack(new Observer<MyJoke>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(MyJoke myJoke) {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+                resetPasswordPre.toResetPassWord(newPassword);
                 break;
         }
+    }
+
+
+    /**
+     * 提示更改密码成功
+     */
+    @Override
+    public void showResetSucceed() {
+        new MaterialDialog.Builder(this)
+                .title("提示")
+                .content("密码修改成功！")
+                .negativeText("确定")
+                .show();
+    }
+
+    /**
+     * 修改密码错误提示
+     *
+     * @param msg 错误信息
+     */
+    @Override
+    public void showResetErr(String msg) {
+        new MaterialDialog.Builder(this)
+                .title("提示")
+                .content(msg)
+                .negativeText("确定")
+                .show();
+    }
+
+    /**
+     * 提示手机号非法
+     */
+    @Override
+    public void showIsNotPhoneNumber() {
+        new MaterialDialog.Builder(this)
+                .title("提示")
+                .content("请输入正确的手机号")
+                .negativeText("确定")
+                .show();
+    }
+
+    /**
+     * 提示密码非法
+     */
+    @Override
+    public void showIsNotPassWord() {
+        new MaterialDialog.Builder(this)
+                .title("提示")
+                .content("密码不合法,请重新输入")
+                .negativeText("确定")
+                .show();
     }
 
 
