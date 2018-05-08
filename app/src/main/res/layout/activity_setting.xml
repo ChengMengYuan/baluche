@@ -56,29 +56,29 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
+                    android:text="通知设置"
                     android:textColor="#333333"
-                    android:textSize="17sp"
-                    android:text="通知设置"/>
+                    android:textSize="17sp" />
 
                 <Switch
                     android:id="@+id/setting_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="16dp"
                     android:thumb="@drawable/selector_thumb"
-                    android:track="@drawable/selector_track"/>
+                    android:track="@drawable/selector_track" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/setting_switch"
                     android:layout_marginRight="16dp"
-                    android:textSize="14sp"
+                    android:layout_toLeftOf="@+id/setting_switch"
+                    android:text="消息注定推送"
                     android:textColor="#666666"
-                    android:text="消息注定推送"/>
+                    android:textSize="14sp" />
 
             </RelativeLayout>
 
@@ -93,17 +93,17 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
+                    android:text="关于我们"
                     android:textColor="#333333"
-                    android:textSize="17sp"
-                    android:text="关于我们"/>
-                
+                    android:textSize="17sp" />
+
                 <ImageView
                     android:layout_width="8dp"
                     android:layout_height="14dp"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="14dp"
-                    android:src="@drawable/right"/>
+                    android:src="@drawable/right" />
 
             </RelativeLayout>
 
@@ -118,9 +118,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
+                    android:text="当前版本"
                     android:textColor="#333333"
-                    android:textSize="17sp"
-                    android:text="当前版本"/>
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/APP_VERSION"
@@ -147,18 +147,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:textSize="17sp"
+                    android:text="退出登录"
                     android:textColor="#2cb154"
-                    android:text="退出登录"/>
+                    android:textSize="17sp" />
 
             </RelativeLayout>
 
         </LinearLayout>
 
 
-
     </RelativeLayout>
-
 
 
 </LinearLayout>

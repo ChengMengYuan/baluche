@@ -254,6 +254,8 @@ public class NearbyFragment extends Fragment {
                         aMap.setMyLocationStyle(myLocationStyle);
                         aMap.getUiSettings().setMyLocationButtonEnabled(true);
                         aMap.setMapType(MAP_TYPE_NORMAL);
+                        //去掉高德地图的log
+                        aMap.getUiSettings().setLogoBottomMargin(-50);
                         for (int i = 0; i < data.size(); i++) {
                             MarkerOptions markerOption = new MarkerOptions();
                             markerOption.position(new LatLng(Double.parseDouble(data.get(i).getData().get(i).getLat()),
@@ -286,7 +288,6 @@ public class NearbyFragment extends Fragment {
                             Log.d("while...", "onLocationChanged: ");
                         }
                         getData();
-
                     } else {
                         //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
                         Log.e("AmapError", "location Error, ErrCode:" + aMapLocation.getErrorCode() + ", errInfo:" + aMapLocation.getErrorInfo());

@@ -30,7 +30,8 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="6dp"
                 android:contentDescription="用来显示天气图标"
-                android:src="@drawable/qing" />
+                android:src="@drawable/qing"
+                android:visibility="gone" />
             <!--气温-->
             <TextView
                 android:id="@+id/tv_weather"
@@ -43,7 +44,8 @@
                 android:gravity="center"
                 android:text="12sp"
                 android:textColor="#ffffff"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:visibility="gone" />
 
             <!--地理位置-->
             <TextView
@@ -52,7 +54,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="16dp"
-                android:layout_toRightOf="@+id/img_weather"
                 android:gravity="center"
                 android:text="南昌"
                 android:textColor="#ffffff"
@@ -67,7 +68,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@+id/tv_location"
                 android:contentDescription="地理下拉按钮"
-                android:src="#ffffff" />
+                android:src="#ffffff"
+                android:visibility="gone" />
 
             <!--搜索框-->
             <ImageView
@@ -84,7 +86,7 @@
                 android:id="@+id/img_xiaoxi"
                 android:layout_width="19dp"
                 android:layout_height="16dp"
-                android:layout_alignParentEnd="true"
+                android:layout_alignEnd="@+id/xiaohongdian"
                 android:layout_centerVertical="true"
                 android:contentDescription="消息提示按钮"
                 android:src="@drawable/xiaoxi" />

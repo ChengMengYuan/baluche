@@ -3,6 +3,7 @@ package com.baluche.base;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,9 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.baluche.app.MApplication;
+import com.baluche.util.StatusBarUtil;
+
+import java.util.Objects;
 
 /**
  * Created by Administrator on 2018/4/3 0003.
@@ -25,7 +29,6 @@ public abstract class BaseActivity
         implements
         IBaseView,
         View.OnClickListener {
-    private BasePresenter basePresenter;
     /**
      * 判断最后一次点击的时间
      */
@@ -41,6 +44,10 @@ public abstract class BaseActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //隐藏标题栏
+        Objects.requireNonNull(getSupportActionBar()).hide();
+        //沉浸式状态栏
+        setStatusBar();
         MApplication.getInstance().addActivity(this);
         isDebug = MApplication.isDebug;
         CLASS_NAME = getClass().getName();
@@ -92,6 +99,13 @@ public abstract class BaseActivity
     public void onClick(View view) {
         if (isFastClick())
             widgetClick(view);
+    }
+
+    /**
+     * 设置沉浸式状态栏
+     */
+    public void setStatusBar() {
+        StatusBarUtil.compat(this, Color.rgb(44, 177, 84));
     }
 
     /**
