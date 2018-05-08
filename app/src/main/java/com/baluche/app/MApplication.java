@@ -1,13 +1,19 @@
 package com.baluche.app;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.util.Log;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.baluche.model.database.greendao.GreenDaoManager;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
 import java.util.ArrayList;
@@ -47,7 +53,6 @@ public class MApplication extends Application {
         GreenDaoManager.getInstance(mContext);
         Log.d("Token", "Token" + MApplication.Token);
 
-
         //判断用户是否已经打开App，详细见下面方法定义
         if (shouldInit()) {
             //注册推送服务
@@ -60,6 +65,7 @@ public class MApplication extends Application {
             //appKey:在开发者网站上注册时生成的，与appID相对应，用于验证appID是否合法
         }
     }
+
 
     //通过判断手机里的所有进程是否有这个App的进程
 //从而判断该App是否有打开

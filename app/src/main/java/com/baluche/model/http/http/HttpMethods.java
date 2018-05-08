@@ -38,8 +38,8 @@ import static com.baluche.view.activity.LoginActivity.password;
 import static com.baluche.view.activity.RegisterActivity.TSMScode;
 import static com.baluche.view.activity.RegisterActivity.re_password;
 import static com.baluche.view.activity.RegisterActivity.re_phone;
-import static com.baluche.view.fragment.NearbyFragment.Latitude;
-import static com.baluche.view.fragment.NearbyFragment.Longitude;
+//import static com.baluche.view.fragment.NearbyFragment.Latitude;
+//import static com.baluche.view.fragment.NearbyFragment.Longitude;
 
 /**
  * Created by Administrator on 2018/3/23 0023.
@@ -173,34 +173,34 @@ public class HttpMethods {
         pMap.clear();
     }
 
-    /**
-     * 获取停车场列表信息方法
-     *
-     * @param observer
-     */
-    public void getPark(Observer<Park> observer) {
-        kmap.put("time", time);
-        kmap.put("lat", Latitude);
-        kmap.put("lng", Longitude);
-
-        pMap.put("sign", Getsign(kmap));//加一个sign的md5验证
-        pMap.put("time", time);
-        pMap.put("lat", Latitude);
-        pMap.put("lng", Longitude);
-//        pMap.put("lng", Latitude);
-//        pMap.put("lat", Longitude);
-        Logger.t("getPark").d(Latitude);
-        Logger.t("getPark").d(Longitude);
-        Logger.t("getPark").d(gson.toJson(pMap));
-
-        apiService.getPark(gson.toJson(pMap))
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer);
-        kmap.clear();
-        pMap.clear();
-    }
+//    /**
+//     * 获取停车场列表信息方法
+//     *
+//     * @param observer
+//     */
+//    public void getPark(Observer<Park> observer) {
+//        kmap.put("time", time);
+//        kmap.put("lat", Latitude);
+//        kmap.put("lng", Longitude);
+//
+//        pMap.put("sign", Getsign(kmap));//加一个sign的md5验证
+//        pMap.put("time", time);
+//        pMap.put("lat", Latitude);
+//        pMap.put("lng", Longitude);
+////        pMap.put("lng", Latitude);
+////        pMap.put("lat", Longitude);
+//        Logger.t("getPark").d(Latitude);
+//        Logger.t("getPark").d(Longitude);
+//        Logger.t("getPark").d(gson.toJson(pMap));
+//
+//        apiService.getPark(gson.toJson(pMap))
+//                .subscribeOn(Schedulers.io())
+//                .unsubscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(observer);
+//        kmap.clear();
+//        pMap.clear();
+//    }
 
 
     /**
