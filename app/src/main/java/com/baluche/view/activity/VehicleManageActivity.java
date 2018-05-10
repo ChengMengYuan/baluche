@@ -11,22 +11,27 @@ import android.widget.Toast;
 
 import com.baluche.R;
 import com.baluche.base.BaseActivity;
+import com.baluche.presenter.VehicleManagePre;
 import com.baluche.view.adapter.VehicleManageViewAdapter;
+import com.baluche.view.api.IVehicleManageACT;
 
 import java.util.ArrayList;
 
-public class VehicleManageActivity extends BaseActivity {
+public class VehicleManageActivity extends BaseActivity implements IVehicleManageACT{
 
     private RecyclerView vehicle_manage_listView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ImageView vehicle_manage_add;
     private ArrayList<String> data = new ArrayList<>();
+    private VehicleManagePre vehicleManagePre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_manage);
+        vehicleManagePre = new VehicleManagePre(this);
+
     }
 
 
@@ -50,15 +55,18 @@ public class VehicleManageActivity extends BaseActivity {
     public void widgetClick(View view) {
         switch (view.getId()){
             case R.id.vehicle_manage_add:
-                if(data.size()>=3){
-                    Toast.makeText(this, "已达到最大绑定数量", Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Intent intent5 = new Intent(getApplicationContext(), AddVehicleActivity.class);
-                    startActivity(intent5);
-                    break;
-                }
+                vehicleManagePre.vehicle_manage_add();
+                break;
+        }
+    }
 
+    public void vehicle_manage_add(){
+        if(data.size()>=3){
+            Toast.makeText(this, "已达到最大绑定数量", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Intent intent5 = new Intent(getApplicationContext(), AddVehicleActivity.class);
+            startActivity(intent5);
         }
     }
 }

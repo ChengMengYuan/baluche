@@ -8,7 +8,8 @@ package com.baluche.view.api;
  * 邮   箱: mengyuan.cheng.mier@gmail.com<p>
  * 文件说明:注册界面接口<p>
  */
-public interface IRegisterACT extends IUser {
+public interface IRegisterACT extends IUser{
+
     /**
      * 注册成功
      */

@@ -61,6 +61,7 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
     public static final int TAKE_PHTOT = 2;//选择照片
     private String sdPath;//SD卡的路径
     private String picPath;//图片存储路径
+    private MaterialDialog materialDialog;//等待的dialog
 
     private PersonMsgPre personmsgPre;
     private View inflate;
@@ -109,115 +110,25 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
     public void widgetClick(View v) {
         switch (v.getId()) {
             case R.id.personal_head:
-                LogD("personal_head is on click");
-                // FIXME: 2018/4/2 0002 测试代码  测试个人信息查询接口是否能用
-                HttpMethods.getInstance().queryPersonMsg(new Observer<PersonMsg>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(PersonMsg personMsg) {
-                        Gson gson = new Gson();
-                        Log.d("http+personMsg", "" + personMsg.getCode());
-                        Log.d("http+personMsg", "" + personMsg.getMessage());
-                        Log.d("http+personMsg", "" + gson.toJson(personMsg.getData()));
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-                show_headchange();
+                personmsgPre.personal_head();
                 break;
             case R.id.return_left:
                 finish();
                 break;
             case R.id.personal_name_msg:
-                Toast.makeText(getApplicationContext(), "自定义显示位置的Toast", Toast.LENGTH_SHORT).show();
-                personal_name_msg.setFocusable(true);
-                showInputMethod();
+                personmsgPre.write_personal_name_msg();
                 break;
             case R.id.choosePhoto:
-                Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, SELECT_PHOTO);//运行Intent事件
-                dialog.dismiss();
+                personmsgPre.choosePhoto();
                 break;
             case R.id.takePhoto:
-                Intent intent2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                mImageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "image.jpg"));
-                //为拍摄的图片指定一个存储的路径
-                intent2.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
-                startActivityForResult(intent2, TAKE_PHTOT);
-                dialog.dismiss();
+                personmsgPre.takePhoto();
                 break;
             case R.id.timepicker_msg:
-                LogD(" timepicker_msg is on click");
-                //时间选择器
-                TimePickerView pvTime = new TimePickerBuilder(PersonMsgActivity.this, new OnTimeSelectListener() {
-                    @Override
-                    public void onTimeSelect(Date date, View v) {
-                        LogD("" + date.getTime());
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");//这是转成后的时间的格式
-                        String sd = sdf.format(new Date(Long.parseLong(String.valueOf(date.getTime()))));   // 时间戳转换成时间
-                        LogD("" + sd);
-                        timepicker_msg.setText(sd);
-                    }
-                }).build();
-                pvTime.show();
+                personmsgPre.write_timepicker_msg();
                 break;
             case R.id.updata_permsg:
-                final MaterialDialog materialDialog;//等待的dialog
-                materialDialog = new MaterialDialog.Builder(this)
-                        .title("请稍候")
-                        .content("正在上传数据")
-                        .progress(true, 0)
-                        .show();
-                HttpMethods.getInstance().updatePersonMsg(new Observer<PersonMsg>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(PersonMsg personMsg) {
-                        // TODO: 2018/4/8 0008 判断上传成功或者失败做出不同的限制并且取消等待的dialog
-                        materialDialog.dismiss();
-                        switch (personMsg.getCode()) {
-                            case 200:
-                                SnackbarUtil.showLongSnackbar(updata_permsg,
-                                        "上传成功",
-                                        getResources().getColor(R.color.colorGreen),
-                                        Color.WHITE);
-                                break;
-                            default:
-                                SnackbarUtil.showLongSnackbar(updata_permsg,
-                                        "上传成功",
-                                        getResources().getColor(R.color.colorGreen),
-                                        Color.WHITE);
-                                break;
-                        }
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-                personmsgPre.sendmessage();
+                personmsgPre.updata_permsg();
                 break;
             default:
                 break;
@@ -229,7 +140,7 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
 
     }
 
-
+    @Override
     public void show_headchange() {
         dialog = new Dialog(this, R.style.ActionSheetDialogStyle);
         //填充对话框的布局
@@ -253,6 +164,82 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
         //将属性设置给窗体
         dialogWindow.setAttributes(lp);
         dialog.show();//显示对话框
+    }
+
+    @Override
+    public void write_personal_name_msg(){
+        personal_name_msg.setFocusable(true);
+        showInputMethod();
+    }
+
+    @Override
+    public void write_timepicker_msg(){
+        LogD(" timepicker_msg is on click");
+        //时间选择器
+        TimePickerView pvTime = new TimePickerBuilder(PersonMsgActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                LogD("" + date.getTime());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");//这是转成后的时间的格式
+                String sd = sdf.format(new Date(Long.parseLong(String.valueOf(date.getTime()))));   // 时间戳转换成时间
+                LogD("" + sd);
+                timepicker_msg.setText(sd);
+            }
+        }).build();
+        pvTime.show();
+    }
+
+    @Override
+    public void during_send_personal_name_msg(){
+        materialDialog = new MaterialDialog.Builder(this)
+                .title("请稍候")
+                .content("正在上传数据")
+                .progress(true, 0)
+                .show();
+    }
+
+    @Override
+    public void clear_send_personal_name_msg(){
+        materialDialog.dismiss();
+    }
+
+    MaterialDialog successDialog;//提示的dialog
+
+    @Override
+    public void messageChangeSuccess() {
+        successDialog = new MaterialDialog.Builder(this)
+                .title("信息传输")
+                .content("信息上传成功")
+                .negativeText("确定")
+                .show();
+    }
+
+    MaterialDialog failDialog;//提示的dialog
+
+    @Override
+    public void messageChangeFail() {
+        failDialog = new MaterialDialog.Builder(this)
+                .title("信息传输")
+                .content("信息上传失败")
+                .negativeText("确定")
+                .show();
+    }
+
+    @Override
+    public void choosePhoto(){
+        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, SELECT_PHOTO);//运行Intent事件
+        dialog.dismiss();
+    }
+
+    @Override
+    public void takePhoto(){
+        Intent intent2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        mImageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "image.jpg"));
+        //为拍摄的图片指定一个存储的路径
+        intent2.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
+        startActivityForResult(intent2, TAKE_PHTOT);
+        dialog.dismiss();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -288,27 +275,5 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
                 }
                 break;
         }
-    }
-
-    MaterialDialog successDialog;//提示的dialog
-
-    @Override
-    public void messageChangeSuccess() {
-        successDialog = new MaterialDialog.Builder(this)
-                .title("信息上传成功")
-                .content("信息上传成功")
-                .progress(true, 0)
-                .show();
-    }
-
-    MaterialDialog failDialog;//提示的dialog
-
-    @Override
-    public void messageChangeFail() {
-        failDialog = new MaterialDialog.Builder(this)
-                .title("请稍候")
-                .content("正在登录,请稍后")
-                .progress(true, 0)
-                .show();
     }
 }

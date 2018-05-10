@@ -14,10 +14,12 @@ import android.widget.Toast;
 
 import com.baluche.R;
 import com.baluche.base.BaseActivity;
+import com.baluche.presenter.SettingPre;
+import com.baluche.view.api.ISettingACT;
 
 import static com.baluche.app.Constant.APP_VERSION;
 
-public class SettingActivity extends BaseActivity {
+public class SettingActivity extends BaseActivity implements ISettingACT{
 
     private View inflate;
     private RelativeLayout setting_quit;
@@ -25,11 +27,13 @@ public class SettingActivity extends BaseActivity {
     private TextView quit_true;
     private TextView quit_false;
     private TextView APP_VERSION_tv;
+    private SettingPre settingPre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+        settingPre = new SettingPre(this);
     }
 
 
@@ -50,18 +54,18 @@ public class SettingActivity extends BaseActivity {
     public void widgetClick(View view) {
         switch (view.getId()) {
             case R.id.setting_quit:
-                show_headchange();
+                settingPre.showquitdialog();
                 break;
             case R.id.quit_true:
-                Toast.makeText(this, "quit_true", Toast.LENGTH_LONG).show();
+                settingPre.quit_true();
                 break;
             case R.id.quit_false:
-                Toast.makeText(this, "quit_false", Toast.LENGTH_LONG).show();
+                settingPre.quit_false();
                 break;
         }
     }
 
-    public void show_headchange() {
+    public void showquitdialog(){
         dialog = new Dialog(this, R.style.ActionSheetDialogStyle);
         //填充对话框的布局
         inflate = LayoutInflater.from(this).inflate
@@ -84,5 +88,13 @@ public class SettingActivity extends BaseActivity {
         //将属性设置给窗体
         dialogWindow.setAttributes(lp);
         dialog.show();//显示对话框
+    }
+
+    public void quit_true(){
+        Toast.makeText(this, "quit_true", Toast.LENGTH_LONG).show();
+    }
+
+    public void quit_false(){
+        Toast.makeText(this, "quit_false", Toast.LENGTH_LONG).show();
     }
 }
