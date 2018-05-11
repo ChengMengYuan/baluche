@@ -140,7 +140,11 @@
         <activity android:name=".view.activity.FeedbackActivity" />
         <activity android:name=".view.activity.RechargeActivity" />
         <activity android:name=".view.activity.OrderDetailActivity" />
-        <activity android:name=".view.activity.RechargeAccomplishActivity"></activity>
+        <activity android:name=".view.activity.RechargeAccomplishActivity" />
+        <activity
+            android:name=".view.activity.ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

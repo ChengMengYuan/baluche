@@ -1,7 +1,11 @@
 package com.baluche.view.activity;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -152,6 +156,13 @@ public class SignActivity extends BaseActivity implements ISignACT {
      */
     @Override
     public void showGiftPic() {
-
+        getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_sign_succ);
+        //dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);//去掉这句话，背景会变暗
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        ImageView imageView = dialog.findViewById(R.id.sign_succ);
+        imageView.setImageResource(R.drawable.sign_succ);
+        dialog.show();
     }
 }

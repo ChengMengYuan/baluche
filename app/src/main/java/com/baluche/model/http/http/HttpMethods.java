@@ -7,7 +7,6 @@ import com.baluche.app.MApplication;
 import com.baluche.model.http.entity.Banner;
 import com.baluche.model.http.entity.BaseResultEntity;
 import com.baluche.model.http.entity.Login;
-import com.baluche.model.http.entity.Park;
 import com.baluche.model.http.entity.PersonMsg;
 import com.baluche.model.http.entity.Portrait;
 import com.baluche.model.http.entity.Register;
@@ -19,6 +18,7 @@ import com.google.gson.Gson;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -59,7 +59,6 @@ public class HttpMethods {
          */
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(chain -> {//添加统一的http请求头
-
                     Request request = chain.request()
                             .newBuilder()
                             .addHeader("Client-Type", "Android")//操作系统
@@ -116,12 +115,12 @@ public class HttpMethods {
     }
 
 
-    private static class sinalInstance {//单例模式
+    private static class singlInstance {//单例模式
         public static final HttpMethods instance = new HttpMethods();
     }
 
     public static HttpMethods getInstance() {
-        return sinalInstance.instance;
+        return singlInstance.instance;
     }
 
     /*需要签名校验的参数*/
@@ -259,19 +258,20 @@ public class HttpMethods {
     /**
      * 发送验证码方法
      *
-     * @param observer
+     * @param re_phone 手机号
+     * @param observer observer
      */
-    public void getSMScode(Observer<SMScode> observer) {
+    public void getSMScode(String re_phone, Observer<SMScode> observer) {
         kmap.put("time", time);
-        kmap.put("mobile", re_phone);// 手机号
+        kmap.put("mobile", re_phone);
 
 
         pMap.put("sign", Getsign(kmap));
         pMap.put("time", time);
-        pMap.put("mobile", re_phone);// 手机号
+        pMap.put("mobile", re_phone);
 
 
-        Logger.d("http+SMScode", "" + gson.toJson(pMap));
+        Log.d("http+SMScode", "" + gson.toJson(pMap));
         apiService.getSMScode(gson.toJson(pMap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -330,35 +330,16 @@ public class HttpMethods {
      *
      * @param observer
      */
-    public void updatePortrait(Observer<Portrait> observer) {
+    public void updatePortrait(File file, Observer<Portrait> observer) {
+
         kmap.put("time", time);
-        kmap.put("token", MApplication.Token);// token
+        kmap.put("avatar", file);
 
         pMap.put("sign", Getsign(kmap));
         pMap.put("time", time);
-        pMap.put("token", MApplication.Token);// token
-        apiService.updatePortrait("")
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer);
-        kmap.clear();
-        pMap.clear();
-    }
+        pMap.put("avatar", file);
 
-    /**
-     * 修改密码方法
-     *
-     * @param observer
-     */
-    public void updatePassword(Observer<BaseResultEntity> observer) {
-        kmap.put("time", time);
-        kmap.put("token", MApplication.Token);// token
-
-        pMap.put("sign", Getsign(kmap));
-        pMap.put("time", time);
-        pMap.put("token", MApplication.Token);// token
-        apiService.updatePassword("")
+        apiService.updatePortrait(gson.toJson(pMap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -369,18 +350,28 @@ public class HttpMethods {
 
 
     /**
-     * 找回密码方法
+     * 重置密码方法
      *
-     * @param observer
+     * @param phoneNum    手机号
+     * @param newPassword 新密码
+     * @param code        验证码
+     * @param observer    observer
      */
-    public void getPasswordBack(Observer<BaseResultEntity> observer) {
+    public void getPasswordBack(String phoneNum, String newPassword, String code, Observer<BaseResultEntity> observer) {
         kmap.put("time", time);
-        kmap.put("token", MApplication.Token);// token
+        kmap.put("mobile", phoneNum);
+        kmap.put("password", newPassword);
+        kmap.put("comfirmpassword", newPassword);
+        kmap.put("code", code);
 
         pMap.put("sign", Getsign(kmap));
         pMap.put("time", time);
-        pMap.put("token", MApplication.Token);// token
-        apiService.getPasswordBack("")
+        pMap.put("mobile", phoneNum);
+        pMap.put("password", newPassword);
+        pMap.put("comfirmpassword", newPassword);
+        pMap.put("code", code);
+        Log.d("HttpMethods", gson.toJson(pMap));
+        apiService.getPasswordBack(gson.toJson(pMap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

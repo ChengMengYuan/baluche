@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,9 +34,11 @@ public class ResetPasswordActivity extends BaseActivity implements IResetPasswor
     private Intent mCodeTimerServiceIntent;
 
     private EditText reset_account_edit;             //手机号输入框
+    private String phoneNum;//手机号
     private EditText reset_password_edit;            //密码输入框
     private String newPassword;//密码
     private EditText reset_verification_code_edit;   //验证码输入框
+    private String code;//验证码
 
     private TextView send_code_bt_reset;             //发送验证码
     private Button reset_password_btn;             //设置密码按钮
@@ -96,6 +99,43 @@ public class ResetPasswordActivity extends BaseActivity implements IResetPasswor
                 newPassword = reset_password_edit.getText().toString();
             }
         });
+
+        /**
+         * 监听手机号输入变化
+         */
+        reset_account_edit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                phoneNum = reset_account_edit.getText().toString();
+            }
+        });
+
+        reset_verification_code_edit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                code = reset_verification_code_edit.getText().toString();
+            }
+        });
     }
 
     @Override
@@ -107,7 +147,7 @@ public class ResetPasswordActivity extends BaseActivity implements IResetPasswor
     public void widgetClick(View v) {
         switch (v.getId()) {
             case R.id.send_code_bt_reset://发送验证码
-                HttpMethods.getInstance().getSMScode(new Observer<SMScode>() {
+                HttpMethods.getInstance().getSMScode(phoneNum, new Observer<SMScode>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
@@ -115,6 +155,8 @@ public class ResetPasswordActivity extends BaseActivity implements IResetPasswor
 
                     @Override
                     public void onNext(SMScode smScode) {
+                        Log.d("ResetPasswordActivity", "smScode.getCode():" + smScode.getCode());
+                        Log.d("ResetPasswordActivity", "smScode.getMessage():" + smScode.getMessage());
                         send_code_bt_reset.setEnabled(false);
                         startService(mCodeTimerServiceIntent);//启动服务
                     }
@@ -131,7 +173,7 @@ public class ResetPasswordActivity extends BaseActivity implements IResetPasswor
                 });
                 break;
             case R.id.reset_password_btn://重置密码
-                resetPasswordPre.toResetPassWord(newPassword);
+                resetPasswordPre.toResetPassWord(phoneNum, newPassword, code);
                 break;
         }
     }

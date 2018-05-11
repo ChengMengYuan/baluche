@@ -177,7 +177,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterACT {
                 if (re_phone.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "请输入手机号码", Toast.LENGTH_SHORT).show();
                 } else {
-                    HttpMethods.getInstance().getSMScode(new Observer<SMScode>() {
+                    HttpMethods.getInstance().getSMScode(re_phone, new Observer<SMScode>() {
                         @Override
                         public void onSubscribe(Disposable d) {
 

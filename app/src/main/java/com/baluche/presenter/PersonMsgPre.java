@@ -2,6 +2,7 @@ package com.baluche.presenter;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +15,11 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.baluche.R;
 import com.baluche.base.BasePresenter;
 import com.baluche.model.http.entity.PersonMsg;
+import com.baluche.model.http.entity.Portrait;
 import com.baluche.model.http.http.HttpMethods;
 import com.baluche.view.api.ILoginACT;
 import com.baluche.view.api.IPersonMsgACT;
+
 import android.support.v4.app.FragmentActivity;
 
 import io.reactivex.Observer;
@@ -31,7 +34,7 @@ import static com.baluche.view.activity.PersonMsgActivity.SELECT_PHOTO;
  * 邮   箱: 2766755768@qq.com<p>
  * 文件说明:<p>
  */
-public class PersonMsgPre extends BasePresenter{
+public class PersonMsgPre extends BasePresenter {
 
     private IPersonMsgACT iPersonMsgACT;
     private View inflate;
@@ -43,19 +46,19 @@ public class PersonMsgPre extends BasePresenter{
         this.iPersonMsgACT = iPersonMsgACT;
     }
 
-    public void personal_head(){
+    public void personal_head() {
         iPersonMsgACT.show_headchange();
     }
 
-    public void write_personal_name_msg(){
+    public void write_personal_name_msg() {
         iPersonMsgACT.write_personal_name_msg();
     }
 
-    public void write_timepicker_msg(){
+    public void write_timepicker_msg() {
         iPersonMsgACT.write_timepicker_msg();
     }
 
-    public void updata_permsg(){
+    public void updata_permsg() {
         iPersonMsgACT.during_send_personal_name_msg();
         HttpMethods.getInstance().updatePersonMsg(new Observer<PersonMsg>() {
             @Override
@@ -68,10 +71,10 @@ public class PersonMsgPre extends BasePresenter{
                 iPersonMsgACT.clear_send_personal_name_msg();
                 switch (personMsg.getCode()) {
                     case 200:
-                     iPersonMsgACT.messageChangeSuccess();
+                        iPersonMsgACT.messageChangeSuccess();
                         break;
                     default:
-                    iPersonMsgACT.messageChangeFail();
+                        iPersonMsgACT.messageChangeFail();
                         break;
                 }
 
@@ -90,11 +93,36 @@ public class PersonMsgPre extends BasePresenter{
     }
 
 
-    public void choosePhoto(){
+    public void choosePhoto() {
         iPersonMsgACT.choosePhoto();
     }
 
-    public void takePhoto(){
+    public void takePhoto() {
         iPersonMsgACT.takePhoto();
+    }
+
+    public void updatePortrait() {
+        HttpMethods.getInstance().updatePortrait(new Observer<Portrait>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(Portrait portrait) {
+                Log.d("PersonMsgPre", "getMessage" + portrait.getMessage());
+                Log.d("PersonMsgPre", "getCode" + portrait.getCode());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 }

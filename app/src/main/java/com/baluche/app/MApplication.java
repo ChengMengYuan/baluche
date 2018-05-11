@@ -1,19 +1,13 @@
 package com.baluche.app;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.util.Log;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.baluche.model.database.greendao.GreenDaoManager;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
 import java.util.ArrayList;
@@ -26,7 +20,7 @@ import java.util.List;
  * @Description : 将所有的activity添加到List中,方便退出时统一管理
  */
 public class MApplication extends Application {
-    public static final String APP_NAME = "畅行八路车";
+    //    public static final String APP_NAME = "畅行八路车";
     public static List<Object> activities = new ArrayList<>();
     private static MApplication instance;
     private static Context mContext;
@@ -68,11 +62,12 @@ public class MApplication extends Application {
 
 
     //通过判断手机里的所有进程是否有这个App的进程
-//从而判断该App是否有打开
+    //从而判断该App是否有打开
     private boolean shouldInit() {
-//通过ActivityManager我们可以获得系统里正在运行的activities
-//包括进程(Process)等、应用程序/包、服务(Service)、任务(Task)信息。
+        //通过ActivityManager我们可以获得系统里正在运行的activities
+        //包括进程(Process)等、应用程序/包、服务(Service)、任务(Task)信息。
         ActivityManager am = ((ActivityManager) getSystemService(Context.ACTIVITY_SERVICE));
+        assert am != null;
         List<ActivityManager.RunningAppProcessInfo> processInfos = am.getRunningAppProcesses();
         String mainProcessName = getPackageName();
 
@@ -102,7 +97,7 @@ public class MApplication extends Application {
     /**
      * 添加activity到容器中
      *
-     * @param activity
+     * @param activity activity
      */
     public void addActivity(Activity activity) {
         if (!activities.contains(activity)) {

@@ -12,6 +12,7 @@ import com.baluche.view.api.ISignACT;
  */
 public class SignPre extends BasePresenter {
     private ISignACT iSignACT;
+    private int num = 1;
 
     public SignPre(ISignACT iSignACT) {
         this.iSignACT = iSignACT;
@@ -21,8 +22,15 @@ public class SignPre extends BasePresenter {
      * 开始访问签到接口
      */
     public void toSign() {
-        int num = 1;
-        iSignACT.changeSignInfo(num);
-        num++;
+        switch (num) {
+            case 7://连续签到7天后的奖励提示
+                iSignACT.changeSignInfo(num);
+                iSignACT.showGiftPic();
+                break;
+            default:
+                iSignACT.changeSignInfo(num);
+                num++;
+                break;
+        }
     }
 }

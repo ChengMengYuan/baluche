@@ -5,8 +5,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.support.annotation.Nullable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -18,17 +18,14 @@ import android.widget.TextView;
 import com.baluche.R;
 import com.baluche.base.BaseActivity;
 import com.baluche.presenter.AddVehiclePre;
-import com.baluche.presenter.PersonMsgPre;
 import com.baluche.view.api.IAddVehicleACT;
 
-public class AddVehicleActivity extends BaseActivity implements IAddVehicleACT{
+public class AddVehicleActivity extends BaseActivity implements IAddVehicleACT {
     // FIXME: 2018/4/22 自定义键盘长按删除键报错
     public static final String INPUT_LICENSE_COMPLETE = "me.kevingo.licensekeyboard.input.comp";
     public static final String INPUT_LICENSE_KEY = "LICENSE";
 
-    private EditText inputbox1, inputbox2,
-            inputbox3, inputbox4,
-            inputbox5, inputbox6, inputbox7, inputbox8;
+    private EditText inputbox1, inputbox2, inputbox3, inputbox4, inputbox5, inputbox6, inputbox7, inputbox8;
     private LicenseKeyboardUtil keyboardUtil;
 
     private AddVehiclePre addVehiclePre;
@@ -44,7 +41,6 @@ public class AddVehicleActivity extends BaseActivity implements IAddVehicleACT{
         setContentView(R.layout.activity_add_vehicle);
         addVehiclePre = new AddVehiclePre(this);
     }
-
 
 
     @Override
@@ -181,12 +177,12 @@ public class AddVehicleActivity extends BaseActivity implements IAddVehicleACT{
     }
 
     @Override
-    public void keyboard_close_btn(){
+    public void keyboard_close_btn() {
         keyboard_close.setVisibility(View.GONE);
     }
 
     @Override
-    public void expand_keyboard(){
+    public void expand_keyboard() {
         clear();
         keyboardUtil = new LicenseKeyboardUtil(this, new EditText[]{inputbox1, inputbox2, inputbox3,
                 inputbox4, inputbox5, inputbox6, inputbox7, inputbox8}, false);

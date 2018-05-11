@@ -1,27 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/CoordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:title="标题" />
+        android:layout_height="30dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/whitecase_bg"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </android.support.design.widget.AppBarLayout>
 
     <!-- include main content -->
-    <include layout="@layout/nearby_map" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/nearby_map"
+        android:scaleType="centerCrop" />
 
-    <!-- include bottom sheet -->
-    <include layout="@layout/nearby_bottom_sheet" />
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nearby_bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="300dp"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/near_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </android.support.v4.widget.NestedScrollView>
+
 
 </android.support.design.widget.CoordinatorLayout>

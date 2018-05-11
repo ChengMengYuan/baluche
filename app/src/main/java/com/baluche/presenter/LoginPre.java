@@ -43,6 +43,9 @@ public class LoginPre extends UserPre {
                 iLoginACT.dismissWaitDioLog();
                 Log.d("http+login", "getMessage" + login.getMessage());
                 Log.d("http+login", "getCode" + login.getCode());
+                if (login.getCode() == 200) {
+                    Log.d("http+login", "getToken" + login.getData().getToken());
+                }
                 switch (login.getCode()) {
                     case 200:
                         iLoginACT.loginSucceed();

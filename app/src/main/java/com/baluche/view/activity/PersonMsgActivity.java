@@ -129,6 +129,7 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
                 break;
             case R.id.updata_permsg:
                 personmsgPre.updata_permsg();
+                personmsgPre.updatePortrait();
                 break;
             default:
                 break;
@@ -167,30 +168,27 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
     }
 
     @Override
-    public void write_personal_name_msg(){
+    public void write_personal_name_msg() {
         personal_name_msg.setFocusable(true);
         showInputMethod();
     }
 
     @Override
-    public void write_timepicker_msg(){
+    public void write_timepicker_msg() {
         LogD(" timepicker_msg is on click");
         //时间选择器
-        TimePickerView pvTime = new TimePickerBuilder(PersonMsgActivity.this, new OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {
-                LogD("" + date.getTime());
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");//这是转成后的时间的格式
-                String sd = sdf.format(new Date(Long.parseLong(String.valueOf(date.getTime()))));   // 时间戳转换成时间
-                LogD("" + sd);
-                timepicker_msg.setText(sd);
-            }
+        TimePickerView pvTime = new TimePickerBuilder(PersonMsgActivity.this, (date, v) -> {
+            LogD("" + date.getTime());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");//这是转成后的时间的格式
+            String sd = sdf.format(new Date(Long.parseLong(String.valueOf(date.getTime()))));   // 时间戳转换成时间
+            LogD("" + sd);
+            timepicker_msg.setText(sd);
         }).build();
         pvTime.show();
     }
 
     @Override
-    public void during_send_personal_name_msg(){
+    public void during_send_personal_name_msg() {
         materialDialog = new MaterialDialog.Builder(this)
                 .title("请稍候")
                 .content("正在上传数据")
@@ -199,7 +197,7 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
     }
 
     @Override
-    public void clear_send_personal_name_msg(){
+    public void clear_send_personal_name_msg() {
         materialDialog.dismiss();
     }
 
@@ -226,14 +224,14 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
     }
 
     @Override
-    public void choosePhoto(){
+    public void choosePhoto() {
         Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, SELECT_PHOTO);//运行Intent事件
         dialog.dismiss();
     }
 
     @Override
-    public void takePhoto(){
+    public void takePhoto() {
         Intent intent2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         mImageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "image.jpg"));
         //为拍摄的图片指定一个存储的路径
@@ -250,6 +248,8 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
                 if (data != null) {
                     if (requestCode == SELECT_PHOTO && resultCode == Activity.RESULT_OK)
                         personal_head_img.setImageURI(data.getData());
+                    Log.d("PersonMsgActivity", "sdPath:===" + sdPath);
+                    Log.d("PersonMsgActivity", "picPath:===" + picPath);
                 }
                 break;
 
@@ -263,6 +263,8 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
                     Bitmap bitmap = BitmapFactory.decodeStream(fis);
                     //将图片由Bitmap格式转换为URI
                     Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null, null));
+                    Log.d("PersonMsgActivity", "sdPath:===" + sdPath);
+                    Log.d("PersonMsgActivity", "picPath:===" + picPath);
                     personal_head_img.setImageURI(uri);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();

@@ -11,8 +11,12 @@ import com.baluche.model.http.entity.SMScode;
 import com.baluche.model.http.entity.Weather;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.http.Body;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 /**
  * Created by Administrator on 2018/3/23 0023.
@@ -102,24 +106,18 @@ public interface ApiService {
 
     /**
      * 头像上传接口
-     *
-     * @param json
-     * @return
      */
     @POST("user/signin/upuserinfo")
     Observable<Portrait> updatePortrait(@Body String json);
 
-
-    // FIXME: 2018/4/8 0008  myjok
-
     /**
-     * 修改密码接口
+     * 重置密码接口
      *
      * @param json
      * @return
      */
-    @POST("user/signin/uppass")
-    Observable<BaseResultEntity> updatePassword(@Body String json);
+    @POST("user/signin/getbackpass")
+    Observable<BaseResultEntity> getPasswordBack(@Body String json);
 
     /**
      * 找回密码接口
@@ -128,7 +126,7 @@ public interface ApiService {
      * @return
      */
     @POST("user/signin/uppass")
-    Observable<BaseResultEntity> getPasswordBack(@Body String json);
+    Observable<BaseResultEntity> updatePassword(@Body String json);
 
 
     /**

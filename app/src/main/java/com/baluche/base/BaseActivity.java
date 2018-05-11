@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.baluche.R;
 import com.baluche.app.MApplication;
 import com.baluche.util.StatusBarUtil;
 

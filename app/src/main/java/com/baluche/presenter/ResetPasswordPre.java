@@ -24,39 +24,40 @@ public class ResetPasswordPre extends UserPre {
     /**
      * 开始调用后台接口用来重置密码
      */
-    public void toResetPassWord(String newPassword) {
+    public void toResetPassWord(String phoneNum, String newPassword, String code) {
         if (isPassWord(newPassword)) {
             iResetPasswordACT.showWaitDioLog();
-            HttpMethods.getInstance().getPasswordBack(new Observer<BaseResultEntity>() {
-                @Override
-                public void onSubscribe(Disposable d) {
+            HttpMethods.getInstance().getPasswordBack(phoneNum, newPassword, code,
+                    new Observer<BaseResultEntity>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
 
-                }
+                        }
 
-                @Override
-                public void onNext(BaseResultEntity baseResultEntity) {
-                    iResetPasswordACT.dismissWaitDioLog();
-                    switch (baseResultEntity.getCode()) {
-                        case 200:
-                            iResetPasswordACT.showResetSucceed();
-                            break;
-                        default:
-                            iResetPasswordACT.showResetErr(baseResultEntity.getMessage());
-                            break;
-                    }
+                        @Override
+                        public void onNext(BaseResultEntity baseResultEntity) {
+                            iResetPasswordACT.dismissWaitDioLog();
+                            switch (baseResultEntity.getCode()) {
+                                case 200:
+                                    iResetPasswordACT.showResetSucceed();
+                                    break;
+                                default:
+                                    iResetPasswordACT.showResetErr(baseResultEntity.getMessage());
+                                    break;
+                            }
 
-                }
+                        }
 
-                @Override
-                public void onError(Throwable e) {
-                    e.printStackTrace();
-                }
+                        @Override
+                        public void onError(Throwable e) {
+                            e.printStackTrace();
+                        }
 
-                @Override
-                public void onComplete() {
+                        @Override
+                        public void onComplete() {
 
-                }
-            });
+                        }
+                    });
         } else {
             iResetPasswordACT.showIsNotPassWord();
         }

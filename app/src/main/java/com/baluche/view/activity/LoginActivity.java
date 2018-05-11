@@ -74,7 +74,6 @@ public class LoginActivity extends BaseActivity implements ILoginACT {
 
     @Override
     public void initData() {
-
     }
 
     @Override
