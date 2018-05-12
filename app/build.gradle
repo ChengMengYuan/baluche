@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 //使用greendao
 apply plugin: 'org.greenrobot.greendao'
 android {
+    signingConfigs {
+    }
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.baluche"
@@ -32,7 +34,6 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
-
 }
 
 //greendao配置
@@ -97,4 +98,5 @@ dependencies {
     implementation 'com.orhanobut:logger:2.2.0'
     compile 'com.github.kingideayou:tagcloudview:1.0.2'
     implementation files('libs/MiPush_SDK_Client_3_6_2.jar')
+    implementation files('libs/alipaySdk-20180403.jar')
 }

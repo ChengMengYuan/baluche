@@ -330,14 +330,12 @@ public class HttpMethods {
      *
      * @param observer
      */
-    public void updatePortrait(File file, Observer<Portrait> observer) {
+    public void updatePortrait( Observer<Portrait> observer) {
 
         kmap.put("time", time);
-        kmap.put("avatar", file);
 
         pMap.put("sign", Getsign(kmap));
         pMap.put("time", time);
-        pMap.put("avatar", file);
 
         apiService.updatePortrait(gson.toJson(pMap))
                 .subscribeOn(Schedulers.io())
