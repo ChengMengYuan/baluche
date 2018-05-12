@@ -173,7 +173,6 @@ public class RegisterActivity extends BaseActivity implements IRegisterACT {
                 break;
 
             case R.id.register_sendCode://发送验证码按钮点击事件
-                // FIXME: 2018/5/7 MVP
                 if (re_phone.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "请输入手机号码", Toast.LENGTH_SHORT).show();
                 } else {

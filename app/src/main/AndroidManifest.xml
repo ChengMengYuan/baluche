@@ -41,7 +41,6 @@
     <!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
 
 
-
     <application
         android:name=".app.MApplication"
         android:allowBackup="true"
