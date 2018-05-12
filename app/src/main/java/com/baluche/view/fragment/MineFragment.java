@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.baluche.R;
 import com.baluche.view.activity.AddVehicleActivity;
+import com.baluche.view.activity.DiscountCouponActivity;
 import com.baluche.view.activity.DiscountHelpActivity;
 import com.baluche.view.activity.FeedbackActivity;
 import com.baluche.view.activity.LoginActivity;
@@ -107,7 +108,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent2);
                 break;
             case R.id.sign:
-                Intent intent9 = new Intent(getActivity(), OrderDetailActivity.class);
+                Intent intent9 = new Intent(getActivity(), DiscountCouponActivity.class);
                 startActivity(intent9);
                 break;
             case R.id.my_wallet:

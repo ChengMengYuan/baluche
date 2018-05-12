@@ -17,7 +17,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/parkpaying_return_left"
+                android:id="@+id/discount_coupon_left"
                 android:layout_width="8dp"
                 android:layout_height="16dp"
                 android:layout_marginLeft="16dp"
@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="停车缴费"
+                android:text="优惠券"
                 android:textColor="#ffffff"
                 android:textSize="16sp" />
         </RelativeLayout>
@@ -36,7 +36,7 @@
     </android.support.v7.widget.Toolbar>
 
     <android.support.design.widget.TabLayout
-        android:id="@+id/parkpaying_tayLayout"
+        android:id="@+id/discount_coupon_tayLayout"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         app:tabIndicatorColor="#49dd12"
@@ -44,7 +44,7 @@
         app:tabTextColor="@android:color/darker_gray"/>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/parkpaing_viewPager"
+        android:id="@+id/discount_coupon_viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">

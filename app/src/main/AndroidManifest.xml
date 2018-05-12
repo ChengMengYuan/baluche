@@ -156,6 +156,7 @@
             android:windowSoftInputMode="adjustResize|stateHidden">
 
         </activity>
+        <activity android:name=".view.activity.DiscountCouponActivity"></activity>
     </application>
 
 </manifest>
