@@ -86,20 +86,12 @@ public class LicenseKeyboardUtil extends BaseActivity {
         @Override
         public void onPress(int primaryCode) {
             // TODO: 2018/4/28 拦截长按事件,不做出删除的处理
-        }
-
-        @Override
-        public void onKey(int primaryCode, int[] keyCodes) {
             if (primaryCode == 112) { //xml中定义的删除键值为112
                 if (currentEditText <= 0) {
                     currentEditText = 0;
                 } else {
                     edits[currentEditText].setText("");//将当前EditText置为""并currentEditText-1
                     currentEditText--;
-                    if (currentEditText < 1) {
-                        //切换为省份简称键盘
-                        keyboardView.setKeyboard(k1);
-                    }
                 }
 
             } else if (primaryCode == 66) { //xml中定义的完成键值为66
@@ -134,6 +126,17 @@ public class LicenseKeyboardUtil extends BaseActivity {
                     }
                 }
             }
+        }
+
+        @Override
+        public void onKey(int primaryCode, int[] keyCodes) {
+            if (primaryCode == 112) { //xml中定义的删除键值为112
+
+                    if (currentEditText < 1) {
+                        //切换为省份简称键盘
+                        keyboardView.setKeyboard(k1);
+                    }
+                }
         }
     };
 

@@ -17,7 +17,7 @@ public interface IRechargeACT extends IBaseView{
     void show_paydialog();
 
     /**
-     * 支付方式弹窗
+     *确认支付
      */
-    void paydialogstyle();
+    void pay_dialog_sure_btn();
 }

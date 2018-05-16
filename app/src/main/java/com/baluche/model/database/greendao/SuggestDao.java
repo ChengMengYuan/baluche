@@ -128,6 +128,7 @@ public class SuggestDao extends AbstractDao<Suggest, Void> {
 
     @Override
     public boolean hasKey(Suggest entity) {
+        // TODO
         return false;
     }
 

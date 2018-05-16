@@ -85,42 +85,79 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/pay_dialog_style"
+        android:id="@+id/pay_ways_choose_weixin"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="1dp"
+        android:layout_height="58dp"
         android:background="#ffffff">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/pay_ways_wechat_ic"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="13dp"
-            android:text="付款方式"
-            android:textColor="#666666"
-            android:textSize="16sp" />
+            android:layout_marginLeft="14dp"
+            android:src="@drawable/wechat"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="9dp"
-            android:layout_toLeftOf="@+id/pay_dialog_right"
-            android:text="微信"
-            android:textColor="#666666"
-            android:textSize="16sp" />
-
+            android:layout_toRightOf="@+id/pay_ways_wechat_ic"
+            android:layout_marginLeft="8dp"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:text="微信支付"/>
 
         <ImageView
-            android:id="@+id/pay_dialog_right"
-            android:layout_width="7dp"
-            android:layout_height="14dp"
+            android:id="@+id/pay_dialog_wechat_choose"
+            android:layout_width="17dp"
+            android:layout_height="13dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="14dp"
-            android:src="@drawable/right" />
+            android:layout_marginRight="16dp"
+            android:src="@drawable/choose_true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:background="#efefef"/>
+
+    <RelativeLayout
+        android:id="@+id/pay_ways_choose_alipay"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:background="#ffffff">
+
+        <ImageView
+            android:id="@+id/pay_ways_alipay_ic"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:src="@drawable/alipay"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/pay_ways_alipay_ic"
+            android:layout_marginLeft="13dp"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:text="支付宝"/>
+
+        <ImageView
+            android:id="@+id/pay_dialog_alipay_choose"
+            android:layout_width="17dp"
+            android:layout_height="13dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/choose_true"
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <RelativeLayout

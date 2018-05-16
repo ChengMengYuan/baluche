@@ -23,7 +23,7 @@ public class RechargePre extends BasePresenter {
         iRechargeACT.show_paydialog();
     }
 
-    public void paydialogstyle(){
-        iRechargeACT.paydialogstyle();
+    public void pay_dialog_sure_btn(){
+        iRechargeACT.pay_dialog_sure_btn();
     }
 }

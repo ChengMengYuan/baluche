@@ -34,6 +34,7 @@
         android:background="#ffffff"></LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/pay_ways_choose_weixin"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:background="#ffffff">
@@ -73,6 +74,7 @@
         android:background="#efefef"/>
 
     <RelativeLayout
+        android:id="@+id/pay_ways_choose_alipay"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:background="#ffffff">
@@ -101,7 +103,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
-            android:src="@drawable/choose_true"/>
+            android:src="@drawable/choose_true"
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <RelativeLayout
