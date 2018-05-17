@@ -72,7 +72,7 @@ public class AlipayTask extends AsyncTask {
 
             @Override
             public void onError(Throwable e) {
-                e.printStackTrace();
+
             }
 
             @Override
