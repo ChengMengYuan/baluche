@@ -14,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -38,10 +39,11 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT{
     private View inflate;
     private Dialog dialog;
     private RechargePre rechargePre;
-    private RelativeLayout pay_dialog_style;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView pay_rv;
+    private ImageView pay_dialog_wechat_choose;
+    private ImageView pay_dialog_alipay_choose;
     private RecyclerView.LayoutManager mLayoutManager;
+    private RelativeLayout pay_ways_choose_weixin;
+    private RelativeLayout pay_ways_choose_alipay;
     private String editmoney;
     private ArrayList<String> data = new ArrayList<>();
 
@@ -75,7 +77,6 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT{
 
             public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {}
         });
-
     }
 
     @Override
@@ -89,16 +90,22 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT{
 
         switch (view.getId()){
             case R.id.recharge_pay_btn:
-                editmoney =recharge_money_edit.getText().toString();
+                editmoney =recharge_money_edit.getText().toString();//获得充值金额
                 rechargePre.show_paydialog();
                 break;
 
-            case R.id.pay_dialog_style:
-                rechargePre.paydialogstyle();
+            case R.id.pay_dialog_sure_btn:
+                rechargePre.pay_dialog_sure_btn();
                 break;
 
-            case R.id.pay_dialog_sure_btn:
-                startActivity(RechargeAccomplishActivity.class);
+            case R.id.pay_ways_choose_weixin:
+                pay_dialog_wechat_choose.setVisibility(View.VISIBLE);
+                pay_dialog_alipay_choose.setVisibility(View.GONE);
+                break;
+
+            case R.id.pay_ways_choose_alipay:
+                pay_dialog_wechat_choose.setVisibility(View.GONE);
+                pay_dialog_alipay_choose.setVisibility(View.VISIBLE);
                 break;
         }
 
@@ -110,9 +117,6 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT{
         inflate = LayoutInflater.from(this).inflate
                 (R.layout.pay_dialog, null);
 
-        pay_dialog_style = inflate.findViewById(R.id.pay_dialog_style);
-        pay_dialog_style.setOnClickListener(this);
-
         pay_dialog_sure_btn = inflate.findViewById(R.id.pay_dialog_sure_btn);
         pay_dialog_sure_btn.setOnClickListener(this);
 
@@ -122,26 +126,14 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT{
         getpay_dialog_money_number_text = inflate.findViewById(R.id.pay_dialog_money_number_text);
         getpay_dialog_money_number_text.setText(editmoney.toString());
 
-        dialog.setContentView(inflate);
-        //获取当前Activity所在的窗体
-        Window dialogWindow = dialog.getWindow();
-        //设置Dialog从窗体底部弹出
-        dialogWindow.setGravity(Gravity.BOTTOM);
-        //获得窗体的属性
-        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-        lp.y = 0;//设置Dialog距离底部的距离
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        //将属性设置给窗体
-        dialogWindow.setAttributes(lp);
-        dialog.show();//显示对话框
-    }
+        pay_dialog_wechat_choose = inflate.findViewById(R.id.pay_dialog_wechat_choose);
+        pay_dialog_alipay_choose = inflate.findViewById(R.id.pay_dialog_alipay_choose);
 
+        pay_ways_choose_weixin = inflate.findViewById(R.id.pay_ways_choose_weixin);
+        pay_ways_choose_weixin.setOnClickListener(this);
 
-    public void paydialogstyle(){
-        dialog = new Dialog(this, R.style.ActionSheetDialogStyle);
-        //填充对话框的布局
-        inflate = LayoutInflater.from(this).inflate
-                (R.layout.pay_ways_dialog, null);
+        pay_ways_choose_alipay = inflate.findViewById(R.id.pay_ways_choose_alipay);
+        pay_ways_choose_alipay.setOnClickListener(this);
 
         dialog.setContentView(inflate);
         //获取当前Activity所在的窗体
@@ -156,4 +148,10 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT{
         dialogWindow.setAttributes(lp);
         dialog.show();//显示对话框
     }
+
+    @Override
+    public void pay_dialog_sure_btn() {
+        startActivity(RechargeAccomplishActivity.class);
+    }
+
 }

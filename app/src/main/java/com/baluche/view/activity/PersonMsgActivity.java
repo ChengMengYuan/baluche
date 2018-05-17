@@ -242,37 +242,39 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         switch (requestCode) {
             case SELECT_PHOTO://从相册选择照片
-                if (data != null) {
-                    if (requestCode == SELECT_PHOTO && resultCode == Activity.RESULT_OK)
+                if (requestCode == SELECT_PHOTO && resultCode == Activity.RESULT_OK) {
+                    if (data != null)
+                    {
                         personal_head_img.setImageURI(data.getData());
-                    Log.d("PersonMsgActivity", "sdPath:===" + sdPath);
-                    Log.d("PersonMsgActivity", "picPath:===" + picPath);
+                    }
                 }
                 break;
 
             case TAKE_PHTOT://通过相机拍照生成头像
                 FileInputStream fis = null;
-
-                try {
-                    //把图片转化为字节流
-                    fis = new FileInputStream(picPath);
-                    //把流转化图片
-                    Bitmap bitmap = BitmapFactory.decodeStream(fis);
-                    //将图片由Bitmap格式转换为URI
-                    Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null, null));
-                    Log.d("PersonMsgActivity", "sdPath:===" + sdPath);
-                    Log.d("PersonMsgActivity", "picPath:===" + picPath);
-                    personal_head_img.setImageURI(uri);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } finally {
+                Log.d("PersonMsgActivity", "requestCode:===" + requestCode);
+                Log.d("PersonMsgActivity", "resultCode:===" + resultCode);
+                if (requestCode == TAKE_PHTOT && resultCode == Activity.RESULT_OK){
                     try {
-                        fis.close();//关闭流
-                    } catch (IOException e) {
+                        //把图片转化为字节流
+                        fis = new FileInputStream(picPath);
+                        //把流转化图片
+                        Bitmap bitmap = BitmapFactory.decodeStream(fis);
+                        //将图片由Bitmap格式转换为URI
+                        Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null, null));
+                        Log.d("PersonMsgActivity", "sdPath:===" + sdPath);
+                        Log.d("PersonMsgActivity", "picPath:===" + picPath);
+                        personal_head_img.setImageURI(uri);
+                    } catch (FileNotFoundException e) {
                         e.printStackTrace();
+                    } finally {
+                        try {
+                            fis.close();//关闭流
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
                 break;
