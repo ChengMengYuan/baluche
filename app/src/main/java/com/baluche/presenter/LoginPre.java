@@ -2,7 +2,6 @@ package com.baluche.presenter;
 
 import android.util.Log;
 
-import com.baluche.base.BasePresenter;
 import com.baluche.model.http.entity.BaseResultEntity;
 import com.baluche.model.http.entity.Login;
 import com.baluche.model.http.http.HttpMethods;

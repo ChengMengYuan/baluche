@@ -7,6 +7,7 @@ import com.baluche.app.MApplication;
 import com.baluche.model.http.entity.Banner;
 import com.baluche.model.http.entity.BaseResultEntity;
 import com.baluche.model.http.entity.Login;
+import com.baluche.model.http.entity.PayTest;
 import com.baluche.model.http.entity.PersonMsg;
 import com.baluche.model.http.entity.Portrait;
 import com.baluche.model.http.entity.Register;
@@ -18,7 +19,6 @@ import com.google.gson.Gson;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
-import java.io.File;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -330,7 +330,7 @@ public class HttpMethods {
      *
      * @param observer
      */
-    public void updatePortrait( Observer<Portrait> observer) {
+    public void updatePortrait(Observer<Portrait> observer) {
 
         kmap.put("time", time);
 
@@ -420,6 +420,21 @@ public class HttpMethods {
                 .subscribe(observer);
         kmap.clear();
         pMap.clear();
+    }
+
+    /**
+     * 支付宝测试接口
+     *
+     * @param observer observer
+     */
+    public void payTest(Observer<PayTest> observer) {
+        Log.d("HttpMethods", "我他妈真的发了请求啊！");
+        apiService.payTest("")
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+        Log.d("HttpMethods", "我他妈请求发完了啊！");
     }
 
 }

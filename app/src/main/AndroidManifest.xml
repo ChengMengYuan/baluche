@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.baluche">
 
-    <!--基础权限 -->
+    <!-- 基础权限 -->
     <!-- 联网 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 允许程序获取网络状态 -->
@@ -26,7 +26,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 地图权限结束 -->
 
-    <!-- 小米推送权限-->
+
+    <!-- 小米推送权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -38,9 +39,8 @@
         android:protectionLevel="signature" />
     <!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
     <uses-permission android:name="com.baluche.permission.MIPUSH_RECEIVE" />
+
     <!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
-
-
     <application
         android:name=".app.MApplication"
         android:allowBackup="true"
@@ -144,18 +144,18 @@
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
         <activity
             android:name="com.alipay.sdk.app.H5AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-
-        </activity>
-        <activity android:name=".view.activity.DiscountCouponActivity"></activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+        <activity android:name=".view.activity.DiscountCouponActivity" />
+        <activity
+            android:name=".view.activity.AlipayActivity"
+            android:label="@string/title_activity_alipay"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -1,7 +1,5 @@
 package com.baluche.view.activity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -57,8 +55,10 @@ public class WalletActivity extends BaseActivity {
     public void widgetClick(View view) {
         switch (view.getId()) {
             case R.id.wallet_recharge_btn:
-                startActivity(RechargeActivity.class);
+                startActivity(AlipayActivity.class);
+//                startActivity(RechargeActivity.class);
                 break;
         }
     }
+
 }

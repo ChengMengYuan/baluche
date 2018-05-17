@@ -4,6 +4,7 @@ import com.baluche.model.http.entity.Banner;
 import com.baluche.model.http.entity.BaseResultEntity;
 import com.baluche.model.http.entity.Login;
 import com.baluche.model.http.entity.Park;
+import com.baluche.model.http.entity.PayTest;
 import com.baluche.model.http.entity.PersonMsg;
 import com.baluche.model.http.entity.Portrait;
 import com.baluche.model.http.entity.Register;
@@ -146,4 +147,13 @@ public interface ApiService {
      */
     @POST("user/usercar/bindcar")
     Observable<BaseResultEntity> bindCar(@Body String json);
+
+    /**
+     * 支付测试
+     *
+     * @return payTest
+     */
+    @POST("user/usercar/paytest")
+    Observable<PayTest> payTest(@Body String json);
+
 }

@@ -2,6 +2,7 @@ package com.baluche.view.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -12,8 +13,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alipay.sdk.app.PayTask;
 import com.baluche.R;
 import com.baluche.app.MApplication;
+import com.baluche.model.http.entity.BaseResultEntity;
+import com.baluche.model.http.entity.Login;
+import com.baluche.model.http.entity.PayTest;
+import com.baluche.model.http.http.HttpMethods;
 import com.baluche.util.CustomViewPager;
 import com.baluche.util.SnackbarUtil;
 import com.baluche.base.BaseActivity;
@@ -24,6 +30,12 @@ import com.baluche.view.fragment.NearbyFragment;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.ArrayList;
+import java.util.Map;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import okhttp3.OkHttpClient;
+import okhttp3.internal.http.HttpMethod;
 
 /**
  * @author ：     cmy
