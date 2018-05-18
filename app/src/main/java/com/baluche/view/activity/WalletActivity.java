@@ -55,8 +55,8 @@ public class WalletActivity extends BaseActivity {
     public void widgetClick(View view) {
         switch (view.getId()) {
             case R.id.wallet_recharge_btn:
-                startActivity(AlipayActivity.class);
-//                startActivity(RechargeActivity.class);
+//                startActivity(AlipayActivity.class);
+                startActivity(RechargeActivity.class);
                 break;
         }
     }

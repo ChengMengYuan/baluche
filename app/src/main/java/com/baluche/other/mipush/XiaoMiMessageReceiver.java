@@ -17,6 +17,9 @@ import java.util.List;
  * 对推送消息进行处理
  */
 public class XiaoMiMessageReceiver extends PushMessageReceiver {
+    /**
+     * 小米推送---->当前设备上当前app的唯一标示
+     */
     private String mRegId;
 
     /**
@@ -104,10 +107,12 @@ public class XiaoMiMessageReceiver extends PushMessageReceiver {
         super.onReceiveRegisterResult(context, miPushCommandMessage);
         String command = miPushCommandMessage.getCommand();
         System.out.println(command);
-
+        List<String> arguments = miPushCommandMessage.getCommandArguments();
+        String cmdArg1 = ((arguments != null && arguments.size() > 0) ? arguments.get(0) : null);
+        String cmdArg2 = ((arguments != null && arguments.size() > 1) ? arguments.get(1) : null);
         if (MiPushClient.COMMAND_REGISTER.equals(command)) {
             if (miPushCommandMessage.getResultCode() == ErrorCode.SUCCESS) {
-
+                mRegId = cmdArg1;
                 //打印日志：注册成功
                 Log.d("miPushMessage", "注册成功");
             } else {

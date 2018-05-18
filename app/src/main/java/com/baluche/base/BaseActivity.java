@@ -46,7 +46,7 @@ public abstract class BaseActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //隐藏标题栏
-//        Objects.requireNonNull(getSupportActionBar()).hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         //沉浸式状态栏
         setStatusBar();
         MApplication.getInstance().addActivity(this);

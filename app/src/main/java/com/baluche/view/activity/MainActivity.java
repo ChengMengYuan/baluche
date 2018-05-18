@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -19,13 +18,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.alipay.sdk.app.PayTask;
 import com.baluche.R;
 import com.baluche.app.MApplication;
-import com.baluche.model.http.entity.BaseResultEntity;
-import com.baluche.model.http.entity.Login;
-import com.baluche.model.http.entity.PayTest;
-import com.baluche.model.http.http.HttpMethods;
 import com.baluche.util.CustomViewPager;
 import com.baluche.util.SnackbarUtil;
 import com.baluche.base.BaseActivity;
@@ -37,12 +31,6 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;
-import java.util.Map;
-
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
-import okhttp3.OkHttpClient;
-import okhttp3.internal.http.HttpMethod;
 
 import static com.baluche.app.MApplication.getContext;
 
@@ -246,7 +234,7 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MApplication.getInstance().destory();
+        MApplication.getInstance().destroy();
     }
 
     //--------------使用onKeyDown()干掉他--------------

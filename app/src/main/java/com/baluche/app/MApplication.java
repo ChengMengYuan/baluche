@@ -29,10 +29,6 @@ public class MApplication extends Application {
     private static final String APP_ID = "2882303761517775981";
     //小米注册的APP_KEY
     private static final String APP_KEY = "5351777530981";
-    // 此TAG在adb logcat中检索自己所需要的信息， 只需在命令行终端输入 adb logcat | grep
-    // com.xiaomi.mipushdemo
-    public static final String TAG = "com.xiaomi.mipushdemo";
-
 
     public static String Token = "";
     public static boolean isDebug = true;//Debug开关
@@ -109,7 +105,7 @@ public class MApplication extends Application {
      * 退出App时调用该方法
      * 遍历所有activity并且finish。
      */
-    public void destory() {
+    public void destroy() {
         for (Object activity : activities) {
             ((Activity) activity).finish();
         }
