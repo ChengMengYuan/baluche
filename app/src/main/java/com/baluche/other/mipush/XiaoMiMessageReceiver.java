@@ -9,12 +9,16 @@ import com.xiaomi.mipush.sdk.MiPushCommandMessage;
 import com.xiaomi.mipush.sdk.MiPushMessage;
 import com.xiaomi.mipush.sdk.PushMessageReceiver;
 
+import java.util.List;
+
 /**
  * 继承自PushMessageReceiver（抽象类，继承自BroadcastReceiver），其作用主要是：
  * 接收推送消息
  * 对推送消息进行处理
  */
 public class XiaoMiMessageReceiver extends PushMessageReceiver {
+    private String mRegId;
+
     /**
      * 透传消息到达客户端时调用
      * 作用：可通过参数message从而获得透传消息，具体请看官方SDK文档
@@ -73,12 +77,16 @@ public class XiaoMiMessageReceiver extends PushMessageReceiver {
         super.onCommandResult(context, miPushCommandMessage);
         String command = miPushCommandMessage.getCommand();
         System.out.println(command);
-
+        List<String> arguments = miPushCommandMessage.getCommandArguments();
+        String cmdArg1 = ((arguments != null && arguments.size() > 0) ? arguments.get(0) : null);
+        String cmdArg2 = ((arguments != null && arguments.size() > 1) ? arguments.get(1) : null);
 
         if (MiPushClient.COMMAND_REGISTER.equals(command)) {
             if (miPushCommandMessage.getResultCode() == ErrorCode.SUCCESS) {
                 //打印信息便于测试注册成功与否
                 Log.d("miPushMessage", "注册成功");
+                mRegId = cmdArg1;
+                Log.d("miPushMessage", mRegId);
             } else {
                 Log.d("miPushMessage", "注册失败");
             }

@@ -1,6 +1,11 @@
 package com.baluche.view.activity;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
@@ -13,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.alipay.sdk.app.PayTask;
 import com.baluche.R;
 import com.baluche.app.MApplication;
@@ -28,6 +34,7 @@ import com.baluche.view.fragment.HomePageFragment;
 import com.baluche.view.fragment.MineFragment;
 import com.baluche.view.fragment.NearbyFragment;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -36,6 +43,8 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import okhttp3.OkHttpClient;
 import okhttp3.internal.http.HttpMethod;
+
+import static com.baluche.app.MApplication.getContext;
 
 /**
  * @author ：     cmy
@@ -104,9 +113,40 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
 
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void initData() {
-
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions
+                .request(Manifest.permission.READ_PHONE_STATE)
+                .subscribe(granted -> {
+                    if (granted) {//同意权限
+                        Log.d("rxPermissions", "tongyi");
+                    } else {//拒绝权限
+                        Log.d("rxPermissions", "jujue");
+                        MaterialDialog materialDialog = new MaterialDialog.Builder(getContext())
+                                .title("权限提示")
+                                .content("该权限是软件必须获取的权限，如果拒绝可能导致核心功能不可使用，请在设置中赋予该权限。")
+                                .positiveText("去设置")
+                                .onPositive((dialog, which) -> {
+                                    Log.d("materialDialog", "去设置");
+                                    Intent localIntent = new Intent();
+                                    localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    if (Build.VERSION.SDK_INT >= 9) {
+                                        localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+                                        localIntent.setData(Uri.fromParts("package", getContext().getPackageName(), null));
+                                    } else if (Build.VERSION.SDK_INT <= 8) {
+                                        localIntent.setAction(Intent.ACTION_VIEW);
+                                        localIntent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
+                                        localIntent.putExtra("com.android.settings.ApplicationPkgName", getContext().getPackageName());
+                                    }
+                                    getContext().startActivity(localIntent);
+                                })
+                                .negativeText("取消")
+                                .onNegative((dialog, which) -> Log.d("materialDialog", "取消"))
+                                .show();
+                    }
+                });
     }
 
     @Override
