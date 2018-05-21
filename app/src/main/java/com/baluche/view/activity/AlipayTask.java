@@ -40,12 +40,15 @@ public class AlipayTask extends AsyncTask {
 
     @Override
     protected Object doInBackground(Object[] objects) {
+        Log.d(TAG, "doInBackground: 开始了");
         getOrderInfo();
         // 构造PayTask 对象
         PayTask alipay = new PayTask((Activity) mContext);
-        Log.d(TAG, OrderStr);
+        Log.d(TAG, "" + OrderStr);
         // 调用支付接口，获取支付结果
         String result = alipay.pay(OrderStr, true);
+        Log.d(TAG, "调用支付接口，获取支付结果" + result);
+        Log.d(TAG, "doInBackground: 结束了");
         return result;
     }
 
@@ -64,10 +67,11 @@ public class AlipayTask extends AsyncTask {
 
             @Override
             public void onNext(PayTest payTest) {
-                Log.d("MainActivity", "payTest.getCode():" + payTest.getCode());
-                Log.d("MainActivity", payTest.getMessage());
-                Log.d("MainActivity", payTest.getData().getOrderStr());
+                Log.d("onNext", "payTest.getCode():" + payTest.getCode());
+                Log.d("onNext", payTest.getMessage());
+                Log.d("onNext", payTest.getData().getOrderStr());
                 OrderStr = payTest.getData().getOrderStr();
+                Log.d(TAG, OrderStr);
             }
 
             @Override
