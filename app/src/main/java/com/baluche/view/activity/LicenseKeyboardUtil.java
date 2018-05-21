@@ -94,7 +94,18 @@ public class LicenseKeyboardUtil extends BaseActivity {
                     currentEditText--;
                 }
 
-            } else if (primaryCode == 66) { //xml中定义的完成键值为66
+            }
+        }
+
+        @Override
+        public void onKey(int primaryCode, int[] keyCodes) {
+            if (primaryCode == 112) { //xml中定义的删除键值为112
+
+                    if (currentEditText < 1) {
+                        //切换为省份简称键盘
+                        keyboardView.setKeyboard(k1);
+                    }
+            }else if (primaryCode == 66) { //xml中定义的完成键值为66
                 Intent intent = new Intent();
                 String license = "";
 
@@ -126,17 +137,6 @@ public class LicenseKeyboardUtil extends BaseActivity {
                     }
                 }
             }
-        }
-
-        @Override
-        public void onKey(int primaryCode, int[] keyCodes) {
-            if (primaryCode == 112) { //xml中定义的删除键值为112
-
-                    if (currentEditText < 1) {
-                        //切换为省份简称键盘
-                        keyboardView.setKeyboard(k1);
-                    }
-                }
         }
     };
 

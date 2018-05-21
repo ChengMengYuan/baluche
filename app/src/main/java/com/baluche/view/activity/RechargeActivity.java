@@ -2,6 +2,7 @@ package com.baluche.view.activity;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -38,6 +39,7 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT{
     private TextView getpay_dialog_money_number_text;
     private View inflate;
     private Dialog dialog;
+    private int posDot;
     private RechargePre rechargePre;
     private ImageView pay_dialog_wechat_choose;
     private ImageView pay_dialog_alipay_choose;
@@ -65,12 +67,18 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT{
             public void afterTextChanged(Editable edt)
             {
                 String temp = edt.toString();
-                int posDot = temp.indexOf(".");
-                if (posDot <= 0) return;
+                posDot = temp.indexOf(".");
+//                Log.d("RechargeActivity", "temp123456:*****************************" +posDot);
+//                Log.d("RechargeActivity", "temp1234567890:*****************************" +posDot);
+//                if(temp.charAt(0)== '0'){
+//                    edt.delete(posDot, posDot+1);
+//                }
+                if (posDot <= 0)return;
                 if (temp.length() - posDot - 1 > 2)
                 {
                     edt.delete(posDot + 3, posDot + 4);
                 }
+
             }
 
             public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {}
@@ -90,7 +98,13 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT{
 
         switch (view.getId()){
             case R.id.recharge_pay_btn:
-                editmoney =recharge_money_edit.getText().toString();//获得充值金额
+                if(posDot <= 0){
+                    editmoney =recharge_money_edit.getText().toString()+".00";//获得充值金额
+                }
+                else {
+                    editmoney =recharge_money_edit.getText().toString();//获得充值金额
+                }
+
                 rechargePre.show_paydialog();
                 break;
 
@@ -151,7 +165,18 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT{
 
     @Override
     public void pay_dialog_sure_btn() {
-        startActivity(RechargeAccomplishActivity.class);
+        Intent intent = new Intent(RechargeActivity.this, AlipayActivity.class);
+
+//        /* 通过Bundle对象存储需要传递的数据 */
+//        Bundle bundle = new Bundle();
+//        /*字符、字符串、布尔、字节数组、浮点数等等，都可以传*/
+//        bundle.putString("Paynumber", editmoney);
+//        bundle.putInt("Paystyle", 1);
+//        /*把bundle对象assign给Intent*/
+//        intent.putExtras(bundle);
+        intent.putExtra("Paynumber", editmoney);
+        intent.putExtra("Paystyle", "支付宝");
+        startActivity(intent);
     }
 
 }
