@@ -34,7 +34,7 @@ public class AlipayTask extends AsyncTask {
 
     @Override
     protected void onPreExecute() {
-
+        Log.d(TAG, "onPreExecute: ");
     }
 
 
@@ -70,6 +70,7 @@ public class AlipayTask extends AsyncTask {
                 Log.d("onNext", "payTest.getCode():" + payTest.getCode());
                 Log.d("onNext", payTest.getMessage());
                 Log.d("onNext", payTest.getData().getOrderStr());
+
                 OrderStr = payTest.getData().getOrderStr();
                 Log.d(TAG, OrderStr);
             }

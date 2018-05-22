@@ -28,6 +28,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 地图权限结束 -->
 
+    <!-- 微信支付权限 -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
 
     <!-- 小米推送权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -158,6 +161,13 @@
             android:name=".view.activity.AlipayActivity"
             android:label="@string/title_activity_alipay"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <!--/*微信activity*/-->
+        <!--<activity-->
+            <!--android:name="wxapi.WXEntryActivity"-->
+            <!--android:exported="true"-->
+            <!--android:launchMode="singleTop" />-->
     </application>
+
 
 </manifest>

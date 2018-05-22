@@ -1,13 +1,11 @@
 package com.baluche.view.activity;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,18 +14,14 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baluche.R;
 import com.baluche.base.BaseActivity;
-import com.baluche.presenter.PersonMsgPre;
 import com.baluche.presenter.RechargePre;
 import com.baluche.view.api.IRechargeACT;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class RechargeActivity extends BaseActivity implements IRechargeACT{
