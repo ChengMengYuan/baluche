@@ -74,6 +74,10 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
     private ImageView return_left;
     private Button updata_permsg;//确定按钮
 
+    public static Object nickname = "123456";
+    public static int sex = 1;
+    public static int birthday = 2;
+
     private RelativeLayout personal_head;//头像框
 
     Uri mImageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "image.jpg"));
@@ -128,8 +132,39 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
                 personmsgPre.write_timepicker_msg();
                 break;
             case R.id.updata_permsg:
-                personmsgPre.updata_permsg();
-                personmsgPre.updatePortrait();
+//                personmsgPre.updata_permsg();
+//                personmsgPre.updatePortrait();
+                HttpMethods.getInstance().updatePersonMsg(new Object(), 1, "", new Observer<PersonMsg>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(PersonMsg personMsg) {
+                        if (personMsg.getCode() == 200) {
+                            Log.d("PersonMsg", "PutMsg" + "success++++++++++++++++++++++++++++++++");
+                        }
+                        switch (personMsg.getCode()) {
+                            case 200:
+                                Log.d("PersonMsg", "PutMsg" + "success++++++++++++++++++++++++++++++++");
+                                break;
+                            default:
+                                Log.d("PersonMsg", "PutMsg" + personMsg.getCode());
+                                break;
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
                 break;
             default:
                 break;

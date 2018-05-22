@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baluche.R;
 import com.baluche.base.BaseActivity;
@@ -41,6 +42,7 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT{
     private RelativeLayout pay_ways_choose_weixin;
     private RelativeLayout pay_ways_choose_alipay;
     private String editmoney;
+    private int paystyle = 2;
     private ArrayList<String> data = new ArrayList<>();
 
     @Override
@@ -109,11 +111,13 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT{
             case R.id.pay_ways_choose_weixin:
                 pay_dialog_wechat_choose.setVisibility(View.VISIBLE);
                 pay_dialog_alipay_choose.setVisibility(View.GONE);
+                paystyle = 2;
                 break;
 
             case R.id.pay_ways_choose_alipay:
                 pay_dialog_wechat_choose.setVisibility(View.GONE);
                 pay_dialog_alipay_choose.setVisibility(View.VISIBLE);
+                paystyle = 1;
                 break;
         }
 
@@ -159,7 +163,20 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT{
 
     @Override
     public void pay_dialog_sure_btn() {
-        Intent intent = new Intent(RechargeActivity.this, AlipayActivity.class);
+
+        switch (paystyle){
+            case 1:
+                new AlipayTask(this, 0).execute();
+                break;
+
+            case 2:
+                Toast.makeText(this, "微信支付还在开发中", Toast.LENGTH_LONG).show();
+                break;
+
+            default:
+                break;
+        }
+//        Intent intent = new Intent(RechargeActivity.this, AlipayActivity.class);
 
 //        /* 通过Bundle对象存储需要传递的数据 */
 //        Bundle bundle = new Bundle();
@@ -168,9 +185,9 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT{
 //        bundle.putInt("Paystyle", 1);
 //        /*把bundle对象assign给Intent*/
 //        intent.putExtras(bundle);
-        intent.putExtra("Paynumber", editmoney);
-        intent.putExtra("Paystyle", "支付宝");
-        startActivity(intent);
+//        intent.putExtra("Paynumber", editmoney);
+//        intent.putExtra("Paystyle", "支付宝");
+//        startActivity(intent);
     }
 
 }

@@ -42,6 +42,7 @@ public class PersonMsgPre extends BasePresenter {
     private TextView choosePhoto;
     private TextView takePhoto;
 
+
     public PersonMsgPre(IPersonMsgACT iPersonMsgACT) {
         this.iPersonMsgACT = iPersonMsgACT;
     }
@@ -60,36 +61,7 @@ public class PersonMsgPre extends BasePresenter {
 
     public void updata_permsg() {
         iPersonMsgACT.during_send_personal_name_msg();
-        HttpMethods.getInstance().updatePersonMsg(new Observer<PersonMsg>() {
-            @Override
-            public void onSubscribe(Disposable d) {
 
-            }
-
-            @Override
-            public void onNext(PersonMsg personMsg) {
-                iPersonMsgACT.clear_send_personal_name_msg();
-                switch (personMsg.getCode()) {
-                    case 200:
-                        iPersonMsgACT.messageChangeSuccess();
-                        break;
-                    default:
-                        iPersonMsgACT.messageChangeFail();
-                        break;
-                }
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        });
     }
 
 

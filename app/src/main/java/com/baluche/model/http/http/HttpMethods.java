@@ -35,6 +35,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.baluche.util.EncryptUtil.Getsign;
 import static com.baluche.view.activity.LoginActivity.login_name;
 import static com.baluche.view.activity.LoginActivity.password;
+import static com.baluche.view.activity.PersonMsgActivity.birthday;
+import static com.baluche.view.activity.PersonMsgActivity.nickname;
+import static com.baluche.view.activity.PersonMsgActivity.sex;
 import static com.baluche.view.activity.RegisterActivity.TSMScode;
 import static com.baluche.view.activity.RegisterActivity.re_password;
 import static com.baluche.view.activity.RegisterActivity.re_phone;
@@ -309,20 +312,12 @@ public class HttpMethods {
      *
      * @param observer
      */
-    public void updatePersonMsg(Observer<PersonMsg> observer) {
-        kmap.put("time", time);
-        kmap.put("token", MApplication.Token);// token
-
-        pMap.put("sign", Getsign(kmap));
-        pMap.put("time", time);
-        pMap.put("token", MApplication.Token);// token
+    public void updatePersonMsg(Object name,int age,String bir,Observer<PersonMsg> observer) {
         apiService.updatePersonMsg("")
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
-        kmap.clear();
-        pMap.clear();
     }
 
     /**
