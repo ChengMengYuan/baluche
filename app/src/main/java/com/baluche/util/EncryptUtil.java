@@ -1022,7 +1022,7 @@ public final class EncryptUtil {
      * @param hashMap 需要传的数据
      * @return 加密完之后的String值
      */
-    public static String Getsign(HashMap hashMap) {
+    public static String getSign(HashMap hashMap) {
 
         hashMap.put("app_key", Constant.app_key);
         ArrayList keyList = new ArrayList();

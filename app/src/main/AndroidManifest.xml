@@ -28,9 +28,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 地图权限结束 -->
 
+
     <!-- 微信支付权限 -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-
 
     <!-- 小米推送权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -74,7 +74,7 @@
         /**高德地图测试key**/
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="0ccd95957a98d5368747e51c1eb0d791" />
+            android:value="2c078d325352438da36d9fdd5f65bee1" />
 
         <service android:name="com.amap.api.location.APSService" />
         <service android:name=".other.timeservice.CodeTimerService" />
@@ -149,25 +149,24 @@
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name="com.alipay.sdk.app.H5AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".view.activity.DiscountCouponActivity" />
-        <activity
-            android:name=".view.activity.AlipayActivity"
-            android:label="@string/title_activity_alipay"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-        <!--/*微信activity*/-->
         <!--<activity-->
-            <!--android:name="wxapi.WXEntryActivity"-->
-            <!--android:exported="true"-->
-            <!--android:launchMode="singleTop" />-->
-    </application>
+        <!--android:name=".view.activity.AlipayActivity"-->
+        <!--android:label="@string/title_activity_alipay"-->
+        <!--android:theme="@style/AppTheme.NoActionBar" />-->
 
+        <!-- /*微信activity*/ -->
+        <!-- <activity -->
+        <!-- android:name="wxapi.WXEntryActivity" -->
+        <!-- android:exported="true" -->
+        <!-- android:launchMode="singleTop" /> -->
+    </application>
 
 </manifest>

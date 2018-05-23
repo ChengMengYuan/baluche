@@ -7,6 +7,7 @@ import com.baluche.app.MApplication;
 import com.baluche.model.http.entity.Banner;
 import com.baluche.model.http.entity.BaseResultEntity;
 import com.baluche.model.http.entity.Login;
+import com.baluche.model.http.entity.Park;
 import com.baluche.model.http.entity.PayTest;
 import com.baluche.model.http.entity.PersonMsg;
 import com.baluche.model.http.entity.Portrait;
@@ -32,12 +33,9 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.baluche.util.EncryptUtil.Getsign;
+import static com.baluche.util.EncryptUtil.getSign;
 import static com.baluche.view.activity.LoginActivity.login_name;
 import static com.baluche.view.activity.LoginActivity.password;
-import static com.baluche.view.activity.PersonMsgActivity.birthday;
-import static com.baluche.view.activity.PersonMsgActivity.nickname;
-import static com.baluche.view.activity.PersonMsgActivity.sex;
 import static com.baluche.view.activity.RegisterActivity.TSMScode;
 import static com.baluche.view.activity.RegisterActivity.re_password;
 import static com.baluche.view.activity.RegisterActivity.re_phone;
@@ -143,7 +141,7 @@ public class HttpMethods {
     public void getWeather(Observer<Weather> observer) {
         kmap.put("time", time);
 
-        pMap.put("sign", Getsign(kmap));
+        pMap.put("sign", getSign(kmap));
         pMap.put("time", time);
         apiService.getWeather(gson.toJson(pMap))
                 .subscribeOn(Schedulers.io())
@@ -162,7 +160,7 @@ public class HttpMethods {
     public void getBanner(Observer<Banner> observer) {
         kmap.put("time", time);
 
-        pMap.put("sign", Getsign(kmap));
+        pMap.put("sign", getSign(kmap));
         pMap.put("time", time);
 
         Logger.d("" + gson.toJson(pMap));
@@ -175,34 +173,29 @@ public class HttpMethods {
         pMap.clear();
     }
 
-//    /**
-//     * 获取停车场列表信息方法
-//     *
-//     * @param observer
-//     */
-//    public void getPark(Observer<Park> observer) {
-//        kmap.put("time", time);
-//        kmap.put("lat", Latitude);
-//        kmap.put("lng", Longitude);
-//
-//        pMap.put("sign", Getsign(kmap));//加一个sign的md5验证
-//        pMap.put("time", time);
-//        pMap.put("lat", Latitude);
-//        pMap.put("lng", Longitude);
-////        pMap.put("lng", Latitude);
-////        pMap.put("lat", Longitude);
-//        Logger.t("getPark").d(Latitude);
-//        Logger.t("getPark").d(Longitude);
-//        Logger.t("getPark").d(gson.toJson(pMap));
-//
-//        apiService.getPark(gson.toJson(pMap))
+    /**
+     * 获取停车场列表信息方法
+     *
+     * @param observer
+     */
+    public void getPark(double Latitude, double Longitude, Observer<Park> observer) {
+        kmap.put("time", time);
+        kmap.put("lat", Latitude);
+        kmap.put("lng", Longitude);
+
+        pMap.put("sign", getSign(kmap));//加一个sign的md5验证
+        pMap.put("time", time);
+        pMap.put("lat", Latitude);
+        pMap.put("lng", Longitude);
+
+        apiService.getPark(gson.toJson(pMap))
 //                .subscribeOn(Schedulers.io())
 //                .unsubscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(observer);
-//        kmap.clear();
-//        pMap.clear();
-//    }
+                .subscribe(observer);
+        kmap.clear();
+        pMap.clear();
+    }
 
 
     /**
@@ -216,7 +209,7 @@ public class HttpMethods {
         kmap.put("password", re_password);//密码
         kmap.put("code", TSMScode);//验证码
 
-        pMap.put("sign", Getsign(kmap));
+        pMap.put("sign", getSign(kmap));
         pMap.put("time", time);
         pMap.put("mobile", re_phone);// 手机号
         pMap.put("password", re_password);//密码
@@ -242,7 +235,7 @@ public class HttpMethods {
         kmap.put("mobile", login_name);// 手机号
         kmap.put("password", password);//密码
 
-        pMap.put("sign", Getsign(kmap));
+        pMap.put("sign", getSign(kmap));
         pMap.put("time", time);
         pMap.put("mobile", login_name);// 手机号
         pMap.put("password", password);//密码
@@ -269,7 +262,7 @@ public class HttpMethods {
         kmap.put("mobile", re_phone);
 
 
-        pMap.put("sign", Getsign(kmap));
+        pMap.put("sign", getSign(kmap));
         pMap.put("time", time);
         pMap.put("mobile", re_phone);
 
@@ -293,7 +286,7 @@ public class HttpMethods {
         kmap.put("time", time);
         kmap.put("token", MApplication.Token);// token
 
-        pMap.put("sign", Getsign(kmap));
+        pMap.put("sign", getSign(kmap));
         pMap.put("time", time);
         pMap.put("token", MApplication.Token);// token
 
@@ -312,7 +305,7 @@ public class HttpMethods {
      *
      * @param observer
      */
-    public void updatePersonMsg(Object name,int age,String bir,Observer<PersonMsg> observer) {
+    public void updatePersonMsg(Object name, int age, String bir, Observer<PersonMsg> observer) {
         apiService.updatePersonMsg("")
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -329,7 +322,7 @@ public class HttpMethods {
 
         kmap.put("time", time);
 
-        pMap.put("sign", Getsign(kmap));
+        pMap.put("sign", getSign(kmap));
         pMap.put("time", time);
 
         apiService.updatePortrait(gson.toJson(pMap))
@@ -357,7 +350,7 @@ public class HttpMethods {
         kmap.put("comfirmpassword", newPassword);
         kmap.put("code", code);
 
-        pMap.put("sign", Getsign(kmap));
+        pMap.put("sign", getSign(kmap));
         pMap.put("time", time);
         pMap.put("mobile", phoneNum);
         pMap.put("password", newPassword);
@@ -382,7 +375,7 @@ public class HttpMethods {
         kmap.put("time", time);
         kmap.put("mobile", login_name);// 手机号
 
-        pMap.put("sign", Getsign(kmap));
+        pMap.put("sign", getSign(kmap));
         pMap.put("mobile", login_name);// 手机号
         pMap.put("time", time);
         Logger.d("cheakUsertype", "" + gson.toJson(pMap));
@@ -405,7 +398,7 @@ public class HttpMethods {
         kmap.put("time", time);
         kmap.put("token", MApplication.Token);// token
 
-        pMap.put("sign", Getsign(kmap));
+        pMap.put("sign", getSign(kmap));
         pMap.put("time", time);
         pMap.put("token", MApplication.Token);// token
         apiService.bindCar("")
@@ -422,12 +415,16 @@ public class HttpMethods {
      *
      * @param observer observer
      */
-    public void payTest(Observer<PayTest> observer) {
+    public void payTest(int money, Observer<PayTest> observer) {
         Log.d("HttpMethods", "我他妈真的发了请求啊！");
-        apiService.payTest("")
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+        kmap.put("time", time);
+        kmap.put("money", money);
+
+        pMap.put("sign", getSign(kmap));
+        pMap.put("time", time);
+        pMap.put("money", money);
+        Log.d("HttpMethods", gson.toJson(pMap));
+        apiService.payTest(gson.toJson(pMap))
                 .subscribe(observer);
         Log.d("HttpMethods", "我他妈请求发完了啊！");
     }

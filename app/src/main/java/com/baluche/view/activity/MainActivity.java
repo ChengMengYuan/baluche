@@ -106,7 +106,7 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
     public void initData() {
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions
-                .request(Manifest.permission.READ_PHONE_STATE)
+                .request(Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_COARSE_LOCATION)
                 .subscribe(granted -> {
                     if (granted) {//同意权限
                         Log.d("rxPermissions", "tongyi");
