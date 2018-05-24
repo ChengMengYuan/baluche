@@ -3,6 +3,7 @@ package com.baluche.view.activity;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -69,16 +71,19 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
     private TextView choosePhoto;
     private TextView takePhoto;
     private TextView timepicker_msg; //时间选择器
+    private TextView personal_sex_msg;
     private Dialog dialog;
     private SimpleDraweeView personal_head_img;
     private ImageView return_left;
     private Button updata_permsg;//确定按钮
+    private String[] sexArry = new String[]{"男","女"};// 性别选择
 
-    public static Object nickname = "123456";
-    public static int sex = 1;
-    public static int birthday = 2;
+//    public static Object nickname = "123456";
+//    public static int sex = 1;
+//    public static int birthday = 2;
 
     private RelativeLayout personal_head;//头像框
+    private RelativeLayout personal_sex;//性别框
 
     Uri mImageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "image.jpg"));
 
@@ -102,9 +107,11 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
         personal_name_msg = findViewById(R.id.personal_name_msg);
         timepicker_msg = findViewById(R.id.timepicker_msg);
         updata_permsg = findViewById(R.id.updata_permsg);
+        personal_sex = findViewById(R.id.personal_sex);
+        personal_sex_msg = findViewById(R.id.personal_sex_msg);
         updata_permsg.setOnClickListener(this);
+        personal_sex.setOnClickListener(this);
         timepicker_msg.setOnClickListener(this);
-
         personal_head.setOnClickListener(this);
         return_left.setOnClickListener(this);
 
@@ -121,6 +128,9 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
                 break;
             case R.id.personal_name_msg:
                 personmsgPre.write_personal_name_msg();
+                break;
+            case R.id.personal_sex:
+                showSexChooseDialog();
                 break;
             case R.id.choosePhoto:
                 personmsgPre.choosePhoto();
@@ -314,5 +324,19 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
                 }
                 break;
         }
+    }
+
+    private void showSexChooseDialog() {
+        AlertDialog.Builder builder3 = new AlertDialog.Builder(this);// 自定义对话框
+        builder3.setSingleChoiceItems(sexArry, 0, new DialogInterface.OnClickListener() {// 2默认的选中
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {// which是被选中的位置
+                // showToast(which+"");
+                personal_sex_msg.setText(sexArry[which]);
+                dialog.dismiss();// 随便点击一个item消失对话框，不用点击确认取消
+            }
+        });
+        builder3.show();// 让弹出框显示
     }
 }

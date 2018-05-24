@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.kingideayou:tagcloudview-1.0.2">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tagcloudview-1.0.2.aar/78ba0e71311bf0f0e6bc62353ecbebb4/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tagcloudview-1.0.2.aar/78ba0e71311bf0f0e6bc62353ecbebb4/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.kingideayou/tagcloudview/1.0.2/3a4a6f96e5de250a4f684cea85d24b8553e63b2a/tagcloudview-1.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

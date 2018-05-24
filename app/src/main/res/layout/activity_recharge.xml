@@ -44,7 +44,7 @@
 
         <LinearLayout
             android:layout_width="345dp"
-            android:layout_height="141dp"
+            android:layout_height="216dp"
             android:layout_marginTop="14dp"
             android:background="@drawable/whitecase_bg"
             android:orientation="vertical">
@@ -56,45 +56,27 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="19dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="12dp"
-                    android:textSize="14sp"
-                    android:textColor="#666666"
+                    android:textSize="18sp"
+                    android:textColor="#000000"
                     android:text="充值金额"/>
 
             </RelativeLayout>
             
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="90dp">
+                android:layout_height="match_parent"
+                android:gravity="center">
                 
-                <RelativeLayout
-                    android:layout_width="30dp"
-                    android:layout_height="match_parent" >
-                    
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="25sp"
-                        android:textColor="#000000"
-                        android:text="￥"/>
-                    
-                </RelativeLayout>
-
-                <EditText
-                    android:id="@+id/recharge_money_edit"
-                    android:layout_width="315dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:background="@null"
-                    android:gravity="center_vertical|left"
-                    android:inputType="number|numberDecimal"
-                    android:textSize="25sp"
-                    android:textColor="#000000"
-                    android:orientation="vertical"
-                    android:numeric="decimal"/>
+                <GridView
+                    android:id="@+id/recharge_grid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:verticalSpacing="19dp"
+                    android:horizontalSpacing="14dp"
+                    android:numColumns="3"/>
                 
             </RelativeLayout>
             

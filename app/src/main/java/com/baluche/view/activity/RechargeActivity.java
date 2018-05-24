@@ -1,19 +1,25 @@
 package com.baluche.view.activity;
 
 import android.app.Dialog;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,14 +29,18 @@ import com.baluche.presenter.RechargePre;
 import com.baluche.view.api.IRechargeACT;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class RechargeActivity extends BaseActivity implements IRechargeACT {
 
     private Button recharge_pay_btn;
     private Button pay_dialog_sure_btn;
-    private EditText recharge_money_edit;
     private TextView pay_dialog_money_number;
     private TextView getpay_dialog_money_number_text;
+    private GridView recharge_grid;
+    private TextView recharge_cell_number;
     private View inflate;
     private Dialog dialog;
     private int posDot;
@@ -40,9 +50,13 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT {
     private RecyclerView.LayoutManager mLayoutManager;
     private RelativeLayout pay_ways_choose_weixin;
     private RelativeLayout pay_ways_choose_alipay;
-    private String editmoney;
+    private String editmoney = "0.00";
     private int paystyle = 2;
-    private ArrayList<String> data = new ArrayList<>();
+
+    String[] titles = new String[] { "5", "10", "15", "20", "25","30" };
+    private String[] from = {"title"};
+    private int[] to = {R.id.recharge_cell_number};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,32 +67,41 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT {
 
     @Override
     public void initView() {
-
         recharge_pay_btn = findViewById(R.id.recharge_pay_btn);
         recharge_pay_btn.setOnClickListener(this);
-        recharge_money_edit = findViewById(R.id.recharge_money_edit);
-        recharge_money_edit.addTextChangedListener(new TextWatcher() {
-            public void afterTextChanged(Editable edt) {
-                String temp = edt.toString();
-                posDot = temp.indexOf(".");
-//                Log.d("RechargeActivity", "temp123456:*****************************" +posDot);
-//                Log.d("RechargeActivity", "temp1234567890:*****************************" +posDot);
-//                if(temp.charAt(0)== '0'){
-//                    edt.delete(posDot, posDot+1);
-//                }
-                if (posDot <= 0) return;
-                if (temp.length() - posDot - 1 > 2) {
-                    edt.delete(posDot + 3, posDot + 4);
+        recharge_grid = findViewById(R.id.recharge_grid);
+        SimpleAdapter pictureAdapter = new SimpleAdapter(this, getList(),
+                R.layout.recharge_cell, from, to);
+        recharge_grid.setAdapter(pictureAdapter);
+        recharge_grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                for(int i=0;i<parent.getCount();i++) {
+                    View item = parent.getChildAt(i);
+                    recharge_cell_number = item.findViewById(R.id.recharge_cell_number);
+                    recharge_cell_number.setTextColor(Color.parseColor("#2cb154"));
+                    item.setBackgroundResource(R.drawable.edit_bg);
                 }
-
-            }
-
-            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-            }
-
-            public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+                recharge_cell_number = view.findViewById(R.id.recharge_cell_number);
+                recharge_cell_number.setTextColor(Color.parseColor("#ffffff"));
+                view.setBackgroundResource(R.drawable.edit_bg2);
+                editmoney = titles[position]+".00";
             }
         });
+    }
+
+    public List<Map<String, Object>> getList() {
+        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+        Map<String, Object> map = null;
+
+
+
+        for (int i = 0; i < titles.length; i++) {
+            map = new HashMap<String, Object>();
+            map.put("title", titles[i]+"元");
+            list.add(map);
+        }
+        return list;
     }
 
     @Override
@@ -90,14 +113,8 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT {
     @Override
     public void widgetClick(View view) {
 
-        switch (view.getId()) {
+        switch (view.getId()){
             case R.id.recharge_pay_btn:
-                if (posDot <= 0) {
-                    editmoney = recharge_money_edit.getText().toString() + ".00";//获得充值金额
-                } else {
-                    editmoney = recharge_money_edit.getText().toString();//获得充值金额
-                }
-
                 rechargePre.show_paydialog();
                 break;
 
