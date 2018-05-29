@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.baluche.R;
@@ -34,6 +35,7 @@ public class AddVehicleActivity extends BaseActivity implements IAddVehicleACT {
     private Button add_next_step;
     private LinearLayout keyboard_close;
     private TextView keyboard_close_btn;
+    private RelativeLayout add_vehicle_return_left;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,6 +73,8 @@ public class AddVehicleActivity extends BaseActivity implements IAddVehicleACT {
         add_next_step.setOnClickListener(this);
         keyboard_close_btn = findViewById(R.id.keyboard_close_btn);
         keyboard_close_btn.setOnClickListener(this);
+        add_vehicle_return_left = findViewById(R.id.add_vehicle_return_left);
+        add_vehicle_return_left.setOnClickListener(this);
 
         //输入车牌完成后的intent过滤器
         IntentFilter finishFilter = new IntentFilter(INPUT_LICENSE_COMPLETE);
@@ -143,6 +147,9 @@ public class AddVehicleActivity extends BaseActivity implements IAddVehicleACT {
                 break;
             case R.id.et_car_license_inputbox8:
                 addVehiclePre.expand_keyboard();
+                break;
+            case R.id.add_vehicle_return_left:
+                finish();
                 break;
         }
     }

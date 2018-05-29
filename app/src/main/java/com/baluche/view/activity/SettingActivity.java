@@ -28,6 +28,7 @@ public class SettingActivity extends BaseActivity implements ISettingACT{
     private TextView quit_false;
     private TextView APP_VERSION_tv;
     private SettingPre settingPre;
+    private RelativeLayout setting_return_left;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,8 @@ public class SettingActivity extends BaseActivity implements ISettingACT{
         setting_quit.setOnClickListener(this);
         APP_VERSION_tv = findViewById(R.id.APP_VERSION);
         APP_VERSION_tv.setText(APP_VERSION);
+        setting_return_left = findViewById(R.id.setting_return_left);
+        setting_return_left.setOnClickListener(this);
     }
 
     @Override
@@ -61,6 +64,9 @@ public class SettingActivity extends BaseActivity implements ISettingACT{
                 break;
             case R.id.quit_false:
                 settingPre.quit_false();
+                break;
+            case R.id.setting_return_left:
+                finish();
                 break;
         }
     }

@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.baluche.R;
 import com.baluche.base.BaseActivity;
@@ -22,6 +23,7 @@ public class MessageActivity extends BaseActivity {
     private TabLayout tabLayout;
     private List<Fragment> fragments = new ArrayList<>();
     private List<String> tabs = new ArrayList<>();
+    private RelativeLayout message_return_left;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,11 @@ public class MessageActivity extends BaseActivity {
 
     @Override
     public void widgetClick(View view) {
-
+        switch (view.getId()){
+            case R.id.message_return_left:
+                finish();
+                break;
+        }
     }
 
     public void initView() {
@@ -53,6 +59,9 @@ public class MessageActivity extends BaseActivity {
         fragments.add(new InformFragment());
 
         viewPager.setAdapter(new TabAdapter(getSupportFragmentManager()));
+
+        message_return_left = findViewById(R.id.message_return_left);
+        message_return_left.setOnClickListener(this);
     }
 
     class TabAdapter extends FragmentPagerAdapter {

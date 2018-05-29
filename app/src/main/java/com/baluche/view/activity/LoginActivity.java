@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -31,6 +32,7 @@ public class LoginActivity extends BaseActivity implements ILoginACT {
 
     public static String login_name = "";
     public static String password = "";
+    private RelativeLayout logon_return_left;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,7 +70,7 @@ public class LoginActivity extends BaseActivity implements ILoginACT {
         login_register_tv.setOnClickListener(this);
         TextView login_forget_tv = findViewById(R.id.login_forget_tv);
         login_forget_tv.setOnClickListener(this);
-        ImageView logon_return_left = findViewById(R.id.logon_return_left);
+        logon_return_left = findViewById(R.id.logon_return_left);
         logon_return_left.setOnClickListener(this);
     }
 

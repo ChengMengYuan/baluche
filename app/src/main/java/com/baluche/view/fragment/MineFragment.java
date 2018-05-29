@@ -23,6 +23,8 @@ import com.baluche.view.activity.OrderDetailActivity;
 import com.baluche.view.activity.ParkpayingActivity;
 import com.baluche.view.activity.PersonMsgActivity;
 import com.baluche.view.activity.SettingActivity;
+import com.baluche.view.activity.SignActivity;
+import com.baluche.view.activity.UsehelpActivity;
 import com.baluche.view.activity.VehicleManageActivity;
 import com.baluche.view.activity.WalletActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -108,7 +110,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent2);
                 break;
             case R.id.sign:
-                Intent intent9 = new Intent(getActivity(), DiscountCouponActivity.class);
+                Intent intent9 = new Intent(getActivity(), SignActivity.class);
                 startActivity(intent9);
                 break;
             case R.id.my_wallet:
@@ -128,11 +130,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent5);
                 break;
             case R.id.my_use_help:
-                Intent intent6 = new Intent(getActivity(), DiscountHelpActivity.class);
+                Intent intent6 = new Intent(getActivity(), UsehelpActivity.class);
                 startActivity(intent6);
                 break;
             case R.id.my_setting:
-                Toast.makeText(context, "my_setting", Toast.LENGTH_LONG).show();
+//                Toast.makeText(context, "my_setting", Toast.LENGTH_LONG).show();
                 Intent intent8 = new Intent(getActivity(), SettingActivity.class);
                 startActivity(intent8);
                 break;

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -39,6 +40,7 @@ public class ResetPasswordActivity extends BaseActivity implements IResetPasswor
     private String newPassword;//密码
     private EditText reset_verification_code_edit;   //验证码输入框
     private String code;//验证码
+    private RelativeLayout reset_return_left;
 
     private TextView send_code_bt_reset;             //发送验证码
     private Button reset_password_btn;             //设置密码按钮
@@ -71,6 +73,8 @@ public class ResetPasswordActivity extends BaseActivity implements IResetPasswor
         reset_verification_code_edit = findViewById(R.id.reset_verification_code_edit);
         send_code_bt_reset = findViewById(R.id.send_code_bt_reset);
         reset_password_btn = findViewById(R.id.reset_password_btn);
+        reset_return_left = findViewById(R.id.reset_return_left);
+        reset_return_left.setOnClickListener(this);
         send_code_bt_reset.setOnClickListener(this);
         reset_password_btn.setOnClickListener(this);
 
@@ -174,6 +178,9 @@ public class ResetPasswordActivity extends BaseActivity implements IResetPasswor
                 break;
             case R.id.reset_password_btn://重置密码
                 resetPasswordPre.toResetPassWord(phoneNum, newPassword, code);
+                break;
+            case R.id.reset_return_left:
+                finish();
                 break;
         }
     }

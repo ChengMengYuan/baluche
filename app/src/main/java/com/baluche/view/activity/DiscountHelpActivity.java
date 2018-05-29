@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.baluche.R;
 import com.baluche.base.BaseActivity;
@@ -19,6 +20,7 @@ public class DiscountHelpActivity extends BaseActivity {
     private RecyclerView discount_help_listView;
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList<String> data = new ArrayList<>();
+    private RelativeLayout discount_help_return_left;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +42,8 @@ public class DiscountHelpActivity extends BaseActivity {
         discount_help_listView.setLayoutManager(mLayoutManager);
         // 设置adapter
         discount_help_listView.setAdapter(mAdapter);
+        discount_help_return_left = findViewById(R.id.discount_return_left);
+        discount_help_return_left.setOnClickListener(this);
     }
 
     @Override
@@ -49,6 +53,10 @@ public class DiscountHelpActivity extends BaseActivity {
 
     @Override
     public void widgetClick(View view) {
-
+        switch (view.getId()){
+            case R.id.discount_help_return_left:
+                finish();
+                break;
+        }
     }
 }

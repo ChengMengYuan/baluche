@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.baluche.R;
 import com.baluche.base.BaseActivity;
@@ -23,6 +24,7 @@ public class FeedbackActivity extends BaseActivity {
     private TabLayout tabLayout;
     private List<Fragment> fragments = new ArrayList<>();
     private List<String> tabs = new ArrayList<>();
+    private RelativeLayout feedback_return_left;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,9 @@ public class FeedbackActivity extends BaseActivity {
         fragments.add(new OnlineFeedbackFragment());
 
         viewPager.setAdapter(new TabAdapter(getSupportFragmentManager()));
+
+        feedback_return_left = findViewById(R.id.feedback_return_left);
+        feedback_return_left.setOnClickListener(this);
     }
 
     @Override
@@ -54,7 +59,11 @@ public class FeedbackActivity extends BaseActivity {
 
     @Override
     public void widgetClick(View view) {
-
+        switch (view.getId()){
+            case R.id.feedback_return_left:
+                finish();
+                break;
+        }
     }
 
     class TabAdapter extends FragmentPagerAdapter {

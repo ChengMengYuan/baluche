@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.baluche.R;
@@ -25,6 +26,7 @@ public class VehicleManageActivity extends BaseActivity implements IVehicleManag
     private ImageView vehicle_manage_add;
     private ArrayList<String> data = new ArrayList<>();
     private VehicleManagePre vehicleManagePre;
+    private RelativeLayout vehicle_manage_return_left;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class VehicleManageActivity extends BaseActivity implements IVehicleManag
         vehicle_manage_listView.setAdapter(mAdapter);
         vehicle_manage_add = findViewById(R.id.vehicle_manage_add);
         vehicle_manage_add.setOnClickListener(this);
+        vehicle_manage_return_left = findViewById(R.id.vehicle_manage_return_left);
+        vehicle_manage_return_left.setOnClickListener(this);
     }
 
     @Override
@@ -56,6 +60,9 @@ public class VehicleManageActivity extends BaseActivity implements IVehicleManag
         switch (view.getId()){
             case R.id.vehicle_manage_add:
                 vehicleManagePre.vehicle_manage_add();
+                break;
+            case R.id.vehicle_manage_return_left:
+                finish();
                 break;
         }
     }

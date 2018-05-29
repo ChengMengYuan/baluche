@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.baluche.R;
 import com.baluche.base.BaseActivity;
@@ -18,6 +19,7 @@ public class UsehelpActivity extends BaseActivity {
     private RecyclerView usehelp_listView;
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList<String> data = new ArrayList<>();
+    private RelativeLayout usehelp_return_left;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +39,9 @@ public class UsehelpActivity extends BaseActivity {
         usehelp_listView.setLayoutManager(mLayoutManager);
         // 设置adapter
         usehelp_listView.setAdapter(mAdapter);
+
+        usehelp_return_left = findViewById(R.id.usehelp_return_left);
+        usehelp_return_left.setOnClickListener(this);
     }
 
     @Override
@@ -46,6 +51,10 @@ public class UsehelpActivity extends BaseActivity {
 
     @Override
     public void widgetClick(View view) {
-
+        switch (view.getId()){
+            case R.id.usehelp_return_left:
+                finish();
+                break;
+        }
     }
 }

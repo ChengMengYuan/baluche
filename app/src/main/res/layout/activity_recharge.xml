@@ -17,12 +17,16 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/recharge_return_left"
                 android:layout_width="10dp"
                 android:layout_height="17dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="14dp"
                 android:src="@drawable/left_white" />
+
+            <RelativeLayout
+                android:id="@+id/recharge_return_left"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -48,7 +52,7 @@
             android:layout_marginTop="14dp"
             android:background="@drawable/whitecase_bg"
             android:orientation="vertical">
-            
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="51dp">
@@ -63,12 +67,12 @@
                     android:text="充值金额"/>
 
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center">
-                
+
                 <GridView
                     android:id="@+id/recharge_grid"
                     android:layout_width="wrap_content"
@@ -77,11 +81,11 @@
                     android:verticalSpacing="19dp"
                     android:horizontalSpacing="14dp"
                     android:numColumns="3"/>
-                
+
             </RelativeLayout>
-            
+
         </LinearLayout>
-        
+
         <Button
             android:id="@+id/recharge_pay_btn"
             android:layout_width="345dp"

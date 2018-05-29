@@ -74,7 +74,7 @@ public class PersonMsgActivity extends BaseActivity implements IPersonMsgACT {
     private TextView personal_sex_msg;
     private Dialog dialog;
     private SimpleDraweeView personal_head_img;
-    private ImageView return_left;
+    private RelativeLayout return_left;
     private Button updata_permsg;//确定按钮
     private String[] sexArry = new String[]{"男","女"};// 性别选择
 

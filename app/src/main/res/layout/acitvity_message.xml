@@ -17,7 +17,6 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/message_return_left"
                 android:layout_width="8dp"
                 android:layout_height="16dp"
                 android:layout_marginLeft="16dp"
@@ -31,6 +30,11 @@
                 android:text="消息"
                 android:textColor="#ffffff"
                 android:textSize="16sp" />
+
+            <RelativeLayout
+                android:id="@+id/message_return_left"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"/>
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>

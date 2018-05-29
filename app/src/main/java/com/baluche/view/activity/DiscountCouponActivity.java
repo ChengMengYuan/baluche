@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.baluche.R;
 import com.baluche.base.BaseActivity;
@@ -25,6 +26,7 @@ public class DiscountCouponActivity extends BaseActivity {
     private TabLayout tabLayout;
     private List<Fragment> fragments = new ArrayList<>();
     private List<String> tabs = new ArrayList<>();
+    private RelativeLayout discount_return_left;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,9 @@ public class DiscountCouponActivity extends BaseActivity {
         fragments.add(new UnavailableDiscountFragment());
 
         viewPager.setAdapter(new DiscountCouponActivity.TabAdapter(getSupportFragmentManager()));
+
+        discount_return_left = findViewById(R.id.discount_return_left);
+        discount_return_left.setOnClickListener(this);
     }
 
     @Override
@@ -57,7 +62,11 @@ public class DiscountCouponActivity extends BaseActivity {
 
     @Override
     public void widgetClick(View view) {
-
+        switch (view.getId()){
+            case R.id.discount_return_left:
+                finish();
+                break;
+        }
     }
 
     class TabAdapter extends FragmentPagerAdapter {

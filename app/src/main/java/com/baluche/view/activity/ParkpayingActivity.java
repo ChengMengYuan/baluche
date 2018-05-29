@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.baluche.R;
 import com.baluche.base.BaseActivity;
@@ -26,6 +27,7 @@ public class ParkpayingActivity extends BaseActivity {
     private TabLayout tabLayout;
     private List<Fragment> fragments = new ArrayList<>();
     private List<String> tabs = new ArrayList<>();
+    private RelativeLayout parkpaying_return_left;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,11 @@ public class ParkpayingActivity extends BaseActivity {
 
     @Override
     public void widgetClick(View view) {
-
+        switch (view.getId()){
+            case R.id.parkpaing_return_left:
+                finish();
+                break;
+        }
     }
 
     public void initView() {
@@ -56,6 +62,8 @@ public class ParkpayingActivity extends BaseActivity {
         fragments.add(new PayrecordFragment());
 
         viewPager.setAdapter(new TabAdapter(getSupportFragmentManager()));
+        parkpaying_return_left = findViewById(R.id.parkpaing_return_left);
+        parkpaying_return_left.setOnClickListener(this);
     }
 
     class TabAdapter extends FragmentPagerAdapter {

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.baluche.R;
 import com.baluche.base.BaseActivity;
@@ -34,6 +35,7 @@ public class SignActivity extends BaseActivity implements ISignACT {
     private ImageView line_6;
     private ImageView round_7;
     private ImageView line_7;
+    private RelativeLayout sign_return_left;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,9 @@ public class SignActivity extends BaseActivity implements ISignACT {
         line_6 = findViewById(R.id.line_6);
         round_7 = findViewById(R.id.round_7);
         line_7 = findViewById(R.id.line_7);
+
+        sign_return_left = findViewById(R.id.sign_return_left);
+        sign_return_left.setOnClickListener(this);
     }
 
     @Override
@@ -73,6 +78,9 @@ public class SignActivity extends BaseActivity implements ISignACT {
         switch (view.getId()) {
             case R.id.sign_bt://点击签到后
                 signPre.toSign();
+                break;
+            case R.id.sign_return_left:
+                finish();
                 break;
         }
     }

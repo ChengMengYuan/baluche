@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterACT {
 
     private Button register_register_bt; //注册button
     private TextView register_sendCode; // 发送验证码
+    private RelativeLayout register_return_left;
 
     public static String re_phone = "";
     public static String re_password = "";
@@ -142,7 +144,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterACT {
         register_sendCode = findViewById(R.id.register_sendCode);
         register_sendCode.setOnClickListener(this);
 
-        ImageView register_return_left = findViewById(R.id.register_return_left);
+        register_return_left = findViewById(R.id.register_return_left);
         register_return_left.setOnClickListener(this);
 
         //验证码计时器服务

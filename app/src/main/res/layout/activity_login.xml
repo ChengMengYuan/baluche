@@ -17,12 +17,16 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/logon_return_left"
                 android:layout_width="8dp"
                 android:layout_height="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="14dp"
                 android:src="@drawable/left_white" />
+
+            <RelativeLayout
+                android:id="@+id/logon_return_left"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"/>
 
             <TextView
                 android:layout_width="wrap_content"

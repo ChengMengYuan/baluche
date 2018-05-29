@@ -1,6 +1,7 @@
 package com.baluche.view.activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -47,16 +48,18 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT {
     private RechargePre rechargePre;
     private ImageView pay_dialog_wechat_choose;
     private ImageView pay_dialog_alipay_choose;
+    private ImageView pay_dialog_close;
+    private RelativeLayout recharge_return_left;
     private RecyclerView.LayoutManager mLayoutManager;
     private RelativeLayout pay_ways_choose_weixin;
     private RelativeLayout pay_ways_choose_alipay;
+    private int moneynumber;
     private String editmoney = "0.00";
     private int paystyle = 2;
 
-    String[] titles = new String[] { "5", "10", "15", "20", "25","30" };
+    int[] titles = new int[] { 5, 10, 15, 20, 25, 30};
     private String[] from = {"title"};
     private int[] to = {R.id.recharge_cell_number};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,8 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT {
         recharge_pay_btn = findViewById(R.id.recharge_pay_btn);
         recharge_pay_btn.setOnClickListener(this);
         recharge_grid = findViewById(R.id.recharge_grid);
+        recharge_return_left = findViewById(R.id.recharge_return_left);
+        recharge_return_left.setOnClickListener(this);
         SimpleAdapter pictureAdapter = new SimpleAdapter(this, getList(),
                 R.layout.recharge_cell, from, to);
         recharge_grid.setAdapter(pictureAdapter);
@@ -98,6 +103,7 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT {
 
         for (int i = 0; i < titles.length; i++) {
             map = new HashMap<String, Object>();
+            moneynumber = titles[i];
             map.put("title", titles[i]+"元");
             list.add(map);
         }
@@ -133,6 +139,12 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT {
                 pay_dialog_alipay_choose.setVisibility(View.VISIBLE);
                 paystyle = 1;
                 break;
+            case R.id.pay_dialog_close:
+                dialog.dismiss();
+                break;
+            case R.id.recharge_return_left:
+                finish();
+                break;
         }
 
     }
@@ -161,6 +173,9 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT {
         pay_ways_choose_alipay = inflate.findViewById(R.id.pay_ways_choose_alipay);
         pay_ways_choose_alipay.setOnClickListener(this);
 
+        pay_dialog_close = inflate.findViewById(R.id.pay_dialog_close);
+        pay_dialog_close.setOnClickListener(this);
+
         dialog.setContentView(inflate);
         //获取当前Activity所在的窗体
         Window dialogWindow = dialog.getWindow();
@@ -180,28 +195,24 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT {
 
         switch (paystyle) {
             case 1:
-                new AlipayTask(this, 5).execute();
+                new AlipayTask(this, moneynumber).execute();
+                Intent intent = new Intent(RechargeActivity.this, RechargeAccomplishActivity.class);
+                intent.putExtra("Paynumber", editmoney);
+                intent.putExtra("Paystyle", "支付宝");
+                startActivity(intent);
                 break;
 
             case 2:
-                Toast.makeText(this, "微信支付还在开发中", Toast.LENGTH_LONG).show();
+                Intent intent2 = new Intent(RechargeActivity.this, RechargeAccomplishActivity.class);
+                intent2.putExtra("Paynumber", editmoney);
+                intent2.putExtra("Paystyle", "微信");
+                startActivity(intent2);
                 break;
 
             default:
                 break;
         }
-//        Intent intent = new Intent(RechargeActivity.this, AlipayActivity.class);
 
-//        /* 通过Bundle对象存储需要传递的数据 */
-//        Bundle bundle = new Bundle();
-//        /*字符、字符串、布尔、字节数组、浮点数等等，都可以传*/
-//        bundle.putString("Paynumber", editmoney);
-//        bundle.putInt("Paystyle", 1);
-//        /*把bundle对象assign给Intent*/
-//        intent.putExtras(bundle);
-//        intent.putExtra("Paynumber", editmoney);
-//        intent.putExtra("Paystyle", "支付宝");
-//        startActivity(intent);
     }
 
 }

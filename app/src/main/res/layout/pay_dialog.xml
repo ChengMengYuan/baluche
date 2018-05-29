@@ -10,6 +10,7 @@
         android:background="#ffffff">
 
         <ImageView
+            android:id="@+id/pay_dialog_close"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_alignParentBottom="true"
