@@ -1,5 +1,7 @@
 package com.baluche.view.fragment;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,7 +22,8 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
-import com.amap.api.maps.model.CameraPosition;
+import com.amap.api.maps.model.BitmapDescriptor;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
@@ -28,11 +31,9 @@ import com.amap.api.maps.model.MyLocationStyle;
 import com.baluche.R;
 import com.baluche.model.http.entity.Park;
 import com.baluche.model.http.http.HttpMethods;
-import com.baluche.view.adapter.InfromViewAdapter;
 import com.baluche.view.adapter.NearRecyclerViewAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -82,7 +83,7 @@ public class NearbyFragment extends Fragment {
      */
     private NearRecyclerViewAdapter mAdapter;
 
-
+    private LatLng latLng;//经纬度
     private double Latitude = 0d;     //获取纬度
     private double Longitude = 0d;   //获取经度
 
@@ -199,7 +200,7 @@ public class NearbyFragment extends Fragment {
             if (aMapLocation != null) {//当定位成功时
                 if (aMapLocation.getErrorCode() == 0) {  //可在其中解析amapLocation获取相应内容。
                     //取出经纬度
-                    LatLng latLng = new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude());
+                    latLng = new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude());
                     Latitude = aMapLocation.getLatitude();       //获取纬度
                     Longitude = aMapLocation.getLongitude();     //获取经度
                     MyLocationStyle myLocationStyle = new MyLocationStyle();
@@ -247,7 +248,7 @@ public class NearbyFragment extends Fragment {
             aMap = mMapView.getMap();
         }
         aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
-        aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点
+        aMap.setMyLocationEnabled(false);// 设置为true表示启动显示定位蓝点
     }
 
     /**
@@ -270,6 +271,16 @@ public class NearbyFragment extends Fragment {
                     case 200:
                         for (int i = 0; i < park.getData().size(); i++) {
                             list.add(park.getData().get(i));
+
+                            LatLng marker_latLng = new LatLng(
+                                    Double.parseDouble(park.getData().get(i).getLat()),
+                                    Double.parseDouble(park.getData().get(i).getLng()));
+                            aMap.addMarker(
+                                    new MarkerOptions()
+                                            .position(marker_latLng)
+                                            .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory
+                                                    .decodeResource(getResources(), R.drawable.location_marker)))
+                            );
                         }
                         break;
                     default:
@@ -286,7 +297,7 @@ public class NearbyFragment extends Fragment {
             @Override
             public void onComplete() {
                 /*设置adapter*/
-                mAdapter = new NearRecyclerViewAdapter(list, getContext(),Latitude,longitude);
+                mAdapter = new NearRecyclerViewAdapter(list, getContext(), Latitude, longitude);
                 near_recyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
             }

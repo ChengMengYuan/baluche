@@ -2,8 +2,6 @@ package com.baluche.view.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,14 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baluche.R;
 import com.baluche.model.http.entity.Park;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Administrator on 2018/3/27 0027.
@@ -164,7 +160,9 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
             intent.setAction(Intent.ACTION_VIEW);
             intent.addCategory(Intent.CATEGORY_DEFAULT);
             //将功能Scheme以URI的方式传入data
-            Uri uri = Uri.parse("androidamap://navi?sourceApplication=appname&poiname=fangheng&lat=" +
+            Uri uri = Uri.parse("androidamap://navi?sourceApplication=appname" +
+                    "&poiname=fangheng" +
+                    "&lat=" +
                     lat +
                     "&lon=" +
                     lng +
