@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.baluche.R;
 import com.baluche.model.http.entity.Park;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,20 +27,24 @@ import java.util.List;
 
 
 public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerViewAdapter.ViewHolder> {
-    private ArrayList<Park> mData;
+    private ArrayList<Park.DataBean> mData;
     private Context context;
+    private double Latitude;
+    private double Longitude;
 
 
-    public NearRecyclerViewAdapter(ArrayList<Park> data, Context context) {
+    public NearRecyclerViewAdapter(ArrayList<Park.DataBean> data, Context context, double Latitude, double Longitude) {
         Log.d("NearRecyclerViewAdapter", "======");
         for (int i = 0; i < data.size(); i++) {
             Log.d("NearRecyclerViewAdapter", "" + data.get(i));
         }
         this.mData = data;
         this.context = context;
+        this.Latitude = Latitude;
+        this.Longitude = Longitude;
     }
 
-    public void updateData(ArrayList<Park> data) {
+    public void updateData(ArrayList<Park.DataBean> data) {
         this.mData = data;
         notifyDataSetChanged();
     }
@@ -54,7 +60,7 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
 
     @Override
     public void onBindViewHolder(NearRecyclerViewAdapter.ViewHolder holder, int position) {
-        Park.DataBean park = mData.get(position).getData().get(position);
+        Park.DataBean park = mData.get(position);
         /*设置停车场名称*/
         holder.item_Location_name_tv.setText(park.getTitle());
         /*设置到停车场的距离*/
@@ -71,8 +77,116 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
         Log.d("onBindViewHolder", "" + mData.get(position));
         /*设置导航按钮的点击事件*/
         holder.navigation_img.setOnClickListener(view -> {
-            startNaviGao(park.getLat(), park.getLng());
+            startToNavigation(park.getLat(), park.getLng());
         });
+    }
+
+    /**
+     * 启动导航
+     *
+     * @param lat
+     * @param lng
+     */
+    private void startToNavigation(String lat, String lng) {
+        String gaodeMap = "com.autonavi.minimap";   //高德地图包名：com.autonavi.minimap
+        String tencentMap = "com.tencent.map";      //腾讯地图包名：com.tencent.map
+        String BaiduMap = "com.baidu.BaiduMap";     //百度地图包名：com.baidu.BaiduMap
+        if (isPackageInstalled(gaodeMap)) {
+            startGaodeMap(lat, lng);
+        } else if (isPackageInstalled(tencentMap)) {
+            startTencentMap(lat, lng);
+            //如果安装了腾讯地图APP
+            Log.d("isPackageInstalled", "安装了腾讯地图APP: ");
+        } else if (isPackageInstalled(BaiduMap)) {
+            startBaiduMap(lat, lng);
+            //如果安装了百度地图APP
+            Log.d("isPackageInstalled", "安装了百度地图APP: ");
+        } else {
+            startHTMLMap(lat, lng);
+            //如果什么地图都没安装,则打开网页版地图进行导航
+            Log.d("isPackageInstalled", "什么地图都没安装: ");
+        }
+    }
+
+    private void startHTMLMap(String lat, String lng) {
+        Log.d("startHTMLMap", "mlat---" + Latitude);
+        Log.d("startHTMLMap", "mlng---" + Longitude);
+        Log.d("startHTMLMap", "lat---" + lat);
+        Log.d("startHTMLMap", "lng---" + lng);
+        Uri mapUri = Uri.parse("http://apis.map.qq.com/uri/v1/routeplan?type=drive" +
+                "&from=起点" +
+                "&fromcoord=" +
+                Latitude +
+                "," +
+                Longitude +
+                "&to=终点" +
+                "&tocoord=" +
+                lat +
+                "," +
+                lng +
+                "&policy=1" +
+                "&referer=myapp");
+        Intent loction = new Intent(Intent.ACTION_VIEW, mapUri);
+        context.startActivity(loction);
+    }
+
+    /**
+     * 打开百度地图进行导航
+     *
+     * @param lat 目的地经纬度
+     * @param lng 目的地经纬度
+     */
+    private void startBaiduMap(String lat, String lng) {
+    }
+
+    /**
+     * 打开腾讯地图进行导航
+     *
+     * @param lat 目的地经纬度
+     * @param lng 目的地经纬度
+     */
+    private void startTencentMap(String lat, String lng) {
+
+    }
+
+    /**
+     * 打开高德地图进行导航
+     *
+     * @param lat 目的地经纬度
+     * @param lng 目的地经纬度
+     */
+    private void startGaodeMap(String lat, String lng) {
+        //如果安装了高德地图APP
+        Log.d("isPackageInstalled", "安装了高德地图APP: ");
+        // 高德地图
+        try {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_DEFAULT);
+            //将功能Scheme以URI的方式传入data
+            Uri uri = Uri.parse("androidamap://navi?sourceApplication=appname&poiname=fangheng&lat=" +
+                    lat +
+                    "&lon=" +
+                    lng +
+                    "&dev=1&style=2");
+            intent.setData(uri);
+            //启动该页面即可
+            context.startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+            startHTMLMap(lat, lng);
+        }
+    }
+
+    /**
+     * 校验是否装了该应用
+     *
+     * @param packageName 应用包名
+     * @return boolean
+     */
+    private boolean isPackageInstalled(String packageName) {
+        return new File("/data/data/" + packageName)
+                .exists();
     }
 
     @Override
@@ -92,46 +206,6 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
             item_surplus_tv = itemView.findViewById(R.id.item_surplus_tv);
             item_distance_tv = itemView.findViewById(R.id.item_distance_tv);
             navigation_img = itemView.findViewById(R.id.navigation_img);
-        }
-    }
-
-    //验证各种导航地图是否安装
-    public static boolean isAvilible(Context context, String packageName) {
-        //获取packagemanager
-        final PackageManager packageManager = context.getPackageManager();
-        //获取所有已安装程序的包信息
-        List<PackageInfo> packageInfos = packageManager.getInstalledPackages(0);
-        //用于存储所有已安装程序的包名
-        List<String> packageNames = new ArrayList<>();
-        //从pinfo中将包名字逐一取出，压入pName list中
-        if (packageInfos != null) {
-            for (int i = 0; i < packageInfos.size(); i++) {
-                String packName = packageInfos.get(i).packageName;
-                packageNames.add(packName);
-            }
-        }
-        //判断packageNames中是否有目标程序的包名，有TRUE，没有FALSE
-        return packageNames.contains(packageName);
-    }
-
-    /**
-     * 高德地图,起点就是定位点
-     *
-     * @param latitude  纬度latitude
-     * @param longitude 经度longitude
-     */
-    public void startNaviGao(String latitude, String longitude) {
-        if (isAvilible(context, "com.autonavi.minimap")) {
-            try {
-                //sourceApplication
-                Intent intent = Intent.getIntent("androidamap://navi?sourceApplication=公司的名称（随意写）" +
-                        "&poiname=我的目的地&lat=" + latitude + "&lon=" + longitude + "&dev=0");
-                context.startActivity(intent);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            Toast.makeText(context, "您尚未安装高德地图或地图版本过低", Toast.LENGTH_LONG).show();
         }
     }
 

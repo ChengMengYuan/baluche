@@ -105,34 +105,35 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener {
     @Override
     public void initData() {
         RxPermissions rxPermissions = new RxPermissions(this);
+        // TODO: 2018/5/28 添加权限管理的提示
         rxPermissions
-                .request(Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_COARSE_LOCATION)
-                .subscribe(granted -> {
-                    if (granted) {//同意权限
-                        Log.d("rxPermissions", "tongyi");
-                    } else {//拒绝权限
-                        Log.d("rxPermissions", "jujue");
-                        MaterialDialog materialDialog = new MaterialDialog.Builder(getContext())
-                                .title("权限提示")
-                                .content("该权限是软件必须获取的权限，如果拒绝可能导致核心功能不可使用，请在设置中赋予该权限。")
-                                .positiveText("去设置")
-                                .onPositive((dialog, which) -> {
-                                    Log.d("materialDialog", "去设置");
-                                    Intent localIntent = new Intent();
-                                    localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    if (Build.VERSION.SDK_INT >= 9) {
-                                        localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-                                        localIntent.setData(Uri.fromParts("package", getContext().getPackageName(), null));
-                                    } else if (Build.VERSION.SDK_INT <= 8) {
-                                        localIntent.setAction(Intent.ACTION_VIEW);
-                                        localIntent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
-                                        localIntent.putExtra("com.android.settings.ApplicationPkgName", getContext().getPackageName());
-                                    }
-                                    getContext().startActivity(localIntent);
-                                })
-                                .negativeText("取消")
-                                .onNegative((dialog, which) -> Log.d("materialDialog", "取消"))
-                                .show();
+                .requestEach(Manifest.permission.READ_PHONE_STATE,//读取手机号
+                        Manifest.permission.ACCESS_COARSE_LOCATION)//获得定位权限
+                .subscribe(permission -> {
+                    if (permission.granted) {
+                        Log.d("rxPermissions", permission.name + "同意了权限");
+                        switch (permission.name) {
+                            case Manifest.permission.READ_PHONE_STATE:
+                                break;
+                            case Manifest.permission.ACCESS_COARSE_LOCATION:
+                                break;
+                        }
+                    } else if (permission.shouldShowRequestPermissionRationale) {
+                        Log.d("rxPermissions", permission.name + "拒绝了");
+                        switch (permission.name) {
+                            case Manifest.permission.READ_PHONE_STATE:
+                                break;
+                            case Manifest.permission.ACCESS_COARSE_LOCATION:
+                                break;
+                        }
+                    } else {
+                        Log.d("rxPermissions", permission.name + "拒绝并不再提示了");
+                        switch (permission.name) {
+                            case Manifest.permission.READ_PHONE_STATE:
+                                break;
+                            case Manifest.permission.ACCESS_COARSE_LOCATION:
+                                break;
+                        }
                     }
                 });
     }

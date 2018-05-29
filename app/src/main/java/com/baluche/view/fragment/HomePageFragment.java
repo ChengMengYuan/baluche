@@ -215,26 +215,12 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 switch (banner.getCode()) {
                     case 200:
                         for (int i = 0; i < banner.getData().size(); i++) {
+                            Log.d("getPhoto", "" + banner.getData().get(i).getPhoto());
+                            Log.d("getLink", "" + banner.getData().get(i).getLink());
                             images.add(banner.getData().get(i).getPhoto());
                         }
-                        //设置banner样式
-                        kj_banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
-                        //设置图片加载器
-                        kj_banner.setImageLoader(new FrescoImageLoader());
-                        //设置图片集合
-                        kj_banner.setImages(images);
-                        //设置banner动画效果
-                        kj_banner.setBannerAnimation(Transformer.DepthPage);
-                        //设置标题集合（当banner样式有显示title时）
-                        kj_banner.setBannerTitles(titles);
-                        //设置自动轮播，默认为true
-                        kj_banner.isAutoPlay(true);
-                        //设置轮播时间
-                        kj_banner.setDelayTime(1500);
-                        //设置指示器位置（当banner模式中有指示器时）
-                        kj_banner.setIndicatorGravity(BannerConfig.CENTER);
-                        //banner设置方法全部调用完毕时最后调用
-                        kj_banner.start();
+                        break;
+                    default:
                         break;
                 }
             }
@@ -246,7 +232,24 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onComplete() {
-
+                   //设置banner样式
+                kj_banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+                //设置图片加载器
+                kj_banner.setImageLoader(new FrescoImageLoader());
+                //设置图片集合
+                kj_banner.setImages(images);
+                //设置banner动画效果
+                kj_banner.setBannerAnimation(Transformer.DepthPage);
+                //设置标题集合（当banner样式有显示title时）
+                kj_banner.setBannerTitles(titles);
+                //设置自动轮播，默认为true
+                kj_banner.isAutoPlay(true);
+                //设置轮播时间
+                kj_banner.setDelayTime(1500);
+                //设置指示器位置（当banner模式中有指示器时）
+                kj_banner.setIndicatorGravity(BannerConfig.CENTER);
+                //banner设置方法全部调用完毕时最后调用
+                kj_banner.start();
             }
         });
     }

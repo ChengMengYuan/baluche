@@ -163,7 +163,7 @@ public class HttpMethods {
         pMap.put("sign", getSign(kmap));
         pMap.put("time", time);
 
-        Logger.d("" + gson.toJson(pMap));
+        Log.d("getBanner", "" + gson.toJson(pMap));
         apiService.getBanner(gson.toJson(pMap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -188,10 +188,11 @@ public class HttpMethods {
         pMap.put("lat", Latitude);
         pMap.put("lng", Longitude);
 
+        Log.d("HttpMethods", gson.toJson(pMap));
         apiService.getPark(gson.toJson(pMap))
-//                .subscribeOn(Schedulers.io())
-//                .unsubscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
         kmap.clear();
         pMap.clear();

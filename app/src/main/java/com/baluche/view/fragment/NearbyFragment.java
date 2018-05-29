@@ -20,15 +20,16 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
-import com.amap.api.maps.model.TextOptions;
 import com.baluche.R;
 import com.baluche.model.http.entity.Park;
 import com.baluche.model.http.http.HttpMethods;
 import com.baluche.view.adapter.InfromViewAdapter;
+import com.baluche.view.adapter.NearRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +80,7 @@ public class NearbyFragment extends Fragment {
     /**
      * 列表适配器
      */
-    private RecyclerView.Adapter mAdapter;
+    private NearRecyclerViewAdapter mAdapter;
 
 
     private double Latitude = 0d;     //获取纬度
@@ -118,6 +119,7 @@ public class NearbyFragment extends Fragment {
         }
     }
 
+
     private void initView(Bundle savedInstanceState, View v) {
         initMap(savedInstanceState, v);
         nearby_bottom_sheet = BottomSheetBehavior.from(v.findViewById(R.id.nearby_bottom_sheet));
@@ -130,13 +132,7 @@ public class NearbyFragment extends Fragment {
         near_recyclerView.setLayoutManager(mLayoutManager);
         /*设置分割线*/
         near_recyclerView.addItemDecoration(new MyItemDecoration());
-        /*设置adapter*/
-        ArrayList<String> data = new ArrayList<>();//停车场信息集合
-        for (int i = 0; i < 50; i++) {
-            data.add("这是测试数据" + i);
-        }
-        mAdapter = new InfromViewAdapter(data);
-        near_recyclerView.setAdapter(mAdapter);
+
 //        nearby_bottom_sheet.setState(BottomSheetBehavior.STATE_COLLAPSED);
         nearby_bottom_sheet.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
@@ -145,6 +141,8 @@ public class NearbyFragment extends Fragment {
                 // Check Logs to see how bottom sheets behaves
                 switch (newState) {
                     case BottomSheetBehavior.STATE_COLLAPSED:
+//                        CameraPosition cameraPosition = new CameraPosition();
+//                        aMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));//将定位图标移动到当前屏幕中心位置
                         Log.e("Bottom Sheet Behaviour", "折叠的");
                         fab.setVisibility(View.INVISIBLE);
                         break;
@@ -219,7 +217,7 @@ public class NearbyFragment extends Fragment {
                                 .draggable(true)
                                 .setFlat(true));
                         locationMarker.showInfoWindow();//主动显示indowindow
-                        aMap.addText(new TextOptions().position(latLng).text(aMapLocation.getAddress()));
+//                        aMap.addText(new TextOptions().position(latLng).text(aMapLocation.getAddress()));
                         //固定标签在屏幕中央
                         locationMarker.setPositionByPixels(mMapView.getWidth() / 2, mMapView.getHeight() / 2);
                     } else {
@@ -259,6 +257,7 @@ public class NearbyFragment extends Fragment {
      * @param longitude 经度
      */
     private void getParkData(double latitude, double longitude) {
+        ArrayList<Park.DataBean> list = new ArrayList();
         HttpMethods.getInstance().getPark(latitude, longitude, new Observer<Park>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -269,9 +268,8 @@ public class NearbyFragment extends Fragment {
             public void onNext(Park park) {
                 switch (park.getCode()) {
                     case 200:
-                        List list = park.getData();
                         for (int i = 0; i < park.getData().size(); i++) {
-                            park.getData().get(i).getTitle();
+                            list.add(park.getData().get(i));
                         }
                         break;
                     default:
@@ -287,7 +285,10 @@ public class NearbyFragment extends Fragment {
 
             @Override
             public void onComplete() {
-
+                /*设置adapter*/
+                mAdapter = new NearRecyclerViewAdapter(list, getContext(),Latitude,longitude);
+                near_recyclerView.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
             }
         });
     }
