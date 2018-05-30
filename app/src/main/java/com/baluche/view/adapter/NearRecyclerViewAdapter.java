@@ -87,16 +87,17 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
         String gaodeMap = "com.autonavi.minimap";   //高德地图包名：com.autonavi.minimap
         String tencentMap = "com.tencent.map";      //腾讯地图包名：com.tencent.map
         String BaiduMap = "com.baidu.BaiduMap";     //百度地图包名：com.baidu.BaiduMap
-        if (isPackageInstalled(gaodeMap)) {
-            startGaodeMap(lat, lng);
-        } else if (isPackageInstalled(tencentMap)) {
+//        if (isPackageInstalled(gaodeMap)) {
+//            startGaodeMap(lat, lng);
+//        } else
+            if (isPackageInstalled(tencentMap)) {
             startTencentMap(lat, lng);
             //如果安装了腾讯地图APP
             Log.d("isPackageInstalled", "安装了腾讯地图APP: ");
         } else if (isPackageInstalled(BaiduMap)) {
             startBaiduMap(lat, lng);
             //如果安装了百度地图APP
-            Log.d("isPackageInstalled", "安装了百度地图APP: ");
+            Log.d("isPackageInstalled", "安装了百度地图APP: ……………………………………………………………………");
         } else {
             startHTMLMap(lat, lng);
             //如果什么地图都没安装,则打开网页版地图进行导航
@@ -133,6 +134,22 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
      * @param lng 目的地经纬度
      */
     private void startBaiduMap(String lat, String lng) {
+        //如果安装了百度地图APP
+        Log.d("isPackageInstalled", "安装了百度地图APP: ");
+        // 百度地图
+        try {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_DEFAULT);
+            //将功能Scheme以URI的方式传入data
+            Uri uri = Uri.parse("baidumap://map/direction?destination="+ lat +"," + lng +"&mode=driving");
+            intent.setData(uri);
+            //启动该页面即可
+            context.startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+            startHTMLMap(lat, lng);
+        }
     }
 
     /**
@@ -142,7 +159,22 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
      * @param lng 目的地经纬度
      */
     private void startTencentMap(String lat, String lng) {
-
+        //如果安装了腾讯地图APP
+        Log.d("isPackageInstalled", "安装了腾讯地图APP: ");
+        // 腾讯地图
+        try {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_DEFAULT);
+            //将功能Scheme以URI的方式传入data
+            Uri uri = Uri.parse("http://apis.map.qq.com/uri/v1/routeplan?type=drive&tocoord=" +lat+ "," +lng+ "policy=0&referer=baluche");
+            intent.setData(uri);
+            //启动该页面即可
+            context.startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+            startHTMLMap(lat, lng);
+        }
     }
 
     /**
@@ -206,5 +238,4 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
             navigation_img = itemView.findViewById(R.id.navigation_img);
         }
     }
-
 }

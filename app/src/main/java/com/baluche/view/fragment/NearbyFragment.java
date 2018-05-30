@@ -258,6 +258,7 @@ public class NearbyFragment extends Fragment {
      * @param longitude 经度
      */
     private void getParkData(double latitude, double longitude) {
+        Log.d("isPackageInstalled", "安装了百度地图APP: ……………………………………………………………………@@@@@@@@@@@@@@@@@@@@@@@@@");
         ArrayList<Park.DataBean> list = new ArrayList();
         HttpMethods.getInstance().getPark(latitude, longitude, new Observer<Park>() {
             @Override
@@ -298,6 +299,7 @@ public class NearbyFragment extends Fragment {
             public void onComplete() {
                 /*设置adapter*/
                 mAdapter = new NearRecyclerViewAdapter(list, getContext(), Latitude, longitude);
+                Log.d("isPackageInstalled", "安装了百度地图APP: ……………………………………………………………………");
                 near_recyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
             }
