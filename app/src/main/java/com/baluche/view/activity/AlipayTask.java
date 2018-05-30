@@ -3,6 +3,7 @@ package com.baluche.view.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -66,6 +67,10 @@ public class AlipayTask extends AsyncTask {
         String code = result.get("resultStatus");
         switch (code) {
             case "9000"://订单支付成功
+                Intent intent = new Intent(mContext, RechargeAccomplishActivity.class);
+                intent.putExtra("Paynumber", mMoney+".00");
+                intent.putExtra("Paystyle", "支付宝");
+                mContext.startActivity(intent);
                 Log.d(TAG, "onPostExecute: " + "订单支付成功");
                 break;
             case "8000"://正在处理中，支付结果未知（有可能已经支付成功），请查询商户订单列表中订单的支付状态

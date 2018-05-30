@@ -62,7 +62,7 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
         /*设置停车场名称*/
         holder.item_Location_name_tv.setText(park.getTitle());
         /*设置到停车场的距离*/
-        holder.item_surplus_tv.setText(park.getNull_number());
+        holder.item_surplus_tv.setText(park.getNull_number() + "");
         int distance = park.getDistance();
         Log.d("distance", ":" + distance);
         String dis;

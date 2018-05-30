@@ -1,28 +1,20 @@
 package com.baluche.view.activity;
 
 import android.app.Dialog;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baluche.R;
 import com.baluche.base.BaseActivity;
@@ -44,7 +36,6 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT {
     private TextView recharge_cell_number;
     private View inflate;
     private Dialog dialog;
-    private int posDot;
     private RechargePre rechargePre;
     private ImageView pay_dialog_wechat_choose;
     private ImageView pay_dialog_alipay_choose;
@@ -53,11 +44,11 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT {
     private RecyclerView.LayoutManager mLayoutManager;
     private RelativeLayout pay_ways_choose_weixin;
     private RelativeLayout pay_ways_choose_alipay;
-    private int moneynumber;
-    private String editmoney = "0.00";
-    private int paystyle = 2;
+    private int moneyNum;
+    private String editMoney = "0.00";
+    private int payStyle = 2;
 
-    int[] titles = new int[] { 5, 10, 15, 20, 25, 30};
+    int[] titles = new int[]{5, 10, 15, 20, 25, 30};
     private String[] from = {"title"};
     private int[] to = {R.id.recharge_cell_number};
 
@@ -78,33 +69,29 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT {
         SimpleAdapter pictureAdapter = new SimpleAdapter(this, getList(),
                 R.layout.recharge_cell, from, to);
         recharge_grid.setAdapter(pictureAdapter);
-        recharge_grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                for(int i=0;i<parent.getCount();i++) {
-                    View item = parent.getChildAt(i);
-                    recharge_cell_number = item.findViewById(R.id.recharge_cell_number);
-                    recharge_cell_number.setTextColor(Color.parseColor("#2cb154"));
-                    item.setBackgroundResource(R.drawable.edit_bg);
-                }
-                recharge_cell_number = view.findViewById(R.id.recharge_cell_number);
-                recharge_cell_number.setTextColor(Color.parseColor("#ffffff"));
-                view.setBackgroundResource(R.drawable.edit_bg2);
-                editmoney = titles[position]+".00";
+        recharge_grid.setOnItemClickListener((parent, view, position, id) -> {
+            for (int i = 0; i < parent.getCount(); i++) {
+                View item = parent.getChildAt(i);
+                recharge_cell_number = item.findViewById(R.id.recharge_cell_number);
+                recharge_cell_number.setTextColor(Color.parseColor("#2cb154"));
+                item.setBackgroundResource(R.drawable.edit_bg);
             }
+            recharge_cell_number = view.findViewById(R.id.recharge_cell_number);
+            recharge_cell_number.setTextColor(Color.parseColor("#ffffff"));
+            view.setBackgroundResource(R.drawable.edit_bg2);
+            editMoney = titles[position] + ".00";
+            moneyNum = titles[position];
         });
     }
 
     public List<Map<String, Object>> getList() {
-        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-        Map<String, Object> map = null;
-
+        List<Map<String, Object>> list = new ArrayList<>();
+        Map<String, Object> map;
 
 
         for (int i = 0; i < titles.length; i++) {
-            map = new HashMap<String, Object>();
-            moneynumber = titles[i];
-            map.put("title", titles[i]+"元");
+            map = new HashMap<>();
+            map.put("title", titles[i] + "元");
             list.add(map);
         }
         return list;
@@ -119,7 +106,7 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT {
     @Override
     public void widgetClick(View view) {
 
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.recharge_pay_btn:
                 rechargePre.show_paydialog();
                 break;
@@ -131,13 +118,13 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT {
             case R.id.pay_ways_choose_weixin:
                 pay_dialog_wechat_choose.setVisibility(View.VISIBLE);
                 pay_dialog_alipay_choose.setVisibility(View.GONE);
-                paystyle = 2;
+                payStyle = 2;
                 break;
 
             case R.id.pay_ways_choose_alipay:
                 pay_dialog_wechat_choose.setVisibility(View.GONE);
                 pay_dialog_alipay_choose.setVisibility(View.VISIBLE);
-                paystyle = 1;
+                payStyle = 1;
                 break;
             case R.id.pay_dialog_close:
                 dialog.dismiss();
@@ -159,10 +146,10 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT {
         pay_dialog_sure_btn.setOnClickListener(this);
 
         pay_dialog_money_number = inflate.findViewById(R.id.pay_dialog_money_number);
-        pay_dialog_money_number.setText(editmoney.toString());
+        pay_dialog_money_number.setText(editMoney.toString());
 
         getpay_dialog_money_number_text = inflate.findViewById(R.id.pay_dialog_money_number_text);
-        getpay_dialog_money_number_text.setText(editmoney.toString());
+        getpay_dialog_money_number_text.setText(editMoney.toString());
 
         pay_dialog_wechat_choose = inflate.findViewById(R.id.pay_dialog_wechat_choose);
         pay_dialog_alipay_choose = inflate.findViewById(R.id.pay_dialog_alipay_choose);
@@ -193,20 +180,12 @@ public class RechargeActivity extends BaseActivity implements IRechargeACT {
     @Override
     public void pay_dialog_sure_btn() {
 
-        switch (paystyle) {
+        switch (payStyle) {
             case 1:
-                new AlipayTask(this, moneynumber).execute();
-                Intent intent = new Intent(RechargeActivity.this, RechargeAccomplishActivity.class);
-                intent.putExtra("Paynumber", editmoney);
-                intent.putExtra("Paystyle", "支付宝");
-                startActivity(intent);
+                new AlipayTask(this, moneyNum * 100).execute();
                 break;
 
             case 2:
-                Intent intent2 = new Intent(RechargeActivity.this, RechargeAccomplishActivity.class);
-                intent2.putExtra("Paynumber", editmoney);
-                intent2.putExtra("Paystyle", "微信");
-                startActivity(intent2);
                 break;
 
             default:
