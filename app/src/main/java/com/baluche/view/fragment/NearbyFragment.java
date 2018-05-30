@@ -1,6 +1,5 @@
 package com.baluche.view.fragment;
 
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -22,7 +21,6 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
-import com.amap.api.maps.model.BitmapDescriptor;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
@@ -170,9 +168,7 @@ public class NearbyFragment extends Fragment {
             }
         });
 
-        fab.setOnClickListener(v1 -> {
-            nearby_bottom_sheet.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        });
+        fab.setOnClickListener(v1 -> nearby_bottom_sheet.setState(BottomSheetBehavior.STATE_COLLAPSED));
     }
 
     /**
@@ -217,7 +213,7 @@ public class NearbyFragment extends Fragment {
                                 //                                    .snippet("")
                                 .draggable(true)
                                 .setFlat(true));
-                        locationMarker.showInfoWindow();//主动显示indowindow
+                        locationMarker.showInfoWindow();//主动显示infoWindow
 //                        aMap.addText(new TextOptions().position(latLng).text(aMapLocation.getAddress()));
                         //固定标签在屏幕中央
                         locationMarker.setPositionByPixels(mMapView.getWidth() / 2, mMapView.getHeight() / 2);

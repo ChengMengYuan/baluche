@@ -3,6 +3,7 @@ package com.baluche.view.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.baluche.R;
 import com.baluche.model.http.entity.Park;
 
@@ -27,6 +29,7 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
     private Context context;
     private double Latitude;
     private double Longitude;
+    private MaterialDialog materialDialog;//等待的dialog
 
 
     public NearRecyclerViewAdapter(ArrayList<Park.DataBean> data, Context context, double Latitude, double Longitude) {
@@ -40,18 +43,17 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
         this.Longitude = Longitude;
     }
 
-    public void updateData(ArrayList<Park.DataBean> data) {
-        this.mData = data;
-        notifyDataSetChanged();
-    }
+//    public void updateData(ArrayList<Park.DataBean> data) {
+//        this.mData = data;
+//        notifyDataSetChanged();
+//    }
 
     @Override
     public NearRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // 实例化展示的view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.near_rv_item, parent, false);
-        // 实例化viewholder
-        ViewHolder viewHolder = new ViewHolder(v);
-        return viewHolder;
+        // 实例化viewHolder
+        return new ViewHolder(v);
     }
 
     @Override
@@ -60,19 +62,20 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
         /*设置停车场名称*/
         holder.item_Location_name_tv.setText(park.getTitle());
         /*设置到停车场的距离*/
-        holder.item_surplus_tv.setText(park.getNull_number() + "");
+        holder.item_surplus_tv.setText(park.getNull_number());
         int distance = park.getDistance();
         Log.d("distance", ":" + distance);
-        String dis = "";
-        if (distance >= 1000) {
+        String dis;
+        if (1000 <= distance) {
             dis = distance / 1000 + "公里";
-        } else if (distance < 1000) {
+        } else {
             dis = distance + "米";
         }
         holder.item_distance_tv.setText(dis);
         Log.d("onBindViewHolder", "" + mData.get(position));
         /*设置导航按钮的点击事件*/
         holder.navigation_img.setOnClickListener(view -> {
+            duringSearchMap();
             startToNavigation(park.getLat(), park.getLng());
         });
     }
@@ -80,31 +83,41 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
     /**
      * 启动导航
      *
-     * @param lat
-     * @param lng
+     * @param lat lat
+     * @param lng lng
      */
     private void startToNavigation(String lat, String lng) {
         String gaodeMap = "com.autonavi.minimap";   //高德地图包名：com.autonavi.minimap
         String tencentMap = "com.tencent.map";      //腾讯地图包名：com.tencent.map
         String BaiduMap = "com.baidu.BaiduMap";     //百度地图包名：com.baidu.BaiduMap
-//        if (isPackageInstalled(gaodeMap)) {
-//            startGaodeMap(lat, lng);
-//        } else
-            if (isPackageInstalled(tencentMap)) {
+        if (isPackageInstalled(gaodeMap)) {
+            materialDialog.dismiss();
+            startGaodeMap(lat, lng);
+            Log.d("isPackageInstalled", "安装了高德地图APP: ");
+        } else if (isPackageInstalled(tencentMap)) {
+            materialDialog.dismiss();
             startTencentMap(lat, lng);
             //如果安装了腾讯地图APP
             Log.d("isPackageInstalled", "安装了腾讯地图APP: ");
         } else if (isPackageInstalled(BaiduMap)) {
+            materialDialog.dismiss();
             startBaiduMap(lat, lng);
             //如果安装了百度地图APP
-            Log.d("isPackageInstalled", "安装了百度地图APP: ……………………………………………………………………");
+            Log.d("isPackageInstalled", "安装了百度地图APP:");
         } else {
+            materialDialog.dismiss();
             startHTMLMap(lat, lng);
             //如果什么地图都没安装,则打开网页版地图进行导航
             Log.d("isPackageInstalled", "什么地图都没安装: ");
         }
     }
 
+    /**
+     * 打开网页版腾讯地图
+     *
+     * @param lat lat
+     * @param lng lng
+     */
     private void startHTMLMap(String lat, String lng) {
         Log.d("startHTMLMap", "mlat---" + Latitude);
         Log.d("startHTMLMap", "mlng---" + Longitude);
@@ -142,7 +155,7 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
             intent.setAction(Intent.ACTION_VIEW);
             intent.addCategory(Intent.CATEGORY_DEFAULT);
             //将功能Scheme以URI的方式传入data
-            Uri uri = Uri.parse("baidumap://map/direction?destination="+ lat +"," + lng +"&mode=driving");
+            Uri uri = Uri.parse("baidumap://map/direction?destination=" + lat + "," + lng + "&mode=driving");
             intent.setData(uri);
             //启动该页面即可
             context.startActivity(intent);
@@ -167,7 +180,7 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
             intent.setAction(Intent.ACTION_VIEW);
             intent.addCategory(Intent.CATEGORY_DEFAULT);
             //将功能Scheme以URI的方式传入data
-            Uri uri = Uri.parse("http://apis.map.qq.com/uri/v1/routeplan?type=drive&tocoord=" +lat+ "," +lng+ "policy=0&referer=baluche");
+            Uri uri = Uri.parse("qqmap://map/routeplan?type=drive&tocoord=" + lat + "," + lng + "&policy=0&referer=baluche");
             intent.setData(uri);
             //启动该页面即可
             context.startActivity(intent);
@@ -215,7 +228,7 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
      * @return boolean
      */
     private boolean isPackageInstalled(String packageName) {
-        return new File("/data/data/" + packageName)
+        return new File(Environment.getExternalStorageDirectory().getPath() + packageName)
                 .exists();
     }
 
@@ -237,5 +250,16 @@ public class NearRecyclerViewAdapter extends RecyclerView.Adapter<NearRecyclerVi
             item_distance_tv = itemView.findViewById(R.id.item_distance_tv);
             navigation_img = itemView.findViewById(R.id.navigation_img);
         }
+    }
+
+    /**
+     * 展示一个dialog提示用户等待
+     */
+    private void duringSearchMap() {
+        materialDialog = new MaterialDialog.Builder(context)
+                .title("请稍候")
+                .content("正在打开地图")
+                .progress(true, 0)
+                .show();
     }
 }
